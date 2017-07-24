@@ -1,0 +1,215 @@
+/**
+ * Custom 947 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+
+
+
+public List getParentID(Record record) {
+return getParentID(record,"001");
+}
+
+
+public List getParentID(Record record, String fieldSpec) {
+	
+	ArrayList result = new ArrayList();
+	
+	String id_parent = "";
+	String id = indexer.getFirstFieldVal(record, fieldSpec);
+	String[] split_id = id.split("_");
+	String bib_id = split_id[0];
+	boolean find_parent = false;
+	
+	//Read parent id file
+	BufferedReader bf = new BufferedReader(new FileReader("/usr/local/vufind2/local/harvest/Sobek/sobek_fathers.txt"));
+	while ((sCadena = bf.readLine())!=null) {
+	
+	String[] split_id_file = sCadena.split("_");
+	String bib_id_file = split_id_file[0];
+	
+		if(bib_id_file.equals(bib_id)){
+			id_parent = sCadena;
+	    		find_parent = true;
+	    		break;
+	    	}
+	}
+	bf.close();
+	
+	if(!find_parent){
+		PrintWriter pw = null;
+		FileWriter fichero = null;
+	        try
+	        {	            
+	            fichero = new FileWriter("/usr/local/vufind2/local/harvest/Sobek/sobek_fathers.txt",true);
+	            pw = new PrintWriter(fichero);
+	            pw.println(id);
+	            
+	            result.add(id);
+	
+	        } catch (Exception e) {
+	        } finally {
+	           try {           
+	           	if (fichero != null)
+	              	fichero.close();
+	           } catch (Exception e2) {
+	           }
+	        }
+	}
+	else{
+		result.add(id_parent);
+	}
+    
+
+    return result;
+}
+
+
+public List getParentID2(Record record) {
+return getParentID2(record,"001");
+}
+
+
+public List getParentID2(Record record, String fieldSpec) {
+	
+	ArrayList result = new ArrayList();
+	
+	String id_parent = "";
+	String id = indexer.getFirstFieldVal(record, fieldSpec);
+	String[] split_id = id.split("_");
+	String bib_id = split_id[0];
+	boolean find_parent = false;
+	
+	//Read parent id file
+	BufferedReader bf = new BufferedReader(new FileReader("/usr/local/vufind2/local/harvest/Sobek/sobek_fathers.txt"));
+	while ((sCadena = bf.readLine())!=null) {
+	
+	String[] split_id_file = sCadena.split("_");
+	String bib_id_file = split_id_file[0];
+	
+		if(bib_id_file.equals(bib_id)){
+			id_parent = sCadena;
+	    		find_parent = true;
+	    		break;
+	    	}
+	}
+	bf.close();
+	
+	if(!find_parent){
+		PrintWriter pw = null;
+		FileWriter fichero = null;
+	        try
+	        {	            
+	            fichero = new FileWriter("/usr/local/vufind2/local/harvest/Sobek/sobek_fathers.txt",true);
+	            pw = new PrintWriter(fichero);
+	            pw.println(id);
+	            
+	            if(id.equals(id_parent))
+	            result.add(id);
+	
+	        } catch (Exception e) {
+	        } finally {
+	           try {           
+	           	if (fichero != null)
+	              	fichero.close();
+	           } catch (Exception e2) {
+	           }
+	        }
+	}
+	else{		
+		if(id.equals(id_parent))
+		result.add(id_parent);
+	}
+	
+    
+
+    return result;
+}
+
+
+
+public List prueba(Record record) {
+	
+	ArrayList result = new ArrayList();
+	//result.add("LOAA005680_00001");
+	//result.add("LOAA005680_00002");
+	//result.add("LOAA005680_00003");
+	
+	result.add("AA00000078_00001");
+	result.add("AA00000078_00002");
+	result.add("AA00000078_00003");
+	result.add("AA00000078_00004");
+	
+	
+    	return result;
+}
+
+
+public List getMergedBoolean(Record record) {
+	
+	ArrayList arr_local_ids_str_mv = new ArrayList();
+	
+	String id_parent = "";
+	String id = indexer.getFirstFieldVal(record, fieldSpec);
+	String[] split_id = id.split("_");
+	String bib_id = split_id[0];
+	int count_siblings = 0;
+	
+	//Read file sobek_ids
+	BufferedReader bf = new BufferedReader(new FileReader("/usr/local/vufind2/local/harvest/Sobek/sobek_ids.txt"));
+	while ((id_aux = bf.readLine())!=null) {
+	
+		String[] split_id_file = id_aux.split("_");
+		String bib_id_file = split_id_file[0];
+	
+		if(bib_id_file.equals(bib_id)){
+			count_siblings = count_siblings + 1;
+			arr_local_ids_str_mv.add(id_aux);
+	    	}
+	}
+	
+	//Read file Sobek fathers
+	BufferedReader bf = new BufferedReader(new FileReader("/usr/local/vufind2/local/harvest/Sobek/sobek_ids.txt"));
+	while ((id_aux = bf.readLine())!=null) {
+	
+		String[] split_id_file = id_aux.split("_");
+		String bib_id_file = split_id_file[0];
+	
+		if(bib_id_file.equals(bib_id)){
+			count_siblings = count_siblings + 1;
+			arr_local_ids_str_mv.add(id_aux);
+	    	}
+	}
+	
+    	return result;
+}
+
+public List getMergedChildBoolean(Record record) {
+	
+	ArrayList result = new ArrayList();
+	
+	
+	
+    	return result;
+}
+
+public List getLocalIdsStrMv(Record record) {
+	
+	ArrayList result = new ArrayList();
+	
+	
+	
+    	return result;
+}

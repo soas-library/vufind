@@ -1,0 +1,73 @@
+/**
+ * Custom 947 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+ 
+public List getItemJournalHoldings(Record record) {
+    // Check 866 subfield z o (clean and only holdings)
+    String needle1 = "print holdings";
+    String needle2 = "library holdings";
+    String needle3 = "holding";
+    String z = "";
+    String o = "";
+    String val = "";
+    List fields = record.getVariableFields("866");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+
+            List subfields_z = shelf.getSubfields('z');
+            List subfields_o = shelf.getSubfields('o');
+
+            Iterator subfieldsIter_z = subfields_z.iterator();
+            Iterator subfieldsIter_o = subfields_o.iterator();
+            
+            o = "";
+            z = "";
+            val = "";
+            if (subfields_o != null) {
+                while (subfieldsIter_o.hasNext()) {                    
+                    		o = subfieldsIter_o.next().getData().trim();
+                    		if(o.toLowerCase().contains(needle1)){
+                    			o = o.substring(o.toLowerCase().indexOf(needle1),o.length());
+                    		}
+                    		else if(o.toLowerCase().contains(needle2)){
+                    			o = o.substring(o.toLowerCase().indexOf(needle2),o.length());
+                    		}
+                    		else if(o.toLowerCase().contains(needle3)){
+                    			o = o.substring(o.toLowerCase().indexOf(needle3),o.length());
+                    		}                    	
+                }
+             }
+            
+             if (subfields_z != null) {
+               while (subfieldsIter_z.hasNext()) {    			                     	
+                    		z = subfieldsIter_z.next().getData().trim();                    	
+                }
+             }
+            if(o != "")val = z + " " + o;
+            else val = z;
+            		
+            if(val != "")result.add(val);             
+        }
+        return result;
+    }
+    //otherwise return null
+    return result;
+}
+

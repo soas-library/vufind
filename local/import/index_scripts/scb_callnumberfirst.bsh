@@ -1,0 +1,212 @@
+/**
+ * Custom genre script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+public List getCallnumberfirst(Record record) {   
+      
+    // Check 650_0$a
+    List fields650 = record.getVariableFields("650");
+    List fields752 = record.getVariableFields("752");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields650.iterator();
+    DataField shelf;
+    DataField shelf752;
+  
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+	    String find;
+	    find = "false";
+	    find2== "false";
+
+            List subfields_a = shelf.getSubfields('a');
+	    Iterator subfieldsIter_a = subfields_a.iterator();
+	    
+	    char indicator1 = shelf.getIndicator1();
+	    char indicator2 = shelf.getIndicator2();
+	    
+	    String indicator1_str = indicator1.toString();
+	    String indicator2_str = indicator2.toString();
+	    if(indicator1_str.contains(" ") && indicator2_str.contains("0"))
+	    {
+	    	if (subfields_a != null) {            	
+                  	while (subfieldsIter_a.hasNext()) {  
+                		val650_a = subfieldsIter_a.next().getData().trim();
+                		
+                		val650_a_values =  val650_a.split("--");
+                		val650_a_values_aux = "";
+                		for (var i = 0; i < val650_a_values.length && find=="false"; i++) {
+                			find== "false";
+                			find2== "false";
+                			val650_a_values_aux= val650_a_values[i].trim();
+                			
+                			
+                			 aux = val650_a_values_aux.substring(val650_a_values_aux.length()-1,val650_a_values_aux.length());
+				         if(aux.equals("."))aux = val650_a_values_aux.substring(0,val650_a_values_aux.length()-1);
+                			                			
+    					Iterator fieldsIter752 = fields752.iterator(); 
+                			while(fieldsIter752.hasNext()) {                  			        
+	                			shelf752 = (DataField) fieldsIter752.next();                			
+	                			List subfields_752_a = shelf752.getSubfields('a');
+	                		 	Iterator subfieldsIter752_a = subfields_752_a.iterator();
+	            				 if (subfields_752_a != null) {
+		                			 while (subfieldsIter752_a.hasNext()) {  
+		                			  	val752_a = subfieldsIter752_a.next().getData().trim().toString();
+		                			  	
+		                			  	val752_a_aux = val752_a.substring(val752_a.length()-1,val752_a.length());
+				        		        if(val752_a_aux.equals("."))val752_a_aux = val752_a.substring(0,val752_a.length()-1);
+		                	
+		                			  	if(val752_a_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 
+	                			 List subfields_752_b = shelf752.getSubfields('b');
+	                		 	 Iterator subfieldsIter752_b = subfields_752_b.iterator();
+	            				 if (subfields_752_b != null) {
+		                			 while (subfieldsIter752_b.hasNext()) {  
+		                			  	val752_b = subfieldsIter752_b.next().getData().trim().toString();
+		                			 
+		                			 	val752_b_aux = val752_b.substring(val752_b.length()-1,val752_b.length());
+				        		        if(val752_b_aux.equals("."))val752_b_aux = val752_b.substring(0,val752_b.length()-1);
+				        		        
+		                			  	if(val752_b_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 List subfields_752_c = shelf752.getSubfields('c');
+	                		 	 Iterator subfieldsIter752_c = subfields_752_c.iterator();
+	            				 if (subfields_752_c != null) {
+		                			 while (subfieldsIter752_c.hasNext()) {  
+		                			  	val752_c = subfieldsIter752_c.next().getData().trim().toString();
+		                			  	
+		                			  	val752_c_aux = val752_c.substring(val752_c.length()-1,val752_c.length());
+				        		        if(val752_c_aux.equals("."))val752_c_aux = val752_c.substring(0,val752_c.length()-1);
+		                			
+		                			  	if(val752_c_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 
+	                			 List subfields_752_d = shelf752.getSubfields('d');
+	                		 	 Iterator subfieldsIter752_d = subfields_752_d.iterator();
+	            				 if (subfields_752_d != null) {
+		                			 while (subfieldsIter752_d.hasNext()) {  
+		                			  	val752_d = subfieldsIter752_d.next().getData().trim().toString();
+		                			  	
+		                			  	val752_d_aux = val752_d.substring(val752_d.length()-1,val752_d.length());
+				        		        if(val752_d_aux.equals("."))val752_d_aux = val752_d.substring(0,val752_d.length()-1);
+		                			
+		                			  	if(val752_d_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 
+	                			 List subfields_752_f = shelf752.getSubfields('f');
+	                		 	 Iterator subfieldsIter752_f = subfields_752_f.iterator();
+	            				 if (subfields_752_f != null) {
+		                			 while (subfieldsIter752_f.hasNext()) {  
+		                			  	val752_f = subfieldsIter752_f.next().getData().trim().toString();
+		                			  	
+		                			  	val752_f_aux = val752_f.substring(val752_f.length()-1,val752_f.length());
+				        		        if(val752_f_aux.equals("."))val752_f_aux = val752_f.substring(0,val752_f.length()-1);
+		                			
+		                			  	if(val752_f_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 
+	                			 List subfields_752_g = shelf752.getSubfields('g');
+	                		 	 Iterator subfieldsIter752_g = subfields_752_g.iterator();
+	            				 if (subfields_752_g != null) {
+		                			 while (subfieldsIter752_g.hasNext()) {  
+		                			  	val752_g = subfieldsIter752_g.next().getData().trim().toString();
+		                			  	
+		                			  	val752_g_aux = val752_g.substring(val752_g.length()-1,val752_g.length());
+				        		        if(val752_g_aux.equals("."))val752_g_aux = val752_g.substring(0,val752_g.length()-1);
+		                			
+		                			  	if(val752_g_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                			 
+	                			 
+	                			 
+	                			 List subfields_752_h = shelf752.getSubfields('h');
+	                		 	 Iterator subfieldsIter752_h = subfields_752_h.iterator();
+	            				 if (subfields_752_h != null) {
+		                			 while (subfieldsIter752_h.hasNext()) {  
+		                			  	val752_h = subfieldsIter752_h.next().getData().trim().toString();
+		                			  	
+		                			  	val752_h_aux = val752_h.substring(val752_h.length()-1,val752_h.length());
+				        		        if(val752_h_aux.equals("."))val752_h_aux = val752_h.substring(0,val752_h.length()-1);
+		                			
+		                			  	if(val752_h_aux.equals(aux)){
+	                		 				find = "true";
+	                		 				break;
+	                		 			}
+		                			 }
+	                			 }
+	                		
+	                			if(find== "false")break; 
+	                		 	
+                		 	}
+                		 	if(find== "false")break; 
+				}
+				
+				if(find== "false"){
+				
+				
+					 find2 = "false";
+					 for (var i = 0; i < result.size(); i++) {
+					        if (result.get(i).toString().equals(aux)) {					            
+					            find2 = "true";
+					        }
+					 }
+				
+				    
+				         
+					 if(find2== "false"){result.add(aux);}				
+				}				 
+                		
+                		
+                	}
+            	}
+	    }
+	    
+	    
+       }
+      return result; 
+}
+
+

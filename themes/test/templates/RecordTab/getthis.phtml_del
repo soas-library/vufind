@@ -1,0 +1,42 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Description') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+
+       <? echo $this->record($this->driver)->getPreviews(); ?>
+
+<script type="text/javascript" src="/themes/scb-soas/js/preview.js">
+
+<script>
+function showAllHoldingsGetThis() {
+$( ".hidden_holdings_gethis" ).each(function() {
+  $( this ).removeClass( "hidden_holdings_gethis" ).addClass( "hidden_holdings3_gethis" );
+});
+
+$( "#div_show_more_gethis" ).each(function() {
+  $( this ).addClass( "hidden" );
+});
+$( "#div_show_less_gethis" ).each(function() {
+  $( this ).removeClass( "hidden" );
+});
+}
+
+function showLessHoldingsGetThis() {
+$( ".hidden_holdings3_gethis" ).each(function() {
+	
+  $( this ).removeClass( "hidden_holdings3_gethis" ).addClass( "hidden_holdings_gethis" );
+  
+  $( "#div_show_less_gethis" ).each(function() {
+  $( this ).addClass( "hidden" );
+});
+$( "#div_show_more_gethis" ).each(function() {
+  $( this ).removeClass( "hidden" );
+});
+});
+
+}
+</script>
+

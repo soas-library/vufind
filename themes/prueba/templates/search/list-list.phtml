@@ -1,0 +1,121 @@
+<?$arr_cover=array();$arr_reg=array();$arr_title=array();?>
+<? if (!isset($this->indexStart)) $this->indexStart = 0; ?>
+<? $showCheckboxes = (isset($this->showCartControls) && $this->showCartControls)
+  || (isset($this->showBulkOptions) && $this->showBulkOptions); ?>
+<? $i = $this->indexStart; $count_result=1; foreach ($this->results->getResults() as $current):
+  $recordNumber = $this->results->getStartRecord()+$i-$this->indexStart; ?>
+  <div id="result<?=$i++ ?>" class="result<?=$current->supportsAjaxStatus()?' ajaxItem':''?>">
+    <div class="checkbox hidden-print">
+      <? if ($showCheckboxes): ?>
+        <label>
+          <?=$this->record($current)->getCheckbox()?>
+          <?=$recordNumber ?>
+        </label>
+      <? else: ?>
+        <?=$recordNumber ?>
+      <? endif; ?>
+    </div>
+    <?=$this->record($current)->getSearchResult('list')?>
+    
+    <?
+    $txt=$this->record($current)->getImagetxt();
+    
+    $cover_txt = "";    	
+    $title_txt = "";
+    $reg_txt = "";
+    	
+    $arr_txt = explode('***',$txt);
+    if(count($arr_txt) ==3){
+    	$cover_txt = $arr_txt[0];    	
+    	$title_txt = $arr_txt[1];
+    	$reg_txt = $arr_txt[2];
+    }
+    
+    if($cover_txt !=""){
+    	array_push($arr_cover,$cover_txt);
+    	array_push($arr_reg,$reg_txt);
+    	array_push($arr_title,$title_txt);
+     }
+    ?>
+
+  </div>
+  
+  <?if($count_result==3):?>
+  <div id="thumbnail_gallery_center">
+  </div>
+  <?endif;?>
+  <?$count_result= $count_result +1;?>
+  
+  
+<? endforeach; ?>
+
+
+<?if(!empty($arr_cover)):?>
+</br>
+<?
+$lookfor = strip_tags($this->params->getDisplayQuery());
+$relativeUrl= $_SERVER["REQUEST_URI"];
+$parameters = str_replace("/Search/Results","",$relativeUrl);
+?>
+<div id="thumbnail_gallery" class="hidden">
+<span><a class="lnkThumbnail" href="<?=$this->url('search-thumbnail').$parameters?>"><?=$this->transEsc('thumbnail_gallery')?></a></span>
+<div id="similar-items-carousel" class="carousel" data-ride="carousel">
+
+    <div class="carousel-inner">
+    <?$cerrado=false;$count=0;$countItem=0;foreach ($arr_cover as $cover):?>
+    <? if (($count == 0) || ($count % 5 == 0)){?>
+
+	    <?if($count==0){?>
+	    <div class="item active"> 
+	    <?}else{?>
+	    <div class="item"> 
+	    <?}?>
+            
+        <div class="row">
+        <?}?>
+        <?$cerrado=false;$countItem=$countItem+1;?>
+                      <div class="col-sm-3 itemImage">
+              <a class="hover-overlay" href="<?=$arr_reg[$count];?>" style="min-height: 225px;">
+                                <img src="<?=$cover;?>" title="<?=$arr_title[$count];?>">
+                <div class="content">
+                                    <i class="fa fa-x fa-online" title="Online"></i>
+                  <b><?=$arr_title[$count];?></b>
+                                                    </div>
+              </a>
+            </div>              
+            <? if ($countItem == 5){$countItem=0;$cerrado=true;?>
+                      </div>
+        </div>
+      <?}?>
+
+<?$count=$count+1;endforeach;?>
+
+<? if (!$cerrado){?>
+                      </div>
+        </div>
+<?}?>
+    </div><!--carousel-inner-->
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#similar-items-carousel" role="button" data-slide="prev">
+      <span class="fa fa-chevron-left glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control specialWidht" href="#similar-items-carousel" role="button" data-slide="next">
+      <span class="fa fa-chevron-right glyphicon-chevron-right"></span>
+    </a>   
+    
+  </div><!--similar-items-carousel-->
+</div>
+  
+<?endif;?>
+
+<p id="numberResult" class="hidden"></p>
+
+<script>
+$(document).ready(function(){
+  $("#thumbnail_gallery").clone().removeClass("hidden").appendTo("#thumbnail_gallery_center");
+   
+  cont_js=parseInt("<?echo $count_result;?>")-1;
+  document.getElementById("numberResult").innerHTML = cont_js;
+});
+</script>

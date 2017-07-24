@@ -1,0 +1,93 @@
+<?
+    // Set up page title:
+    $this->headTitle($this->translate('My Fines'));
+
+    // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li> <li class="active">' . $this->transEsc('Fines') . '</li>';
+    
+    $totalDue = 0;
+  foreach ($this->fines as $record) {
+    $totalDue += floatval($record['balance']);
+  }
+  //$totalDue /= 100.00;
+  $paymentButton = '<button type="submit" class="btn btn-success fines-pay-total" id="fine_payment">Pay £<span class="fines-total">Online</span></button>';
+    
+?>
+<div class="<?=$this->layoutClass('mainbody')?>">
+<form method="get" action="">
+    <?=$this->flashmessages()?>
+    <p class="lead pull-left"><?=$this->transEsc('Your Fines')?></p>
+    <? if (empty($this->fines)): ?>
+      <?=$this->transEsc('You do not have any fines')?>
+    <? else: ?>
+      <? if($this->paymentsEnabled): ?>
+        <p class="pull-right help-block">
+          Select items to pay
+          <?=$paymentButton ?>
+        </p>
+      <? endif; ?>
+      <span class="clearfix"></span>
+      <table class="table table-striped" summary="<?=$this->transEsc('Your Fines')?>">
+      <tr>
+        <th><?=$this->transEsc('Title')?></th>
+        <th><?=$this->transEsc('Checked Out')?></th>
+        <th><?=$this->transEsc('Due Date')?></th>
+        <th><?=$this->transEsc('Fine')?></th>
+        <th><?=$this->transEsc('Fee')?></th>
+        <th><?=$this->transEsc('Balance')?></th>
+        <? if($this->paymentsEnabled): ?><th><?=$this->transEsc('Pay Online')?></th><? endif; ?>
+      </tr>
+      <? foreach ($this->fines as $record): ?>
+	<? if ((double)$record['balance'] > 0): ?>
+        <tr>
+          <td width='300'>
+            <? if (empty($record['title'])): ?>
+              <?=$this->transEsc('not_applicable')?>
+            <? else: ?>
+              <?=$this->escapeHtml(trim($record['title'], '/:'))?>
+            <? endif; ?>
+          </td>
+          <td><?=isset($record['checkoutDate']) ? $this->escapeHtml($record['checkoutDate']) : ''?></td>
+          <td><?=isset($record['dueDate']) ? $this->escapeHtml($record['dueDate']) : ''?></td>
+          <td><?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?></td>
+          <td><?=isset($record['amount']) ? $this->escapeHtml($record['amount']) : ''?></td>
+          <td><?=isset($record['balance']) ? $this->escapeHtml($record['balance']) : ''?></td>
+          <td class="text-center">
+            <? if ((double)$record['balance'] > 0): ?>
+              <input type="checkbox" class="fine-checkbox" name="fines[]" data-amount="<?=$record['balance'] ?>" value="<?=$record['id'] ?>" checked="1"/></td>
+            <? endif; ?>
+        </tr>
+        <? else: ?>
+		<!-- D0 Nothing-->
+        <? endif; ?>	
+      <? endforeach; ?>
+        <tr class="fines-bottom-line">
+          <td colspan="5"><?=$this->transEsc('Total Balance Due')?></td>
+          <td>£<?=$this->safeMoneyFormat($totalDue) ?></td>
+          <? if($this->paymentsEnabled): ?><td><?=$paymentButton ?></td><? endif; ?>
+        </tr>
+      </table>
+    <? endif; ?>
+  </form>
+  <script>
+    var fineTotal = 0;
+    var fineCheckboxes = document.querySelectorAll('.fine-checkbox');
+    var fineCurrencySymbol = '<?=$this->safeMoneyFormat(1) ?>'.replace(/[\d\s.,:]/g, '');
+    var fineSymbolAtEnd = '<?=$this->safeMoneyFormat(1) ?>'.indexOf(fineCurrencySymbol) > 0;
+    for(var i=fineCheckboxes.length;i--;) {
+      if(fineCheckboxes[i].checked) {
+        fineTotal += parseFloat(fineCheckboxes[i].getAttribute("data-amount"));
+      }
+    }
+    $('.fines-total').html(fineSymbolAtEnd ? fineTotal.toFixed(2)+' '+fineCurrencySymbol : fineCurrencySymbol+fineTotal.toFixed(2));
+
+    $('.fine-checkbox').change(function() {
+      fineTotal += this.checked ? parseFloat(this.getAttribute("data-amount")) : -parseFloat(this.getAttribute("data-amount"));
+      $('.fines-total').html(fineSymbolAtEnd ? fineTotal.toFixed(2)+' '+fineCurrencySymbol : fineCurrencySymbol+fineTotal.toFixed(2));
+    });
+  </script>
+</div>
+
+<div class="<?=$this->layoutClass('sidebar')?>">
+  <?=$this->context($this)->renderInContext("myresearch/menu.phtml", array('active' => 'fines'))?>
+</div>

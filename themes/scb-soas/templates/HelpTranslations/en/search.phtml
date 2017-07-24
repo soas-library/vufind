@@ -1,0 +1,158 @@
+<h1>Helpful Searching Tips</h1>
+
+<ul class="HelpMenu">
+  <li><a href="#Search Type">Choosing a Search Type</a></li>
+      <ul>
+      <li><a href="#default">Default Search</a></li>
+      <li><a href="#advanced">Advanced Search</a></li>
+      <li><a href="#alphabrowse">Browse Alphabetically</a></li>
+    </ul>
+  <li><a href="#Power Searching">Power Searching</a></li>
+      <ul>
+      <li><a href="#Wildcard Searches">Wildcards</a></li>
+      <li><a href="#Fuzzy Searches">Fuzzy Searches</a></li>
+      <li><a href="#Proximity Searches">Proximity Searches</a></li>
+      <li><a href="#Range Searches">Ranges</a></li>
+      <li><a href="#Boosting a Term">Boosting</a></li>
+      <li><a href="#Boolean operators">Boolean Operators</a>
+        <ul>
+        <li><a href="#AND">AND</a></li>
+        <li><a href="#+">+</a></li>
+        <li><a href="#OR">OR</a></li>
+        <li><a href="#NOT">NOT</a></li>
+        <li><a href="#-">-</a></li>
+	</ul>
+    </ul>
+  </li>
+</ul>
+
+<dl class="Content">
+  <dt><a name="Search Type"></a>Choosing a Search Type</dt>
+  <dd>
+    <dl>
+      <dt><a name="default"></a>Default Search</dt>
+	  <p>The <a href="/">default search</a> retrieves records that include all of the terms that you enter in the search box. The default 'Keyword' search retrieves records that use the keywords anywhere in the record (title, author, subject, etc.) For more precision, you can select a field type (e.g. Title, Author) from the drop-down menu on the right to search only within that field.</p>
+  	  <p>If you specify a field, the catalogue will return only those records which contain your search term(s) in the data field specified. For example, if you search for "Chinese" and "History" and select "Title" from the drop down menu, the catalogue will return results for only those records which contain both "Chinese" and "History" in the title. If you do not specify a field, the catalogue will return records which contain your search term(s) anywhere in the record.
+	  <p>Default search is useful for when you're exploring a topic or when you're searching for an item but are unsure of the exact title or author.</p>
+
+	  <dt><a name="advanced"></a>Advanced Search</dt>
+	  <p><a href="/Search/Advanced">Advanced search</a> allows you to combine several types of keyword searches. You can also set limits by location, format, language, and date of publication.</p>
+	  <p>Advanced search is a good choice when you have a very specific or complex topic in mind.</p>
+
+	  <dt><a name="alphabrowse"></a>Browse Alphabetically</dt>
+	  <p>The <a href="/Alphabrowse/Home">alphabetic browse</a> allows you to browse through an alphabetical listing of subjects, authors, titles, classmarks, etc. to find the item you need. It is the easiest way to locate an item if you know the exact title or the author's entire name. If you know the exact classmark, you can use this feature to help you find similar items or items located on the same shelves. Below are some tips for constructing effective browse searches.
+	  <pre class="code">
+<b>Author</b>:
+Enter the author's last name first. For example: <i>said, edward</i>.
+
+<b>Subject</b>:
+Enter subject terms using the Library of Congress Subject Headings. These subject headings begin with a broad topic and then narrow down through sub-topics. Default or Advanced Search may be better if you do not know the specific subject heading terminology.
+
+<b>Classmark</b>:
+Enter the entire classmark to be able to virtually browse the shelves. Note that classmarks are structured differently for different subject areas.</pre>
+    </dl>
+  </dd>
+
+  <dt><a name="Power Searching"></a>Power Searching</dt>
+  <dd>
+    <p>There are several ways that the SOAS Library Catalogue allows you to enhance your searches using special characters and arrangements of terms.</p>
+  <dl>
+  <dt><a name="Wildcard Searches"></a>Wildcard Searches</dt>
+  <dd>
+    <p>To perform a single character wildcard search use the <strong>?</strong> symbol.</p>
+    <p>For example, to search for "woman" or "women" you can use the search:</p>
+    <pre class="code">wom?n</pre>
+    <p>To perform a multiple character, 0 or more, wildcard search use the <strong>*</strong> symbol.</p>
+    <p>For example, to search for test, tests or tester, you can use the search: </p>
+    <pre class="code">test*</pre>
+    <p>You can also use the wildcard searches in the middle of a term.</p>
+    <pre class="code">te*t</pre>
+    <p>Note: You cannot use a * or ? symbol as the first character of a search.</p>
+  </dd>
+  
+  <dt><a name="Fuzzy Searches"></a>Fuzzy Searches</dt>
+  <dd>
+    <p>Use the tilde <strong>~</strong> symbol at the end of a <strong>Single</strong> word Term. For example, to search for variant spellings of "Tchaikovsky," use the fuzzy search: </p>
+    <pre class="code">Tchaikovsky~</pre>
+    <p>An additional parameter can specify the required similarity. The value is between 0 and 1, with a value closer to 1 only terms with a higher similarity will be matched. For example:</p>
+    <pre class="code">Tchaikovsky~0.8</pre>
+    <p>The default that is used if the parameter is not given is 0.5.</p>
+  </dd>
+  
+  <dt><a name="Proximity Searches"></a>Proximity Searches</dt>
+  <dd>
+    <p>
+      Use the tilde <strong>~</strong> symbol at the end of a <strong>Multiple</strong> word Term.
+      For example, to search for economics and keynes that are within 10 words apart:
+    </p>
+    <pre class="code">"economics Keynes"~10</pre>
+  </dd>
+  
+  <dt><a name="Range Searches"></a>Range Searches</dt>
+  <dd>
+    <p>
+      To perform a range search you can use the <strong>{ }</strong> characters.
+      For example to search for a term that starts with either A, B, or C:
+    </p>
+    <pre class="code">{A TO C}</pre>
+    <p>
+      The same can be done with numeric fields such as the Year:
+    </p>
+    <pre class="code">[2002 TO 2003]</pre>
+  </dd>
+  
+  <dt><a name="Boosting a Term"></a>Boosting a Term</dt>
+  <dd>
+    <p>
+      To apply more value to a term, you can use the <strong>^</strong> character.
+      For example, you can try the following search:
+    </p>
+    <pre class="code">economics Keynes^5</pre>
+    <p>Which will give more value to the term "Keynes"</p>
+  </dd>
+  
+  <dt><a name="Boolean operators"></a>Boolean Operators</dt>
+  <dd>
+    <p>
+      Boolean operators allow terms to be combined with logic operators.
+      The following operators are allowed: <strong>AND</strong>, <strong>+</strong>, <strong>OR</strong>, <strong>NOT</strong> and <strong>-</strong>.
+    </p>
+    <p>Note: Boolean operators must be ALL CAPS</p>
+    <dl>
+      <dt><a name="AND"></a>AND</dt>
+      <dd>
+        <p>The <strong>AND</strong> operator is the default conjunction operator. This means that if there is no Boolean operator between two terms, the AND operator is used. The AND operator matches records where both terms exist anywhere in the field of a record.</p>
+        <p>To search for records that contain "economics" and "Keynes" use the query: </p>
+        <pre class="code">economics Keynes</pre>
+        <p>or</p>
+        <pre class="code">economics AND Keynes</pre>
+      </dd>
+      <dt><a name="+"></a>+</dt>
+      <dd>
+        <p>The "+" or required operator requires that the term after the "+" symbol exist somewhere in the field of a record.</p>
+        <p>To search for records that must contain "economics" and may contain "Keynes" use the query:</p>
+        <pre class="code">+economics Keynes</pre>
+      </dd>
+      <dt><a name="OR"></a>OR</dt>
+      <dd>
+        <p>The OR operator links two terms and finds a matching record if either of the terms exist in a record.</p>
+        <p>To search for documents that contain either "economics Keynes" or just "Keynes" use the query:</p>
+        <pre class="code">"economics Keynes" OR Keynes</pre>
+      </dd>
+      <dt><a name="NOT"></a>NOT</dt>
+      <dd>
+        <p>The NOT operator excludes records that contain the term after NOT.</p>
+        <p>To search for documents that contain "economics" but not "Keynes" use the query: </p>
+        <pre class="code">economics NOT Keynes</pre>
+        <p>Note: The NOT operator cannot be used with just one term. For example, the following search will return no results:</p>
+        <pre class="code">NOT economics</pre>
+      </dd>
+      <dt><a name="-"></a>-</dt>
+      <dd>
+        <p>The <Strong>-</strong> or prohibit operator excludes documents that contain the term after the "-" symbol.</p>
+        <p>To search for documents that contain "economics" but not "Keynes" use the query: </p>
+        <pre class="code">economics -Keynes</pre>
+      </dd>
+    </dl>
+  </dd>
+</dl>

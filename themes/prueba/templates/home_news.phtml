@@ -1,0 +1,11 @@
+<? if(empty($this->layout()->breadcrumbs)): ?> 
+      <div class="alert_news">
+      <strong>
+      <h3 class="font18"><?=$this->transEsc('news_title')?></h3>
+      <p class="font12"><?=$this->transEsc('news_description')?></br>
+      <a target="_blank" class="font12 link_news" href="<?=$this->transEsc('news_link1')?>"><?=$this->transEsc('news_link1')?></a></br>
+      <a target="_blank" class="font12 link_news" href="<?=$this->transEsc('news_link2')?>"><?=$this->transEsc('news_link2')?></a>
+      </p>
+   </strong>
+  </div>
+<? endif; ?>

@@ -1,0 +1,218 @@
+<!--<?
+  // Set page title.
+  $this->headTitle($this->translate('Text this'));
+  echo $this->inlineScript(\Zend\View\Helper\HeadScript::FILE, 'vendor/libphonenumber.js', 'SET');
+
+  // Set up breadcrumbs:
+  $this->layout()->breadcrumbs = '<li>' . $this->searchMemory()->getLastSearchLink($this->transEsc('Search'), '', '</li> ')
+    . '<li>' . $this->recordLink()->getBreadcrumb($this->driver) . '</li> '
+    . '<li class="active">' . $this->transEsc('Text this') . '</li>';
+?>
+<h2><?=$this->transEsc('Text this') ?>: <span class="title-in-heading"><?=$this->escapeHtml($this->driver->getBreadcrumb())?></span></h2>
+<form method="post" name="smsRecord" class="form-horizontal"<? if(isset($this->validation) && !empty($this->validation)):?> data-lightbox-onsubmit="return phoneNumberFormHandler('sms_to', '<?=$this->validation ?>')"<? endif; ?>>
+  <?=$this->flashmessages()?>
+  <input type="hidden" name="id" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueId())?>" />
+  <input type="hidden" name="source" value="<?=$this->escapeHtmlAttr($this->driver->getSourceIdentifier())?>" />
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="sms_to"><?=$this->transEsc('Number')?>:</label>
+    <div class="col-sm-9">
+      <input id="sms_to" type="tel" name="to" placeholder="<?=$this->transEsc('sms_phone_number')?>" class="form-control"/>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <? if (is_array($this->carriers) && count($this->carriers) > 1): ?>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="sms_provider"><?=$this->transEsc('Provider')?>:</label>
+      <div class="col-sm-9">
+        <select id="sms_provider" name="provider" class="form-control">
+          <option selected="selected" value=""><?=$this->transEsc('Select your carrier')?></option>
+          <? foreach ($this->carriers as $val => $details): ?>
+            <option value="<?=$this->escapeHtmlAttr($val)?>"><?=$this->escapeHtml($details['name'])?></option>
+          <? endforeach; ?>
+        </select>
+      </div>
+    </div>
+  <? else: ?>
+    <? $keys = is_array($this->carriers) ? array_keys($this->carriers) : array(); ?>
+    <input type="hidden" name="provider" value="<?=isset($keys[0]) ? $keys[0] : ''?>" />
+  <? endif; ?>
+  <?=$this->recaptcha()->html($this->useRecaptcha) ?>
+  <div class="form-group">
+    <div class="col-sm-9 col-sm-offset-3">
+      <input class="btn btn-primary" type="submit" name="submit" value="<?=$this->transEsc('Send Text')?>"/>
+    </div>
+  </div>
+</form>
+-->
+
+
+<div class="ss-form-desc ss-no-ignore-whitespace" dir="ltr">
+   <p>Please use this form to request items listed as offsite in the Library Catalogue.</p>
+   <p>You will need to complete the form for each item you wish to request. Each request will be forwarded to the relevant offsite store, Dagenham or Egham.</p>
+   <p>Items are usually received at the main library within five working days at which point you will receive an email notification. You will also be contacted in the event of any further information being required, or if the item is not located.</p>
+   <p>If you have any queries about your request please email: <a href="mailto:offsite@soas.ac.uk">offsite@soas.ac.uk</a></p>
+</div>
+<div class="ss-required-asterisk" aria-hidden="true">*Required</div>
+<div class="ss-form">
+   <form action="https://docs.google.com/a/soas.ac.uk/forms/d/1p0Fyrp9dtWVwrfq5xQ-vSKJFOX3g8hELPgWjvbzPkKE/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
+      <ol role="list" class="ss-question-list" style="padding-left: 0">
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+               <div class="ss-form-entry">
+                  <div for="entry_354757791">
+                     <h4>Your name
+                  <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                  <span class="ss-required-asterisk" aria-hidden="true">*</span></h4>
+                  <div class="ss-q-help ss-secondary-text" dir="ltr">Please enter your name here</div>
+                  </label>
+                  <input type="text" name="entry.354757791" value="" class="ss-q-short" id="entry_354757791" dir="auto" aria-label="Your name Please enter your name here " aria-required="true" required="" title="">
+               </div>
+            </div>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+               <div class="ss-form-entry">
+                  <div for="entry_424317994">
+                     <h4>Your email address
+                  <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                  <span class="ss-required-asterisk" aria-hidden="true">*</span></h4>
+                  <div class="ss-q-help ss-secondary-text" dir="ltr">Please provide your email address. If you do not provide an email address we will be unable to let you know when your item is available for collection.</div>
+                  </label>
+                  <input type="email" name="entry.424317994" value="" class="ss-q-short" id="entry_424317994" dir="auto" aria-label="Your email address Please provide your email address. If you do not provide an email address we will be unable to let you know when your item is available for collection. " aria-required="true" required="" title="">
+               </div>
+            </div>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item  ss-text">
+               <div class="ss-form-entry">
+                  <div for="entry_921728355">
+                     <h4>Your library card number</h4>
+                     <div class="ss-q-help ss-secondary-text" dir="ltr">If you have one, please enter your library card barcode number here</div>
+                  </div>
+                  <input type="text" name="entry.921728355" value="" class="ss-q-short" id="entry_921728355" dir="auto" aria-label="Your library card number If you have one, please enter your library card barcode number here " title="">
+               </div>
+            </div>
+         </div>
+         <div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+            <div for="entry_946732671"><h4>Item ID
+            </div>
+         <div class="ss-q-help ss-secondary-text" dir="ltr"></div></h4>
+         <input type="text" name="entry.946732671" value="<?=$this->escapeHtml($this->driver->getUniqueID()) ?>" class="ss-q-short" id="entry_946732671" dir="auto" aria-label="Item ID  " title="" disabled>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-paragraph-text">
+               <div class="ss-form-entry">
+                  <div for="entry_1285452084">
+                     <h4>Item title
+                  <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                  <span class="ss-required-asterisk" aria-hidden="true">*</span></h4>
+                  <div class="ss-q-help ss-secondary-text" dir="ltr">Enter the title of the item you are requesting</div>
+                  </div>
+                  <? $form_title = array_shift(array_values($this->driver->getStatement())); if(!empty($form_title)): ?>
+                  <input name="entry.1285452084" class="ss-q-short" id="entry_1285452084" dir="auto" aria-label="Item title Enter the title of the item you are requesting " aria-required="true" required="" value="<?=$this->escapeHtml($form_title)?>"></input>
+                  <? else: ?>
+                  <input name="entry.1285452084" class="ss-q-short" id="entry_1285452084" dir="auto" aria-label="Item title Enter the title of the item you are requesting " aria-required="true" required=""></input>
+                  <? endif; ?>
+               </div>
+            </div>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item ss-item-required ss-text">
+               <div class="ss-form-entry">
+                  <div for="entry_1119298216">
+                     <h4>Classmark
+                  <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                  <span class="ss-required-asterisk" aria-hidden="true">*</span></h4>
+                  <div>Enter the SOAS Library classmark from the library catalogue</div>
+                  </label>
+                  <? $form_classmark = ($this->driver->getClassmark()); if(!empty($form_classmark)): ?>
+                  <input type="text" name="entry.1119298216" value="<?=$this->escapeHtml($form_classmark)?>" class="ss-q-short" id="entry_1119298216" dir="auto" aria-label="Classmark Enter the SOAS Library classmark from the library catalogue " aria-required="true" required="" title="">
+                  <? else: ?>
+                  <input type="text" name="entry.1119298216" value="" class="ss-q-short" id="entry_1119298216" dir="auto" aria-label="Classmark Enter the SOAS Library classmark from the library catalogue " aria-required="true" required="" title="">
+                  <? endif; ?>
+               </div>
+            </div>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item  ss-text">
+               <div class="ss-form-entry">
+                  <div for="entry_1229347901">
+                     <h4>Volume</h4>
+                     <div class="ss-q-help ss-secondary-text" dir="ltr">If the item is a journal/periodical include volume and part numbers, plus the year</div>
+                  </label>
+                  <input type="text" name="entry.1229347901" value="" class="ss-q-short" id="entry_1229347901" dir="auto" aria-label="Volume If the item is a journal/periodical include volume and part numbers, plus the year " title="">
+               </div>
+            </div>
+         </div>
+         <div class="ss-form-question errorbox-good" role="listitem">
+            <div dir="ltr" class="ss-item  ss-radio">
+               <div class="ss-form-entry">
+                  <div for="entry_1295863095">
+                     <h4>Location</h4>
+                     <div class="ss-q-help ss-secondary-text" dir="ltr">If known please indicate which store the item is held at</div>
+                  </label>
+
+                  <ul class="ss-choices" role="radiogroup" aria-label="Location If known please indicate which store the item is held at ">
+                     <li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1662085021" value="Dagenham" id="group_1662085021_1" role="radio" class="ss-q-radio" aria-label="Dagenham"></span>
+                        <span class="ss-choice-label">Dagenham</span>
+                     </li>
+                     <li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1662085021" value="Egham" id="group_1662085021_2" role="radio" class="ss-q-radio" aria-label="Egham"></span>
+                        <span class="ss-choice-label">Egham</span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         </br>
+         <input type="hidden" name="draftResponse" value="[,,&quot;-6073952283414204570&quot;]
+            ">
+         <input type="hidden" name="pageHistory" value="0">
+         <input type="hidden" name="fbzx" value="-6073952283414204570">
+         <div class="ss-item ss-navigate">
+            <table id="navigation-table">
+               <tbody>
+                  <tr>
+                     <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+                        <input type="submit" name="submit" value="Submit" id="ss-submit" class="btn-primary">
+                        <div class="ss-password-warning ss-secondary-text">Never submit passwords through Google Forms.</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </ol>
+   </form>
+</div>
+<div class="ss-footer">
+   <div class="ss-attribution"></div>
+   <div class="ss-legal">
+      <div class="disclaimer-separator"></div>
+      <div class="disclaimer" dir="ltr">
+         <div class="powered-by-logo">
+            <span class="powered-by-text">Powered by</span>
+            <a href="https://www.google.com/forms/about/?utm_source=product&amp;utm_medium=forms_logo&amp;utm_campaign=forms">
+               <div class="ss-logo-container ss-logo-css-container">
+                  <div class="ss-logo-image"></div>
+               </div>
+            </a>
+         </div>
+         <div class="ss-terms"><span class="disclaimer-msg">This form was created inside of SOAS.</span>
+            <br>
+            <a href="https://docs.google.com/forms/d/1p0Fyrp9dtWVwrfq5xQ-vSKJFOX3g8hELPgWjvbzPkKE/reportabuse?source=https://docs.google.com/forms/d/1p0Fyrp9dtWVwrfq5xQ-vSKJFOX3g8hELPgWjvbzPkKE/viewform">Report Abuse</a>
+            -
+            <a href="http://www.google.com/accounts/TOS">Terms of Service</a>
+            -
+            <a href="http://www.google.com/google-d-s/terms.html">Additional Terms</a>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="docs-aria-speakable" class="docs-a11y-ariascreenreader-speakable docs-offscreen" aria-live="assertive" role="region" aria-atomic></div>
+</div>
+<script type='text/javascript' src='/static/forms/client/js/1260714715-formviewer_prd__en_gb.js'></script>
+<script type="text/javascript">H5F.setup(document.getElementById('ss-form'));
+   _initFormViewer(
+     "[100,,[]\n]\n");
+</script>
+
+

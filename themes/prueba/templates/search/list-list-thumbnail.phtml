@@ -1,0 +1,23 @@
+</br></br>
+<?$count_r = 0; $cerrado=true; 
+if (!isset($this->indexStart)) $this->indexStart = 0; ?>
+<? $i = $this->indexStart; foreach ($this->results->getResults() as $current): $count_r = $count_r + 1;
+  $recordNumber = $this->results->getStartRecord()+$i-$this->indexStart; ?>
+  
+ <?if($count_r % 5 == 0 && $cerrado):?>
+  <div class="row">
+  <?$cerrado=false;?>
+ <?endif;?>
+  <div id="_result<?=$i++ ?>" class="">
+    <?=$this->record($current)->getSearchThumbnailResult('list')?>   
+  </div>
+  
+<?if($count_r % 5 == 0):?>
+  <?$cerrado=true;?>
+  </div>
+  </br>
+<?endif;?>
+  
+<? endforeach; ?>
+
+

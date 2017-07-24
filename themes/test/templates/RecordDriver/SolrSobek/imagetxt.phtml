@@ -1,0 +1,15 @@
+<?
+//Obtener portada
+$covers=$this->driver->getTag992a();
+$cover_txt = "";
+foreach($covers as $cover){$cover_txt = $cover;}
+
+//Obtener titulo
+$title =$this->driver->getShortTitle();
+
+//Obtener link del titulo
+$link_reg= $this->recordLink()->getUrl($this->driver);
+
+if($cover_txt != null && $cover_txt != "")
+	echo $cover_txt.'***'.$title.'***'.$link_reg;
+?>

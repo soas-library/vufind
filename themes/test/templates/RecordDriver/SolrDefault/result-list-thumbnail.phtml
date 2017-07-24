@@ -1,0 +1,26 @@
+<?$covers=$this->driver->getTag992a();
+$cover_txt = "";
+foreach($covers as $cover){$cover_txt = $cover;}
+
+$items_sobek = $this->driver->getTag856u();
+$item_sobek_txt = "";
+foreach($items_sobek as $item){$item_sobek_txt = $item;}
+?>
+  <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId" />
+  <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getResourceSource())?>" class="hiddenSource" />
+  <div class="text-center col-sm-2">
+  
+   <a class="hover-overlay" target="_blank" href="<?=$this->recordLink()->getUrl($this->driver);?>">
+      <? if ($cover_txt!=""): ?>   
+        <img class="recordcover hidden-xs" src="<?=$cover_txt;?>" alt="<?=$this->transEsc('Cover Image')?>"/>
+         <div class="content"> <i class="fa fa-x fa-online" title="Online"></i><b><?=$this->driver->getShortTitle();?></b>
+         </div>
+        
+      <? else: ?>
+        <img class="recordcover hidden-xs empty_thumb_image" src="<?=$this->url('cover-unavailable')?>" alt="<?=$this->transEsc('No Cover Image')?>"/>
+        <div class="content_empty_image"> <i class="fa fa-x fa-online" title="Online"></i><b><?=$this->driver->getShortTitle();?></b>
+         </div>
+      <? endif; ?>
+
+   </a>
+  </div>

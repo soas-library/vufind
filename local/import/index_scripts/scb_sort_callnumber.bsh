@@ -1,0 +1,106 @@
+/**
+ * Custom 947 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+ 
+public List getSortCallNumber(Record record) {
+
+    // Check 9082 subfield l
+    List fields = record.getVariableFields("082");
+    ArrayList subf = new ArrayList();
+    ArrayList result = new ArrayList();
+    ArrayList onlyOneResult = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            //String val = "", val0 = "", val1 = "", val2 = "";
+            String val = "";
+
+            List subfields = shelf.getSubfields();
+            //System.out.println(subfields.size());
+            for (int i = 0; i < subfields.size(); i++) {
+            	//System.out.println(subfields.get(i).getData().trim());
+            	val = val + subfields.get(i).getData().trim();
+            	subf.add(subfields.get(i).getData().replaceAll("\\s+", ""));
+            }
+            
+            //System.out.println(subf.size());
+            String firstPart = "";
+            for (int i = 0; i < subf.size()-1; i++) {
+            	//System.out.println(subf.get(i));
+            	firstPart = firstPart + subf.get(i);
+            }
+            
+            //String lastPart = subf.get(subf.size()-1).replaceAll("\\/", "");
+            String lastPart = subf.get(subf.size()-1);
+            String lastPartWithout = "";
+            lastPart = lastPart.substring(1);
+            String[] split = lastPart.split("/");
+            
+            //System.out.println(lastPart);
+            //System.out.println(split.length);
+            
+            if (split.length == 1) {
+            	lastPart = lastPart.replaceAll("\\/", "");
+            } else {
+            	for (int i = 0; i < split.length-1; i++) {
+            		//System.out.println("N: " + split[i]);
+            		lastPartWithout = lastPartWithout + "/" + split[i];
+            	}
+            	lastPart = split[split.length-1];
+            }
+            
+            //System.out.println(firstPart + lastPartWithout + "/" + lastPart);
+            
+            int tam = 11;
+            String toAdd = new String(new char[tam-lastPart.length()]).replace('\0', '0');
+            //System.out.println("toAdd: " + toAdd);
+            
+            //System.out.println(firstPart + lastPartWithout + "/" + toAdd + lastPart);
+            
+            //val = firstPart + "/" + toAdd + lastPart;
+            val = firstPart + lastPartWithout + "/" + toAdd + lastPart;
+            
+            //val = val.replaceAll("\\s+", "");
+            //SCB Cambiar el . por ~
+            val = val.replaceAll("\\.", "~");
+            //SCB Cambiar el . por ~
+            
+            //SCB añadir los 0 hasta 30 carácteres
+            //System.out.println("TAM: " + val.length());
+            //int tam = 30;
+            //if (tam > val.length() ) {
+            	//String toAdd = new String(new char[tam-val.length()]).replace('\0', '0');
+            	//System.out.println("toAdd: " + toAdd);
+            	//val = toAdd + val;
+            //}
+            //SCB añadir los 0 hasta 30 carácteres
+            
+            //System.out.println("VALUE: " + val);
+            
+            result.add(val);
+            
+        }
+        
+        onlyOneResult.add(result.get(0));
+        
+        return onlyOneResult;
+    }
+    //otherwise return null
+    return result;
+}
+

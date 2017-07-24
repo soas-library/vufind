@@ -1,0 +1,444 @@
+/**
+ * Custom genre script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+public List getGenreWithoutEthnicity(Record record) {        
+            
+    //655 abcvxyz:    
+    // Check 655 subfield abcvxyz 2
+    List fields = record.getVariableFields("655");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+            String val_2;
+	    String find;
+	    find = "false";
+
+            List subfields_a = shelf.getSubfields('a');
+            List subfields_b = shelf.getSubfields('b');
+            List subfields_c = shelf.getSubfields('c');
+            List subfields_v = shelf.getSubfields('v');
+            List subfields_x = shelf.getSubfields('x');
+            List subfields_y = shelf.getSubfields('y');
+            List subfields_z = shelf.getSubfields('z');
+            
+            List subfields_2 = shelf.getSubfields('2');
+             
+            Iterator subfieldsIter_a = subfields_a.iterator();
+            if (subfields_a != null) {
+                while (subfieldsIter_a.hasNext()) {  
+                
+                   val = subfieldsIter_a.next().getData().trim();
+                   Iterator subfieldsIter_2 = subfields_2.iterator();
+     
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+           find= "false";
+            
+            
+            Iterator subfieldsIter_b = subfields_b.iterator();
+            if (subfields_b != null) {
+                while (subfieldsIter_b.hasNext()) {  
+                
+                   val = subfieldsIter_b.next().getData().trim();
+                   Iterator subfieldsIter_b = subfields_b.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+            
+             find= "false";
+            
+            Iterator subfieldsIter_c = subfields_c.iterator();
+            if (subfields_c != null) {
+                while (subfieldsIter_c.hasNext()) {  
+                
+                   val = subfieldsIter_c.next().getData().trim();
+                   Iterator subfieldsIter_c = subfields_c.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+            
+             find= "false";
+            
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {  
+                
+                   val = subfieldsIter_v.next().getData().trim();
+                   Iterator subfieldsIter_v = subfields_v.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+           
+           
+           
+            find= "false";
+            
+            Iterator subfieldsIter_x = subfields_x.iterator();
+            if (subfields_x != null) {
+                while (subfieldsIter_x.hasNext()) {  
+                
+                   val = subfieldsIter_x.next().getData().trim();
+                   Iterator subfieldsIter_x = subfields_x.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+            
+           find= "false";
+            
+            Iterator subfieldsIter_y = subfields_y.iterator();
+            if (subfields_y != null) {
+                while (subfieldsIter_y.hasNext()) {  
+                
+                   val = subfieldsIter_y.next().getData().trim();
+                   Iterator subfieldsIter_y = subfields_y.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+            
+             find= "false";
+            
+            Iterator subfieldsIter_z = subfields_z.iterator();
+            if (subfields_z != null) {
+                while (subfieldsIter_z.hasNext()) {  
+                
+                   val = subfieldsIter_z.next().getData().trim();
+                   Iterator subfieldsIter_z = subfields_z.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }                                  
+        }
+        
+ 
+    return result;
+}
+
+
+public List getGenreFacetWithoutEthnicity(Record record) {        
+            
+    //600v:610v:611v:630v:648v:650v:651v:655a:655v  655 subfield abcvxyz 2
+    
+    
+    
+    List fields = record.getVariableFields("600");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }
+        
+        
+    List fields = record.getVariableFields("610");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }
+   
+   
+     List fields = record.getVariableFields("611");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }  
+        
+    List fields = record.getVariableFields("630");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }    
+          
+          
+    List fields = record.getVariableFields("648");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }
+        
+        
+    List fields = record.getVariableFields("650");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }
+        
+    List fields = record.getVariableFields("651");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_v = shelf.getSubfields('v');
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {
+                    val = subfieldsIter_v.next().getData().trim();
+                    result.add(val);
+                }
+            }
+        }
+        
+    List fields = record.getVariableFields("655");    
+    Iterator fieldsIter = fields.iterator();
+        
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+            String val_2;
+	    String find;
+	    find = "false";
+
+            List subfields_a = shelf.getSubfields('a');
+            List subfields_v = shelf.getSubfields('v');
+ 
+
+            List subfields_2 = shelf.getSubfields('2');
+             
+            Iterator subfieldsIter_a = subfields_a.iterator();
+            if (subfields_a != null) {
+                while (subfieldsIter_a.hasNext()) {  
+                
+                   val = subfieldsIter_a.next().getData().trim();
+                   Iterator subfieldsIter_2 = subfields_2.iterator();
+     
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+           find= "false";
+            
+            
+            
+            Iterator subfieldsIter_v = subfields_v.iterator();
+            if (subfields_v != null) {
+                while (subfieldsIter_v.hasNext()) {  
+                
+                   val = subfieldsIter_v.next().getData().trim();
+                   Iterator subfieldsIter_v = subfields_v.iterator();
+      
+                   if (subfields_2 != null) {
+                	while (subfieldsIter_2.hasNext()) {  
+                	
+                		val_2 = subfieldsIter_2.next().getData().trim();
+                		if(val_2.contains("ethnicity"))
+                			find= "true";                		
+                	}
+                   }
+                   
+                  if(find== "false")
+                   	result.add(val);
+                }
+            }
+            
+ return result;
+         
+        }        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return result;
+
+
+        
+}

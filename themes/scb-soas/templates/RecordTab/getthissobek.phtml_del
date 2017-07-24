@@ -1,0 +1,12 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Description') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+
+       <? echo $this->record($this->driver)->getPreviews(); ?>
+
+
+

@@ -1,0 +1,26 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Table of Contents') . ': ' . $this->driver->getBreadcrumb());
+
+    $toc = $this->driver->getTOC();
+?>
+<? if (!empty($toc)): ?>
+  <strong><?=$this->transEsc('Table of Contents')?>: </strong>
+  <ul class="toc">
+    <? foreach ($toc as $line): ?>
+      <? if (!empty($line)): ?>
+        <li><?=$this->escapeHtml($line)?></li>
+      <? endif; ?>
+    <? endforeach; ?>
+  </ul>
+  <? $linkedcontents = $this->driver->getLinkedTOC(); if (!empty($linkedcontents)): ?>
+  <strong><?=$this->transEsc('Table of Contents')?>: </strong>
+  <ul class="toc">
+    <? foreach ($linkedcontents as $line): ?>
+       <li><?= $this->escapeHtml($line)?></li>
+    <? endforeach; ?>
+  <? endif; ?>
+  </ul>
+<? else: ?>
+  <?=$this->transEsc("Table of Contents unavailable")?>.
+<? endif; ?>

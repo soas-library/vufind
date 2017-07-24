@@ -1,0 +1,11 @@
+<? if(empty($this->layout()->breadcrumbs)): ?>
+      <div class="alert_news">
+      <strong>
+      <h3 class="font18"><?=$this->transEsc('news_title')?></h3>
+      <p class="font12">Please note that SOAS Customer Services Desk will be closed between 11am and 12:30 on Friday 09/06/2017.</p>
+      <p class="font12">There will be no Circulation and Membership service during this period. The Library Enquiry Desk and IT Helpdesk </p>
+      <p class="font12">will operate as normal. Please use self-service or your business.  We apologise for the inconvenience.</p>
+   </strong>
+  </div>
+<? endif; ?>
+

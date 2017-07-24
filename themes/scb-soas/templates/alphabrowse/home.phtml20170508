@@ -1,0 +1,346 @@
+<?
+$total=$this->total;
+$por_pagina = $this->limit;
+$actual=$this->page;
+$maxpags = 10;
+
+?>
+<? 
+	$account = $this->auth()->getManager();
+        $showCSV= "false";
+        if (is_object($account) && $account->loginEnabled()&& $account->isLoggedIn()){
+        	$showCSV= "true";	
+        }
+?>
+<?
+  $this->headTitle($this->translate('Browse the Collection Alphabetically'));
+  $this->layout()->breadcrumbs = '<a href="' . $this->url('alphabrowse-home') . '">' . $this->transEsc('Browse Alphabetically') . '</a>';
+  $baseQuery = array('source' => $this->source, 'from' => $this->from);
+  
+  $arr_excel = array();
+  $arr_excel_row = array();
+  session_start(); 
+  unset($_SESSION['arr_excel']);
+  
+?>
+
+<? /* LOAD THE LINK INFORMATION INTO $pageLinks, similar to smarty's {capture} */ ?>
+<? ob_start(); ?>
+  <ul class="pager">
+    <? if (isset($this->prevpage)): ?>
+      <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->prevpage))))?>">&laquo; <?=$this->transEsc('Prev')?></a></li>
+    <? else: ?>
+      <li class="disabled"><a href="#">&laquo; <?=$this->transEsc('Prev')?></a></li>
+    <? endif; ?>
+
+    <? if (isset($this->nextpage)): ?>
+      <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->nextpage))))?>"><?=$this->transEsc('Next')?> &raquo;</a></li>
+    <? else: ?>
+      <li class="disabled"><a href="#"><?=$this->transEsc('Next')?> &raquo;</a></li>
+    <? endif; ?>
+  </ul>
+<? $pageLinks = ob_get_contents(); ?>
+<? ob_end_clean(); ?>
+
+<div id="form1">
+<form class="form-inline" method="get" action="<?=$this->url('alphabrowse-home')?>" name="alphaBrowseForm" id="alphaBrowseForm">
+  <label for="alphaBrowseForm_source"><?=$this->transEsc('Browse Alphabetically') ?></label>
+  <select id="alphaBrowseForm_source" name="source" class="form-control">
+    <? foreach ($this->alphaBrowseTypes as $key => $item): ?>
+      <option value="<?=$this->escapeHtmlAttr($key) ?>"<? if ($this->source == $key): ?> selected="selected"<? endif; ?>><?=$this->transEsc($item) ?></option>
+    <? endforeach; ?>
+  </select>
+  <label for="alphaBrowseForm_from"><?=$this->transEsc('starting from') ?></label>
+  <input type="text" name="from" id="alphaBrowseForm_from" value="<?=$this->escapeHtmlAttr($this->from) ?>" class="form-control"/>
+  <!--<input class="btn btn-default" type="submit" value="<?=$this->transEsc('Browse') ?>"/>-->
+  <input type="hidden" name="excel" id="excel" value="0"/>
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search" name="btnBrowse"></i> <?=$this->transEsc("Browse")?></button>      
+
+</form>
+</div>
+
+<? if ($this->result): ?>
+    <?//=$pageLinks ?>
+          
+   
+     <!--PAGINATION--> 
+<?
+if($total>$por_pagina){
+?>
+  <div class="pagination" id="navePage"><ul class="pagination">
+  <? 
+  $total_paginas = ceil($total/$por_pagina);
+  $anterior = $actual - 1;
+  $posterior = $actual + 1;
+  $med = $maxpags/2;
+  $minimo = 0; 
+  if( ($actual + $med) >= $total_paginas) {
+   $minimo = max($total_paginas - $maxpags + 1,1);
+  }
+  else {
+   $minimo = ( ($actual-$med)>0 )? $actual - $med : 1; 
+  }   
+  $maximo = 0;  
+  
+  if ($actual > 0){?> 
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => 0))))?>">[1]</a></li>
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->prevpage))))?>" title="Back">&laquo; <?=$this->transEsc('Prev')?></a></li>
+   <?}
+  $maximo = min($minimo + $maxpags - 1, $total_paginas);
+
+  for ($i=$minimo; $i <= $maximo; $i++) {
+  	
+   if($i == ($actual+1)) {?>
+    <li class="active"><span><?=$actual+1?></span></li>
+   <?}
+   else {?>
+    <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $i-1))))?>"><?=$i?></a></li>
+  <? }
+  }
+  if($actual < $total_paginas ) ?>
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->nextpage))))?>" title="Next"><?=$this->transEsc('Next');?> &raquo;</a></li>
+  <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $total_paginas-1))))?>"><span>[<?=$total_paginas;?>]</a></li>
+  </ul></div>
+<?}else{?>
+</br>
+<?}?>
+ <!--END PAGINATION-->
+ 
+ <div>
+     <?if(strpos($showCSV,"true") !== false):?>
+    <span id="exp_excel" class="csv hidden">
+    <span><?=$this->transEsc('export_data_excel')?></span>
+    <span><a class="csvlink" id="link_excel" name="link_excel"><?=$this->transEsc('excel_file');?></a></span>
+    </span>
+    <?endif;?>
+    </hr>
+</div>
+
+    <table class="alphabrowse table table-striped fs14">
+      <tr><td></td><th><?=$this->transEsc("alphabrowse_matches") ?></th></tr>
+      
+      <? foreach ($this->result['Browse']['items'] as $i => $item): ?>
+      <?unset($arr_excel_row);?>
+      <? if (isset($this->highlight_row) && $row == $this->highlight_row): ?>
+          <tr class="browse-match">
+          <? if (isset($this->match_type) && ($this->match_type == "NONE")): ?>
+            <?// this is the right row but query doesn't match value ?>
+            <td><?=$this->transEsc('your_match_would_be_here')?></td>
+            <td></td>
+            </tr>
+            <tr>
+          <? endif; ?>
+        <? else: ?>
+          <tr>
+        <? endif; ?>
+        <td class="columnsAlpha">
+          <?
+          /*** SCA 20161018 ***/
+          	$display_size_1="col-sm-6";
+          	if(strpos($this->source,"callnumber") !== false)
+          		$display_size_1 = "col-sm-3";
+
+          /*** FIN SCA 20161018 ***/		
+          ?>
+          <? if ($item['count'] > 0): ?>
+            <?/* linking using bib ids is generally more reliable than
+              doing searches for headings, but headings give shorter
+              queries and don't look as strange. */?>
+
+            <? if ($item['count'] < 5): ?>
+              <? $query = array('type' => 'ids', 'lookfor' => implode(' ', $item['ids'])); ?>
+            <? else: ?>
+	             <?if(strpos($this->source,"hierarchy_top_title") !== false):?>
+	              <? $query = array('type' => 'AllFields', 'filter[]' => '~hierarchy_top_title:"' . addcslashes($item['heading'], '"')); ?>
+	            
+	            <? else: ?>
+	                <? $query = array('type' => ucwords($this->source) . 'Browse', 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); ?>
+	            <? endif; ?>
+            <? endif; ?>
+           
+            <a class="<?echo $display_size_1;?>" href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
+           
+          <? else: ?>
+            <span class="<?echo $display_size_1;?>"><?=$this->escapeHtml($item['heading'])?></span>
+          <? endif; ?>
+
+
+         <?$arr_excel_row[0]=$this->escapeHtml($item['heading']);?>
+
+          <?
+            foreach ($this->extras as $ei => $extraName):
+              $extraData = $item['extras'][$extraName];
+          ?>
+            <?
+          /*** SCA 20161018 ***/
+          	$display_size=floor(6/count($this->extras));
+          	if(strpos($extraName,"title") !== false)
+          		$display_size = 6;
+          	if(strpos($extraName,"shelf_location") !== false)
+          		$display_size = 3;
+          	if(strpos($extraName,"scb_display_item_location") !== false)
+          		$display_size = $display_size." hidden";
+          	if(strpos($extraName,"hierarchy_top_id") !== false)
+          			$display_size = $display_size." hidden";
+
+          /*** FIN SCA 20161018 ***/	          	
+          ?>
+            <div class="col-sm-<?=$display_size; ?>">
+              <?
+                $extraDisplayArray = array();
+                foreach ($extraData as $j => $e) {
+                  $extraDisplayArray = array_unique(array_merge($extraDisplayArray, $e));
+                }
+
+                 /***SCB 10/10/2016***/
+                $extraDisplayArray2 = array();
+                foreach($extraDisplayArray as $aux){                
+                	if (stripos($aux, 'MAIN') !== false){} //|| stripos($aux, 'OFFSITE') !== false || stripos($aux, 'SCRR') !== false || stripos($aux, 'No available') !== false
+                	else{array_push($extraDisplayArray2,$aux);}
+                }
+	       $extraDisplayArray=$extraDisplayArray2;
+	       /***FIN SCB 10/10/2016***/
+
+	//Si estamos en shelf_location , mirar el valor en scb_display_item_location, y si es != de 'MAIN' poner en blanco el valr de "shelf_location"
+	if(stripos($extraName, 'shelf_location') !== false){
+		$extraDataAux = $item['extras']['scb_display_item_location'];
+		$extraDisplayArrayAux = array();
+		$extraDisplayArrayAux2 = array();
+	        foreach ($extraDataAux as $j => $e) {$extraDisplayArrayAux = array_unique(array_merge($extraDisplayArrayAux, $e));}
+	        
+	        foreach($extraDisplayArrayAux as $aux){ if (stripos($aux, 'MAIN') !== false){}else{$extraDisplayArray = array();} }
+	        foreach($extraDisplayArrayAux as $aux1){
+	        	if (stripos(trim($aux1), 'MAIN') !== false){}
+	        	else{array_push($extraDisplayArrayAux2,$aux1);}	
+	        }
+	        $extraDisplayArray = array_unique(array_merge($extraDisplayArray, $extraDisplayArrayAux2));
+        }
+                echo (empty($extraDisplayArray)) ? '&nbsp;' : implode('<br />', $extraDisplayArray);
+                        
+                
+                if(stripos($extraName, 'shelf_location') !== false){$arr_excel_row[2]=implode(' ', $extraDisplayArray);}
+                else if(stripos($extraName, 'title') !== false){$arr_excel_row[1]=implode(' ', $extraDisplayArray);}
+                
+              ?>
+            </div>
+          <? endforeach; ?>      
+	  <?array_push($arr_excel,$arr_excel_row);?>
+          <? if (count($item['useInstead']) > 0): ?>
+            <div>
+              <?=$this->transEsc('Use instead') ?>:
+              <ul>
+                <? foreach ($item['useInstead'] as $heading): ?>
+                <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => array('from' => $heading) + $baseQuery)))?>"><?=$this->escapeHtml($heading)?></a></li>
+                <? endforeach; ?>
+              </ul>
+            </div>
+          <? endif; ?>
+
+          <? if (count($item['seeAlso']) > 0): ?>
+            <div>
+              <?=$this->transEsc('See also') ?>:
+              <ul>
+                <? foreach ($item['seeAlso'] as $heading): ?>
+                <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => array('from' => $heading) + $baseQuery)))?>"><?=$this->escapeHtml($heading)?></a></li>
+                <? endforeach; ?>
+              </ul>
+            </div>
+          <? endif; ?>
+
+          <? if ($item['note']): ?>
+            <div>
+              <?=$this->transEsc('Note') ?>:
+              <ul>
+                <li><?=$this->escapeHtml($item['note'])?></li>
+              </ul>
+            </div>
+          <? endif; ?>
+          
+        </td>
+        <td><? if ($item['count'] > 0): echo $item['count']; endif; ?></td>   
+            
+        <? $row++; ?>
+        <? endforeach; ?>
+        <? if (isset($this->highlight_end)): ?>
+          <tr class="browse-match">
+            <td><?=$this->transEsc('your_match_would_be_here')?></td>
+            <td></td>
+          </tr>
+        <? endif; ?>
+      
+    </table>
+  
+  <?//= $pageLinks ?>
+<? endif; ?>
+
+<!--PAGINATION--> 
+<?
+if($total>$por_pagina){
+?>
+  <div class="pagination" id="navePage"><ul class="pagination">
+  <? 
+  $total_paginas = ceil($total/$por_pagina);
+  $anterior = $actual - 1;
+  $posterior = $actual + 1;
+  $med = $maxpags/2;
+  $minimo = 0; 
+  if( ($actual + $med) >= $total_paginas) {
+   $minimo = max($total_paginas - $maxpags + 1,1);
+  }
+  else {
+   $minimo = ( ($actual-$med)>0 )? $actual - $med : 1; 
+  }   
+  $maximo = 0;  
+  
+  if ($actual > 0){?> 
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => 0))))?>">[1]</a></li>
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->prevpage))))?>" title="Back">&laquo; <?=$this->transEsc('Prev')?></a></li>
+   <?}
+  $maximo = min($minimo + $maxpags - 1, $total_paginas);
+
+  for ($i=$minimo; $i <= $maximo; $i++) {
+  	
+   if($i == ($actual+1)) {?>
+    <li class="active"><span><?=$actual+1?></span></li>
+   <?}
+   else {?>
+    <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $i-1))))?>"><?=$i?></a></li>
+  <? }
+  }
+  if($actual < $total_paginas ) ?>
+   <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->nextpage))))?>" title="Next"><?=$this->transEsc('Next');?> &raquo;</a></li>
+  <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $total_paginas-1))))?>"><span>[<?=$total_paginas;?>]</a></li>
+  </ul></div>
+  </div>
+<?}?>
+ <!--END PAGINATION-->
+ 
+ </div>
+ 
+           <?//Only save if the list is about callnumber
+          if(strpos($this->source,"callnumber") !== false)$_SESSION['arr_excel']=$arr_excel;
+          else unset($_SESSION['arr_excel']);
+          ?>       
+          
+<script>
+$(document).ready(function(){
+	$('#excel').val("0");
+	
+	$("#link_excel").click(function() {
+          $('#excel').val("1");
+          $("#alphaBrowseForm").attr("action", "home")
+          $("#alphaBrowseForm").submit();
+           $('#excel').val("0");
+       });
+});
+
+var valorSelect = $('select#alphaBrowseForm_source').val();
+if(valorSelect=="callnumber"){$("#exp_excel").removeClass("hidden");}
+else{$("#exp_excel").addClass("hidden");}
+
+$('select#alphaBrowseForm_source').on('change',function(){
+    var valor = $(this).val();
+    if(valor=="callnumber")$("#exp_excel").removeClass("hidden");
+    else $("#exp_excel").addClass("hidden");
+});
+</script>

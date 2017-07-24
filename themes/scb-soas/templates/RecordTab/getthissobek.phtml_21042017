@@ -1,0 +1,36 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Description') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+
+       <? echo $this->record($this->driver)->getPreviews(); ?>
+
+    <?
+    $item_sobek_txt = $this->driver->getTag856u();
+    // Account for replace_other_urls setting
+    $openUrl = $this->openUrl($this->driver, 'record');
+    $openUrlActive = $openUrl->isActive();
+    // Account for replace_other_urls setting
+    $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+   ?>
+
+<div class="holdings">
+  <? if (!empty($urls) || $openUrl || $item_sobek_txt != ""): ?>
+  <table class="table table-responsive" summary="<?=$this->transEsc('Details')?>">
+  <? if (!empty($urls)): ?>
+    <? foreach ($urls as $current): ?>
+      <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+    <? endforeach; ?>
+  <?elseif($item_sobek_txt != ""):?>
+      <tr><td><a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+  <? endif; ?>
+  <? if ($openUrlActive): ?>
+            <?=$openUrl->renderTemplate()?><br/>
+  <? endif; ?>
+  </table>
+<? endif; ?>
+</div>
+

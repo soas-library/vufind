@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+
+<lst name="responseHeader">
+  <int name="status">0</int>
+  <int name="QTime">0</int>
+  <lst name="params">
+    <str name="q">collection:"SOAS Archive" AND hierarchy_top_id:"CWM"</str>
+    <str name="indent">true</str>
+    <str name="wt">xml</str>
+  </lst>
+</lst>
+<result name="response" numFound="17998" start="0">
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.062.09</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/062/09</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Herbert Wells, Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Herbert Wells, Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_full">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_fullStr">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_sort">report by herbert wells, hong kong</str>
+    <arr name="scb_date_creation">
+      <str>1927</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>5 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description"/>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>62</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.062</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.062.09</str>
+    </arr>
+    <long name="_version_">1564280873405120512</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">1928</str>
+    <arr name="spellingShingle">
+      <str>1928</str>
+    </arr>
+    <str name="title_short">1928</str>
+    <str name="title_full">1928</str>
+    <str name="title_fullStr">1928</str>
+    <str name="title_full_unstemmed">1928</str>
+    <str name="title_sort">1928</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>File</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>1 folder, 6 items</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Annual Reports for South China mission stations for 1928.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <long name="_version_">1564280873554018304</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.CWM.09.01.074</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/CWM, Correspondence with Ecumenical Bodies, Box 11</str>
+    </arr>
+    <str name="callnumber">CWM/CWM/09/01/074</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str>2.1/A</str>
+    </arr>
+    <str name="title">Christian Organisations Research and Advisory Trust (CORAT)</str>
+    <arr name="spellingShingle">
+      <str>Christian Organisations Research and Advisory Trust (CORAT)</str>
+    </arr>
+    <str name="title_short">Christian Organisations Research and Advisory Trust (CORAT)</str>
+    <str name="title_full">Christian Organisations Research and Advisory Trust (CORAT)</str>
+    <str name="title_fullStr">Christian Organisations Research and Advisory Trust (CORAT)</str>
+    <str name="title_full_unstemmed">Christian Organisations Research and Advisory Trust (CORAT)</str>
+    <str name="title_sort">christian organisations research and advisory trust (corat)</str>
+    <arr name="scb_date_creation">
+      <str>1979-1985</str>
+    </arr>
+    <arr name="scb_level">
+      <str>File</str>
+    </arr>
+    <arr name="scb_extent">
+      <str/>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description"/>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str/>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.CWM.09.01</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.CWM.09.01.074</str>
+    </arr>
+    <long name="_version_">1564280873702916096</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.01</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/01</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Stanley Boxer, Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Stanley Boxer, Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Stanley Boxer, Hong Kong</str>
+    <str name="title_full">Report by Stanley Boxer, Hong Kong</str>
+    <str name="title_fullStr">Report by Stanley Boxer, Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Stanley Boxer, Hong Kong</str>
+    <str name="title_sort">report by stanley boxer, hong kong</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>9 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description"/>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.01</str>
+    </arr>
+    <long name="_version_">1564280873852862464</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.02</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/02</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Charles Cousins, Poklo [Boluo]</str>
+    <arr name="spellingShingle">
+      <str>Report by Charles Cousins, Poklo [Boluo]</str>
+    </arr>
+    <str name="title_short">Report by Charles Cousins, Poklo [Boluo]</str>
+    <str name="title_full">Report by Charles Cousins, Poklo [Boluo]</str>
+    <str name="title_fullStr">Report by Charles Cousins, Poklo [Boluo]</str>
+    <str name="title_full_unstemmed">Report by Charles Cousins, Poklo [Boluo]</str>
+    <str name="title_sort">report by charles cousins, poklo [boluo]</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>8 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description"/>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.02</str>
+    </arr>
+    <long name="_version_">1564280874002808832</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.03</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/03</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    <str name="title_full">Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    <str name="title_fullStr">Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Mrs. Arnold Hughes [nee Annie Cameron], Hong Kong</str>
+    <str name="title_sort">report by mrs. arnold hughes [nee annie cameron], hong kong</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>6 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Report on the Ho Miu Ling Hospital. Attached is a cutting from the Hong Kong Daily Press, reporting on the Alice Memorial and affiliated hospitals annual general meeting, dated 30 July 1929.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.03</str>
+    </arr>
+    <long name="_version_">1564280874151706624</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.04</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/04</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Vera Silcocks, Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Vera Silcocks, Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Vera Silcocks, Hong Kong</str>
+    <str name="title_full">Report by Vera Silcocks, Hong Kong</str>
+    <str name="title_fullStr">Report by Vera Silcocks, Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Vera Silcocks, Hong Kong</str>
+    <str name="title_sort">report by vera silcocks, hong kong</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>3 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Includes notes on the Ying Wa Girls' School.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.04</str>
+    </arr>
+    <long name="_version_">1564280874307944448</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.05</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/05</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Annie Sydenham, Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Annie Sydenham, Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Annie Sydenham, Hong Kong</str>
+    <str name="title_full">Report by Annie Sydenham, Hong Kong</str>
+    <str name="title_fullStr">Report by Annie Sydenham, Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Annie Sydenham, Hong Kong</str>
+    <str name="title_sort">report by annie sydenham, hong kong</str>
+    <arr name="scb_date_creation">
+      <str>11 Jan 1929</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>2 ff. (&amp;amp; copy)</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Report on hospital midwifery and gynaecological practice for 1927, with duplicate.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.05</str>
+    </arr>
+    <long name="_version_">1564280874457890816</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.063.06</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/063/06</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">Report by Herbert Wells, Hong Kong</str>
+    <arr name="spellingShingle">
+      <str>Report by Herbert Wells, Hong Kong</str>
+    </arr>
+    <str name="title_short">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_full">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_fullStr">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_full_unstemmed">Report by Herbert Wells, Hong Kong</str>
+    <str name="title_sort">report by herbert wells, hong kong</str>
+    <arr name="scb_date_creation">
+      <str>1928</str>
+    </arr>
+    <arr name="scb_level">
+      <str>Item</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>12 ff.</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Includes duplicates of correspondence regarding Herbert Wells from W. W. Hornell, Vice-Chancellor, and W. B. Finnigan, registrar of Hong Kong University.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>63</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1.063</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.063.06</str>
+    </arr>
+    <long name="_version_">1564280874606788608</long></doc>
+  <doc>
+    <arr name="collection">
+      <str>SOAS Archive</str>
+    </arr>
+    <str name="id">CWM.LMS.16.06.1.064</str>
+    <str name="recordtype">archive</str>
+    <arr name="scb_item_location">
+      <str>Archive &amp; Special Collections</str>
+    </arr>
+    <str name="scb_loan_type">Reference only</str>
+    <str name="scb_calm_location_display">Archive &amp; Special Collections</str>
+    <arr name="scb_order_with">
+      <str>CWM/LMS/South China/Reports/Box 6</str>
+    </arr>
+    <str name="callnumber">CWM/LMS/16/06/1/064</str>
+    <arr name="scb_alt_ref_no">
+      <str/>
+    </arr>
+    <arr name="scb_previous_numbers">
+      <str/>
+    </arr>
+    <str name="title">1929</str>
+    <arr name="spellingShingle">
+      <str>1929</str>
+    </arr>
+    <str name="title_short">1929</str>
+    <str name="title_full">1929</str>
+    <str name="title_fullStr">1929</str>
+    <str name="title_full_unstemmed">1929</str>
+    <str name="title_sort">1929</str>
+    <arr name="scb_date_creation">
+      <str>1929</str>
+    </arr>
+    <arr name="scb_level">
+      <str>File</str>
+    </arr>
+    <arr name="scb_extent">
+      <str>1 folder, 6 items</str>
+    </arr>
+    <arr name="format">
+      <str>Archive</str>
+    </arr>
+    <arr name="scb_admin_history">
+      <str/>
+    </arr>
+    <arr name="scb_custodial_history">
+      <str/>
+    </arr>
+    <arr name="scb_acquisition">
+      <str/>
+    </arr>
+    <str name="description">Annual Reports for South China mission stations for 1929.</str>
+    <arr name="scb_arrangement">
+      <str/>
+    </arr>
+    <arr name="scb_access_status">
+      <str>Open</str>
+    </arr>
+    <arr name="scb_closed_until">
+      <str/>
+    </arr>
+    <arr name="scb_conditions_gov_access">
+      <str/>
+    </arr>
+    <arr name="scb_copyright">
+      <str/>
+    </arr>
+    <arr name="scb_use_restrictions">
+      <str/>
+    </arr>
+    <arr name="language">
+      <str>English</str>
+    </arr>
+    <arr name="scb_scripts_material">
+      <str/>
+    </arr>
+    <arr name="scb_file_number">
+      <str>64</str>
+    </arr>
+    <arr name="scb_physc_charac_tech_reqs">
+      <str/>
+    </arr>
+    <arr name="scb_finding_aids">
+      <str/>
+    </arr>
+    <arr name="scb_originals">
+      <str/>
+    </arr>
+    <arr name="scb_copies">
+      <str/>
+    </arr>
+    <arr name="scb_related_material">
+      <str/>
+    </arr>
+    <arr name="scb_publications">
+      <str/>
+    </arr>
+    <str name="hierarchytype">Default</str>
+    <arr name="hierarchy_top_id">
+      <str>CWM</str>
+    </arr>
+    <arr name="hierarchy_parent_id">
+      <str>CWM.LMS.16.06.1</str>
+    </arr>
+    <arr name="hierarchy_top_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_top_title_browse">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <arr name="hierarchy_parent_title">
+      <str>Council for World Mission Archive</str>
+    </arr>
+    <str name="is_hierarchy_id"/>
+    <str name="is_hierarchy_title"/>
+    <arr name="hierarchy_sequence">
+      <str>CWM.LMS.16.06.1.064</str>
+    </arr>
+    <long name="_version_">1564280874763026432</long></doc>
+</result>
+</response>

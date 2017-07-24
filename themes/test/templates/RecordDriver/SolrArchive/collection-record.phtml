@@ -1,0 +1,176 @@
+<h4><?=$this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection())?></h4>
+<a class="view_full" target="_blank" href="<?=$this->recordLink()->getUrl($this->driver)?>"><?=$this->transEsc('View Full ' . ($this->driver->isCollection() ? 'Collection' : 'Record'))?></a>
+
+<table class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
+
+  <? $collection = $this->driver->getTopTitle();$collection = isset($collection[0]) ? $collection[0] : false; ?>
+  <? if ($collection): ?>
+   <tr valign="top">
+      <th><?=$this->transEsc('In Collection')?>: </th>
+       <? $summInCollection = $this->driver->getContainingCollections(); if (!empty($summInCollection)): ?>
+          <? foreach ($summInCollection as $collId => $collText): ?>
+<td>
+              <a id="collectionTitle" class="collectionLinkText" href="<?=$this->url('collection', array('id' => $collId))?>?recordID=<?=urlencode($this->driver->getUniqueID())?>">
+                <?=$this->escapeHtml($collText)?>
+              </a>
+</td>
+          <? endforeach; ?>
+        <? endif; ?>
+    </tr>
+  <? endif; ?>
+  
+  <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? html_entity_decode($summary[0], ENT_QUOTES | ENT_HTML5) : false; ?>
+  <? if ($summary): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Description')?>: </th>
+      <td><?=$this->escapeHtml($summary)?></td>
+    </tr>
+  <? endif; ?>
+
+  <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
+  <? if (isset($authors['main']) && !empty($authors['main'])): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Main Author')?>: </th>
+      <td><a href="<?=$this->record($this->driver)->getLink('author', $authors['main'])?>"><?=$this->escapeHtml($authors['main'])?></a></td>
+    </tr>
+  <? endif; ?>
+
+  <? if (isset($authors['corporate']) && !empty($authors['corporate'])): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Corporate Author')?>: </th>
+      <td><a href="<?=$this->record($this->driver)->getLink('author', $authors['corporate'])?>"><?=$this->escapeHtml($authors['corporate'])?></a></td>
+    </tr>
+  <? endif; ?>
+
+  <? $langs = $this->driver->getLanguages(); if (!empty($langs)): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Language')?>: </th>
+      <td><? foreach ($langs as $lang): ?><?= $this->escapeHtml($lang)?><br/><? endforeach; ?></td>
+    </tr>
+  <? endif; ?>
+
+  <? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
+        <tr>
+          <th><?=$this->transEsc('Format')?>: </th>
+          <td><?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>
+	       <?if($this->driver->getElectronic()== "Electronic"):?>
+	       <span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
+	       <?endif;?>
+          </td>
+        </tr>
+      <? endif; ?>
+
+  <? $access = $this->driver->getAccessRestrictions(); if (!empty($access)): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Access')?>: </th>
+      <td>
+        <? foreach ($access as $field): ?>
+          <?=$this->escapeHtml($field)?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+
+  <? $related = $this->driver->getRelationshipNotes(); if (!empty($related)): ?>
+    <tr valign="top">
+      <th><?=$this->transEsc('Related Items')?>: </th>
+      <td>
+        <? foreach ($related as $field): ?>
+          <?=$this->escapeHtml($field)?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+   
+  
+   <? $dateCreation = $this->driver->getDateCreation(); if (!empty($dateCreation) && count($dateCreation)>0 && !empty($dateCreation[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('dates_creation')?>:</th>
+        <td>
+            <? foreach ($dateCreation as $dateAux): ?><?= $this->escapeHtml($dateAux)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+    
+     <? $level = $this->driver->getLevel(); if (!empty($level) && count($level)>0  && !empty($level[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('level_description')?>:</th>
+        <td>
+            <? foreach ($level as $levelAux): ?><?= html_entity_decode($this->escapeHtml($levelAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $extent = $this->driver->getExtent(); if (!empty($extent) && count($extent)>0 && !empty($extent[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('extent')?>:</th>
+        <td>
+            <? foreach ($extent as $extentAux): ?><?= html_entity_decode($this->escapeHtml($extentAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $adminBiographical = $this->driver->getAdminBiographical(); if (!empty($adminBiographical) && count($adminBiographical)>0 && !empty($adminBiographical[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('admin_biographical')?>:</th>
+        <td>
+            <? foreach ($adminBiographical as $adminBiographicalAux): ?><?= html_entity_decode($this->escapeHtml($adminBiographicalAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+     
+       <? $acquisition = $this->driver->getAcquisition(); if (!empty($acquisition) && count($acquisition)>0 && !empty($acquisition[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('acquisition')?>:</th>
+        <td>
+            <? foreach ($acquisition as $acquisitionAux): ?><?= html_entity_decode($this->escapeHtml($acquisitionAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+            
+       <? $arrangement = $this->driver->getArrangement(); if (!empty($arrangement) && count($arrangement)>0 && !empty($arrangement[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('arrangement')?>:</th>
+        <td>
+            <? foreach ($arrangement as $arrangementAux): ?><?= html_entity_decode($this->escapeHtml($arrangementAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $accessStatus = $this->driver->getAccessStatus(); if (!empty($accessStatus) && count($accessStatus)>0 && !empty($accessStatus[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('access_status')?>:</th>
+        <td>
+            <? foreach ($accessStatus as $accessStatusAux): ?><?= html_entity_decode($this->escapeHtml($accessStatusAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $useRestrictions = $this->driver->getUseRestrictions(); if (!empty($useRestrictions) && count($useRestrictions)>0 && !empty($useRestrictions[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('use_restrictions')?>:</th>
+        <td>
+            <? foreach ($useRestrictions as $useRestrictionsAux): ?><?= html_entity_decode($this->escapeHtml($useRestrictionsAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $findingAids = $this->driver->getFindingAids(); if (!empty($findingAids)  && count($findingAids)>0 && !empty($findingAids[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('finding_aids')?>:</th>
+        <td>
+            <? foreach ($findingAids as $findingAidsAux): ?><?= html_entity_decode($this->escapeHtml($findingAidsAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+      
+       <? $relatedMaterial = $this->driver->getRelatedMaterial(); if (!empty($relatedMaterial) && count($relatedMaterial)>0 && !empty($relatedMaterial[0])): ?>
+      <tr>
+        <th><?=$this->transEsc('related_material')?>:</th>
+        <td>
+            <? foreach ($relatedMaterial as $relatedMaterialAux): ?><?= html_entity_decode($this->escapeHtml($relatedMaterialAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+</table>

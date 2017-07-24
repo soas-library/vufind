@@ -1,0 +1,98 @@
+/**
+ * Custom 947 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+ 
+public List getSortCallNumber(Record record) {
+
+    // Check 9082 subfield l
+    List fields = record.getVariableFields("082");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val = "", val0 = "", val1 = "", val2 = "";
+
+
+            List subfields = shelf.getSubfields();
+            System.out.println(subfields.size());
+            List subfields_f = shelf.getSubfields('f');
+            List subfields_a = shelf.getSubfields('a');
+            List subfields_k = shelf.getSubfields('k');
+            //System.out.println(subfields_k.size());
+            //if (subfields_k.size()>0) {System.out.println(subfields_k.get(0));}
+            Iterator subfieldsIter_a = subfields_a.iterator();
+            if (subfields_a != null) {
+                while (subfieldsIter_a.hasNext()) {
+                    
+                    if (subfields_k.size()>0) {
+                    	if (subfields_f.size()>0) {
+                    		val0 = subfields_f.get(0).getData().trim();
+                    	}
+                    	val1 = subfieldsIter_a.next().getData().trim();
+                    	val2 = subfields_k.get(0).getData().trim();
+                    	val = val0 + "" + val1 + "" + val2;
+                    	
+	                    //SCB Meter ceros
+	                    //System.out.println("Val subfa antes: " + val1);
+	                    //System.out.println("Val antes: " + val);
+	                    String subf_k = subfields_k.get(0).getData().replaceAll("\\s+", "");
+	                    String[] split = subf_k.split("/");
+	                    String toFill = split[split.length-1];
+	                    String split_part = "";
+	                    //System.out.println(split.length);
+	                    for (int i = 1; i < split.length-1; i++) {
+	                    	split_part = split_part + "/" + split[i];
+	                    }
+	                    
+	                    //System.out.println("Split part: " + split_part);
+	                    
+	                    //System.out.println("Segundo valor: " + toFill );
+	                    //System.out.println("Tamanyo: " + toFill.length());
+	                    
+	                    int tam = 11;
+	                    String toAdd = new String(new char[tam-toFill.length()]).replace('\0', '0');
+	                    
+	                    //System.out.println("toAdd: " + toAdd);
+	                    
+	                    //SCB Cambiar el . por ~
+	                    val1 = val1.replaceAll("\\.", "~");
+	                    //SCB Cambiar el . por ~
+	                    
+	                    val = val0 + val1 + split_part + "/" + toAdd + toFill;
+	                    
+	                    System.out.println("VALUE: " + val);
+	                    
+	                    val = val.replaceAll("\\s+", "");
+	                    //SCB Meter ceros
+                    	
+                    }
+                    else {
+                    	val = subfieldsIter_a.next().getData().trim();
+                    }
+                    //val = subfieldsIter_a.next().getData().trim();
+                    //System.out.println("Val: " + val);
+                    result.add(val);
+                }
+            }
+        }
+        return result;
+    }
+    //otherwise return null
+    return result;
+}
+

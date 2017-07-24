@@ -1,0 +1,614 @@
+shelf.pattern_0   = ^(A340)=>Level D stacks 136-137
+shelf.pattern_1   = ^(A341)=>Level D stacks 137-142
+shelf.pattern_2   = ^(A34[2-3])=>Level D stacks 142-143
+shelf.pattern_3   = ^(A344)=>Level D stacks 143-146
+shelf.pattern_4   = ^(A345$|A345\.[0-3])=>Level D stacks 146-151
+shelf.pattern_5   = ^(A345\.[4-5])=>Level D stacks 151-180
+shelf.pattern_6   = ^(A345\.6 | A345[0-604])=>Level D stacks 180-185
+shelf.pattern_7   = ^(A345\.605)=>Level D stacks 185,194
+shelf.pattern_8   = ^(A345\.6\[0-9][6-9])=>Level D stacks 194-196
+shelf.pattern_9   = ^(A345\.[7-9])=>Level D stacks 196-199
+shelf.pattern_10   = ^(A34[6-9])=>Level D stacks 200-207
+shelf.pattern_11   = ^(L A34[0-9])=>Level D stacks 207-218
+shelf.pattern_12   = ^(L A349\.[0-99])=>Level D stacks 207-218
+shelf.pattern_13   = ^(Atlas B)=>Level C Stack 107b
+shelf.pattern_14   = ^(Atlas D)=>Level C Stack 107b
+shelf.pattern_15   = ^(Atlas E)=>Level D Stack 83
+shelf.pattern_16   = ^(c Per L / 960161|C Per L / 960161)=>Level F Stack 54 
+shelf.pattern_17   = ^(c Per|C Per)=>Level F Stack 29-37 [some materials off-site, available on request]
+shelf.pattern_18   = ^(C[E-K])=>Level C Stack 168-171
+shelf.pattern_19   = ^(CL)=>Level C stacks 176 - 178
+shelf.pattern_20   = ^(CM)=>Level C stacks 178 - 181
+shelf.pattern_21   = ^(CN)=>Level C stacks 176 - 179
+#
+# 2015/11/12 New Mappings supplied by Keith Sparrow and James Ward
+#            Pretty tricky not sure this is worth the effort required - we will see
+#
+shelf.pattern_22   = ^(c\.9.*\.L)=>Level C stacks 199 - 200
+shelf.pattern_23   = ^(c\.9\.[a-jl-z])=>Level C stacks 99-101
+shelf.pattern_24   = ^(c\.9\.k)=>Level C stacks 99-101 [.k.10, offsite, available on request]
+shelf.pattern_25   = ^(c\.10\.[a-z])=>Level C stacks 99-101 [Some offsite, available on request.]
+shelf.pattern_26   = ^(c\.[235679][0-9]\.[a-z])=>Level C stacks 99-101
+shelf.pattern_27   = ^(c\.8[2-9]\.[a-z])=>Level C stacks 99-101
+shelf.pattern_28   = ^(c\.1[1-4689]\.[a-z])=>Level C stacks 99-101
+shelf.pattern_29   = ^(c\.15\.[a-z])=>Off-site, available on request
+shelf.pattern_30   = ^(c\.17\.[a-z])=>Off-site, available on request
+shelf.pattern_31   = ^(c\.40\.[a-z])=>Level C stacks 99-101 [Some offsite, available on request]
+shelf.pattern_32   = ^(c\.80\.[a-z])=>Off-site, available on request [.k.11 Level F stack 39]
+shelf.pattern_33   = ^(c\.81\.[a-z])=>Level C stacks 99-101 [Some offsite, available on request]
+shelf.pattern_34   = ^(c\.1[0-4][0-9]\.[a-z])=>Level C stacks 101 - 103
+shelf.pattern_35   = ^(c\.15[0-2]\.[a-z])=>Level C stacks 101 - 103
+shelf.pattern_36   = ^(c\.153\.[a-z])=>Some off-site, available on request
+shelf.pattern_37   = ^(c\.154\.[a-z])=>Level C stack 103 &  Level F stacks 39 - 40
+shelf.pattern_38   = ^(c\.1[7-9][0-9]\.[a-z])=>Level C stacks 101 - 103
+shelf.pattern_39   = ^(c\.156\.[a-z])=>Level C [.f.4 Level F stack 40]
+shelf.pattern_40   = ^(c\.(20[1245789]|2[1489][0-9])\.[a-z0-9])=>Level C
+shelf.pattern_41   = ^(c\.200\.[a-z])=>Level C [.h.3 Level F stack 40]
+shelf.pattern_42   = ^(c\.203\.[a-z])=>Level D stack 224
+shelf.pattern_43   = ^(c\.206\.[a-z0-9])=>Off-site, available on request [.k.32 Level C stack 104]
+shelf.pattern_44   = ^(c\.220\.[a-z]|c\.223\.[a-z])=>Level C [Some offsite, available on request]
+shelf.pattern_45   = ^(c\.225\.[a-z])=>Offsite, available on request
+shelf.pattern_46   = ^(c\.235\.[a-z])=>Level C stack 115 [.y.21 Level F stack 40]
+shelf.pattern_47   = ^(c\.236\.[a-y])=>Off-site, available on request
+shelf.pattern_48   = ^(c\.236\.z)=>Level C Stack 197-198 [some materials offsite, available on request]
+shelf.pattern_49   = ^(c\.237\.[a-zA-Z])=>Offsite, available on request
+shelf.pattern_50   = ^(c\.250\.[a-z])=>Offsite, available on request
+shelf.pattern_51   = ^(c\.254\.[a-z])=>Level C [Some offsite, available on request]
+shelf.pattern_52   = ^(c\.25[1-35-9]\.[a-z])=>Level C
+shelf.pattern_53   = ^(c\.269\.[a-z])=>Level C [.m.7 Level F stack 40]
+shelf.pattern_54   = ^(c\.274\.[a-z])=>Level C [Some offsite, available on request]
+shelf.pattern_55   = ^(c\.27[0-35-9]\.[a-z])=>Level C
+shelf.pattern_56   = ^(c\.(3[5-9][0-9]|(4[0-4][0-9])|(45[0-1]))\.[a-z])=>Level C Stack 125-137
+shelf.pattern_57   = ^(c\.[5-6][0-9][0-9]\.[a-z]|c\.75[0-6]\.[a-z])=>Level C Stack 137-142
+shelf.pattern_58   = ^(c\.100[0-1]\.[a-z])=>Level C Stack 176a
+shelf.pattern_59   = ^(c\.2([1][1-9])\.[a-z])=>Level C Stack 111-116
+shelf.pattern_60   = ^(c\.2(3[8-9]|4[0-9])\.[a-z])=>Level C Stack 111-116
+shelf.pattern_61   = ^(c\.45[2-3]\.[a-z])=>Off-site, available on request
+shelf.pattern_62   = ^(c\.850\.[a-jl-qt-z]\.)=>Level F [some materials off-site, available on request]
+shelf.pattern_63   = ^(c\.850\.k\.4)=>Level C Stack 190
+shelf.pattern_64   = ^(c\.850\.s\.)=>Level C Stack 191-195
+shelf.pattern_65   = ^(c\.(90[0-7]|950)\.[a-z])=>Level C Stack 197 [some materials off-site, available on request]
+shelf.pattern_66   = ^(c\.FF[A-x] \/[0-9]|c\.FF[A-x]\.[0-9]|c\.FF[A-x]\.[A-K]|c\.FF[A-x]\.[M-Z])=>Level D Stack 47-50
+shelf.pattern_67   = ^(c\.FF\.[0-9]|c\.FF\.[A-K]|c\.FF\.[M-Z]|c\.FF\.[A-K]|c\.FF\.[M-Z])=>Level D Stack 8
+shelf.pattern_68   = ^(c\.FF\.L|c\.FF[A-X]\.L)=>Level D Stack 14-18
+shelf.pattern_69   = ^(CC[0-1][0-9][0-9])=> Level C stack 143
+shelf.pattern_70   = ^(CC[1-2][0-9][0-9])=> Level C stacks 143-144
+shelf.pattern_71   = ^(CC[2-3][0-9][0-9])=>Level C stacks 144-145
+shelf.pattern_72   = ^(CC3[0-1][0-9])=>Level C stacks 145-146
+shelf.pattern_73   = ^(CC3[1-2][0-9])=>Level C stack 146
+shelf.pattern_74   = ^(CC3[2-3][0-9])=>Level C stack 147-148
+shelf.pattern_75   = ^(CC3[3-4][0-9])=>Level C stack 149-151
+shelf.pattern_76   = ^(CC3[4-8][0-9])=>Level C stack 151-152
+shelf.pattern_77   = ^(CC[3-4][0-9][0-9])=>Level C stack 152
+shelf.pattern_78   = ^(CC[4-5][0-9][0-9])=>Level C stack 152-153
+shelf.pattern_79   = ^(CC[5-6][0-9][0-9])=>Level C stack 153
+shelf.pattern_80   = ^(CC[6-7][0-9][0-9])=>Level C stack 153
+shelf.pattern_81   = ^(CC[7-8][0-9][0-9])=>Level C stack 153
+shelf.pattern_82   = ^(CC[8-9][0-9][0-9])=>Level C stacks 153-155
+shelf.pattern_83   = ^(CC9[0-5][0-9])=>Level C stacks 155-156
+shelf.pattern_84   = ^(CC9[5-9][1-9])=>Level C stacks 156-165
+shelf.pattern_85   = ^(CC[A-O])=>Level C stack 165
+shelf.pattern_86   = ^(CC[P-Y])=> level C stacks 165-167
+shelf.pattern_87   = ^(C[E-G])=>Level C stacks 167-170
+shelf.pattern_88   = ^(CL)=>Level C stacks 170, 171
+shelf.pattern_89   = ^(CJ[C-U])=>Level C stack 171
+shelf.pattern_90   = ^(CK)=>Level C stack 171
+shelf.pattern_91   = ^(CL)=>Level C stacks 176, 177, 178
+shelf.pattern_92   = ^(CM)=>Level C stacks 178-181
+shelf.pattern_93   = ^(CN)=> Level C stack 181
+shelf.pattern_94   = ^(L C[C-N])=>Level C stacks 172-175
+shelf.pattern_95   = ^(CD[^B])=>Level D Stack 230-252
+shelf.pattern_96   = ^(CDB)=>Request at Issue Desk
+shelf.pattern_97   = ^(CWM)=>Order from the Special Collections Reading Room
+shelf.pattern_98   = ^(D0[0-9][0-9])=>Level C stack 1
+shelf.pattern_99   = ^(D1[0-9][0-9])=>Level C stacks 1 - 1a
+shelf.pattern_100   = ^(D2[0-9][0-9])=>Level C stacks 1a - 2
+shelf.pattern_101   = ^(D3[0-2][0-9])=>Level C stacks 2-3
+shelf.pattern_102   = ^(D33[0-9])=>Level C stacks 3-5
+shelf.pattern_103   = ^(D3[4-9][0-9])=>Level C stack 5
+shelf.pattern_104   = ^(D[4-5][0-9][0-9])=>Level C stack 6
+shelf.pattern_105   = ^(D[6-7][0-9][0-9])=>Level C stacks 6-7
+shelf.pattern_106   = ^(D8[0-9][0-9])=>Level C stacks 7-9
+shelf.pattern_107   = ^(D9[0-9][0-9])=>Level C stacks 9-12
+shelf.pattern_108   = ^(DB0[0-9][0-9])=>Level C stacks 12-13
+shelf.pattern_109   = ^(DB1[0-9][0-9])=>Level C stacks 13-18
+shelf.pattern_110   = ^(DB20[0-9])=>Level C stack 18
+shelf.pattern_111   = ^(DB21[0-9])=>Level C stacks 18-30
+shelf.pattern_112   = ^(DB2[2-8][0-9])=>Level C stacks 30-33
+shelf.pattern_113   = ^(DB29[0-9])=>Level C stacks 33-34
+shelf.pattern_114   = ^(DB3[0-1][0-9])=>Level C stacks 34-40
+shelf.pattern_115   = ^(DB32[0-9])=> Level C stacks 40,216-217, 41
+shelf.pattern_116   = ^(DB33[0-9])=>Level C stacks 41-43
+shelf.pattern_117   = ^(DB3[4-5][0-9])=>Level C stack 43
+shelf.pattern_118   = ^(DB36[0-9])=>Level C stacks 43-46
+shelf.pattern_119   = ^(DB37[0-9])=>Level C stacks 46-47
+shelf.pattern_120   = ^(DB38[0-9])=>Level C stacks 47-48
+shelf.pattern_121   = ^(DB39[0-9])=>Level C stacks 48-49
+shelf.pattern_122   = ^(DB4[0-9][0-9])=>Level C stack 49
+shelf.pattern_123   = ^(DB5[0-9][0-9])=>Level C stacks 49-50
+shelf.pattern_124   = ^(DB6[0-9][0-9])=>Level C stacks 50-51
+shelf.pattern_125   = ^(DB7[0-9][0-9])=>Level C stacks 51-53
+shelf.pattern_126   = ^(DB8[0-9][0-9])=>Level C stacks 53-56
+shelf.pattern_127   = ^(DB9[0-1][0-9])=>Level C stacks 56-69
+shelf.pattern_128   = ^(DB9[2-5][0-9])=>Level C stack 69
+shelf.pattern_129   = ^(DK|DK[A-S])=>/Level D Stack 254-257
+shelf.pattern_130   = ^(DY)=>Level F stacks 47-59 
+shelf.pattern_131   = ^(E Coll 1($| ))=Offsite; available on request
+shelf.pattern_132   = ^(E Coll 10($| ))=Offsite; available on request
+shelf.pattern_133   = ^(E Coll 3)=>Closed access material. Enquire in the Special Collections Reading Room
+shelf.pattern_134   = ^(E Coll 4)=>Level C Room C3 (Sound recordings only)
+shelf.pattern_135   = ^(E Coll 9)=>Closed access material. Enquire in the Special Collections Reading Room
+shelf.pattern_136   = ^(E Per)=>Closed access material. Enquire in the Special Collections Reading Room
+shelf.pattern_137   = ^(E WYM)=>Closed access material. Enquire in the Special Collections Reading Room
+shelf.pattern_138   = ^(E[A-Y][0-9])=>Closed access material. Enquire in the Special Collections Reading Room
+shelf.pattern_139   = ^(Ex L Ref Q)=>Level B Stack 29
+shelf.pattern_140   = ^(Ex Per)=>Currently unavailable
+shelf.pattern_141   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_142   = ^(Ex\.L Ref [N-P])=>Level B Stack 119
+shelf.pattern_143   = ^(F[A-B]\/[0-9]|F[A-B]\.[0-9]|F[A-B][A-Z]\/|F[A-B][A-Z]\.[0-9])=>Level D Stack 1-3
+shelf.pattern_144   = ^(F[B-F]\.L|F[B-F][A-Z]\.L)=>Level D Stack 9-14
+shelf.pattern_145   = ^(F[C-F]\.[0-9])=>Level D Stack 3-7
+shelf.pattern_146   = ^(F[M-N]\.L|F[M-N][A-Z]\.L)=>Level D Stack 24-28
+shelf.pattern_147   = ^(F[M-O]\/|F[M-O]\.[0-9]|F[M-O][A-Z]\/|F[M-O][A-Z]\.[0-9])=>Level D Stack 56-59
+shelf.pattern_148   = ^(F[O-R]\/|F[O-R]\.[0-9]|F[O-R][A-Z]\/|F[O-R][A-Z]\.[0-9])=>Level D Stack 43-45
+shelf.pattern_149   = ^(F[O-R]\.L|F[O-R][A-Z]\.L )=>Level D Stack 28-33
+shelf.pattern_150   = ^(F[S-W]\/|F[S-W]\.[0-9]|F[S-W][A-Z]\/|F[S-W][A-Z]\.[0-9])=>Level D Stack 41-43
+shelf.pattern_151   = ^(F[S-W]\.L|F[S-W][A-Z]\.L )=>Level D Stack 33-37
+shelf.pattern_152   = ^(FX\/|FX\.[0-9]|FX[A-Z]\/|FX[A-Z]\.[0-9])=>Level D Stack 39-41
+shelf.pattern_153   = ^(FX\.L|FX[A-Z]\.L )=>Level D Stack 37-38
+shelf.pattern_154   = ^(FY([A-E.]| |$))=>Offsite; available on request
+shelf.pattern_155   = ^(FZ[A-X])=>Offsite; available on request
+shelf.pattern_156   = ^(FN[S-T])=>Offsite; available on request
+shelf.pattern_157   = ^(FNX)=>Offsite; available on request
+shelf.pattern_158   = ^(FA\.Ex|F[A-Z][A-Z]\.Ex)=>Level D Stack 123-129
+shelf.pattern_159   = ^(FA\.L|FAA\.L )=>Level D Stack 9
+shelf.pattern_160   = ^(FJ\/|FJ\.[0-9]|FJ[A-Z]\/|FJ[A-Z]\.[0-9])=>Level D Stack 50-52
+shelf.pattern_161   = ^(FJ\.L|FJ[A-Z]\.L )=>Level D Stack 18-20
+shelf.pattern_162   = ^(G[0-9][0-9][1-9])=>Level C stacks 75a, 75b, 75c
+shelf.pattern_163   = ^(GA)=>Level C stack 75c
+shelf.pattern_164   = ^(GB)=>Level C stacks 75c, 75d, 76
+shelf.pattern_165   = ^(GC)=>Level C stacks 76-77
+shelf.pattern_166   = ^(G[D-F])=>Level C stack 77
+shelf.pattern_167   = ^(GG)=>Level C stacks 77-79
+shelf.pattern_168   = ^(G[M-P])=>Level C stack 79
+shelf.pattern_169   = ^(GPC)=>Level C stacks 79-80
+shelf.pattern_170   = ^(GQ[0-9][0-9][1-9])=>Level C stack 80
+shelf.pattern_171   = ^(GQA)=>Level C stacks 80-84
+shelf.pattern_172   = ^(G[Q-S])=>Level C stack 84
+shelf.pattern_173   = ^(GT)=>Level C stacks 84-85
+shelf.pattern_174   = ^(GV)=>Level C stack 85
+shelf.pattern_175   = ^(H)=>Level C stack 85
+shelf.pattern_176   = ^(HB)=>Level C stacks 85-87
+shelf.pattern_177   = ^(H[C-F])=>Level C stack 87
+shelf.pattern_178   = ^(HG)=>Level C stack 87
+shelf.pattern_179   = ^(HI)=>Level C stacks 88-89
+shelf.pattern_180   = ^(HK)=>Level C stacks 89-90
+shelf.pattern_181   = ^(HK[A-I])=>Level C stacks 90-91
+shelf.pattern_182   = ^(H[M-X])=>Level B stacks 108-111
+shelf.pattern_183   = ^(I)=>Level C stack 91
+shelf.pattern_184   = ^(IB)=>Level C stack 91
+shelf.pattern_185   = ^(IBA)=>Level C stacks 91-92
+shelf.pattern_186   = ^(IBC)=>Level C stacks 92-94
+shelf.pattern_187   = ^(IB[E-K])=>Level C stack 94
+shelf.pattern_188   = ^(I[D-R])=>Level B stacks 111-112
+shelf.pattern_189   = ^(III.)=>Off-site, available on request
+shelf.pattern_190   = ^(IV.)=>Off-site, available on request
+#LEVEL A
+shelf.pattern_191   = ^(L [J-K])=> Level A stacks 01 - 06
+shelf.pattern_192   = ^(J$|JA)=> Level A stacks 07 - 36
+shelf.pattern_193   = ^(J[B-Z])=> Level A stacks 36 - 49
+#break to LEVEL D
+shelf.pattern_194   = ^(j\.FJ\.[0-9]|j\.FJ\.[A-K]|j\.FJ\.[M-Z]|j\.FJ \/[0-9]|j\.FJ \/[A-K]|j\.FJ \/[M-Z]|j\.FJ[A-X]\.[0-9]|j\.FJ[A-X]\.[A-K]|j\.FJ[A-X]\.[M-Z]|j\.FJ[A-X] \/[0-9]|j\.FJ[A-X] \/[A-K]|j\.FJ[A-X] \/[M-Z])=>Level D Stack 52-56
+shelf.pattern_195   = ^(j\.FJ\.L|j\.FJ[A-X]\.L)=>Level D Stack 20-24
+#LEVEL A -continued
+shelf.pattern_196   = ^(K$|K[A-Z])=> Level A stacks 49 - 62
+shelf.pattern_197   = ^(Ref [J-K])=> Level A stacks 63 - 66
+shelf.pattern_198   = ^(jmi)=>Jewish Music Institute
+#LEVEL D- continued
+shelf.pattern_199   = ^(L A34)=>Level D Stack 207-218
+shelf.pattern_200   = ^(L Atlas E)=>Level D Stack 83
+shelf.pattern_201   = ^(L C[E-N])=>Level C Stack 174-175
+shelf.pattern_202   = ^(L CC[0-9])=>Level C Stack 172-174
+shelf.pattern_203   = ^(L CC[D-X])=>Level C Stack 174
+shelf.pattern_204   = ^(L CD[0-9])=>Level D Stack 252-253
+shelf.pattern_205   = ^(L DB[A-K])=>Level C Stack 72-74 [some materials off-site, available on request]
+shelf.pattern_206   = ^(L DK)=>Level D Stack 257
+shelf.pattern_207   = ^(L G|L G[A-X])=>Level C Stack 95-98 [some materials off-site, available on request]
+shelf.pattern_208   = ^(L H[M-N])=>Level B Stack 112
+shelf.pattern_209   = ^(L H[P-X])=>Level B Stack 112-113
+shelf.pattern_210   = ^(L H[0-9]|L H[A-K])=>Level C Stack 96-98 [some materials off-site, available on request]
+shelf.pattern_211   = ^(L I[A-B])=>Level C Stack 97-98 [some materials off-site, available on request]
+shelf.pattern_212   = ^(L I[D-R])=>Level B Stack 112-113
+shelf.pattern_213   = ^(L IV)=>Off-site, available on request
+shelf.pattern_214   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_215   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_216   = ^(L N)=>Level B Stack 30-32
+shelf.pattern_217   = ^(L O[0-9]|L O[A-X])=>Level B Stack 33-34
+shelf.pattern_218   = ^(L P[0-9]|L P[A-E])=>Level B Stack 34-37b
+shelf.pattern_219   = ^(L P[P-R][0-9])=>Level B Stack 37
+shelf.pattern_220   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_221   = ^(L PJA)=>Off-site, available on request
+shelf.pattern_222   = ^(L PL[0-9])=>Level B Stack 37b
+shelf.pattern_223   = ^(L PM[0-9])=>Level B Stack 37
+shelf.pattern_224   = ^(L PN[0-9])=>Level B Stack 37c
+shelf.pattern_225   = ^(L PP[0-9])=>Level B Stack 37c [some materials off-site, available on request]
+shelf.pattern_226   = ^(L PRA[0-9])=>Level B Stack 37c-38 [some materials off-site, available on request]
+#REVIEW NEED  -- all met by new rule #6
+shelf.pattern_227   = ^(L Ref J)=>Level A Stack 66-67
+shelf.pattern_228   = ^(L Ref K)=>Level A Stack 66-67
+#end REVIEW NEED
+shelf.pattern_229   = ^(L Ref N)=>Level B Stack 116-117
+shelf.pattern_230   = ^(L Ref O)=>Level B Stack 118
+shelf.pattern_231   = ^(L Ref P)=>Level B Stack 118-119
+shelf.pattern_232   = ^(L Ref U)=>Level D Stack 191-190
+shelf.pattern_233   = ^(L Ref U)=>Level D Stack 191-190
+shelf.pattern_234   = ^(L Ref V)=>Level D Stack 190
+shelf.pattern_235   = ^(L Ref V[A-W])=>Level D Stack 190
+shelf.pattern_236   = ^(L Ref W)=>Level D Stack 188-190
+shelf.pattern_237   = ^(L Ref W[A-Z])=>Level D Stack 188-190
+shelf.pattern_238   = ^(L Ref Y)=>Level D Stack 188
+shelf.pattern_239   = ^(L Ref Y)=>Level D Stack 188
+shelf.pattern_240   = ^(L U[^VL])=>Level D Stack 76-78
+shelf.pattern_241   = ^(L UVL)=>Level F Mobile stack 62
+shelf.pattern_242   = ^(L V[A-W])=>Level D Stack 78-81
+shelf.pattern_243   = ^(L W[A-Z])=>Level D Stack 81-86
+shelf.pattern_244   = ^(L Y)=>Level D Stack 87
+shelf.pattern_245   = ^(L\. Q[B-H])=>Level B Stack 1-2
+shelf.pattern_246   = ^(L\. Q[J-M])=>Level B Stack 2-3 [some materials off-site, ask in Room C3]
+shelf.pattern_247   = ^(L\. QN)=>Level B Stack 3 [some materials off-site, ask in Room C3]
+shelf.pattern_248   = ^(L\. QO)=>Level B Stack 3
+shelf.pattern_249   = ^(L\. QP)=>Level B Stack 3
+shelf.pattern_250   = ^(L\. QQ)=>Level B Stack 3
+shelf.pattern_251   = ^(L\. QS)=>Level B Stack 3
+shelf.pattern_252   = ^(L\.Ref Q)=>Level B Stack 28-29
+shelf.pattern_253   = ^(L\.XII)=>Level A Stack 1-6
+shelf.pattern_254   = ^(Map)=>Special Collections Reading Room
+shelf.pattern_255   = ^(MI)=>Currently unavailable
+shelf.pattern_256   = ^(MMSL)=>Special Collections Reading Room
+shelf.pattern_257   = ^(MQ)=>Room C3
+shelf.pattern_258   = ^(MR)=>Room C3
+shelf.pattern_259   = ^(Ms[0-9])=>Special Collections Reading Room
+shelf.pattern_260   = ^(Ms\.G\.B\.)=>Stack Special Collections Reading Room
+shelf.pattern_261   = ^(MT)=>Currently unavailable
+shelf.pattern_262   = ^(MV)=>Room C3
+shelf.pattern_263   = ^(N[0-9][0-9][0-9])=>Level B Stack 37d-41
+shelf.pattern_264   = ^(N[G-K])=>Level B Stack 48
+shelf.pattern_265   = ^(N[M-P])=>Level B Stack 49-50
+shelf.pattern_266   = ^(N[U-V])=>Level B Stack 57
+shelf.pattern_267   = ^(NB)=>Level B Stack 41-45
+shelf.pattern_268   = ^(NC)=>Level B Stack 45-46
+shelf.pattern_269   = ^(NE)=>Level B Stack 46-47
+shelf.pattern_270   = ^(NEA)=>Level B Stack 47
+shelf.pattern_271   = ^(NL)=>Level B Stack 48-49
+shelf.pattern_272   = ^(NQ)=>Level B Stack 50-51
+shelf.pattern_273   = ^(NR)=>Level B Stack 51-52
+shelf.pattern_274   = ^(NS[0-9])=>Level B Stack 52-54
+shelf.pattern_275   = ^(NS[A-F])=>Level B Stack 54
+shelf.pattern_276   = ^(NT)=>Level B Stack 54-57
+shelf.pattern_277   = ^(NX)=>Level B Stack 57
+shelf.pattern_278   = ^(O[0-9]|O[A-X])=>Level B Stack 60-63
+shelf.pattern_279   = ^(OS\.Ms)=>Special Collections Reading Room
+shelf.pattern_280   = ^(P0[0-9][0-9])=>Level B Stack 62
+shelf.pattern_281   = ^(P1[0-9][0-9])=>Level B Stack 62-63
+shelf.pattern_282   = ^(P2[0-9][0-9])=>Level B Stack 63-69
+shelf.pattern_283   = ^(P3[0-9][0-9])=>Level B Stack 69-71
+shelf.pattern_284   = ^(P4[0-9][0-9])=>Level B Stack 71-73
+shelf.pattern_285   = ^(P[5-6][0-9][0-9])=>Level B Stack 73
+shelf.pattern_286   = ^(P7[0-9][0-9])=>Level B Stack 73-74
+shelf.pattern_287   = ^(P8[0-9][0-9])=>Level B Stack 74-82
+shelf.pattern_288   = ^(P9[0-9][0-9])=>Level B Stack 82-87
+shelf.pattern_289   = ^(Pam SOAS)=>Special Collections Reading Room
+shelf.pattern_290   = ^(P[A-B][0-9]|PA[A-Z][0-9])=>Level B Stack 88
+shelf.pattern_291   = ^(PC)=>Level B Stacks 88-89
+shelf.pattern_292   = ^(PE)=>Level B Stacks 89-89a
+shelf.pattern_293   = ^(Per 1 |Per 1$)=>Level F Stack 1-2
+shelf.pattern_294   = ^(Per 10( |$))=>Level F Stack 8-9
+shelf.pattern_295   = ^(Per 10[0-9] |Per 10[0-9]$)=>Level F Stack 27-28
+shelf.pattern_296   = ^(Per 10[0-9]L)=>Off-site, available on request
+shelf.pattern_297   = ^(Per 10L)=>Off-site, available on request
+shelf.pattern_298   = ^(Per 15 |Per 15$)=>Level F Stack 9-10
+shelf.pattern_299   = ^(Per 15L)=>Off-site, available on request
+shelf.pattern_300   = ^(Per 19 |Per 19$)=>Level F Stack 11
+shelf.pattern_301   = ^(Per 19L)=>Off-site, available on request
+shelf.pattern_302   = ^(Per 1L)=>Off-site, available on request
+shelf.pattern_303   = ^(Per 20 |Per 20$)=>Level F Stack 11-12
+shelf.pattern_304   = ^(Per 20L)=>Off-site, available on request
+shelf.pattern_305   = ^(Per 21 |Per 21$)=>Level F Stack 12
+shelf.pattern_306   = ^(Per 21L)=>Off-site, available on request
+shelf.pattern_307   = ^(Per 22 |Per 22$)=>Level F Stack 12-13
+shelf.pattern_308   = ^(Per 22L)=>Off-site, available on request
+shelf.pattern_309   = ^(Per 24 |Per 23$)=>Level F Stack 13-14
+shelf.pattern_310   = ^(Per 24L)=>Off-site, available on request
+shelf.pattern_311   = ^(Per 25 |Per 25$)=>Level F Stack 14-15
+shelf.pattern_312   = ^(Per 25L)=>Off-site, available on request
+shelf.pattern_313   = ^(Per 28 |Per 28$)=>Level F Stack 15-16
+shelf.pattern_314   = ^(Per 28L)=>Off-site, available on request
+shelf.pattern_315   = ^(Per 3 |Per3$)=>Level F Stack 2-3
+shelf.pattern_316   = ^(Per 30 |Per 30$)=>Level F Stack 16-17
+shelf.pattern_317   = ^(Per 30L)=>Off-site, available on request
+shelf.pattern_318   = ^(Per 32 |Per 32$)=>Level F Stack 17-19
+shelf.pattern_319   = ^(Per 34 |Per 34$)=>Level F Stack 19-21
+shelf.pattern_320   = ^(Per 34L)=>Off-site, available on request
+shelf.pattern_321   = ^(Per 3L)=>Off-site, available on request
+shelf.pattern_322   = ^(Per 40 |Per 40$)=>Level F Stack 21
+shelf.pattern_323   = ^(Per 40L)=>Off-site, available on request
+shelf.pattern_324   = ^(Per 5 |Per 5$)=>Level F Stack 3-5
+shelf.pattern_325   = ^(Per 5[0-9] |Per 5[0-9]$)=>Level F Stack 21-24
+shelf.pattern_326   = ^(Per 5[0-9]L)=>Off-site, available on request
+shelf.pattern_327   = ^(Per 5L)=>Off-site, available on request
+shelf.pattern_328   = ^(Per 6[0-9] |Per 6[0-9]$)=>Level F Stack 24-26
+shelf.pattern_329   = ^(Per 6[0-9]L)=>Off-site, available on request
+shelf.pattern_330   = ^(Per 7 |Per 7$)=>Level F Stack 5-6
+shelf.pattern_331   = ^(Per 7[0-9] |Per 7[0-9]$)=>Level F Stack 26-27
+shelf.pattern_332   = ^(Per 7[0-9]L)=>Off-site, available on request
+shelf.pattern_333   = ^(Per 7L)=>Off-site, available on request
+shelf.pattern_334   = ^(Per 8 |Per 8$)=>Level F Stack 6-7
+shelf.pattern_335   = ^(Per 8[0-9] |Per 8[0-9]$)=>Level F Stack 27
+shelf.pattern_336   = ^(Per 8L)=>Off-site, available on request
+shelf.pattern_337   = ^(Per 9 |Per 9$)=>Level F Stack 7-8
+shelf.pattern_338   = ^(Per 9L)=>Off-site, available on request
+shelf.pattern_339   = ^(PF)=>Level B stack 89a
+shelf.pattern_340   = ^(PG[0-3])=>Offsite, available on request
+shelf.pattern_341   = ^(PG4)=>Level B stack 89a
+shelf.pattern_342   = ^(PG[5-9])=>Offsite, available on request
+shelf.pattern_343   = ^(PH[0-3])=>Offsite, available on request
+shelf.pattern_344   = ^(PH4)=>Level B stack 89a
+shelf.pattern_345   = ^(PH[5-9])=>Offsite, available on request
+shelf.pattern_346   = ^(PHA[0-3])=>Offsite, available on request
+shelf.pattern_347   = ^(PHA4)=>Level B stack 89a
+shelf.pattern_348   = ^(PHA[5-9])=>Offsite, available on request
+shelf.pattern_349   = ^(PH[B-D])=>Offsite, available on request
+shelf.pattern_350   = ^(PHE[0-3])=>Offsite, available on request
+shelf.pattern_351   = ^(PHE4)=>Level B stack 89a
+shelf.pattern_352   = ^(PHE[5-9])=>Offsite, available on request
+shelf.pattern_353   = ^(PHF)=>Offsite, available on request
+shelf.pattern_354   = ^(PHG[0-3])=>Offsite, available on request
+shelf.pattern_355   = ^(PHG4)=>Level B stack 89a
+shelf.pattern_356   = ^(PHG[5-9])=>Offsite, available on request
+shelf.pattern_357   = ^(PH[H-J])=>Offsite, available on request
+shelf.pattern_358   = ^(PH[K-Q][0-3])=>Offsite, available on request
+shelf.pattern_359   = ^(PH[K-Q]4)=>Level B stack 89a
+shelf.pattern_360   = ^(PH[K-Q][5-9])=>Offsite, available on request
+shelf.pattern_361   = ^(PH[R-V])=>Offsite, available on request
+shelf.pattern_362   = ^(PJ[0-3])=>Offsite, available on request
+shelf.pattern_363   = ^(PJ4)=>Level B stack 89a
+shelf.pattern_364   = ^(PJ[5-9])=>Offsite, available on request
+shelf.pattern_365   = ^(PJA)=>Level B stacks 89a-91
+shelf.pattern_366   = ^(PJ[B-D])=>Level B stack 91
+shelf.pattern_367   = ^(PL[0-9]|PL[A-G])=>Level B stack 91
+shelf.pattern_368   = ^(PM[0-9])=>Level B stacks 91 - 100
+shelf.pattern_369   = ^(PM[A-B])=>Level B stack 91
+shelf.pattern_370   = ^(PM[C-D])=>Offsite, available on request
+shelf.pattern_371   = ^(PN[0-9])=>Offsite, available on request
+shelf.pattern_372   = ^(PNA[0-3])=>Offsite, available on request
+shelf.pattern_373   = ^(PNA4)=>Level B stack 91
+shelf.pattern_374   = ^(PNA[5-9])=>Offsite, available on request
+shelf.pattern_375   = ^(PNB)=>Level B stacks 100-101
+shelf.pattern_376   = ^(PNC)=>Offsite, available on request
+shelf.pattern_377   = ^(PND)=>Level B stack 101
+shelf.pattern_378   = ^(PN[E-K])=>Offsite, available on request
+shelf.pattern_379   = ^(PP[0-9])=>Level B stack 101
+shelf.pattern_380   = ^(PP[A-C])=>Level B stack 101
+shelf.pattern_381   = ^(PQ[0-9])=>Level B stack 101
+shelf.pattern_382   = ^(PQ[A-D])=>Level B stack 101
+shelf.pattern_383   = ^(PR[0-9])=>Level B stack 101
+shelf.pattern_384   = ^(PRA)=>Level B stack 101 - 106
+shelf.pattern_385   = ^(PRB)=>Level B stack 106
+shelf.pattern_386   = ^(PR[C-Z]|P[S-U][ 0-9])=>Offsite: available on request
+shelf.pattern_387   = ^(PUA)=>Offsite; available on request
+shelf.pattern_388   = ^(PU[B-D])=>Level B stack 106
+shelf.pattern_389   = ^(PUE[0-3])=>Offsite: available on request
+shelf.pattern_390   = ^(PUE4)=>Level B stack 106
+shelf.pattern_391   = ^(PUE[5-9])=>Offsite: available on request
+shelf.pattern_392   = ^(PUF)=>Level B stack 107
+shelf.pattern_393   = ^(PUG)=>Offsite: available on request
+shelf.pattern_394   = ^(PV)=>Offsite: available on request
+shelf.pattern_395   = ^(PW)=>Offsite: available on request
+shelf.pattern_396   = ^(Q[B-C])=>Level B Stack 4
+shelf.pattern_397   = ^(Q[K-L])=>Level B Stack 11-12
+shelf.pattern_398   = ^(QD)=>Level B Stack 4
+shelf.pattern_399   = ^(QE[0-9]|QEA)=>Level B Stack 4-5
+shelf.pattern_400   = ^(QE[B-Z]|QF[A-Z]|QG[A-C])=>Level B Stack 5
+shelf.pattern_401   = ^(QG[D-R])=>Level B Stack 5
+shelf.pattern_402   = ^(QH)=>Level B Stack 5-6
+shelf.pattern_403   = ^(QI[0-9])=>Level B Stack 6-7
+shelf.pattern_404   = ^(QJ)=>Level B Stack 7-11
+shelf.pattern_405   = ^(QM)=>Level B Stack 12
+shelf.pattern_406   = ^(QN[0-8][1-9][1-9]|QN9[0-6][0-6])=>Level B Stack 12-22 [some materials off-site, available on request]
+shelf.pattern_407   = ^(QO)=>Level B Stack 23-25
+shelf.pattern_408   = ^(QP)=>Level B Stack 25
+shelf.pattern_409   = ^(QQ[0-9])=>Level B Stack 25
+shelf.pattern_410   = ^(QQ[A-C][0-9])=>Level B Stack 25
+shelf.pattern_411   = ^(QQ[E-H])=>Level B Stack 30
+shelf.pattern_412   = ^(QQD)=>Level B Stack 30
+shelf.pattern_413   = ^(QS[0-9])=>Level B Stack 30
+shelf.pattern_414   = ^(QSA)=>Level B Stack 30
+shelf.pattern_415   = ^(QSB)=>Level B Stack 30-31
+shelf.pattern_416   = ^(QT)=>Level B Stack 31
+shelf.pattern_417   = ^(Q[U-V])=>Offsite store; available on request
+shelf.pattern_418   = ^(R Handlist)=>Order from the Special Collections Reading Room
+shelf.pattern_419   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_420   = ^(Ref Atlas|L Ref Atlas)=>Level D Main Reading Room
+shelf.pattern_421   = ^(Ref C-CN|L Ref C-CN)=>Level C Stack 218-225
+shelf.pattern_422   = ^(Ref C[^D])=>Level C Stack 218-225
+shelf.pattern_423   = ^(Ref CD)=>Level D Stack 226-227
+shelf.pattern_424   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_425   = ^(Ref D[0-9])=>Level C Stack 206-207
+shelf.pattern_426   = ^(Ref DB[0-9])=>Level C Stack 206-213
+shelf.pattern_427   = ^(Ref DB[A-S])=>Level C Stack 213
+shelf.pattern_428   = ^(Ref DBA)=>Level C Stack 214
+shelf.pattern_429   = ^(Ref DBK)=>Level D Stack 229
+shelf.pattern_430   = ^(Ref DBS)=>Level C Stack 214-230
+shelf.pattern_431   = ^(Ref DK[0-9])|^(Ref DK[A-N])=>Level D Stack 227
+shelf.pattern_432   = ^(Ref F[A-Z])$|^(Ref F[A-Z][A-Z])$|^(Ref F[A-Z][A-Z][A-Z])$=>Level D Stack 258-259
+shelf.pattern_433   = ^(Ref F[A-Z].*\.L)=>Level D Stack 259-261
+shelf.pattern_434   = ^(Ref G|Ref G[A-X])=>Level C Stack 201-205
+shelf.pattern_435   = ^(Ref Geog Gaz E)=>Level D Stack 83
+shelf.pattern_436   = ^(Ref H[M-Z])=>Level B Stack 113
+shelf.pattern_437   = ^(Ref H|Ref H[A-K])=>Level C Stack 201-205
+shelf.pattern_438   = ^(Ref Hong Kong)=>Level C Stack 218-225
+shelf.pattern_439   = ^(Ref I[0-9])=>Level C Stack 201-205
+shelf.pattern_440   = ^(Ref I[A-C])=>Level C Stack 205-207
+shelf.pattern_441   = ^(Ref I[D-R])=>Level B Stack 113
+shelf.pattern_442   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_443   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_444   = ^(Ref M|L Ref M)=>Level C Stack 218-225
+shelf.pattern_445   = ^(Ref N)=>Level B Stack 114
+shelf.pattern_446   = ^(Ref O)=>Level B Stack 118
+shelf.pattern_447   = ^(Ref P)=>Level B Stack 114-117
+shelf.pattern_448   = ^(NOT REAL)=>TO BE REMOVED
+shelf.pattern_449   = ^(Ref Q[^N]|L Ref Q[^N])=>Level B Stack 26-28
+shelf.pattern_450   = ^(Ref QN|L Ref QN)=>Level B Stack 26-28 [some materials off-site, ask in Room C3]
+shelf.pattern_451   = ^(Ref Tibet)=>Level C Stack 218-225
+shelf.pattern_452   = ^(Ref U)=>Level D Stack 193-192
+shelf.pattern_453   = ^(Ref V[A-W])=>Level D Stack 192
+shelf.pattern_454   = ^(Ref W[A-Z])=>Level D Stack 192-191
+shelf.pattern_455   = ^(Ref Y)=>Level D Stack 191
+shelf.pattern_456   = ^(RJ)=>Level C Request at room C3
+shelf.pattern_457   = ^(RM c)=>Order from the Special Collections Reading Room
+shelf.pattern_458   = ^(S\.C\.)=>Level C Shelved in the "C" sequence
+shelf.pattern_459   = ^(Sale WS)=>Level D Enquire in Room C3
+shelf.pattern_460   = ^(Scroll)=>Currently unavailable
+shelf.pattern_461   = ^(SCRR Ref)=>Order from the Special Collections Reading Room
+shelf.pattern_462   = ^(Slides)=>Level D Enquire in Room C3
+shelf.pattern_463   = ^(SOAS Pam)=>Order from the Special Collections Reading Room
+shelf.pattern_464   = ^(SOAS Per )=>Order from the Special Collections Reading Room
+shelf.pattern_465   = ^(SOAS)=>Order from the Special Collections Reading Room
+shelf.pattern_466   = ^(T\.B\.P)=>Order from the Special Collections Reading Room
+shelf.pattern_467   = ^(Thesis)=>Order from the Special Collections Reading Room
+shelf.pattern_468   = ^(TRCCS)=>Level C Stack 226-227
+shelf.pattern_469   = ^(U[0-9][0-9][0-9])=>Level D Stack 60-64
+shelf.pattern_470   = ^(UM)=>Level D Stack 64
+shelf.pattern_471   = ^(US)=>Level D Stack 64
+shelf.pattern_472   = ^(UT)=>Level D Stack 65
+shelf.pattern_473   = ^(UU)=>Level D Stack 65
+shelf.pattern_474   = ^(UV[^L])=>Level D Stack 65
+shelf.pattern_475   = ^(UVL)=>Level F Stack 62
+shelf.pattern_476   = ^(UW)=>Level D Stack 65
+shelf.pattern_477   = ^(UX)=>Level D Stack 66
+shelf.pattern_478   = ^(UY)=>Level D Stack 67-68
+shelf.pattern_479   = ^(UZ[^S])=>Level D Stack 68
+shelf.pattern_480   = ^(UZS)=>Level D Stack 68
+shelf.pattern_481   = ^(VA)=>Level D Stack 68
+shelf.pattern_482   = ^(VB)=>Level D Stack 68
+shelf.pattern_483   = ^(VE)=>Level D Stack 68-69
+shelf.pattern_484   = ^(VG)=>Level D Stack 69
+shelf.pattern_485   = ^(VH|VH[0-9])=>Level D Stack 69
+shelf.pattern_486   = ^(VHD)=>Level D Stack 69
+shelf.pattern_487   = ^(VI[0-9][0-9][0-9])=>Level D Stack 69-70
+shelf.pattern_488   = ^(VJ)=>Level D Stack 70
+shelf.pattern_489   = ^(VJ[0-9][0-9][0-9])=>Level D Stack 70
+shelf.pattern_490   = ^(VK)=>Level D Stack 70-71
+shelf.pattern_491   = ^(VL)=>Level D Stack 71
+shelf.pattern_492   = ^(VM)=>Level D Stack 71
+shelf.pattern_493   = ^(VP[D-Q])=>Level D Stack 72
+shelf.pattern_494   = ^(VP|VP[0-9])=>Level D Stack 72
+shelf.pattern_495   = ^(VPS)=>Level D Stack 72-73
+shelf.pattern_496   = ^(VPU)=>Level D Stack 73
+shelf.pattern_497   = ^(VQ)=>Level D Stack 73
+shelf.pattern_498   = ^(VR[^C-S])=>Level D Stack 73
+shelf.pattern_499   = ^(VR[C-S])=>Level D Stack 73
+shelf.pattern_500   = ^(VS)=>Level D Stack 73
+shelf.pattern_501   = ^(VT)=>Level D Stack 73
+shelf.pattern_502   = ^(VV)=>Level D Stack 73-74
+shelf.pattern_503   = ^(VVT)=>Level D Stack 74
+shelf.pattern_504   = ^(VW)=>Level D Stack 74-76
+shelf.pattern_505   = ^(WA)=>Level D stack 77
+shelf.pattern_506   = ^(WC)=>Level D stack 77-78
+shelf.pattern_507   = ^(WD([0-9] | [A-Z]))=>Levrel D stack 88
+shelf.pattern_508   = ^(WE)=> Level D stacks 88-89
+shelf.pattern_509   = ^(WEB)=>Level D stack 89
+shelf.pattern_510   = ^(WER)=>Level D stacks 89-90
+shelf.pattern_511   = ^(WF)=>Level D stack 90
+shelf.pattern_512   = ^(WH)=>Level D stacks 90-91
+shelf.pattern_513   = ^(WHS)=>Level D stack 91
+shelf.pattern_514   = ^(WK)=> Level D stacks 91-98
+shelf.pattern_515   = ^(W[K-Q][A-Z])=>Level D stack 98
+shelf.pattern_516   = ^(WT)=>Level D stacks 98-99
+shelf.pattern_517   = ^(WTM)=>Level D stack 99
+shelf.pattern_518   = ^(WTR)=>Level D stacks 99-100
+shelf.pattern_519   = ^(WTZ)=>Level D stack 100
+shelf.pattern_520   = ^(WW)=> Level D stack 101
+shelf.pattern_521   = ^(WWA)=>Level D stacks 101, 104
+shelf.pattern_522   = ^(WWM)=>Level D stacks 104-105
+shelf.pattern_523   = ^(WY)=>Level D stacks 105-106
+shelf.pattern_524   = ^(WZ)=>Level D stack 106
+shelf.pattern_525   = ^(L W[A-Z])=>Level D stacks 82-87a
+shelf.pattern_526   = ^(XIII\.1 Bushman-Cape Dutch)=>Level D Stack 186
+shelf.pattern_527   = ^(XIII\.1 Hamitic)=>Level D Stack 186
+shelf.pattern_528   = ^(XIII\.1 Hottentot)=>Level D Stack 186
+shelf.pattern_529   = ^(XIII\.1 Misc)=>Level D Stack 186
+shelf.pattern_530   = ^(XIII\.1 Sudanic)=>Level D Stack 186
+shelf.pattern_531   = ^(Y)=>Level D stacks 108 - 117
+#SCB
+shelf.pattern_532   = ^(c\.100[0-1])=> Level C stack 176a
+shelf.pattern_533   = ^(c\.251\.*\.*)=> Level C stack 144
+shelf.pattern_534   = ^(c\.264\.*\.*)=> Level C stack 120
+shelf.pattern_535   = ^(c\.3[0-9][0-9])=>Level C stacks 125 - 137
+shelf.pattern_536   = ^(c\.45[0-1])=>Level C stack 137
+shelf.pattern_537   = ^(c\.45[2-3])=>Offsite; available on request
+shelf.pattern_538   = ^(c\.45[4-9])=>Level C stack 137
+shelf.pattern_539   =  (c\.5[1-9][0-9])=>Level C stacks 137 - 138
+shelf.pattern_540   = ^(c\.7[0-9][0-9]^.)=>Level C stacks 138-142
+shelf.pattern_541   = ^(c\.700\.*\.*)=> Level C stack 138
+shelf.pattern_542   = ^(c\.702\.*\.*)=>Level C stack 139
+shelf.pattern_543   = ^(c\.713\.*\.*)=> Level C stack 140
+shelf.pattern_544   = ^(c\.800)=>Level C Stack 142
+shelf.pattern_545   = ^(c\.801\.t\.89)=>Offsite; available on request
+shelf.pattern_546   = ^(c\.801\.t\.2[5-8])=>Offsite; available on request
+shelf.pattern_547   = ^(c\.801\.c\.124)=>Offsite; available on request
+shelf.pattern_548   = ^(c\.801\.c\.125)=>Level C stack 196
+shelf.pattern_549   = ^(c\.801\.c\.126)=>Offsite; available on request
+shelf.pattern_550   = ^(c\.801\.c\.152)=>Offsite; available on request
+shelf.pattern_551   = ^(c\.801\.t\.2[5-8])=>Offsite; available on request
+shelf.pattern_552   = ^(c\.801\.t\.89)=>Offsite; available on request
+shelf.pattern_553   = ^(c\.850\.[a-t]\.*)=>  mainly at level F stacks 61 - 63
+shelf.pattern_554   = ^(c\.850\.k\.4)=>Level C stacks 190-191
+shelf.pattern_555   = ^(c\.850\.s\.4)=> Level C stacks 191-192
+shelf.pattern_556   = ^(c\.850\.s\.6)=> Level C stacks 193-196
+shelf.pattern_557   = ^(c\.850\.[v-y]\.*)=>  mainly at Level C stack 196
+shelf.pattern_558   = ^(c\.90[0-1])=> Offsite; available on request
+shelf.pattern_559   = ^(c\.90[4-5])=> Offsite; available on request
+shelf.pattern_560   = ^(c\.902)=> Offsite; available on request
+shelf.pattern_561   = ^(c\.906)=> Level C stack 197. Some offsite; available on request
+shelf.pattern_562   = ^(c\.907)=> Offsite; available on request
+shelf.pattern_563   = ^(c\.957)=> Offsite; available on request
+shelf.pattern_564   = ^(c\.95[8-9])=> Level C stack 197
+shelf.pattern_565   = ^(c\.FFA)=>Level D stack 8, stack 47
+shelf.pattern_566   = ^(CC495\.18)=>Level C stacks 152-153
+shelf.pattern_567   = ^(CWML)=>Special Collections. Reference only. Available on request.
+shelf.pattern_568   = ^(EB)=>Special Collections. Reference only. Available on request.
+shelf.pattern_569   = ^(ER)=>Special Collections. Reference only. Available on request.
+shelf.pattern_570   = ^(FJH\.L)=>Level D stacks 19-20
+shelf.pattern_571   = ^(FOH\.L)=>Level D stack 30
+shelf.pattern_572   = ^(Ex\.L\.Re\f.Q)=>Level B stack 29
+shelf.pattern_573   = ^(j\.FJH)=>Level D stacks 53-55
+shelf.pattern_574   = ^(L D)=>Level C Stack 71-72
+shelf.pattern_575   = ^(L QN418)=>Level B stack 3
+shelf.pattern_576   = ^(L\.Ref\.Q)=>L.Ref.QUC Level B stacks 28-29
+shelf.pattern_577   = ^(Ref\.Q)=>Ref.QUC Level B stacks 26-28
+shelf.pattern_578   = ^(RM)=>Closed access. Reference only. Available on request.
+#LEVEL E
+shelf.pattern_579 = ^(A[0-2])=> Level E stacks 02-05
+shelf.pattern_580 = ^(A3[0-3])=> Level E stacks 05-24
+shelf.pattern_581 = ^(A3[5-9])=> Level E stacks 24-29
+shelf.pattern_582 = ^(A4)=> Level E stacks 29-34
+shelf.pattern_583 = ^(A[5-7])=> Level E stacks 34-37
+shelf.pattern_584 = ^(A8)=> Level E stacks 37-38
+shelf.pattern_585 = ^(A9)=> Level E stacks 38-41
+shelf.pattern_586 = ^(L A[0-2]|L A3[0-3])=> Level E stacks 41-42
+shelf.pattern_587 = ^(L A3[5-9]|L A[4-9])=> Level E stacks 42-44
+shelf.pattern_588 = ^(Ref A[0-2]|Ref A3[0-3])=> Level E stack 44
+#Gap to exclude 340s
+shelf.pattern_589 = ^(Ref A3[5-9]|Ref A[4-9])=> Level E stack 44
+shelf.pattern_590 = ^(L Ref A[0-2]|L Ref A3[0-3])=> Level E stack 44-45
+#Gap to exclude A340s
+shelf.pattern_591 = ^(L Ref A3[5-9]|L Ref A[4-9])=> Level E stack 44-45
+shelf.pattern_592 = ^(ELAS)=> Level E stack 45
+shelf.pattern_593 = ^(MCD|MY|MDVD)=> Level E stacks 47 - 49
+shelf.pattern_594 = ^(Lee)=> Level E stacks 56-78
+shelf.pattern_595 = ^(Auction catalogues)=> Level E stacks 45 - 47
+
+shelf.pattern_596   = ^()$=>... 
+
+

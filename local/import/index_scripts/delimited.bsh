@@ -1,0 +1,30 @@
+/**
+ * Custom format determination script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine Record Format(s)
+ *
+ * @param  Record          record
+ * @return Set     format of record
+ */
+public Set getAuthorId(Record record){
+    Set result = new LinkedHashSet();
+    DataField author = (DataField) record.getVariableField("100");
+
+    if (author != null) {
+        if (author.getSubfield('a') != null){
+            result.add(author.getSubfield('0').getData()+"{{{_:::_}}}"+author.getSubfield('a').getData());
+            return result;
+        }
+    }
+
+    return result;
+}

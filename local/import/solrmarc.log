@@ -1,0 +1,104 @@
+2017-04-03 13:19:05,277 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215267
+2017-04-03 13:19:05,278 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,283 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215270
+2017-04-03 13:19:05,283 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,296 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: writer of foreword.
+2017-04-03 13:19:05,297 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: writer of foreword.
+2017-04-03 13:19:05,297 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: writer of foreword.
+2017-04-03 13:19:05,298 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: writer of foreword.
+2017-04-03 13:19:05,299 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: writer of foreword.
+2017-04-03 13:19:05,309 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215280
+2017-04-03 13:19:05,309 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,312 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215282
+2017-04-03 13:19:05,312 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,315 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215283
+2017-04-03 13:19:05,315 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(location.bsh), getPointCoordinates
+2017-04-03 13:19:05,380 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215314
+2017-04-03 13:19:05,381 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,381 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215315
+2017-04-03 13:19:05,381 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,410 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215337
+2017-04-03 13:19:05,410 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,411 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215338
+2017-04-03 13:19:05,411 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,414 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215340
+2017-04-03 13:19:05,414 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,423 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215344
+2017-04-03 13:19:05,423 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,425 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215345
+2017-04-03 13:19:05,425 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,440 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: film prodcuer.
+2017-04-03 13:19:05,442 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: film prodcuer.
+2017-04-03 13:19:05,445 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: film prodcuer.
+2017-04-03 13:19:05,447 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: film prodcuer.
+2017-04-03 13:19:05,452 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: film prodcuer.
+2017-04-03 13:19:05,497 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: author of introduction.
+2017-04-03 13:19:05,498 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: author of introduction.
+2017-04-03 13:19:05,498 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: author of introduction.
+2017-04-03 13:19:05,499 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: author of introduction.
+2017-04-03 13:19:05,502 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215373
+2017-04-03 13:19:05,502 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,506 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: honouree.
+2017-04-03 13:19:05,506 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: honouree.
+2017-04-03 13:19:05,507 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: honouree.
+2017-04-03 13:19:05,508 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: honouree.
+2017-04-03 13:19:05,508 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: honouree.
+2017-04-03 13:19:05,528 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215387
+2017-04-03 13:19:05,528 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,561 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215402
+2017-04-03 13:19:05,561 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,568 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215406
+2017-04-03 13:19:05,568 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,589 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215417
+2017-04-03 13:19:05,589 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,604 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215422
+2017-04-03 13:19:05,605 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,613 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: Herausgeber.
+2017-04-03 13:19:05,613 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: Herausgeber.
+2017-04-03 13:19:05,614 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: Herausgeber.
+2017-04-03 13:19:05,614 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: Herausgeber.
+2017-04-03 13:19:05,614 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: Herausgeber.
+2017-04-03 13:19:05,617 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215429
+2017-04-03 13:19:05,617 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,639 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,640 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,640 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,640 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,640 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,641 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur
+2017-04-03 13:19:05,641 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,642 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur
+2017-04-03 13:19:05,642 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,642 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur
+2017-04-03 13:19:05,643 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,643 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur
+2017-04-03 13:19:05,643 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: rapporteur.
+2017-04-03 13:19:05,652 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215441
+2017-04-03 13:19:05,652 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,698 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215460
+2017-04-03 13:19:05,698 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,707 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215468
+2017-04-03 13:19:05,708 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,712 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: joint editor.
+2017-04-03 13:19:05,713 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: joint editor.
+2017-04-03 13:19:05,714 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: joint editor.
+2017-04-03 13:19:05,714 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: joint editor.
+2017-04-03 13:19:05,715 [RecordIndexer-Thread-0] INFO  RecordIndexer-Thread-0 org.solrmarc.index.VuFindIndexer - Unknown relator: joint editor.
+2017-04-03 13:19:05,715 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215471
+2017-04-03 13:19:05,715 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,716 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215472
+2017-04-03 13:19:05,716 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,717 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 10215473
+2017-04-03 13:19:05,717 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,723 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - Exception in record: 040419853
+2017-04-03 13:19:05,723 [RecordIndexer-Thread-0] DEBUG RecordIndexer-Thread-0 org.solrmarc.driver.Indexer - while processing index specification:  script(scb_sort_callnumber.bsh), getSortCallNumber
+2017-04-03 13:19:05,729 [main] INFO  main org.solrmarc.driver.ThreadedIndexer - Done with all indexing, finishing writing records to solr
+2017-04-03 13:19:06,412 [main] INFO  main org.solrmarc.driver.ThreadedIndexer - Done writing records to solr
+2017-04-03 13:19:06,479 [main] INFO  main org.solrmarc.driver.Indexer - Commiting updates to Solr
+2017-04-03 13:23:20,925 [main] INFO  main org.solrmarc.driver.IndexDriver - 868260 records read
+2017-04-03 13:23:21,067 [main] INFO  main org.solrmarc.driver.IndexDriver - 868260 records indexed  and 
+2017-04-03 13:23:21,067 [main] INFO  main org.solrmarc.driver.IndexDriver - 868259 records sent to Solr in 25 minutes 42.36 seconds
+2017-04-03 13:23:21,068 [main] DEBUG main org.solrmarc.driver.IndexDriver - Error Rec id = null
+2017-04-03 13:23:21,068 [main] INFO  main org.solrmarc.driver.IndexDriver - 1 records have MARC errors of level: ERROR
+2017-04-03 13:23:21,068 [main] INFO  main org.solrmarc.driver.IndexDriver - 1 records have Index errors of level: ERROR
+2017-04-03 13:23:21,068 [main] INFO  main org.solrmarc.driver.IndexDriver - 1 records have Solr errors of level: ERROR

@@ -1,0 +1,43 @@
+/**
+ * Custom 947 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item location
+ *
+ * @param  Record    record
+ * @return Array     item location"
+ */
+ 
+public List getItemShelfListEnumeration(Record record) {
+    // Check 947 subfield l
+    List fields = record.getVariableFields("947");
+    ArrayList result = new ArrayList();
+    Iterator fieldsIter = fields.iterator();
+        DataField shelf;
+        while(fieldsIter.hasNext()) {
+            shelf = (DataField) fieldsIter.next();
+            String val;
+
+            List subfields_n = shelf.getSubfields('n');
+            Iterator subfieldsIter_n = subfields_n.iterator();
+            if (subfields_n != null) {
+                while (subfieldsIter_n.hasNext()) {
+                    val = subfieldsIter_n.next().getData().trim();
+                    result.add(val);
+                }
+                if(subfields_n.size()==0){result.add("");}
+            }
+        }
+        return result;
+    }
+    //otherwise return null
+    return result;
+}

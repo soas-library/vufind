@@ -1,0 +1,746 @@
+body {
+    background-repeat: repeat-y !important;
+    background-position: right top;
+    background-color: #e5e5e5;
+    font-family: "MuseoSans-500", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+header, div.container.navbar {
+    margin-bottom: 10px !important;
+    padding-bottom: 10px;
+}
+
+header.hidden-print div.container.navbar {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+}
+
+header.hidden-print div.container {
+    border-color: transparent;
+    padding: 0px;
+    border: 0px solid #ddd !important;
+}
+
+.container {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    width: auto !important;
+}
+.clearfix, .container {
+    display: block !important;
+}
+.container {
+    -moz-border-radius: 10px 10px 10px 10px !important;
+    border: 1px solid #ddd !important;
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #00859b !important;
+}
+
+#menu_general {
+    height: 35px;
+    background-color: #63666a;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+}
+
+#menu_top {
+    margin-top: -5px !important;
+    float: right;
+    background-color: #63666a;
+    text-align: right;
+    display: block;
+}
+
+div#menu_top ul.navbar-nav.navbar-right:last-child {
+    margin-right: -0px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+a.white_link {
+    font-size: 0.9em;
+}
+
+.white_link, a#link_about.help-link {
+    color: #fff !important;
+}
+
+.fa {
+    cursor: pointer !important;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background-color: #f2a900;
+}
+
+.language .dropdown-menu {
+    text-align: right;
+}
+
+#logo {
+    padding: 40px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    float: right;
+    height: 100px;
+    width: 300px;
+}
+
+.navbar-collapse {
+    max-height: 340px;
+}
+
+section.visible-lg {
+    padding-top: 20px;
+}
+
+ul.nav.nav-tabs {
+    border-bottom: none;
+    margin-bottom: 1px;
+}
+
+form.searchForm {
+    width: 75% !important;
+}
+
+form.searchForm .nav-tabs {
+    border-bottom: none;
+}
+
+input.searchForm_lookfor {
+    height: auto;
+    width: 100% !important;
+    border-radius: 3px 16px 16px 16px;
+}
+
+input.searchForm_lookfor:focus {
+    border: 1px solid #63666a;
+}
+
+.form-control {
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background-color: #00859b !important;
+    color: #fff !important;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 12pt;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+form.searchForm .btn-link{
+    font-size: 12pt;
+}
+
+/* Breadcrumbs */
+
+.breadcrumb {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.breadcrumb {
+    margin-top: 20px;
+}
+
+.breadcrumb {
+    background-color: #f2a900;
+    border-radius: 10px;
+    color: white;
+}
+
+.breadcrumb > .active, .breadcrumb a {
+    color: white !important;
+}
+
+/* Left sidebar */
+
+div.main div.container div.row-fluid div.sidebar.col-sm-3.col-sm-pull-9.hidden-print h4 {
+    background-color: #f2a900 !important;
+    color: #fff;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+}
+
+div.list-group-item.title {
+    border-top: 1px solid #ccc;
+    border-radius: 0px !important;
+}
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    color: #fff !important;
+}
+
+.list-group-item {
+    border: none;
+}
+
+span.list-group-item:hover {
+    background-color: #eee;
+}
+
+.list-group-item.active, .list-group-item.active:hover {
+background-color: #f2a900;
+}
+
+i.fa.fa-check-square-o {
+    color: #fff !important;
+}
+
+.slider .slider-track .slider-selection {
+    background: #eee;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.3);
+}
+
+.slider .slider-track .slider-handle {
+    background: #f2a900;
+    background-image: none;
+    box-shadow: none;
+    border-radius: 4px;
+}
+
+.slider .slider-track .slider-handle {
+    border-color: transparent;
+}
+
+a#more-narrowGroupHidden-format.list-group-item, a#more-narrowGroupHidden-callnumber-first.list-group-item, a#more-narrowGroupHidden-language.list-group-item, a#more-narrowGroupHidden-authorStr.list-group-item, a#more-narrowGroupHidden-geographic_facet.list-group-item, a#more-narrowGroupHidden-genre_facet.list-group-item, a#more-narrowGroupHidden-era_facet.list-group-item, a#more-narrowGroupHidden-authorAndOtherStr.list-group-item, a#more-narrowGroupHidden-scb-callnumber-first.list-group-item {
+    text-align: right;
+}
+
+label.checkbox, .normal {
+    font-weight: normal;
+}
+
+.badge {
+    background-color: #999;
+}
+
+.sidebar .list-group.facet .list-group-item.title::after {
+    content: '\25BC' !important;
+    float: right;
+}
+
+.sidebar .list-group:not(.filters) .title.collapsed::after {
+    content: '\25BA' !important;
+    float: right;
+}
+
+/* Result list */
+
+/*.result:nth-child(2n)*/
+#result1, #result3, #result5, #result7, #result9, #result11, #result13, #result15, #result17, #result19 {
+    background-color: #f0e1cf;
+    border-radius: 10px;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+}
+
+#result0, #result2, #result4, #result6, #result8, #result10, #result12, #result14, #result16, #result18 {
+    border-radius: 10px;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+}
+
+/* Resource types */
+
+.book {
+    background-image: url("../../../themes/soas/images/silk/book.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.serialcomponent {
+    background-image: url("../../../themes/soas/images/silk/scomponent.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.presscomponent {
+    background-image: url("../../../themes/soas/images/silk/press.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.dossier {
+    background-image: url("../../../themes/soas/images/silk/dossier.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.comic {
+    background-image: url("../../../themes/soas/images/silk/comic.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.videorecording {
+    background-image: url("../../../themes/soas/images/silk/videorecording.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.poster {
+    background-image: url("../../../themes/soas/images/silk/picture.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.serial {
+    background-image: url("../../../themes/soas/images/silk/report.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.electronic {
+    background-image: url("../../../themes/soas/images/silk/www.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.soundrecording {
+    background-image: url("../../../themes/soas/images/silk/audio-volume-high.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.brochure {
+    background-image: url("../../../themes/soas/images/silk/folleto.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.specialobject {
+    background-image: url("../../../themes/soas/images/silk/package.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.monographiccomponent {
+    color: #000!important;
+    background-color: transparent!important;
+}
+
+.slide {
+    background-image: url("../../../themes/soas/images/silk/photo.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.globe {
+    background-image: url("../../../themes/soas/images/silk/world.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.video {
+    background-image: url("../../../themes/soas/images/silk/video.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+/***NUEVO***/
+.photo {
+    background-image: url("../../../themes/soas/images/silk/picture.png");
+    background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.physicalobject{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.unknown{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.dvd{
+background-image: url("../../../themes/soas/images/silk/dvd.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.ebook{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.journal{
+background-image: url("../../../themes/soas/images/silk/journal.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.microfilm{
+background-image: url("../../../themes/soas/images/silk/microfilm.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.thesis{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.cd{
+background-image: url("../../../themes/soas/images/silk/cd.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.audio{
+background-image: url("../../../themes/soas/images/silk/audio-volume-high.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.cassette{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.database{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.kit{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.manuscript, .archive{
+background-image: url("../../../themes/soas/images/silk/manuscript.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.map{
+background-image: url("../../../themes/soas/images/silk/map.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.musicalscore{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.newspaper{
+background-image: url("../../../themes/soas/images/silk/newspaper.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.software{
+background-image: url("../../../themes/soas/images/silk/software.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.studycarrel{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.vhs{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.video{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.website{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+.ejournal{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+
+.bookchapters{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.bookreviews{
+background-image: url("../../../themes/soas/images/silk/review.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.translations{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.workingpapersreports{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.other{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.journalarticles{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.authoredbooks{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.bookchapters{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.conferenceorworkshopitems{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.editedbooksorjournalvolumes{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.showsexhibitions{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.kit{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+.performances{
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+} 
+
+.physicalobject{
+background-image: url("../../../themes/soas/images/silk/physical.png");
+ background-repeat: no-repeat!important;
+    color: #000!important;
+    background-color: transparent!important;
+    padding-left: 18px!important;
+}
+
+/* Pagger */
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 2;
+    color: #fff;
+    background-color: #f2a900;
+    border-color: #63666a;
+    cursor: default;
+    border: 1px solid #ddd;
+}
+
+/* Herramientas de Búsqueda */
+
+.searchtools .fa {
+    color: black;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* HOMEPAGE */
+
+/* Alert news */
+
+.alert_news {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    border-radius: 20px;
+    padding-right: 15px;
+    display: inline-block;
+    float: left;
+    //background-color: #f2a900;
+    background-color: rgb(251, 216, 118);
+    color: #38270c;
+    border: 2px solid #63666a !important;
+}
+
+.font18 {
+    font-size: 18px !important;
+}
+
+.font12 {
+    font-size: 12px !important;
+}
+
+.link_news {
+    color: #12538b !important;
+}
+
+/* Searchbox */
+
+.searchHomeContent {
+    margin-top: -10px !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    margin-bottom: -30px !important;
+}
+
+#homesearchbox {
+    padding: 80px;
+}
+
+.well {
+    background-color: #f0e1cf;
+}
+
+#homesearchbox form.searchForm.col-md-8.navbar-form.navbar-left {
+    width: 100% !important;
+}
+
+/* Record view */
+
+
+

@@ -1,0 +1,29 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Staff View') . ': ' . $this->driver->getBreadcrumb());
+?>
+<table class="citation table table-striped">
+  <? foreach ($this->driver->getRawData() as $field => $values): ?>
+
+    <?if($this->escapeHtml($field)!="collection" && $this->escapeHtml($field)!="recordtype" && $this->escapeHtml($field)!="id" && $this->escapeHtml($field)!="scb_calm_location_display" && 
+    $this->escapeHtml($field)!="spellingShingle" && $this->escapeHtml($field)!="title_short" && $this->escapeHtml($field)!="title_full" && 
+    $this->escapeHtml($field)!="title_fullStr" && $this->escapeHtml($field)!="title_full_unstemmed" && $this->escapeHtml($field)!="title_sort" && $this->escapeHtml($field)!="hierarchytype" && 
+    $this->escapeHtml($field)!="hierarchy_top_id" && $this->escapeHtml($field)!="hierarchy_parent_id" && $this->escapeHtml($field)!="hierarchy_top_title" && $this->escapeHtml($field)!="hierarchy_top_title_browse" && 
+    $this->escapeHtml($field)!="hierarchy_parent_title" && $this->escapeHtml($field)!="is_hierarchy_id" && $this->escapeHtml($field)!="is_hierarchy_title" &&
+    $this->escapeHtml($field)!="_version_" && $this->escapeHtml($field)!="score"):?> 
+    <? if (!is_array($values)) { $values = array($values); } ?>
+    <?if(count($values)>0 && !empty($values[0]) && $values[0] != ""):?>
+    <tr>
+      <? if (!is_array($values)) { $values = array($values); } ?>
+      <th class="labelTblStaff"><?=$this->escapeHtml($field)?></th>
+      <td>
+        <? if (!is_array($values)) { $values = array($values); } ?>
+        <? foreach ($values as $value): ?>
+          <?=$this->escapeHtml(is_array($value) ? print_r($value, true) : html_entity_decode($value, ENT_QUOTES | ENT_HTML5))?><br />
+        <? endforeach; ?>
+      </td>
+    </tr>
+    <?endif;?>
+    <?endif;?>
+  <? endforeach; ?>
+</table>

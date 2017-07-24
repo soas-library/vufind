@@ -1,0 +1,145 @@
+###############################################################################
+# marc_local.properties -- local overrides to standard VuFind MARC mappings.  #
+#                          All settings in this file override equivalent      #
+#                          settings in marc.properties.                       #
+###############################################################################
+#CUSTOM FIELDS FOR SOAS LIBRARY
+#@author	Simon Barron <sb174@soas.ac.uk>
+collection = "SOAS Library"
+institution = "SOAS, University of London"
+building = "Main Library"
+
+# Uncomment the following settings to use the .bsh scripts in import/scripts/
+# instead of the built-in SolrMarc functionality found in the .jar file.
+# (by default, the scripts have the same behavior as the built-in functions,
+# but the external scripts are easier to customize to your needs).
+
+linked_title         = script(author.bsh), getAuthorsFilteredByRelator(245abp,245,firstAuthorRoles)
+linked_title_alt = script(author.bsh), getAuthorsFilteredByRelator(100t:130adfgklnpst:240a:246a:505t:700t:710t:711t:730adfgklnpst:740a, 100,firstAuthorRoles)
+linked_author = script(author.bsh), getAuthorsFilteredByRelator(100abcd,100,firstAuthorRoles)
+linked_author2 = script(author.bsh), getAuthorsFilteredByRelator(111ab:700abcd:711ab, 111,firstAuthorRoles)
+linked_corpauthor = script(author.bsh), getAuthorsFilteredByRelator(110ab:710ab, 110,firstAuthorRoles)
+linked_imprint = script(author.bsh), getAuthorsFilteredByRelator(260abc, 260,firstAuthorRoles)
+linked_series = script(author.bsh), getAuthorsFilteredByRelator(440a:490a:800abcdfpqt:830ap, 440,firstAuthorRoles)
+linked_topic = script(author.bsh), getAuthorsFilteredByRelator(600abcdefghijklmnopqrstuvwxyz:610abcdefghijklmnopqrstuvwxyz:611abcdefghijklmnopqrstuvwxyz:630abcdefghijklmnopqrstuvwxyz:650abcdefghijklmnopqrstuvwxyz:651abcdefghijklmnopqrstuvwxyz:656abcdefghijklmnopqrstuvwxyz, 600,firstAuthorRoles)
+linked_edition = script(author.bsh), getAuthorsFilteredByRelator(250a, 250,firstAuthorRoles)
+linked_contents = script(author.bsh), getAuthorsFilteredByRelator(505a:505t, 505,firstAuthorRoles)
+linked_note = script(author.bsh), getAuthorsFilteredByRelator(500a, 500,firstAuthorRoles)
+linked_statement = script(author.bsh), getAuthorsFilteredByRelator(245abcp, 245,firstAuthorRoles)
+linked_description = script(author.bsh), getAuthorsFilteredByRelator(520a, 520,firstAuthorRoles)
+linked_title_browse = script(author.bsh), getAuthorsFilteredByRelator(245abcdefghijklmnopqrstuvwxyz, 245,firstAuthorRoles)
+linked_author_browse = script(author.bsh), getAuthorsFilteredByRelator(100abcd, 100,firstAuthorRoles)
+linked_topic_browse = script(author.bsh), getAuthorsFilteredByRelator(600abcdefghijklmnopqrstuvwxyz:610abcdefghijklmnopqrstuvwxyz:611abcdefghijklmnopqrstuvwxyz:630abcdefghijklmnopqrstuvwxyz:650abcdefghijklmnopqrstuvwxyz:651abcdefghijklmnopqrstuvwxyz:656abcdefghijklmnopqrstuvwxyz, 600,firstAuthorRoles)
+journalholdings = custom, getAllSubfields(866, " ")
+id = 001
+note = 500a:533n
+callnumber = custom, getAllAlphaSubfields(082, first)
+callnumber_txt = custom, getAllAlphaSubfields(082, first)
+
+scb-callnumber-first = 650a
+
+topic = custom, getAllSubfields(600:610:611:630:650:656, " ")
+title_statement = custom, getAllAlphaSubfields(245, " ")
+shelf_location = 082fa, shelf_map.properties(shelf),separate
+scb_shelf_testing_location = script(scb_callnumber.bsh), getCallNumber, testing_map.properties(test)
+format = script(format.bsh), getFormat, format_map.properties
+millennium_id = 907a
+title_alt = 100t:130adfgklnpst:240al:246a:505t:700t:710t:711t:730adfgklnpst:740al
+
+#SCB Fields
+scb_item_location = script(scb_location.bsh), getItemLocation, location_map.properties
+scb_display_item_location = script(scb_location.bsh), getItemLocation, displaylocation_map.properties
+scb_item_location_c = script(scb_shelflist.bsh), getItemShelfList, shelf_map.properties(shelf)
+scb_item_onorder = script(scb_item_onorder.bsh), getItemOrder
+scb_testing_item_location = script(scb_shelflist.bsh), getItemShelfList, testing_map.properties(test)
+scb_shelflist = script(scb_shelflist.bsh), getItemShelfList
+scb_shelflist_enum = script(scb_shelflist_enumeration.bsh), getItemShelfListEnumeration
+scb_type = script(scb_type.bsh), getItemType
+scb_barcode = script(scb_barcode.bsh), getItemBarcode
+scb_availability = script(scb_availability.bsh), getItemAvailability, availability_map.properties
+
+scb_holding_location = script(scb_holding_location.bsh), getHoldingLocation, location_map.properties
+scb_testing_holding_location = script(scb_holding_shelflist.bsh), getHoldingShelfList, testing_map.properties(test)
+scb_holding_location_c = script(scb_holding_shelflist.bsh), getHoldingShelfList, shelf_map.properties(shelf)
+scb_holding_shelflist = script(scb_holding_shelflist.bsh), getHoldingShelfList
+
+authorAndOther = 100abcd:700abcd
+
+
+# Uncomment the following settings to insert appropriate values for your site:
+#collection = "Catalog"
+#institution = "MyInstitution"
+#building = "Library A"
+
+# Uncomment the following settings to use the .bsh scripts in import/scripts/
+# instead of the built-in SolrMarc functionality found in the .jar file.
+# (by default, the scripts have the same behavior as the built-in functions,
+# but the external scripts are easier to customize to your needs).
+
+#format = script(format.bsh), getFormat, format_map.properties
+#author                = script(author.bsh), getAuthorsFilteredByRelator(100abcd:700abcd,100,firstAuthorRoles)
+#author_variant        = script(author.bsh), getAuthorInitialsFilteredByRelator(100a:700a,100,firstAuthorRoles)
+#author_fuller         = script(author.bsh), getAuthorsFilteredByRelator(100q:700q,100,firstAuthorRoles)
+#author_role           = script(author.bsh), getRelatorsFilteredByRelator(100abcd:700abcd,100,firstAuthorRoles)
+#author2               = script(author.bsh), getAuthorsFilteredByRelator(700abcd,700,secondAuthorRoles)
+#author2_variant       = script(author.bsh), getAuthorInitialsFilteredByRelator(700a,700,secondAuthorRoles)
+#author2_fuller        = script(author.bsh), getAuthorsFilteredByRelator(700q,700,secondAuthorRoles)
+#author2_role          = script(author.bsh), getRelatorsFilteredByRelator(700abcd,700,secondAuthorRoles)
+#author_corporate      = script(author.bsh), getAuthorsFilteredByRelator(110ab:111abc:710ab:711ab,110:111:710:711,firstAuthorRoles|secondAuthorRoles)
+#author_corporate_role = script(author.bsh), getRelatorsFilteredByRelator(110ab:111abc:710ab:711ab,110:111:710:711,firstAuthorRoles|secondAuthorRoles)
+#author_sort           = script(author.bsh), getFirstAuthorFilteredByRelator(100abcd:110ab:111abc:700abcd,100:110:111:700,firstAuthorRoles)
+#callnumber-subject = script(callnumber.bsh), getCallNumberSubject(090a:050a), callnumber_subject_map.properties
+#callnumber-label = script(callnumber.bsh), getCallNumberLabel(090a:050a)
+#publisher = script(getpublishers.bsh), getPublishers
+#publishDate = script(getdate.bsh), getDates
+#illustrated = script(illustrated.bsh), isIllustrated
+#dewey-hundreds = script(dewey.bsh), getDeweyNumber(082a:083a, 100), ddc22_map.properties(hundreds)
+#dewey-tens = script(dewey.bsh), getDeweyNumber(082a:083a, 10), ddc22_map.properties(tens)
+#dewey-ones = script(dewey.bsh), getDeweyNumber(082a:083a, 1), ddc22_map.properties(ones)
+#dewey-full = script(dewey.bsh), getDeweySearchable(082a:083a)
+#dewey-sort = script(dewey.bsh), getDeweySortable(082a:083a)
+
+# Uncomment the following lines to track history of indexing times for RSS feeds,
+# OAI-PMH server and other updates.  The parameter to these functions must be the
+# same fieldspec as the id setting above!
+# IMPORTANT: Indexing this extra information will make extra database calls during
+#            the indexing process and will likely slow things down significantly.
+#first_indexed = custom, getFirstIndexed(001)
+#last_indexed = custom, getLastIndexed(001)
+
+# Uncomment the following line to index full text from URLs found in your MARC
+# records.  All sorts of document formats are supported (PDF, Word Doc, ASCII
+# text, HTML, etc.) The first parameter is a fieldspec showing which fields to use
+# for URL retrieval.  The second parameter is optional -- if included, only files
+# matching the specified suffix will be indexed.  Note that this functionality
+# depends on a full text tool being installed on your system.  See the wiki for
+# details:
+#       https://vufind.org/wiki/indexing:full_text_tools
+#fulltext = custom, getFulltext(856u, pdf)
+
+# Uncomment the following if you want to use the OpenLayers3 Geographic Search
+# and Google Map or OpenLayers3 Geo-Display functionality
+# See searches.ini for configuration options for Geographic Searching.
+# See config.ini for configuration options for Geo-Display.
+#location_geo = custom, getAllCoordinates
+#long_lat = custom, getPointCoordinates
+#long_lat_display = custom, getDisplayCoordinates
+#long_lat_label = 034z
+
+
+# Uncomment the following lines if you are indexing journal article data that uses
+# the 773 field to describe the journal containing the article.  These settings
+# assume the records have been formatted according to recommendation 4.1 found at:
+#     http://www.loc.gov/marc/marbi/2003/2003-dp01.html
+# If you have records using a different 773 format, you may need to write a custom
+# indexing script to parse out volume/issue/number.
+# Additionally, you will need to make sure articles have a format value of "Article."
+# You can hard-code this if all of your records are articles, but if you need to
+# distinguish between articles and non-articles, you will need to build a custom
+# getFormat script.
+#format = "Article"
+#container_volume = 773v
+#container_issue = 773l
+#container_start_page = 773q
+#container_reference = 773g
+#container_title = 773s
