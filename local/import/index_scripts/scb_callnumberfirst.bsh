@@ -53,8 +53,8 @@ public List getCallnumberfirst(Record record) {
                 			find2== "false";
                 			val650_a_values_aux= val650_a_values[i].trim();
                 			
-                			
-                			 aux = val650_a_values_aux.substring(val650_a_values_aux.length()-1,val650_a_values_aux.length());
+                			 //aux = val650_a_values_aux.substring(val650_a_values_aux.length()-1,val650_a_values_aux.length());
+                			 aux = val650_a_values_aux.substring(0,val650_a_values_aux.length());
 				         if(aux.equals("."))aux = val650_a_values_aux.substring(0,val650_a_values_aux.length()-1);
                 			                			
     					Iterator fieldsIter752 = fields752.iterator(); 
@@ -66,7 +66,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_a.hasNext()) {  
 		                			  	val752_a = subfieldsIter752_a.next().getData().trim().toString();
 		                			  	
-		                			  	val752_a_aux = val752_a.substring(val752_a.length()-1,val752_a.length());
+		                			  	//val752_a_aux = val752_a.substring(val752_a.length()-1,val752_a.length());
+		                			  	  val752_a_aux = val752_a.substring(0,val752_a.length());
 				        		        if(val752_a_aux.equals("."))val752_a_aux = val752_a.substring(0,val752_a.length()-1);
 		                	
 		                			  	if(val752_a_aux.equals(aux)){
@@ -83,7 +84,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_b.hasNext()) {  
 		                			  	val752_b = subfieldsIter752_b.next().getData().trim().toString();
 		                			 
-		                			 	val752_b_aux = val752_b.substring(val752_b.length()-1,val752_b.length());
+		                			 	//val752_b_aux = val752_b.substring(val752_b.length()-1,val752_b.length());
+		                			 	  val752_b_aux = val752_b.substring(0,val752_b.length());
 				        		        if(val752_b_aux.equals("."))val752_b_aux = val752_b.substring(0,val752_b.length()-1);
 				        		        
 		                			  	if(val752_b_aux.equals(aux)){
@@ -99,7 +101,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_c.hasNext()) {  
 		                			  	val752_c = subfieldsIter752_c.next().getData().trim().toString();
 		                			  	
-		                			  	val752_c_aux = val752_c.substring(val752_c.length()-1,val752_c.length());
+		                			  	//val752_c_aux = val752_c.substring(val752_c.length()-1,val752_c.length());
+		                			  	val752_c_aux = val752_c.substring(0,val752_c.length());
 				        		        if(val752_c_aux.equals("."))val752_c_aux = val752_c.substring(0,val752_c.length()-1);
 		                			
 		                			  	if(val752_c_aux.equals(aux)){
@@ -116,7 +119,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_d.hasNext()) {  
 		                			  	val752_d = subfieldsIter752_d.next().getData().trim().toString();
 		                			  	
-		                			  	val752_d_aux = val752_d.substring(val752_d.length()-1,val752_d.length());
+		                			  	//val752_d_aux = val752_d.substring(val752_d.length()-1,val752_d.length());
+		                			  	val752_d_aux = val752_d.substring(0,val752_d.length());
 				        		        if(val752_d_aux.equals("."))val752_d_aux = val752_d.substring(0,val752_d.length()-1);
 		                			
 		                			  	if(val752_d_aux.equals(aux)){
@@ -133,7 +137,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_f.hasNext()) {  
 		                			  	val752_f = subfieldsIter752_f.next().getData().trim().toString();
 		                			  	
-		                			  	val752_f_aux = val752_f.substring(val752_f.length()-1,val752_f.length());
+		                			  	//val752_f_aux = val752_f.substring(val752_f.length()-1,val752_f.length());
+		                			  	val752_f_aux = val752_f.substring(0,val752_f.length());
 				        		        if(val752_f_aux.equals("."))val752_f_aux = val752_f.substring(0,val752_f.length()-1);
 		                			
 		                			  	if(val752_f_aux.equals(aux)){
@@ -150,7 +155,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_g.hasNext()) {  
 		                			  	val752_g = subfieldsIter752_g.next().getData().trim().toString();
 		                			  	
-		                			  	val752_g_aux = val752_g.substring(val752_g.length()-1,val752_g.length());
+		                			  	//val752_g_aux = val752_g.substring(val752_g.length()-1,val752_g.length());
+		                			  	val752_g_aux = val752_g.substring(0,val752_g.length());
 				        		        if(val752_g_aux.equals("."))val752_g_aux = val752_g.substring(0,val752_g.length()-1);
 		                			
 		                			  	if(val752_g_aux.equals(aux)){
@@ -168,7 +174,8 @@ public List getCallnumberfirst(Record record) {
 		                			 while (subfieldsIter752_h.hasNext()) {  
 		                			  	val752_h = subfieldsIter752_h.next().getData().trim().toString();
 		                			  	
-		                			  	val752_h_aux = val752_h.substring(val752_h.length()-1,val752_h.length());
+		                			  	//val752_h_aux = val752_h.substring(val752_h.length()-1,val752_h.length());
+		                			  	val752_h_aux = val752_h.substring(0,val752_h.length());
 				        		        if(val752_h_aux.equals("."))val752_h_aux = val752_h.substring(0,val752_h.length()-1);
 		                			
 		                			  	if(val752_h_aux.equals(aux)){

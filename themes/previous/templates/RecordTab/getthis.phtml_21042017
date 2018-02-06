@@ -1,0 +1,479 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Description') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+
+       <? echo $this->record($this->driver)->getPreviews(); ?>
+
+    <?
+    $holdings = $this->driver->getRealTimeHoldings();
+    // Account for replace_other_urls setting
+    $openUrl = $this->openUrl($this->driver, 'record');
+    $openUrlActive = $openUrl->isActive();
+    // Account for replace_other_urls setting
+    $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+   ?>
+
+   <div class="holdings">
+
+<!-- 866 tag -->
+	<? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
+	<?
+		$journalholdings_first = array();
+		$journalholdings_second = array();
+	?>
+        <? if (count($journalholdings)> 0):?>
+
+          <? foreach($journalholdings as $field): ?>
+            <!-- SCB 25/01/2017 Format to show OFFSITE instead of Egham Store or Dagenham Store and remove 'Available on request' -->
+      <?  $arr_to_replace_offsite = array("Dagenham Store","dagenham store","Egham Store","egham store",);
+          $arr_to_replace = array("Available on request");
+          $offsite = false;
+		  for($i=0; $i<count($arr_to_replace_offsite);$i++){
+  		  	if(strpos($field, $arr_to_replace_offsite[$i]) === false){}
+  		  	else{
+  		  		$field = str_replace($arr_to_replace_offsite[$i],"",$field);
+  		  		$offsite = true;
+  		  	}
+  		  }
+  		  for($i=0; $i<count($arr_to_replace);$i++){
+  		  	if(strpos($field, $arr_to_replace[$i]) === false)
+  		  		$field = str_replace($arr_to_replace[$i],"",$field);  		  	
+  		  	else
+  		  		$field = str_replace($arr_to_replace[$i],"",$field);  		  	
+  		  }
+  		  $field = ltrim($field);
+  		  $field = ltrim($field,'.');
+  		  $field = ltrim($field);
+  		  $field = ltrim($field,'.');
+  		  $field = ltrim($field);
+  		  if($offsite){
+  		  	$field = "OFFSITE. ".$field;
+  		  	array_push($journalholdings_second,$field);
+  		  }
+  		  else{
+  		  	array_push($journalholdings_first,$field);
+  		  }
+  		  	
+  	   ?>
+  		  <!-- END SCB 25/01/2017 -->
+
+          <? endforeach; ?>
+         <? $journalholdings = array_merge ($journalholdings_first,$journalholdings_second);?>
+         <? endif; ?>
+        <? endif; ?>
+
+	<?  if (!empty($journalholdings)): ?>
+        <? if (count($journalholdings)> 0):?>
+        <table class="table table-responsive" summary="<?=$this->transEsc('Journal holdings details')?>">
+          <? foreach($journalholdings as $field): ?>
+
+            <tr><? /*<td class="hidden-xs">*/ ?></td><td><?=$this->escapeHtml($field)?><br/></td></tr>
+          <? endforeach; ?>
+	</table>
+         <? endif; ?>
+        <? endif; ?>
+<!-- 866 tag -->
+
+ <? if (!empty($urls) || $openUrl): ?>
+  <table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc("Internet")?>">
+  <tr>
+  <? $accessnote = $this->driver->getNote(); if (!empty($accessnote)): ?>
+    <? foreach ($accessnote as $field): ?>
+	
+ 	<?if (stripos($field, 'SOAS') !== false): ?>
+	   <td><i><?= $this->escapeHtml($field)?></i>
+		</td>
+      	<? endif; ?>
+    <? endforeach; ?>
+  <? endif; ?>
+  
+  <? if (!empty($urls)): ?>
+    <? foreach ($urls as $current): ?>
+      <tr><td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a></td></tr>
+    <? endforeach; ?>
+  <? endif; ?>
+  <? if ($openUrlActive): ?>
+            <?=$openUrl->renderTemplate()?><br/>
+  <? endif; ?>
+  </table>
+<? endif; ?>
+
+<!-- SCB Change -->
+	<? $hasItems=0;?>
+	<? $hasHoldings=0;?>
+	<? $hasCallnumber=0;?>
+	<? $scbitems = $this->driver->getComplete947();?>
+<!-- SCB Change -->
+	<? foreach ($holdings as $holding): ?>
+		<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
+		<? if (!empty($holding['summary'])): ?>
+		<tr>
+    <th><?=$this->transEsc("Volume Holdings")?>: </th>
+    <td>
+      <? foreach ($holding['summary'] as $current): ?>
+        <?=$this->escapeHtml($current)?><br/>
+      <? endforeach; ?>
+    </td>
+  </tr>
+  <? endif; ?>
+  <? if (!empty($holding['notes'])): ?>
+  <tr>
+    <th><?=$this->transEsc("Notes")?>: </th>
+    <td>
+      <? foreach ($holding['notes'] as $data): ?>
+        <?=$this->escapeHtml($data)?><br/>
+      <? endforeach; ?>
+    </td>
+  </tr>
+  <? endif; ?>
+  <!-- SCB Change -->
+  <?$count_holdings=0;
+    $class_txt = "";
+  ?>
+  <!-- SCB Change -->
+  <!-- SCB Change Sorting by enumeration-->
+  <? 
+  $aux=array();
+  $withsort = array();
+  foreach ($holding['items'] as $elem) {
+  	$enumerationText=$elem['enumeration'];
+  	
+   
+      preg_match('/\(.*\)/', $enumerationText,$arAux);  
+      foreach($arAux  as $varAux){
+	 $varAux = str_replace('(','',$varAux); 
+	 $varAux = str_replace(')','',$varAux);
+	 $varAux= preg_replace('/\d/', '', $varAux).substr("0000000000". preg_replace('/[^0-9]+/', '', $varAux),-10);
+      }
+
+
+      //   $elem['sorted']=  $elem['callnumber']. " ". preg_replace('/\d/', '', $enumerationText).substr("0000000000". preg_replace('/[^0-9]+/', '', preg_replace('/\(.*\)/', '', $enumerationText)),-10);
+      $elem['sorted']=  $elem['callnumber']. " ". str_replace(' ','',preg_replace('/\d/', '', preg_replace('/\(.*\)/', '', $enumerationText))).substr("0000000000". preg_replace('/[^0-9]+/', '', preg_replace('/\(.*\)/', '', $enumerationText)),-10) . $varAux;
+  	$withsort[]=$elem;
+  	}
+  $holding['items']=$withsort;
+  
+  foreach ($withsort as $key => $fila) {
+    $aux[$key] = $fila['sorted'];
+    }
+
+   array_multisort($aux, SORT_ASC, $withsort);    
+   
+    $holding['items'] = $withsort;
+    ?>
+
+  <!-- SCB Change Sorting by enumeration-->
+  <? foreach ($holding['items'] as $row): ?>
+  <?$unavailable = false;?>
+    <? if (strpos($row['status'],'ONORDER') !== false):?>
+       <td><?=$this->transEsc("On order")?></td>
+    <? endif; ?>
+    <? $check = (isset($row['check']) && $row['check']); ?>
+    <? $checkStorageRetrievalRequest = (isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest']); ?>
+
+    <? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
+     <!-- SCB Change -->
+   <?$count_holdings=$count_holdings+1;?>
+    <?if($count_holdings > 6)
+    	$class_txt="class='hidden_holdings_gethis'";
+    	else
+    	$class_txt="class='hidden_holdings2_gethis'";
+    ?>
+  <!-- SCB Change -->
+ 
+    <!-- SCB Change -->
+    <? $hasItems=1;?>
+    <!-- SCB Change -->
+      <tr <?echo $class_txt;?> vocab="http://schema.org/" typeof="Offer">
+        <!--<th class="hidden-xs"><?=$this->transEsc("Copy")?> <?=$this->escapeHtml($row['number'])?></th>-->
+        <? if ($row['holdings']): ?>
+        <td class="hidden-xs">
+        <?=$this->escapeHtml($row['holdings'])?>
+        </td>
+        <? endif; ?>
+    		<!-- SCB Change -->
+		<? $barcode= $row['barcode'];
+        	$item= $scbitems[$barcode]; ?>
+        	<!-- SCB Change -->
+        	 <!-- SCB Change -->
+        	<? if(empty($item['location'])):?>
+        	<? $place=$row['location']?>
+        	<? else:?>
+        	<? $place=$item['location']?>
+        	<? endif;?>
+		<? if (stripos($place, 'Main') !== false): ?>
+			<? $shelflocation = $this->driver->getShelfLocation();?>
+			<? if (empty($item['classmark'])): ?>
+				<? if (!empty($shelflocation)): ?>
+				<? foreach ($shelflocation as $location): ?>				
+				<td class="hidden-xs default_table_width"><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$this->escapeHtml($location);?></a></td>
+				<? endforeach; ?>
+				<? endif; ?>
+			<? else:?>
+				<td class="hidden-xs default_table_width"><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$item['classmark']?></a></td>
+			<? endif; ?>
+
+                <? else:?>               
+                        <td class="hidden-xs default_table_width"> 
+                        <?$place_link="http://www.soas.ac.uk/library/using/finding/location/";
+                          if($place=="Archive & Special Collections")
+                          	$place_link="https://www.soas.ac.uk/library/archives/";
+                          else if ($place=="CURRENTLY UNAVAILABLE")
+                          	$unavailable = true;
+                        ?>                      
+                        <? if (stripos($place, 'DAGENHAM') !== false | stripos($place, 'EGHAM') !== false): ?>
+        		<?$place= 'OFFSITE';?>
+                        <? endif; ?>
+                        <?if($unavailable):?>
+                        <?=$place;?>
+                        <?else:?>
+                        <a href="<?=$place_link;?>"><?=$place;?></a>
+                        <?endif;?>
+                        </td>
+		<? endif; ?>
+		 <!-- SCB Change -->
+        <td class="hidden-xs barc_table_width">
+         <!-- SCB Change -->
+        <? $barcode= $row['barcode'];
+        $item= $scbitems[$barcode]; ?>
+         <!-- SCB Change -->
+        <!-- SCB Change -->
+        <strong class="hidden-xs"><?=$this->transEsc("Call Number")?>:</strong> 
+        <? if ($item['shelflist']): ?> 
+            <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($item['shelflist'])?>"><?=$this->escapeHtml($item['shelflist'])?></a> <?=$this->escapeHtml($item['enumeration'])?>
+        <? else:?>
+            <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($row['callnumber'])?>"><?=$this->escapeHtml($row['callnumber'])?> </a><?=$this->escapeHtml($row['enumeration'])?>
+        <!-- SCB Change -->
+        <? endif; ?>
+        </td>
+
+        <td class="hidden-xs">
+		<script>
+			$(document).ready(function(){
+			$("#tooltip-ex a").tooltip({
+			placement : 'top'
+			});
+			});
+		</script>
+        <? if ($row['type']): ?>
+			<? if (stripos($row['type'], 'LONG LOAN') !== false): ?>
+			<div id="tooltip-ex">
+			<a href="#" data-toggle="tooltip" 
+			data-original-title="<?=$this->transEsc("Anyone with SOAS Library membership can borrow this item type")?>"><?=$this->escapeHtml($row['type'])?></a>
+			</div>
+			<? elseif (stripos($row['type'], 'ONE WEEK LOAN') !== false): ?>
+			<div id="tooltip-ex">
+			<a href="#" data-toggle="tooltip" 
+			data-original-title="<?=$this->transEsc("Only SOAS staff and students can borrow this item type")?>"><?=$this->escapeHtml($row['type'])?></a>
+			</div>
+			<? elseif (stripos($row['type'], 'THREE DAY LOAN') !== false): ?>
+			<div id="tooltip-ex">
+			<a href="#" data-toggle="tooltip" 
+			data-original-title="<?=$this->transEsc("Only SOAS staff and students can borrow this item type")?>"><?=$this->escapeHtml($row['type'])?></a>
+			</div>
+			<? elseif (stripos($item['type'], 'SHORT') !== false): ?>
+			<div id="tooltip-ex">
+			<a href="#" data-toggle="tooltip" 
+			data-original-title="<?=$this->transEsc("Only SOAS staff and students can borrow this item type")?>"><?=$this->escapeHtml($item['type'])?></a>
+			</div>
+			<? elseif (stripos($row['type'], 'REFERENCE ONLY') !== false): ?>
+			<div id="tooltip-ex">
+			<a href="#" data-toggle="tooltip" 
+			data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($row['type'])?></a>
+			</div>
+			<? else: ?>
+			<?=$this->escapeHtml($row['type'])?>
+			<? endif; ?>
+        <? endif; ?>
+	</td>
+
+	<? if (!empty($row['collection'])): ?>
+        <td class="hidden-xs">
+        <?=$this->escapeHtml($row['collection'])?>
+        </td>
+        <? endif; ?>
+
+        <td class="hidden-xs">
+        <?if(!$unavailable):?>
+          <? if ($row['reserve'] == "Y"): ?>
+            <link property="availability" href="http://schema.org/InStoreOnly" />
+            <?=$this->transEsc("On Reserve - Ask at Circulation Desk")?><br />
+          <? endif; ?>
+          <? if (isset($row['use_unknown_message']) && $row['use_unknown_message']): ?>
+            <span class="muted"><?=$this->transEsc("status_unknown_message")?></span>
+          <? else: ?>
+            <? if ($row['availability']): ?>
+              <? /* Begin Available Items (Holds) */ ?>
+               <span class="text-success"><?=$this->transEsc($row['status'])?><link property="availability" href="http://schema.org/InStock" /></span>
+              <? if (isset($row['link']) && $row['link']): ?>
+                <a style="display:inline-block" class="<?=$check ? 'checkRequest ' : ''?>inlineblock modal-link placehold" href="<?=$this->recordLink()->getRequestUrl($row['link'])?>" title="<?=$this->transEsc($check ? "Check Hold" : "Place a Hold")?>"><i class="icon-flag"></i>&nbsp;<?=$this->transEsc($check ? "Check Hold" : "Place a Hold")?></a>
+              <? endif; ?>
+              <? if (isset($row['storageRetrievalRequestLink']) && $row['storageRetrievalRequestLink']): ?>
+                <a class="<?=$checkStorageRetrievalRequest ? 'checkStorageRetrievalRequest ' : ''?>modal-link placeStorageRetrievalRequest" href="<?=$this->recordLink()->getRequestUrl($row['storageRetrievalRequestLink'])?>" title="<?=$this->transEsc($checkStorageRetrievalRequest ? "storage_retrieval_request_check_text" : "storage_retrieval_request_place_text")?>"><i class="icon-flag"></i>&nbsp;<?=$this->transEsc($checkStorageRetrievalRequest ? "storage_retrieval_request_check_text" : "storage_retrieval_request_place_text")?></a>
+              <? endif; ?>
+            <? else: ?>
+              <? /* Begin Unavailable Items (Recalls) */ ?>
+              <span class="text-danger"><?=$this->transEsc($row['status'])?><link property="availability" href="http://schema.org/OutOfStock" /></span>
+              <? if (isset($row['returnDate']) && $row['returnDate']): ?>&ndash; <span class="small"><?=$this->escapeHtml($row['returnDate'])?></span><? endif; ?>
+              <? if (isset($row['duedate']) && $row['duedate']): ?>
+                &ndash; <span class="text-danger"><?=$this->transEsc("Due")?>: <?=$this->escapeHtml($row['duedate'])?></span>
+              <? endif; ?>
+              <? if (isset($row['requests_placed']) && $row['requests_placed'] > 0): ?>
+                <span><?=$this->transEsc("Requests")?>: <?=$this->escapeHtml($row['requests_placed'])?></span>
+              <? endif; ?>
+                 <? if ((stripos($row['status'], 'On loan') !== false) || (stripos($row['status'], 'On holdshelf') !== false)) : ?>
+              <? if (isset($row['link']) && $row['link']): ?>
+				<!--Changes by htc ** Start -->
+                <a class="<?=$check ? 'checkRequest' : ''?> modal-link inlineblock placehold" href="<?=$this->recordLink()->getRequestUrl($row['link'])?>">&nbsp;<i class="fa fa-flag"></i>&nbsp;<?=$this->transEsc($check ? "Check Recall" : "Recall")?></a>
+            	<!--End -->  
+				<? endif; ?>
+			  <? endif; ?>
+            <? endif; ?>
+          <? endif; ?>
+          <?else:?>
+          	<span class="text-danger"><?=$this->transEsc("Unavailable")?><link property="availability" href="http://schema.org/OutOfStock" /></span>
+          <?endif;?>
+          <? /* Embed item structured data: library, barcode, call number */ ?>
+          <? if ($row['location']): ?>
+            <meta property="seller" content="<?=$this->escapeHtml($row['location'])?>" />
+          <? endif; ?>
+          <? if ($row['barcode']): ?>
+            <meta property="serialNumber" content="<?=$this->escapeHtml($row['barcode'])?>" />
+          <? endif; ?>
+          <? if ($row['callnumber']): ?>
+            <meta property="sku" content="<?=$this->escapeHtml($row['callnumber'])?>" />
+          <? endif; ?>
+          <? /* Declare that the item is to be borrowed, not for sale */ ?>
+            <link property="businessFunction" href="http://purl.org/goodrelations/v1#LeaseOut" />
+            <link property="itemOffered" href="#record" />
+        </td>
+	
+	<!--Changes by htc ** Start -->
+	<? if ($row['ptrn_q_pos']): ?>	
+	<td class="hidden-xs">
+			<? if (stripos($row['ptrn_q_pos'],'0') !== false): ?>
+				<!--Do Nothing -->
+			<? else: ?>
+       				<strong class="hidden-xs"><?=$this->transEsc("Queue Position")?>:</strong> <?=$this->escapeHtml($row['ptrn_q_pos'])?>
+        		<? endif; ?>
+			<?elseif($row['req_count']): ?>
+				<? if (stripos($row['status'], 'Available') !== false) : ?>
+					<!--Do Nothing -->
+				<? else: ?>
+        			<?=$this->transEsc("+")?> <?=$this->escapeHtml($row['req_count'])?><?=$this->transEsc(" Holds")?>
+        		<? endif; ?>
+        </td>
+        <? endif; ?>
+		<!--End -->
+      </tr>
+    <? endif; ?>
+  <? endforeach; ?>
+
+  <? if (!empty($holding['purchase_history'])): ?>
+    <tr>
+      <th><?=$this->transEsc("Most Recent Received Issues")?>:</th>
+      <td>
+        <? foreach ($holding['purchase_history'] as $current): ?>
+          <?=$this->escapeHtml($current['issue'])?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+</table>
+<? endforeach; ?>
+
+<!-- When there are no items (947) we display the (946) -->
+    <? if ($hasItems<1) : ?>
+        <table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
+        <? foreach ($scbitems as $index=>$holding): ?>
+                <? if (strpos($index,"holding")):?>
+                    <?$hasHoldings=1;?>
+                    <tr vocab="http://schema.org/" typeof="Offer">
+                        <td><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$holding['classmark'];?></td>
+                        <td>
+                            <strong class="hidden-xs"><?=$this->transEsc("Call Number")?>:</strong> <? if ($holding['shelflist']): ?> <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holding['shelflist'])?>"><?=$this->escapeHtml($holding['shelflist'])?></a><? endif; ?>
+                        </td>
+                    </tr>
+                <? endif; ?>
+        <? endforeach; ?>
+        </table>
+    <? endif; ?>
+
+<!-- When there are no items (947) we display the (946) -->
+<!-- When there are no items (947) or holdings (946) we display the 082 (but not for Journals)-->
+    <? if ($hasItems<1 && $hasHoldings<1) : ?>
+        <? $callnumber = $this->driver->getClassmark();?>
+        <? $checkFormat =  $this->driver->getFormats(); ?>
+          <!-- if (!(in_array("Journal", $checkFormat))) :  -->
+            <? $shelfLocations = $this->driver->getShelfLocation();?>
+            <? if(count($shelfLocations)>0) :?>             
+            <?$hasCallnumber=1;?>
+            <table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($callnumer)?>">
+                <tr vocab="http://schema.org/" typeof="Offer">
+                <?if (!(in_array("Journal", $checkFormat))) :?>
+                    <td><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$shelfLocations[0];?></td>
+                <?endif;?>
+                    <td>
+                        <strong class="hidden-xs"><?=$this->transEsc("Call Number")?>:</strong> <? if ($callnumber): ?> <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($callnumber)?>"><?=$this->escapeHtml($callnumber)?></a><? endif; ?>
+                    </td>
+                </tr>
+            </table>
+        <!--   endif;  -->
+        <?endif;?>
+    <? endif; ?>
+
+<!-- When there are no items (947) or holdings (946) we display the 082 -->
+<!-- When there are no items (947) or holdings (946) or 082 we check the $z subfield -->
+    <? if ($hasItems<1 && $hasHoldings<1 && $hasCallnumber<1) : ?>
+    <? $onOrderItem = $this->driver->getItemOnOrder();?>
+            <? if(count($onOrderItem)>0) :?>
+            <table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($callnumer)?>">
+                <tr vocab="http://schema.org/" typeof="Offer">
+                    <td>
+                        <? if (strpos($onOrderItem[0],'ONORDER') !== false):?><?=$this->transEsc("On order")?><? endif; ?>
+                    </td>
+                </tr>
+            </table>
+            <?endif;?>
+    <? endif; ?>
+<!-- When there are no items (947) or holdings (946) or 082 we check the $z subfield -->
+  <?if($count_holdings > 6):?>
+  <div id="div_show_more_gethis"><span onclick="showAllHoldingsGetThis()"><?=$this->transEsc("DISPLAY ALL").' ...'?></span></div>
+  <div id="div_show_less_gethis" class="hidden"><span onclick="showLessHoldingsGetThis()"><?=$this->transEsc("SHOW LESS").' ...'?></span></div>
+  <?endif;?>
+</div>
+
+<script>
+function showAllHoldingsGetThis() {
+$( ".hidden_holdings_gethis" ).each(function() {
+  $( this ).removeClass( "hidden_holdings_gethis" ).addClass( "hidden_holdings3_gethis" );
+});
+
+$( "#div_show_more_gethis" ).each(function() {
+  $( this ).addClass( "hidden" );
+});
+$( "#div_show_less_gethis" ).each(function() {
+  $( this ).removeClass( "hidden" );
+});
+}
+
+function showLessHoldingsGetThis() {
+$( ".hidden_holdings3_gethis" ).each(function() {
+	
+  $( this ).removeClass( "hidden_holdings3_gethis" ).addClass( "hidden_holdings_gethis" );
+  
+  $( "#div_show_less_gethis" ).each(function() {
+  $( this ).addClass( "hidden" );
+});
+$( "#div_show_more_gethis" ).each(function() {
+  $( this ).removeClass( "hidden" );
+});
+});
+
+}
+</script>
+

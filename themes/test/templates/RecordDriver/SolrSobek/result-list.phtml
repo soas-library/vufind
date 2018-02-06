@@ -1,3 +1,5 @@
+<? $sobek = $this->driver->userPermissions('Sobek'); ?>
+
 <?$item_sobek_txt = $this->driver->getTag856u();?>
 <? 
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
@@ -25,6 +27,12 @@
           <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=$this->record($this->driver)->getTitleHtml()?>
           </a>
+          </br>
+          <? $alt246 = $this->driver->get246();if (!empty($alt246)): ?>  
+          <? foreach($alt246 as $field): ?>
+            <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>"><?=$this->escapeHtml($field)?></a></br>
+          <? endforeach; ?>
+    <? endif; ?> 
         </div>
 
         <div>
@@ -134,13 +142,21 @@
           <? if (!is_array($urls)) $urls = array();
 	            if(!$this->driver->isCollection()):
 	              foreach ($urls as $current): ?>
-	                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
+	                <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
+	                  <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
+	                <? else: ?>
+	                  <span>Not available</span></br>
+	                <? endif; ?>
 	            <? endforeach; ?>
 	          <? endif; ?>        
            <?elseif($item_sobek_txt != ""):?>
+             <? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
       		<a href="<?=$item_sobek_txt?>" class="fulltext" target="new">
             	<i class="fa fa-external-link"></i> <?=$this->transEsc('click_here_for_full_text')?>
            	 </a><br/>
+             <? else: ?>
+                <span>Not available</span></br>
+             <? endif; ?>
            <? endif; ?>
        
        <?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>

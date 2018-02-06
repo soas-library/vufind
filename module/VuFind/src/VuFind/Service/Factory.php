@@ -545,7 +545,8 @@ class Factory
         $recaptcha->setOption('lang', $translator->getLocale());
 
         $httpClient = $sm->get('VuFind\Http')->createClient();
-        $recaptcha->setHttpClient($httpClient); 
+        $recaptcha->setHttpClient($httpClient);
+
         return $recaptcha;
     }
 

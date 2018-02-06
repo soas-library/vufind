@@ -1,0 +1,42 @@
+--2017-07-11 11:12:55--  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Resolving proxy.soas.ac.uk (proxy.soas.ac.uk)... 2001:630:1b:1001:fce9:4633:2f26:4a5b, 193.63.73.33
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:17:11--  (try: 2)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:21:27--  (try: 3)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:25:45--  (try: 4)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:30:03--  (try: 5)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:34:23--  (try: 6)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... failed: Connection timed out.
+Retrying.
+
+--2017-07-11 11:38:43--  (try: 7)  http://vfdev01.lis.soas.ac.uk:8080/solr/biblio/update?stream.body=%3Cdelete%3E%3Cquery%3Ecollection:%22SOAS%20Archive%22%3C/query%3E%3C/delete%3E&commit=true
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|2001:630:1b:1001:fce9:4633:2f26:4a5b|:3128... failed: Connection timed out.
+Connecting to proxy.soas.ac.uk (proxy.soas.ac.uk)|193.63.73.33|:3128... connected.
+Proxy request sent, awaiting response... 200 OK
+Length: unspecified [application/xml]
+Saving to: ‘update?stream.body=<delete><query>collection:"SOAS Archive"<%2Fquery><%2Fdelete>&commit=true’
+
+     0K                                                        26.8M=0s
+
+2017-07-11 11:43:51 (26.8 MB/s) - ‘update?stream.body=<delete><query>collection:"SOAS Archive"<%2Fquery><%2Fdelete>&commit=true’ saved [152]
+

@@ -1,0 +1,80 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Notes') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+<table class="table table-striped" summary="<?=$this->transEsc('Notes')?>">
+
+
+  <? $notes = $this->driver->getGeneralNotes(); if (!empty($notes)): ?>
+    <? $contentDisplayed = true; ?>
+    <tr>
+      <th class="labelTbl"><?=$this->transEsc('Notes')/*Item Description*/?>: </th> 
+      <td>
+	  	<? $linkednotes = $this->driver->getLinkedNote(); if (!empty($linkednotes)): ?>
+			<? foreach ($linkednotes as $linknote): ?><?= $this->escapeHtml($linknote)?>
+			<br/>
+			<? endforeach; ?>
+		<? endif; ?>
+        <? foreach ($notes as $field): ?>
+          <span class="descriptionLine"><?=$this->escapeHtml($field)?></span><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+  
+  <? $physical = $this->driver->getPhysicalDescriptions(); if (!empty($physical)): ?>
+    <? $contentDisplayed = true; ?>
+    <tr>
+      <th class="labelTbl"><?=$this->transEsc('Physical Description')?>: </th>
+      <td>
+        <? foreach ($physical as $field): ?>
+          <?=$this->escapeHtml($field)?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+  
+  <? $system = $this->driver->getSystemDetails(); if (!empty($system)): ?>
+    <? $contentDisplayed = true; ?>
+    <tr>
+      <th class="labelTbl"><?=$this->transEsc('Format')?>: </th>
+      <td>
+        <? foreach ($system as $field): ?>
+          <?=$this->escapeHtml($field)?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+
+  <? $dateSpan = $this->driver->getDateSpan(); if (!empty($dateSpan)): ?>
+    <? $contentDisplayed = true; ?>
+    <tr>
+      <th class="labelTbl"><?=$this->transEsc('Published')?>: </th>
+      <td>
+        <? foreach ($dateSpan as $field): ?>
+          <?=$this->escapeHtml($field)?><br/>
+        <? endforeach; ?>
+      </td>
+    </tr>
+  <? endif; ?>
+   
+  
+  <? $languageNotes = $this->driver->getLanguageNotes(); if (!empty($languageNotes)): ?>
+     <? $contentDisplayed = true; ?>
+        <tr>
+          <th><?=$this->transEsc('Language')?>: </th>
+          <td><? foreach ($languageNotes as $languageNote): ?><?= $this->escapeHtml($languageNote)?><br/><? endforeach; ?></td>
+        </tr>
+      <? endif; ?>
+
+  <? if (!isset($contentDisplayed) || !$contentDisplayed): // Avoid errors if there were no rows above ?>
+    <tr><td><?=$this->transEsc('no_description')?></td></tr>
+  <? endif; ?>
+  
+</table>
+
+
+

@@ -103,7 +103,7 @@ if(!empty($arCol))$colType = $arCol[0];
   <? $dateSpan = $this->driver->getDateSpan(); if (!empty($dateSpan)): ?>
     <? $contentDisplayed = true; ?>
     <tr>
-      <th class="labelTbl"><?=$this->transEsc('Published')?>: </th>
+      <th class="labelTbl"><?=$this->transEsc('Date Published')?>: </th>
       <td>
         <? foreach ($dateSpan as $field): ?>
           <?=$this->escapeHtml($field)?><br/>
@@ -129,7 +129,7 @@ if(!empty($arCol))$colType = $arCol[0];
           <? endforeach; ?>
 		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
             <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+			<? foreach ($linkedtopic as $linktopic): ?><a href="http:///Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
             <br />
 			<? endforeach; ?>
           <? endif; ?>
@@ -406,8 +406,6 @@ if(!empty($arCol))$colType = $arCol[0];
             <? foreach ($order as $orderAux): ?><?= html_entity_decode($this->escapeHtml($orderAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
         </td>
       </tr>
-       <?else:?>
-      <th><?=$this->transEsc('Order Number')?>:</th><td><?=$this->transEsc('Can not be requested')?></td>
       <? endif; ?>
     
   <? $summ = $this->driver->getSummary(); if (!empty($summ)): ?>
@@ -564,7 +562,7 @@ if(!empty($arCol))$colType = $arCol[0];
       <tr>
         <th class="labelTbl"><?=$this->transEsc('Document')?>:</th>
         <td>
-            <? foreach ($document as $documentAux): ?><a target="_blank" href="http://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"><?= $this->escapeHtml($documentAux)?></a><br/><? endforeach; ?>
+            <? foreach ($document as $documentAux): ?><a target="_blank" href="https://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"><?= $this->escapeHtml($documentAux)?></a><br/><? endforeach; ?>
         </td>
       </tr>
       <? endif; ?>
@@ -775,7 +773,7 @@ if(!empty($arCol))$colType = $arCol[0];
           <? endforeach; ?>
 		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
             <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+			<? foreach ($linkedtopic as $linktopic): ?><a href="http:///Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
             <br />
 			<? endforeach; ?>
           <? endif; ?>

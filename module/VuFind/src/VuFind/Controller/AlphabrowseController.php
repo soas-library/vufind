@@ -126,8 +126,26 @@ class AlphabrowseController extends AbstractBase
         // If required parameters are present, load results:
         if ($source && $from !== false) {
             // Load Solr data or die trying:
-            $result = $db->alphabeticBrowse(
+            /*$result = $db->alphabeticBrowse(
                 $source, $from, $page, $limit, $extraParams, 0 - $rows_before
+            );*/
+
+	//print_r($from);
+
+            $result1 = $db->alphabeticBrowse(
+                $source, $from, 0, $limit, $extraParams, 0 - $rows_before
+            );
+
+	//print_r('</br>');
+	$posicion = $result1['Browse']['startRow'];
+	//print_r($posicion);
+	//print_r('</br>');
+	$estado = $result1['Browse']['matchType'];
+	//print_r($estado);
+	//print_r('</br>');
+
+            $result = $db->alphabeticBrowse(
+                $source, '', $page, $limit, $extraParams, 0 - $rows_before
             );
 
             // No results?    Try the previous page just in case we've gone past
@@ -191,10 +209,8 @@ class AlphabrowseController extends AbstractBase
             ? explode(':', $extras[$source]) : [];
 
         /** SCB **/
-
-$loggin=$this->getAuthManager()->isLoggedIn();
-
-          session_start();
+        $loggin=$this->getAuthManager()->isLoggedIn();
+        session_start();
         if($_GET['excel'] == "1"){
 
 	$arr_excel = $_SESSION['arr_excel'];	
@@ -258,6 +274,10 @@ $loggin=$this->getAuthManager()->isLoggedIn();
 	}
 	        
 	$view->page = $page;
+	
+	$view->posicion = $posicion;
+	$view->estado = $estado;
+	
 	$view->limit = $limit;
         
         /** SCB **/

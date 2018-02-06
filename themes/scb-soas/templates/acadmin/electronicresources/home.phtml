@@ -1,0 +1,48 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Electronic resources'));
+  
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/electronicresources') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('Electronic resources') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Electronic resources')?></h2>
+
+<?
+/*print_r($this->resource_names);
+print_r('</br>');
+print_r($this->regex_values);
+print_r('</br>');*/
+?>
+
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation"><?=$this->translate('Electronic resources')?></th>
+<th class="thLocation"><?=$this->translate('URLs')?></th>
+ </tr>
+</thead>
+<tbody>
+
+<? for ($i = 0; $i < count($this->resource_names); $i++) { ?>
+	<tr>
+	<td><a href="/Acadmin/Resource?res=<?=$this->resource_names[$i];?>"><?=$this->resource_names[$i];?></a></td>
+	<td>
+	<? for ($j = 0; $j < count($this->regex_values[$i]); $j++) { ?>
+	<p>
+	<? echo $this->regex_values[$i][$j];?>
+	</p>
+	<? } ?>
+	</td>
+	</tr>
+<? } ?>
+
+ </tbody>
+</table>
+
+  </div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

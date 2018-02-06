@@ -1,15 +1,17 @@
-<? $account = $this->auth()->getManager(); ?>
+<?$account = $this->auth()->getManager(); ?>
 
 <!--<div id="soft_launch_feedback" class="pull-right well hidden-xs"><strong>New Login Screen: 13/10/2015</strong><br />
 Click the new Login link to sign into your SOAS Library account.<br />
 Use your SOAS ID  (or for external users LW number) and password.
 </div>-->
 
-<div id="menu_general">
-<div id="menu_top">
+<div id="menu_general_new">
+<div id="menu_top_new">
 <div class="collapse navbar-collapse" id="header-collapse">
- <ul role="navigation" class="nav navbar-nav navbar-right">
+<ul role="navigation" class="nav navbar-nav navbar-left">
 
+        <li class="white_link"><a class="white_link" href="https://www.soas.ac.uk/library/"><?=$this->transEsc("HOME")?></a></li>
+        
         <? if ($this->feedback()->tabEnabled()): ?>
           <li>
             <a id="feedbackLink" data-lightbox href="<?=$this->url('feedback-home') ?>"><i class="fa fa-envelope" aria-hidden="true"></i> <?=$this->transEsc("Feedback")?></a>
@@ -32,7 +34,7 @@ Use your SOAS ID  (or for external users LW number) and password.
           </li>
           <li id="loginOptions"<? if($account->isLoggedIn()): ?> class="hidden"<? endif ?>>
             <? if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))): ?>
-              <a class="white_link" href="<?=$this->url('myresearch-userlogin')?>"><i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->transEsc("Institutional Login")?></a>
+              <a class="white_link" href="<?=$this->url('myresearch-userlogin')?>"><i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->transEsc("My account")?></a>
             <? else: ?>
               <a class="white_link" href="<?=$this->url('myresearch-userlogin')?>" data-lightbox><i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->transEsc("Login")?></a>
             <? endif; ?>
@@ -53,6 +55,11 @@ Use your SOAS ID  (or for external users LW number) and password.
           </li>
         <? endif; ?>
 
+</ul>
+<ul role="navigation" class="nav navbar-nav navbar-right">
+
+        <li class="white_link"><a class="white_link" href="https://docs.google.com/forms/d/e/1FAIpQLSdQUwg0lZDoJd2f5kIA12wHqlk7TyUO2zyiOiXeNQMpAlYJaQ/viewform"><?=$this->transEsc("Feedback")?></a></li>
+        
         <? if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1): ?>
           <li class="language dropdown">
             <form method="post" name="langForm" id="langForm">
@@ -67,18 +74,25 @@ Use your SOAS ID  (or for external users LW number) and password.
           </li>
         <? endif; ?>
         
-        <li class="white_link"><a class="white_link" href="http://www.soas.ac.uk/library"><i class="fa fa-at" id="library_website"></i><?=$this->transEsc("Library Website")?></a></li>
-        <li class="white_link"><a class="white_link" class="menu_top" href="http://www.soas.ac.uk/library/using/finding/location/"><i class="fa fa-search" id="library_item_menu"></i><?=$this->transEsc("Locate Library Item")?></a></li>
-        <li class="white_link"><a class="white_link" class="menu_top" href="http://www.soas.ac.uk/library/using/finding/off-site-materials/"><i class="fa fa-share" id="off_site_menu"></i><?=$this->transEsc("Off-site Materials")?></a></li>
-        <li><a id="link_about" href="<?=$this->url('help-home')?>?topic=about" data-lightbox class="help-link" title="<?=$this->transEsc('About')?>"><?=$this->transEsc('About')?></a></li>
+        <li class="white_link"><a class="white_link" class="menu_top" href="/Locationlist"><i class="fa fa-search" id="library_item_menu"></i><?=$this->transEsc("Locate Library Item")?></a></li>
         
-      </ul>
+        <? /*<li class="white_link"><a class="white_link" href="https://www.soas.ac.uk/library"><i class="fa fa-at" id="library_website"></i><?=$this->transEsc("Library Website")?></a></li>
+        <li class="white_link"><a class="white_link" class="menu_top" href="https://www.soas.ac.uk/library/using/finding/off-site-materials/"><i class="fa fa-share" id="off_site_menu"></i><?=$this->transEsc("Off-site Materials")?></a></li>
+        <li><a id="link_about" href="<?=$this->url('help-home')?>?topic=about" data-lightbox class="help-link" title="<?=$this->transEsc('About')?>"><?=$this->transEsc('About')?></a></li>
+        */ ?>
+</ul>
     </div>
 </div>
 </div>
+<div>
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse">
+    <span class="sr-only" tabindex="3">Toggle navigation</span>
+  </button>
+</div>
 <div class="pull-left">
 <div class="navbar-header">
-  <a id="logo" tabindex="7" href="<?=$this->url('home')?>"><img src="/soas-logo-100years-orig.png" alt="SOAS, University of London"></a>
+  <!--<a id="logo" tabindex="7" href="<?=$this->url('home')?>"><img src="/soas-logo-100years-orig.png" alt="SOAS, University of London"></a>-->
+  <a id="logonew" href="/"><h2>SOAS University of London</h2></a>
   <!--<div id="soft_launch_feedback" class="pull-right well hidden-xs"><a tabindex="6" style="font-size:16pt" href="https://docs.google.com/forms/d/1e_Kr0Tavdm-OJNxdtOM5u2tdX8IrKAlrv-CnHoo_JMQ/viewform"><?=$this->transEsc("Feedback")?></a>  <i style="font-size:16pt" class="fa fa-thumbs-up"></i>
   <br /><br /><?=$this->transEsc("Tell us what you think!")?></div>-->
 </div>
@@ -88,14 +102,9 @@ Use your SOAS ID  (or for external users LW number) and password.
   </div>
 </div>
 
-<div>
-  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse">
-    <span class="sr-only" tabindex="3">Toggle navigation</span>
-    <i class="fa fa-bars"></i>
-  </button>
-</div>
 
-<? if(empty($this->layout()->breadcrumbs)): ?>
+
+<? if((empty($this->layout()->breadcrumbs)) && (preg_match('/\/Locationlist\/Location/', $_SERVER[REQUEST_URI]) == false )): ?>
 <?=$this->render('home_news.phtml')?>
 <? endif; ?>
 

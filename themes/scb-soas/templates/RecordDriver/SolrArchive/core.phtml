@@ -85,7 +85,7 @@
 		<table class="table table-responsive" summary="<?=$this->transEsc('Calm info')?> 
 	<tr class="hidden_holdings2">
 	<? if (!empty($locationDisplay)): ?>
-	<td id="boxArchive"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$locationDisplay?></a></div></td>
+	<td id="boxArchive"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archive & Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archives xxxxx Special Collections")?>"><?=$locationDisplay?></a></div></td>
 	<? endif; ?>
 	<? if (!empty($classmark)): ?><td><a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($classmark)?>"><?=$classmark?></a></td><? endif; ?>
 	<? if (!empty($loantype)): ?><td ><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($loantype)?></a></div></td><? endif; ?>
@@ -112,8 +112,6 @@
             <? foreach ($order as $orderAux): ?><?= html_entity_decode($this->escapeHtml($orderAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
         </td>
       </tr>
-      <?else:?>
-      <th><?=$this->transEsc('Order Number')?>:</th><td><?=$this->transEsc('Can not be requested')?></td>
       <? endif; ?>
       
       <? $dateCreation = $this->driver->getDateCreation(); if (!empty($dateCreation) && count($dateCreation)>0 && !empty($dateCreation[0])): ?>
@@ -427,7 +425,6 @@ $( "#div_show_more" ).each(function() {
 
 }
 </script>
-
     </table>
     <?/* End Main Details */?>
   </div>

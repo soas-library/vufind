@@ -1,0 +1,48 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Admin control'));
+
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/userpermissions') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('User permissions') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('User permissions')?></h2>
+<?=$this->flashmessages()?> 
+<form method="post" action="/Acadmin/Userpermissions" name="findUsers" id="findUsers">
+
+<label><?=$this->transEsc('Username')?>:</label>
+<input class="inputTextShort" id="username" type="text" name="username" value ="">&nbsp;&nbsp;
+<label><?=$this->transEsc('Firstname')?></label>:<input class="inputTextShort" id="firstname" type="text" name="firstname" value ="">&nbsp;&nbsp;
+<label><?=$this->transEsc('Lastname')?></label>:<input class="inputTextShort" id="lastname" type="text" name="lastname" value ="">&nbsp;&nbsp;
+<input value="Find" id="btnFind" name="btnFind" type="submit" class="btn btn-customized"/> 
+
+<?if(count($this->users)>0):?>
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation"><?=$this->translate('Username')?></th>
+<th class="thLocation"><?=$this->translate('Firstname')?></th>
+<th class="thLocation"><?=$this->translate('Lastname')?></th>
+<th class="thLocation"><?=$this->translate('Profile')?></th>
+ </tr>
+</thead>
+<tbody>
+<? foreach($this->users as $user){ ?>
+	<tr>
+	<td><a href="<?=$this->url('acadmin/userpermission').'?id='.$user['id']?>"><?=$user['username'];?></a></td>
+	<td><?=$user['firstname'];?></td>
+	<td><?=$user['lastname'];?></td>
+	<td><?=$user['profile_name'];?></td>
+	</tr>
+<? } ?>
+ </tbody>
+</table>
+</form>
+<?endif;?>
+
+  </div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

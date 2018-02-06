@@ -1,0 +1,29 @@
+<?
+if($this->id_level != ""):
+  	$sort="&order=2";
+  	$this->headTitle($this->translate('Level note'));
+else:
+	$this->headTitle($this->translate('Class mark note'));
+endif;	
+  $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/locations'). '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/locations') .'?id_classmark='.$this->classmark['id_classmark'].'&id_level='.$this->level['id_level'].$sort. '">' . $this->transEsc('Location list') . '</a></li> <li class="active">' . $this->transEsc('Note') . '</li>';
+
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?if($this->level['id_level'] != ""): echo $this->transEsc('Level note'); else: echo $this->transEsc('Class mark note');endif;?></h2>    
+</br>        
+<?=$this->flashmessages()?>        
+<form method="post" action="/Acadmin/Note" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="a"><?=$this->transEsc('Note')?></label>
+<textarea rows="5" cols="100" class="form-control"  id="note" name="note" value="<?if($this->level['id_level'] != ""): echo $this->level['note'];else: echo $this->classmark['note']; endif;?>"><?if($this->level['id_level'] != ""): echo $this->level['note'];else: echo $this->classmark['note']; endif;?></textarea>
+</div>
+<input type="text" class="form-control hidden"  id="id_classmark" name="id_classmark" value="<?=$this->classmark['id_classmark']?>">
+<input type="text" class="form-control hidden"  id="id_level" name="id_level" value="<?=$this->level['id_level']?>">
+<input value="Save" id="save" name="save" type="submit" class="btn btn-customized"/>
+</form>
+</div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

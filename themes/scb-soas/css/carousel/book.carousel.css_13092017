@@ -1,0 +1,127 @@
+/* Owlcarousel */
+
+.owl-carousel {
+    display: none;
+    position: relative;
+    width: 100%;
+    -ms-touch-action: pan-y;
+}
+
+.owl-carousel .owl-wrapper {
+    display: none;
+    position: relative;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+}
+
+.owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.owl-carousel .owl-item {
+    float: left;
+    background-color: #F4F4F4;
+    padding: 18px;
+    width: 150px;
+    min-height: 375px;
+}
+
+.tooltip-inner span {
+    height:100%;
+}
+
+.tooltip-inner {
+    color: white;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.searchHomeContent {
+    margin: -40px -15px -30px !important;
+}
+
+.owl-theme .owl-controls {
+   margin-top: 10px;
+   text-align: center;
+}
+
+.owl-theme .owl-controls.clickable .owl-buttons div:hover {
+    filter: Alpha(Opacity=100);/*IE7 fix*/
+    opacity: 1;
+    text-decoration: none;
+}
+
+.owl-theme .owl-controls .owl-page {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;/*IE7 life-saver */
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+    filter: Alpha(Opacity=100);/*IE7 fix*/
+    opacity: 1;
+}
+ 
+.owl-theme .owl-controls .owl-buttons div {
+    position: absolute;
+}
+ 
+.owl-theme .owl-controls .owl-buttons .owl-prev {
+    left: -5px;
+    top: 100px; 
+}
+ 
+.owl-theme .owl-controls .owl-buttons .owl-next {
+    right: -10px;
+    top: 100px;
+}
+
+#homesearchbox {
+    background-color: rgba(255, 197, 63, 0.98) !important;
+}
+
+#content, header .container {
+    background: #f4f4f4 none repeat scroll 0 0 !important;
+    border: none !important;
+}
+
+.homecover{
+position: absolute; 
+z-index: 2; 
+width: 85%; 
+margin-left: 7.5%; 
+padding: 0 30px !important; 
+border: medium none; 
+box-shadow: none;
+}
+
+@media (max-width:768px){.pull-right-xs {float: initial !important;}}
+@media (min-width:767px){.homecovertop {top:240px; !important;}}
+@media (max-width:767px){footer {padding-top:70%;}}
+@media (min-width:768px){footer {padding-top:25%;}}
+@media (min-width:768px){.alert_news {width: 460px; margin-top: 0 ; margin-right: 0 !important; opacity: 0.9;}}
+@media (max-width:767px) {.logo-transp {display:none} .navbar-toggle {margin-top: 0px;} #logonew h2 {margin: 0 50px 14px 15px;} .searchHomeContent {background-color: #ffffff;}}
+@media (min-width:768px) {#logosoas{display:none;}}
+
+.fronth3 {
+    margin-top: 5px;
+}
+
+.owl-pagination {
+    display: none;
+}
+
+.logo-transp {
+    top:50%;
+    left:50%;
+    background-color:
+    transparent;
+    background-image: url('/themes/scb-soas/images/soas-logo-transparent.png');
+    background-repeat: no-repeat; color: #000;
+    width: 34%;
+    height: 70px;
+    float: right;
+    margin-top: 15px;
+}

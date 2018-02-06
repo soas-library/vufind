@@ -1,0 +1,34 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('User role'));
+  
+  // Set up breadcrumbs:
+  $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/userroles') . '">' . $this->transEsc('Administration') . '</a></li>' . ' <li class="active">' . $this->transEsc('User role') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('User role')?></h2>
+        
+        </br></br>
+        
+<?=$this->flashmessages()?>    
+    
+<form method="post" action="/Acadmin/Userrole" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="description"><?=$this->transEsc('User role')?></label>
+<input  class="form-control"  id="description" name="description" value="<?=$this->profile['name']?>"></input>
+</div>
+<input type="text" class="form-control hidden"  id="id_profile" name="id_profile" value="<?=$this->profile['id_profile']?>">
+
+<input type="hidden" name="save" id="save" value="0"/>
+<?if(!empty($this->profile) && $this->profile['id_profile']!=""):?>
+<input value="Save" id="modify" name="modify" type="submit" class="btn btn-customized"/>
+<?else:?>
+<input value="Save" id="create" name="create" type="submit" class="btn btn-customized"/>
+<?endif;?>
+</form>
+</div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

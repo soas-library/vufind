@@ -77,6 +77,9 @@ $config = [
             'combined' => 'VuFind\Controller\CombinedController',
             'confirm' => 'VuFind\Controller\ConfirmController',
             'cover' => 'VuFind\Controller\CoverController',
+            //SCB 20170822
+            'carouselcover' => 'VuFind\Controller\CarouselCoverController',
+            //SCB 20170822
             'eds' => 'VuFind\Controller\EdsController',
             'edsrecord' => 'VuFind\Controller\EdsrecordController',
             'eit' => 'VuFind\Controller\EITController',
@@ -673,7 +676,8 @@ $config = [
                     'Reviews' => 'Reviews', 'Excerpt' => 'Excerpt',
                     'Preview' => 'preview',
                     'HierarchyTree' => 'HierarchyTree', 'Map' => 'Map',
-                    'Similar' => 'SimilarItemsCarousel',
+                    //SCB Change 16082017
+                    //'Similar' => 'SimilarItemsCarousel',
                     'Details' => 'StaffViewArray'
                 ],
                 'defaultTab' => null,
@@ -691,7 +695,8 @@ $config = [
                     'Reviews' => 'Reviews', 'Excerpt' => 'Excerpt',
                     'Preview' => 'preview',
                     'HierarchyTree' => 'HierarchyTree', 'Map' => 'Map',
-                    'Similar' => 'SimilarItemsCarousel',
+                    //SCB Change 16082017
+                    //'Similar' => 'SimilarItemsCarousel',
                     'Details' => 'StaffViewMARC'
                     /** SCB **/
                 ],
@@ -710,7 +715,8 @@ $config = [
                     'Reviews' => 'Reviews', 'Excerpt' => 'Excerpt',
                     'Preview' => 'preview',
                     'HierarchyTree' => 'HierarchyTree', 'Map' => 'Map',
-                    'Similar' => 'SimilarItemsCarousel',
+                    //SCB Change 16082017
+                    //'Similar' => 'SimilarItemsCarousel',
                     'Details' => 'StaffViewMARC'
                 ],
                 'defaultTab' => ['Description'],

@@ -158,6 +158,7 @@ class Shibboleth extends AbstractBase
         } else {
             $shibTarget = $target;
         }
+
         $append = (strpos($shibTarget, '?') !== false) ? '&' : '?';
         $sessionInitiator = $config->Shibboleth->login
             . '?target=' . urlencode($shibTarget)
@@ -184,8 +185,7 @@ class Shibboleth extends AbstractBase
     {
         $config = $this->getConfig();
         if (isset($config->Shibboleth->username)
-           /* && isset($config->Shibboleth->logout)*/
-	   && false
+          && false /* && isset($config->Shibboleth->logout)*/
         ) {
             // It would be more proper to call getServer on a Zend request
             // object... except that the request object doesn't exist yet when

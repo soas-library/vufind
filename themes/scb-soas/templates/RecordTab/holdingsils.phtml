@@ -62,7 +62,7 @@
 <?=$this->ils()->getOrderStatus()?>
 
 <? foreach ($holdings as $holding): ?>
-<h3><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$this->transEsc($holding['location'])?></a></h3>
+<h3><a href="/Locationlist"><?=$this->transEsc($holding['location'])?></a></h3>
 
 <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
   <? if (!empty($holding['summary'])): ?>
@@ -98,7 +98,7 @@
       $blockILLRequest = !$checkILLRequest && isset($row['addILLRequestLink']) && $row['addILLRequestLink'] === 'block';
     ?>
     <? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
-      <tr vocab="http://schema.org/" typeof="Offer">
+      <tr vocab="https://schema.org/" typeof="Offer">
         <!--<th class="hidden-xs"><?=$this->transEsc("Copy")?> <?=$this->escapeHtml($row['number'])?></th>-->
         <td class="hidden-xs">
         <? if ($row['holdings']): ?> <?=$this->escapeHtml($row['holdings'])?>
@@ -143,7 +143,7 @@
         </td>
         <td>
           <? if ($row['reserve'] == "Y"): ?>
-            <link property="availability" href="http://schema.org/InStoreOnly" />
+            <link property="availability" href="https://schema.org/InStoreOnly" />
             <?=$this->transEsc("On Reserve - Ask at Circulation Desk")?><br />
           <? endif; ?>
           <? if (isset($row['use_unknown_message']) && $row['use_unknown_message']): ?>
@@ -151,7 +151,7 @@
           <? else: ?>
             <? if ($row['availability']): ?>
               <? /* Begin Available Items (Holds) */ ?>
-               <span class="text-success"><?=$this->transEsc("Available")?><link property="availability" href="http://schema.org/InStock" /></span>
+               <span class="text-success"><?=$this->transEsc("Available")?><link property="availability" href="https://schema.org/InStock" /></span>
               <? if (isset($row['link']) && $row['link']): ?>
                 <a style="display:inline-block" class="<?=$check ? 'checkRequest ' : ''?>inlineblock modal-link placehold" href="<?=$this->recordLink()->getRequestUrl($row['link'])?>" title="<?=$this->transEsc($check ? "Check Hold" : "Place a Hold")?>"><i class="icon-flag"></i>&nbsp;<?=$this->transEsc($check ? "Check Hold" : "Place a Hold")?></a>
               <? endif; ?>
@@ -160,7 +160,7 @@
               <? endif; ?>
             <? else: ?>
               <? /* Begin Unavailable Items (Recalls) */ ?>
-              <span class="text-danger"><?=$this->transEsc($row['status'])?><link property="availability" href="http://schema.org/OutOfStock" /></span>
+              <span class="text-danger"><?=$this->transEsc($row['status'])?><link property="availability" href="https://schema.org/OutOfStock" /></span>
               <? if (isset($row['returnDate']) && $row['returnDate']): ?>&ndash; <span class="small"><?=$this->escapeHtml($row['returnDate'])?></span><? endif; ?>
               <? if (isset($row['duedate']) && $row['duedate']): ?>
                 &ndash; <span class="text-danger"><?=$this->transEsc("Due")?>: <?=$this->escapeHtml($row['duedate'])?></span>

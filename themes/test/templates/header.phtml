@@ -1,5 +1,12 @@
 <? $account = $this->auth()->getManager(); ?>
 
+<?
+/* Access permissions */
+$libWebsite_access = $account->userPermissions('Header: Library website');
+$logoLink_access = $account->userPermissions('Header: Logo link');
+$locateLibraryItem_access = $account->userPermissions('Header: Locate Library Item');
+?>
+
 <!--<div id="soft_launch_feedback" class="pull-right well hidden-xs"><strong>New Login Screen: 13/10/2015</strong><br />
 Click the new Login link to sign into your SOAS Library account.<br />
 Use your SOAS ID  (or for external users LW number) and password.
@@ -66,9 +73,12 @@ Use your SOAS ID  (or for external users LW number) and password.
             </ul>
           </li>
         <? endif; ?>
-        
-        <li class="white_link"><a class="white_link" href="http://www.soas.ac.uk/library"><i class="fa fa-at" id="library_website"></i><?=$this->transEsc("Library Website")?></a></li>
+        <? if (!$libWebsite_access) { ?>
+        	<li class="white_link"><a class="white_link" href="http://www.soas.ac.uk/library"><i class="fa fa-at" id="library_website"></i><?=$this->transEsc("Library Website")?></a></li>
+        <? } ?>
+        <? if (!$locateLibraryItem_access) { ?>
         <li class="white_link"><a class="white_link" class="menu_top" href="http://www.soas.ac.uk/library/using/finding/location/"><i class="fa fa-search" id="library_item_menu"></i><?=$this->transEsc("Locate Library Item")?></a></li>
+        <? } ?>
         <li class="white_link"><a class="white_link" class="menu_top" href="http://www.soas.ac.uk/library/using/finding/off-site-materials/"><i class="fa fa-share" id="off_site_menu"></i><?=$this->transEsc("Off-site Materials")?></a></li>
         <li><a id="link_about" href="<?=$this->url('help-home')?>?topic=about" data-lightbox class="help-link" title="<?=$this->transEsc('About')?>"><?=$this->transEsc('About')?></a></li>
         
@@ -78,7 +88,11 @@ Use your SOAS ID  (or for external users LW number) and password.
 </div>
 <div class="pull-left">
 <div class="navbar-header">
-  <a id="logo" tabindex="7" href="<?=$this->url('home')?>"><img src="/soas-logo-100years-orig.png" alt="SOAS, University of London"></a>
+<? if (!$logoLink_access) { ?>
+  <a id="logo" tabindex="7" href="<?=$this->url('home')?>" style="outline: none;"><img src="/soas-logo-100years-orig.png" alt="SOAS, University of London"></a>
+<? } else { ?>
+  <a id="logo" tabindex="7" style="outline: none;"><img src="/soas-logo-100years-orig.png" alt="SOAS, University of London"></a>
+<? } ?>
   <!--<div id="soft_launch_feedback" class="pull-right well hidden-xs"><a tabindex="6" style="font-size:16pt" href="https://docs.google.com/forms/d/1e_Kr0Tavdm-OJNxdtOM5u2tdX8IrKAlrv-CnHoo_JMQ/viewform"><?=$this->transEsc("Feedback")?></a>  <i style="font-size:16pt" class="fa fa-thumbs-up"></i>
   <br /><br /><?=$this->transEsc("Tell us what you think!")?></div>-->
 </div>

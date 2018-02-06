@@ -33,55 +33,67 @@
         <?endif;?>
       <? endif; ?>
       <span class="clearfix"></span>
-      <table class="table table-striped" summary="<?=$this->transEsc('Your Fines')?>">
-      <tr>
-        <th><?=$this->transEsc('Title')?></th>
-        <th><?=$this->transEsc('Checked Out')?></th>
-        <th><?=$this->transEsc('Due Date')?></th>
-        <th><?=$this->transEsc('Fine')?></th>
-        <th></th>
-        <th><?=$this->transEsc('Balance')?></th>
-        <? if($this->paymentsEnabled): ?><th><?=$this->transEsc('Pay Online')?></th><? endif; ?>
-      </tr>
+
+
       <? foreach ($this->fines as $record): ?>
-      <?$out=false;?>
+
+       <?$out=false;?>
       <?if($statusOut1 == $record['fine'] ||  $statusOut2 == $record['fine'])$out=true;?>
-	<? if ((double)$record['balance'] > 0): ?>
-        <tr>
-          <td width='300'>
+
+       <? if ((double)$record['balance'] > 0): ?>
+          <table style="width:100%">
+          <tr>
+          <td style="width:15%">
+
+          <?if(!$out):?>
+          <? if ((double)$record['balance'] > 0): ?>
+          <input type="checkbox" class="fine-checkbox" name="fines[]" data-amount="<?=$record['balance'] ?>" value="<?=$record['id'] ?>" checked="1"/>
+          <?endif;?>
+          <?else:?>
+          <? if ((double)$record['balance'] > 0): ?>
+          <span id="tooltip" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Please contact Reader Services desk")?>" class="notAvailable"><?=$this->escapeHtml('not available')?></span>
+          <?endif;?>
+          <?endif;?>
+
+
+
+          </td>
+          <td style="width:85%">
+          <ul>
+          <li>
+          <b><?=$this->transEsc('Title')?>:</b>
             <? if (empty($record['title'])): ?>
               <?=$this->transEsc('not_applicable')?>
             <? else: ?>
               <?=$this->escapeHtml(trim($record['title'], '/:'))?>
             <? endif; ?>
+          </li>
+          <li>
+            <b><?=$this->transEsc('Checked Out')?>:</b>
+            <?=isset($record['checkoutDate']) ? $this->escapeHtml($record['checkoutDate']) : ''?>
+          </li>
+          <li>
+            <b><?=$this->transEsc('Due Date')?>:</b>
+            <?=isset($record['dueDate']) ? $this->escapeHtml($record['dueDate']) : ''?>
+          </li>
+          <li>
+            <b><?=$this->transEsc('Fine')?>:</b>
+            <?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?>
+          </li>
+          <li>
+            <b><?=$this->transEsc('Balance')?>:</b>
+            <?=isset($record['balance']) ? $this->escapeHtml($record['balance']) : ''?>
+          </li>
+          </ul>
           </td>
-          <td><?=isset($record['checkoutDate']) ? $this->escapeHtml($record['checkoutDate']) : ''?></td>
-          <td><?=isset($record['dueDate']) ? $this->escapeHtml($record['dueDate']) : ''?></td>
-          <td><?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?></td>
-          <td></td>
-          <td><?=isset($record['balance']) ? $this->escapeHtml($record['balance']) : ''?></td>
+          </tr>
+          </table>
+        <? endif; ?>
 
-          <?if(!$out):?>
-          <? if ((double)$record['balance'] > 0): ?>
-          <td class="text-center"><input type="checkbox" class="fine-checkbox" name="fines[]" data-amount="<?=$record['balance'] ?>" value="<?=$record['id'] ?>" checked="1"/></td>
-          <?endif;?>
-          <?else:?>
-          <? if ((double)$record['balance'] > 0): ?>
-          <td><span id="tooltip" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Please contact Reader Services desk")?>" class="notAvailable"><?=$this->escapeHtml('not available')?></span></td>
-	  <?endif;?>
-          <?endif;?>
-        </tr>
-        <? else: ?>
-		<!-- D0 Nothing-->
-        <? endif; ?>	
+
+
       <? endforeach; ?>
-        <tr class="fines-bottom-line">
-          <td colspan="5"><?=$this->transEsc('Total Balance Due')?></td>
-          <td><?=$this->safeMoneyFormat($totalDue) ?></td>
-          <? if($this->paymentsEnabled && $totalDuePay>0): ?><td><?=$paymentButton ?></td>
-<?else:?><td></td><? endif; ?>	 
-        </tr>
-      </table>
+
     <? endif; ?>
   </form>
   <script>

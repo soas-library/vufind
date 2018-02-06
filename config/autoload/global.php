@@ -16,6 +16,7 @@ $GLOBALS['PATH_ARCHIVE_INFO'] = '/usr/local/vufind/local/harvest/Archive/info.tx
 $GLOBALS['CONTEXT'] = 'http';
 $GLOBALS['MAX_WORD_DESCRIPTION'] = '20';
 $GLOBALS['MAX_WORD_FIELD'] = '550';
+$GLOBALS['arr_excel'] = array();
 return array(
     // ...
 );

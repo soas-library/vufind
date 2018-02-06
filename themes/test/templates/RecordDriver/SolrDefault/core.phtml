@@ -1,3 +1,10 @@
+<? 
+if($this->driver->getCollectionType()[0] == "SOAS Library")
+	$collectionType = $this->driver->userPermissions('OLE');
+else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
+	$collectionType = $this->driver->userPermissions('ePrints');
+?>
+
 <?
   if($loggedin = $this->auth()->isLoggedIn()) {
     $user_id = $loggedin->id;
@@ -49,16 +56,13 @@
   <div class="col-sm-12">
   <? endif; ?>
 
-    <h3 property="name"><?=$this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection())?></h3>
-
-    <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
-    <? if ($summary): ?>
-      <p><?=$this->truncate($summary, 300)?></p>
-
-      <? if(strlen($summary) > 300): ?>
-        <p><a href='<?=$this->recordLink()->getTabUrl($this->driver, 'Description')?>#tabnav'><?=$this->transEsc('Full description')?></a></p>
-      <? endif; ?>
-    <? endif; ?>
+    <h3 property="name"><?=rtrim(trim($this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection())),"/")?></h3>
+    
+    <? $lnkTitle = $this->driver->getLinkedTitle();if (!empty($lnkTitle)): ?>   
+          <? foreach($lnkTitle as $field): ?>
+            <h4><?=$this->escapeHtml($field)?></h4>
+          <? endforeach; ?>
+      <? endif; ?> 
 
     <? if ($this->userlist()->getMode() !== 'disabled'): ?>
       <? /* Display the lists that this record is saved to */ ?>
@@ -82,7 +86,7 @@
    ?>
    
    <div class="holdings">
-<?$offsite = false;?>
+<? $offsite = false;?>
 <!-- 866 tag -->
 	<? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
 	<?
@@ -157,7 +161,11 @@
   
   <? if (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
-      <tr><td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a></td></tr>
+      <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>
+        <tr><td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a></td></tr>
+      <? else: ?>
+        <tr><td>Not available</td></tr>
+      <? endif; ?>
     <? endforeach; ?>
   <? endif; ?>
   <? if ($openUrlActive): ?>
@@ -601,34 +609,58 @@
       </tr>
       <? endif; ?>
 
-   <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
+     <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
       <? if (isset($authors['main']) && !empty($authors['main'])): ?>
         <tr>
           <th><?=$this->transEsc(count($authors['main']) > 1 ? 'Main Authors' : 'Main Author')?>: </th>
           <td>
-            <? $i = 0; foreach ($authors['main'] as $author => $roles): ?><?=($i++ == 0)?'':', '?><span property="author"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span><? endforeach; ?>
-          </td>
+            <? $i = 0; foreach ($authors['main'] as $author => $roles): ?><?=($i++ == 0)?'':', '?><span property="author"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span></br><? endforeach; ?>
+            
+            <? $linkedauthor = $this->driver->getLinkedAuthor(); if (!empty($linkedauthor)): ?>
+			<? foreach($linkedauthor as $field): ?>
+            <a href="<?=$this->record($this->driver)->getLink('author', $field)?>"><?=$this->escapeHtml($field)?></a>
+			<br />
+			<? endforeach; ?>
+		<? endif; ?>
+          </td>          
         </tr>
       <? endif; ?>
 
-  <!--    <? if (isset($authors['corporate']) && !empty($authors['corporate'])): ?>
+     <? if (isset($authors['corporate']) && !empty($authors['corporate'])): ?>
         <tr>
           <th><?=$this->transEsc(count($authors['corporate']) > 1 ? 'Corporate Author' : 'Corporate Authors')?>: </th>
           <td>
-            <? $i = 0; foreach ($authors['corporate'] as $corporate => $roles): ?><?=($i++ == 0)?'':', '?><span property="creator"><a href="<?=$this->record($this->driver)->getLink('author', $corporate)?>"><?=$this->escapeHtml($corporate)?></a><?=$formatRoles($roles)?></span><? endforeach; ?>
-          </td>
+            <? $i = 0; foreach ($authors['corporate'] as $corporate => $roles): ?><?=($i++ == 0)?'':''?><span property="creator"><a href="<?=$this->record($this->driver)->getLink('author', $corporate)?>"><?=$this->escapeHtml($corporate)?></a><?=$formatRoles($roles)?></span></br><? endforeach; ?>
+          
+		<? $linkedcorporate = $this->driver->getLinkedCorporate(); if (!empty($linkedcorporate)):?>
+		 <? foreach ($linkedcorporate as $linkcorp): ?>
+		 
+		 <a href="<?=$this->record($this->driver)->getLink('author', $linkcorp)?>"><?= $this->escapeHtml($linkcorp)?></br>
+		
+		<?endforeach;?>
+   		<?endif;?>
+   	</td>
         </tr>
       <? endif; ?>
-
+ 
       <? if (isset($authors['secondary']) && !empty($authors['secondary'])): ?>
         <tr>
           <th><?=$this->transEsc('Other Authors')?>: </th>
           <td>
-            <? $i = 0; foreach ($authors['secondary'] as $author => $roles): ?><?=($i++ == 0)?'':', '?><span property="contributor"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span><? endforeach; ?>
-          </td>
+            <? $i = 0; foreach ($authors['secondary'] as $author => $roles): ?><?=($i++ == 0)?'':''?><span property="contributor"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span></br><? endforeach; ?>
+          
+          
+          <? $linkedauthor2 = $this->driver->getLinkedAuthor2(); if (!empty($linkedauthor2)): ?>
+            <? foreach ($linkedauthor2 as $linkauthor): ?>
+           
+            <a href="<?=$this->record($this->driver)->getLink('author', $linkauthor)?>"><?= $this->escapeHtml($linkauthor)?></a></br>
+            
+            <? endforeach; ?>
+	    <?endif;?>  
+	   </td>  
         </tr>
       <? endif; ?>
--->
+      
 <? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
         <tr>
           <th><?=$this->transEsc('Format')?>: </th>
@@ -768,7 +800,11 @@
         <th><?=$this->transEsc('Online Access')?>: </th>
         <td>
           <? foreach ($urls as $current): ?>
-            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+            <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>
+              <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+            <? else: ?>
+              <span>Not available</span></br>
+            <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>

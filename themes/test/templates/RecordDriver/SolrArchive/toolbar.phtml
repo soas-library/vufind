@@ -1,3 +1,8 @@
+<? 
+$account = $this->auth()->getManager();
+$orderOffsiteMaterial_access = $account->userPermissions('Order offsite material');
+?>
+
 <?
   $addThis = $this->addThis();
   if (!empty($addThis)) {
@@ -31,9 +36,11 @@
   <? endif; ?>
   
   <!--CUSTOM CODE ADDED FOR SOAS LIBRARY-->
+  <? if (!$orderOffsiteMaterial_access): ?>
    <? $order = $this->driver->getOrderWith(); if (!empty($order) && count($order)>0 && !empty($order[0])): ?>
     <li><a id="sms-record" class="modal-link <?=$controllerClass?>" target="_blank" href="https://www.soas.ac.uk/library/archives/services/requesting-material/orders/" title="<?=$this->transEsc('Order archive material')?>"><i class="fa fa-share"></i> <?=$this->transEsc('Order archive material')?></a></li>
     <?endif;?>
+  <?endif;?>
   <!--END-->
 
 

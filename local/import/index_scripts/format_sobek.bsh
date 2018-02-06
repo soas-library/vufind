@@ -338,7 +338,7 @@ public Set getFormat(Record record){
 
     // Nothing worked!
     if (result.isEmpty()) {
-        result.add("Unknown");
+       // result.add("Unknown");
     }
     
     return result;

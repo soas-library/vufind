@@ -16,6 +16,8 @@ return array(
         'common.js',
         'lightbox.js',
         'archive.js',
+        'jquery.mark.min.js',
+        'bootbox.min.js',
     ),
     'favicon' => 'soas-favicon.ico',
 );

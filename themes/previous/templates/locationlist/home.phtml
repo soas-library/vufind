@@ -1,0 +1,33 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Location List'));
+      $this->layout()->breadcrumbs = '<li class="active">' . $this->transEsc('Location list') . '</li>';
+
+?>
+<div class="row">
+<div class="<?=$this->layoutClass('mainbody')?>">
+<h2><?=$this->transEsc('Location list')?></h2>   			
+<p class="bold">160,000 Library books and periodicals are stored off-site. &nbsp;The catalogue does not always reflect this so please refer to the Location List below. <br /><br />If you have difficulty locating an item please consult staff at the Enquiry Desk in the Library or send an e-mail to <a href="mailto:libenquiry@soas.ac.uk?subject=off-site%20books">libenquiry@soas.ac.uk</a>&nbsp;</p>
+<p></p>
+<p>Once you have identified the classmark for the book or journal you would like to consult by using the <a href="http://library.soas.ac.uk/">Library catalogue</a> you can use the location list to find exactly where the item is located in the Library.</p>
+<p>Use the list of classmarks below to click on the letter which is at the beginning of the classmark.</p>
+</br>
+<h4><?=$this->transEsc('Class marks')?></h4>
+<ul class="links two-col">
+<li><a href="<?=$this->url('locationlist/location').'?from=A&to=F'?>"><?=$this->transEsc('Class Marks').' '.'A - F'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=G&to=L'?>"><?=$this->transEsc('Class Marks').' '.'G - L'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=M&to=Ref'?>"><?=$this->transEsc('Class Marks').' '.'M - R'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=S&to=T'?>"><?=$this->transEsc('Class Marks').' '.'S - T'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=U&to=U'?>"><?=$this->transEsc('Class Marks').' '.'U'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=V&to=W'?>"<?=$this->transEsc('Class Marks').' '.'V - W'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=X&to=X'?>"><?=$this->transEsc('Class Marks').' '.'X'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=Y&to=Z'?>"><?=$this->transEsc('Class Marks').' '.'Y - Z'?></a></li>	 	
+</ul>
+</div>    
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("locationlist/menu.phtml")?>
+</div>
+  
+  
+  
+  

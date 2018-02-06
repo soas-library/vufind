@@ -166,6 +166,7 @@ class Loader extends \VuFind\ImageLoader
         return new \VuFind\Cover\Generator($this->themeTools, $settings);
     }
 
+
     /**
      * Get default settings for loadImage().
      *
@@ -266,6 +267,11 @@ class Loader extends \VuFind\ImageLoader
             if (isset($this->config->Content->makeDynamicCovers)
                 && $this->config->Content->makeDynamicCovers
             ) {
+            	if($settings['collection']== 'SOAS Archive')
+            	$this->image = $this->getCoverGenerator()->generateWithoutText(
+                    $settings['title'], $settings['author'], $settings['callnumber']
+                );
+            	else
                 $this->image = $this->getCoverGenerator()->generate(
                     $settings['title'], $settings['author'], $settings['callnumber']
                 );

@@ -7,7 +7,8 @@ if (isset($this->enquiryTo)) {
     
 }
 ?>
-
+<span><?=$this->transEsc('This email will be send to library staff for their review. The inbox is monitored and we aim to reply within TBC days')?></span>
+</br></br>
 <div class="form-group">
   <label class="col-sm-3 control-label" for="email_to"><?=$this->transEsc('To')?>:</label>
   <div class="col-sm-9">
@@ -51,6 +52,12 @@ if (isset($this->subject)) {
     </div>
   </div>
 <? endif; ?>
+<div class="form-group">
+<label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('')?></label>
+<div class="col-sm-9">
+<span><?=$this->transEsc('Please add your email address, if you want to receive a reply from library staff.')?></span>
+</div>
+</div>
 <div class="form-group">
   <label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('Message')?>:</label>
   <div class="col-sm-9">

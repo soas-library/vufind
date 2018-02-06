@@ -1,3 +1,5 @@
+<? $archive = $this->driver->userPermissions('Archive'); ?>
+
 <?
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
   $cover = $coverDetails['html'];
@@ -7,6 +9,7 @@
     ob_start(); ?>
     <div class="media-<?=$thumbnailAlignment ?> <?=$this->escapeHtmlAttr($coverDetails['size'])?>">
       <?=$cover ?>
+      <img alt="Cover Image" data-linkpreview="true" class="recordcover archive_cover" src="../../../themes/scb-soas/images/archives.png">
     </div>
     <? $thumbnail = ob_get_contents(); ?>
   <? ob_end_clean(); ?>
@@ -195,7 +198,11 @@
           <? if (!is_array($urls)) $urls = array();
             if(!$this->driver->isCollection()):
               foreach ($urls as $current): ?>
-                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
+                <? if($this->driver->getRegExpr($this->escapeHtmlAttr($this->proxyUrl($current['url'])), $archive)): ?>
+                  <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
+                <? else: ?>
+                  <span>Not available</span></br>
+                <? endif; ?>
             <? endforeach; ?>
           <? endif; ?>
         <? endif; ?>

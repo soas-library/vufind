@@ -375,13 +375,22 @@ class Record extends AbstractHelper
      */
     public function getTab(\VuFind\RecordTab\TabInterface $tab)
     {
+    	/*print_r('Collection type Record.php: ');
+    	print_r($this->driver->getCollectionType());
+    	print_r('</br>');
+    	print_r('Pintar o no el contenido');
+    	print_r('</br>');
+    	print_r($this->driver->userPermissions());*/
         $context = ['driver' => $this->driver, 'tab' => $tab];
         $classParts = explode('\\', get_class($tab));
+        //print_r($classParts);
         $template = 'RecordTab/' . strtolower(array_pop($classParts)) . '.phtml';
+        //print_r($template);
         $oldContext = $this->contextHelper->apply($context);
         $html = $this->view->render($template);
         $this->contextHelper->restore($oldContext);
         return $html;
+        //return '';
     }
 
     /**

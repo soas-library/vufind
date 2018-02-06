@@ -1,0 +1,33 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Class mark note'));
+  
+  // Set up breadcrumbs:
+  $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/locations') . '">' . $this->transEsc('Location list') . '</a></li> <li class="active">' . $this->transEsc('Note') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Class mark note')?></h2>
+    
+    <?if(!empty($this->classmarks)):?>    
+    <?foreach($this->classmarks as $classmark):?>
+  <a id="<?=$this->classmark['id_classmark'];?>" class="classmark_letter" href="<?=$this->url('acadmin/locations').'?id_classmark='.$this->classmark['id_classmark']?>"><?=$classmark['name'];?></a>
+  <?endforeach?>
+<?endif;?>
+        </br></br>
+        
+<?=$this->flashmessages()?>    
+    
+<form method="post" action="/Acadmin/Note" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="a"><?=$this->transEsc('Note')?></label>
+<textarea rows="5" cols="100" class="form-control"  id="note" name="note" value="<?=$this->classmark['note']?>"><?=$this->classmark['note']?></textarea>
+</div>
+<input type="text" class="form-control hidden"  id="id_classmark" name="id_classmark" value="<?=$this->classmark['id_classmark']?>">
+<input value="Save" id="save" name="save" type="submit" class="btn btn-customized"/>
+</form>
+</div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

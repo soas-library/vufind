@@ -1,0 +1,51 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('User permission'));
+  
+   // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/userpermissions') . '">' . $this->transEsc('Administration') . '</a></li><li class="active">' . $this->transEsc('User permission') . '</li>';
+
+?>
+<div class="row">
+<div class="<?=$this->layoutClass('mainbody')?>">
+<?=$this->flashmessages()?> 
+<h2><?=$this->transEsc('User permission')?></h2>
+
+</br></br>      
+<form method="post" action="/Acadmin/Userpermission" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="c"><?=$this->transEsc('Username')?></label>
+<input readonly type="text" class="form-control" id="username" name="stack" value="<?=$this->user['username']?>">
+</div>
+
+<div class="form-group">
+<label for="g"><?=$this->transEsc('Firstname')?></label>
+<input readonly type="text" class="form-control"  id="firstname" name="firstname" value="<?=$this->user['firstname']?>">
+</div>
+
+<div class="form-group">
+<label for="h"><?=$this->transEsc('Lastname')?></label>
+<input readonly type="text" class="form-control" id="lastname" name="lastname" value="<?=$this->user['lastname']?>">
+</div>
+
+<div class="form-group">
+<label for="h"><?=$this->transEsc('Email')?></label>
+<input readonly type="text" class="form-control" id="email" name="email" value="<?=$this->user['email']?>">
+</div>
+
+<div class="form-group">
+<label for="b"><?=$this->transEsc('Profile')?></label>
+<select id="profiles" required oninvalid="this.setCustomValidity('<?=$this->transEsc('Required')?>')" onchange="this.setCustomValidity('')"  class="form-control" name="profiles">
+  <?foreach ($this->profiles  as $row) {?>
+          <option <?if($this->user['id_profile'] == $row['id_profile']) echo"selected"; ?> value="<?=$row['id_profile']?>"><?=$row['name']?></option>
+  <?}?>
+</select>
+</div>  
+<input type="text" class="form-control hidden"  id="id" name="id" value="<?=$this->user['id']?>">
+<input value="Save" id="modify" name="modify" type="submit" class="btn btn-customized"/>
+</form>
+</div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

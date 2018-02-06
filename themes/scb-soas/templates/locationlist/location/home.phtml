@@ -1,0 +1,90 @@
+<?
+  // Set page title.
+  $this->headTitle($this->transEsc('Finding materials in the library'));      
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('locationlist') . '">' . $this->transEsc('Finding materials in the library') . '</a></li>';
+?>
+<div id="content" class="container">
+<div class="row-fluid">  
+<h3><?=$this->transEsc('Classmark by first letter')?></h3>
+<?if(!empty($this->classmarks)):?>    
+<?foreach($this->classmarks as $classmark):?>
+<a id="<?=$classmark['id_classmark'];?>" <?if($this->classmark['id_classmark'] == $classmark['id_classmark']) { echo "class='classmark_letter soasColor'"; }else{ echo "class='classmark_letter'";}?>  href="<?=$this->url('locationlist/location').'?id_classmark='.$classmark['id_classmark']?>"><?=$classmark['name'];?></a>
+<?endforeach?>
+<?endif;?>
+<br><br>
+<h3><?=$this->transEsc('Classmarks by library location')?></h3>
+<?if(!empty($this->levels)):?>    
+<?foreach($this->levels as $level):?>
+<a id="<?=$level['id_level'];?>" <?if($this->level['id_level'] == $level['id_level']) { echo "class='classmark_letter soasColor'"; }else{ echo "class='classmark_letter'";}?>  href="<?=$this->url('locationlist/location').'?id_level='.$level['id_level'].'&order=2'?>"><?=$level['name'];?></a>
+<?endforeach?>
+<?endif;?>
+<br><br><br>
+<?
+if(!empty($this->note)):
+	echo $this->note;
+	echo '<br>';
+endif;
+?>  
+<br>
+<?
+ 	$cm = "";
+    	$ll = "";
+    	$warning_text = "";
+	if (isset($_GET['cm'])) {
+		$cm = $_GET['cm'];
+		$arr_cm = explode("/",$cm);
+		if($arr_cm[0] != "")$cm = $arr_cm[0];
+	}
+    	
+	if (isset($_GET['ll'])) {
+    		$ll = $_GET['ll'];
+    		if($ll !=""){
+    			foreach($this->levels as $levelAux){if(str_replace("xxxxx","&",$ll) == $levelAux['name']){$id_level=$levelAux['id_level'];}}    			
+    		}
+    	}
+    	if($ll != "" || $cm != ""){
+    		$warning_text = '<h4>'.$this->transEsc('Your search').": </h4><br>";
+    		if($ll != "")
+    			$warning_text = $warning_text.$this->transEsc('Library Location').': <b>'.str_replace("xxxxx","&",$ll).'</b><br>';
+    		if($cm != "")
+    			$warning_text = $warning_text.$this->transEsc('Call Number').': <b>'.$cm.'</b>';    		
+    	}
+	
+?>
+<?if($warning_text != ""):?><div class="alert alert-warning"><?=$warning_text?></div><?endif;?>
+
+
+<?if(!empty($this->locations)&&count($this->locations)>0):?>  
+
+<table class="GeneratedTable GeneratedTablePublic">
+<thead>
+<tr>
+<?if(empty($this->level)):?>
+<th class="thLocation"><?=$this->transEsc('Call Number')?></th>
+<?else:?>
+<th class="thLocation"><?=$this->level['name']?></th>
+<?endif;?>
+<?if(empty($this->level)):?>
+<th class="thLocation"><?=$this->transEsc('Library Location')?></th>
+<?endif;?>
+<th class="thLocation"><?=$this->transEsc('Book stack numbers')?></th>
+ </tr>
+</thead>
+<tbody>
+<?foreach($this->locations as $location):?>
+	  <tr>
+	  <td class="col-md-4" id="<?=$location['name']?>" name="<?=$location['name']?>"><?=$location['name'];?></td>	  
+	  <?if(empty($this->level)):?><td class="col-md-4"><a href="<?=$this->url('locationlist/location').'?id_level='.$location['id_level'].'&order=2'?>"><?=$location['level_name'];?></a></td><?endif;?>
+	  <td class="col-md-4"><?=$location['stack'];?></td>
+  </tr>
+<?endforeach?>
+ </tbody>
+</table>
+
+</div>
+<?endif;?>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

@@ -1,3 +1,11 @@
+<? 
+$account = $this->auth()->getManager();
+
+$footer_section1 = $account->userPermissions('Footer: section 1');
+$footer_section2 = $account->userPermissions('Footer: section 2');
+$footer_section3 = $account->userPermissions('Footer: section 3');
+$footer_section4 = $account->userPermissions('Footer: section 4');
+?>
 <?=$this->doctype('HTML5')?>
 <html lang="<?=$this->layout()->userLang?>">
   <head>
@@ -137,9 +145,12 @@ JS;
       // 3. It is set to a custom string; we should display the provided version
       // Set up default search box if no data was provided from the template;
       // this covers case 1.  Cases 2 and 3 are then covered by logic below.
-      if (!isset($this->layout()->searchbox)) {
+       
+       /***SCB _SERVER[REQUEST_URI] != "/Location/home"***/
+      if (!isset($this->layout()->searchbox) && $_SERVER[REQUEST_URI] != "/Location/home") {
         $this->layout()->searchbox = $this->render('search/searchbox.phtml');
       }
+       /***SCB***/
     ?>
     <header class="hidden-print">
       <div class="container navbar">
@@ -185,12 +196,14 @@ JS;
         </div>
       </div>
     </div>
+    <? if (!$footer_section1 || !$footer_section2 || !$footer_section3 || !$footer_section4):?>
     <footer class="hidden-print">
       <div class="container">
         <?=$this->render('footer.phtml')?>
         <?=$this->layout()->poweredBy ?>
       </div>
     </footer>
+    <?endif;?>
     <!-- MODAL IN CASE WE NEED ONE -->
     <div id="modal" class="modal fade hidden-print" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
       <div class="modal-dialog">

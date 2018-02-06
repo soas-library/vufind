@@ -11,14 +11,14 @@
 ?>
 <ul class="nav nav-pills hidden-print col-sm-offset-3">
   <? if (count($this->driver->getCitationFormats()) > 0): ?>
-    <li><a class="cite-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Cite')?>" rel="nofollow"><i class="fa fa-asterisk" aria-hidden="true"></i> <?=$this->transEsc('Cite this')?></a></li>
+    <li><a class="cite-record hidden-xs" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Cite')?>" rel="nofollow"><i class="fa fa-asterisk" aria-hidden="true"></i> <?=$this->transEsc('Cite this')?></a></li>
   <? endif; ?>
   <? /*<li><a class="sms-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'SMS')?>" rel="nofollow"><i class="fa fa-mobile" aria-hidden="true"></i> <?=$this->transEsc('Text this')?></a></li>*/ ?>
   <li><a class="mail-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Email')?>" rel="nofollow"><i class="fa fa-envelope" aria-hidden="true"></i> <?=$this->transEsc('Email this')?></a></li>
   <? $exportFormats = $this->export()->getFormatsForRecord($this->driver); ?>
   <? if(count($exportFormats) > 0): ?>
     <li class="dropdown">
-      <a class="export-toggle dropdown-toggle" data-toggle="dropdown" href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>" rel="nofollow"><i class="fa fa-list-alt" aria-hidden="true"></i> <?=$this->transEsc('Export Record') ?></a>
+      <a class="export-toggle dropdown-toggle hidden-xs" data-toggle="dropdown" href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>" rel="nofollow"><i class="fa fa-list-alt" aria-hidden="true"></i> <?=$this->transEsc('Export Record') ?></a>
       <ul class="dropdown-menu" role="menu">
         <? foreach ($exportFormats as $exportFormat): ?>
           <li><a <? if ($this->export()->needsRedirect($exportFormat)): ?>target="<?=$this->escapeHtmlAttr($exportFormat)?>Main" <? endif; ?>href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>?style=<?=$this->escapeHtmlAttr($exportFormat)?>" rel="nofollow"><?=$this->transEsc('Export to')?> <?=$this->transEsc($this->export()->getLabelForFormat($exportFormat))?></a></li>
@@ -57,7 +57,7 @@
   <? endif; ?>
 
   <? /* SCB Enquiry email */ ?>
-  <li><a class="mail-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'EmailEnquiry')?>" rel="nofollow"><i class="fa fa-exclamation" aria-hidden="true"></i> <?=$this->transEsc('Report a problem')?></a></li>
+  <li><a class="mail-record hidden-xs" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'EmailEnquiry')?>" rel="nofollow"><i class="fa fa-exclamation" aria-hidden="true"></i> <?=$this->transEsc('Report a problem')?></a></li>
 
 
 </ul>

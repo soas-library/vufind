@@ -42,23 +42,43 @@
 <? else: ?>
   <form id="searchForm" class="searchForm col-md-8 navbar-form navbar-left" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
     <?= $this->context($this)->renderInContext('search/searchTabs', ['hiddenFilters' => $hiddenFilters]); ?>
-    <input  tabindex="1" class="searchForm_lookfor form-control search-query<? if($this->searchbox()->autocompleteEnabled($this->searchClassId)):?> autocomplete searcher:<?=$this->escapeHtmlAttr($this->searchClassId) ?><? endif ?>" type="text" name="lookfor" value="<?=$this->escapeHtmlAttr($this->lookfor)?>" placeholder="<?=$this->transEsc("Search SOAS Library")?>" required "/>
+    <div><input id="searchBox" tabindex="1" class="box searchForm_lookfor form-control search-query<? if($this->searchbox()->autocompleteEnabled($this->searchClassId)):?> autocomplete searcher:<?=$this->escapeHtmlAttr($this->searchClassId) ?><? endif ?>" type="text" name="lookfor" value="<?=$this->escapeHtmlAttr($this->lookfor)?>" placeholder="<?=$this->transEsc("Search SOAS Library")?>" required>
     <? if ($handlerCount > 1): ?>
-      <select class="searchForm_type form-control" name="type" data-native-menu="false">
+      <select class="searchForm_type form-control box" name="type" data-native-menu="false">
         <? foreach ($handlers as $handler): ?>
           <option value="<?=$this->escapeHtmlAttr($handler['value'])?>"<?=$handler['selected'] ? ' selected="selected"' : ''?>><?=$handler['indent'] ? '-- ' : ''?><?=$this->transEsc($handler['label'])?></option>
         <? endforeach; ?>
       </select>
+      
     <? elseif ($handlerCount == 1): ?>
       <input type="hidden" name="type" value="<?=$this->escapeHtmlAttr($handlers[0]['value'])?>" />
     <? endif; ?>
-    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> <?=$this->transEsc("Find")?></button>
-    <? if ($advSearch): ?>
-      <a href="<?=$this->url($advSearch) . ((isset($this->searchId) && $this->searchId) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-link" rel="nofollow"><?=$this->transEsc("Advanced")?></a>
-    <? endif; ?>
+    <button id="btnFind" type="submit" class="btn btn-primary box"><i class="fa fa-search" aria-hidden="true"></i> <?=$this->transEsc("Find")?></button>
+
+    <!--Commented out 2017-11-08 by sb174 to return Advanced link to home page-->
+    <?# if ($this->url() !="/") :?>
+        <? if ($advSearch): ?>
+            <a href="<?=$this->url($advSearch) . ((isset($this->searchId) && $this->searchId) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-link hidden-xs" rel="nofollow"><?=$this->transEsc("Advanced")?></a>
+        <? endif; ?>
+    <?# endif; ?>
+
     <? if ($geoUrl = $this->geocoords()->getSearchUrl($options)) : ?>
         <a href="<?=$geoUrl ?>" class="btn btn-link"><?=$this->transEsc('Geographic Search')?></a>
     <? endif; ?>
+</div>
+  
+    <div id="divSearch" class="col-md-12 hidden-xs hidden-sm">
+    <div class="radioHome"><input id="rdAll" type="radio" name="filter[]" value='*:*' checked="checked"><label class="radioSearch"><?=$this->transEsc('All collections')?></label></input></div>
+    <div class="radioHome"><input id="rdBook" type="radio" name="filter[]" value='-collection:"SOAS Archive"'/><label class="radioSearch"><?=$this->transEsc('Print/Books and Media')?></label></input></div>
+    <div class="radioHome"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><label class="radioSearch"><?=$this->transEsc('Online Resources')?></label></input></div>
+    <div class="radioHome"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><label class="radioSearch"><?=$this->transEsc('Archives')?></label></input></div>
+    </div>    
+    
+    <div id="divSearch" class="col-md-9  hidden-md hidden-lg">
+    <div class="radioHome"><input id="rdBook" type="radio" name="filter[]" value='*:*' checked="checked"/><label class="radioSearch"><?=$this->transEsc('Books')?></label></input></div>
+    <div class="radioHome"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><label class="radioSearch"><?=$this->transEsc('Online')?></label></input></div>
+    <div class="radioHome"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><label class="radioSearch"><?=$this->transEsc('Archives')?></label></input></div>
+    </div>
 
     <? $shards = $options->getShards(); if ($options->showShardCheckboxes() && !empty($shards)): ?>
       <?
@@ -118,3 +138,35 @@
   </form>
   <script type="text/javascript">$(".searchForm_lookfor:visible").focus()</script>
 <? endif; ?>
+
+
+<script>
+
+var URLactual = window.location.href;
+document.getElementById("rdAll").checked=true; 
+if (URLactual.indexOf('-collection%3A%22SOAS+Archive%22')>0) { 
+    document.getElementById("rdBook").checked=true;
+}
+else { 
+    if (URLactual.indexOf('collection%3A%22SOAS+Archive%22')>0) {
+        document.getElementById("rdArchive").checked=true;
+     }
+     else {
+         document.getElementById("rdAll").checked=true; 
+     }
+}
+
+
+
+
+function openEds(){
+        var search = encodeURIComponent($('#searchForm_lookfor').val());
+
+        if(search !="Undefined" && search !="undefined" && search == '') {
+                window.open('https://search.ebscohost.com/login.aspx?authtype=ip,cookie,shib&custid=s8438947&groupid=main&profile=eds&direct=true&type=0&site=eds-live&bquery='+search);
+        }
+        else{
+                 window.open('https://search.ebscohost.com/login.aspx?authtype=ip,cookie,shib&custid=s8438947&groupid=main&profile=eds');
+        }
+}
+</script>

@@ -34,16 +34,23 @@
   <? /*<div class="checkboxFilter<?if($shown == 0):?> hidden<? endif; ?>"><?=$html ?></div>*/ ?>
 <? endif; ?>
 <?$hidden="hidden";$searchActive ="";$searchOthers ="";?>
+<?$searchLibrary =0;$searchDigital =0;$searchResearch =0;$searchArchive =0;?>
 <? $extraFilters = isset($this->extraSideFacetFilters) ? $this->extraSideFacetFilters : array(); ?>
 <? $collapsedFacets = $this->recommend->getCollapsedFacets() ?>
 <? $hierarchicalFacetSortOptions = $this->recommend->getHierarchicalFacetSortOptions() ?>
 <? $hierarchicalFacets = $this->recommend->getHierarchicalFacets() ?>
-<? $filterList = array_merge($results->getParams()->getFilterList(true), $extraFilters); if (!empty($filterList)): ?>
+<? $filterList = array_merge($results->getParams()->getFilterList(true), $extraFilters); 
+unset($filterList['unrecognized_facet_label']);
+if (!empty($filterList)): ?>
+
   <div class="list-group filters">
     <div class="list-group-item title"><?=$this->transEsc('Current Filters')?></div>
     <? foreach ($filterList as $field => $filters): ?>
-      <? foreach ($filters as $i => $filter): ?>
-      <?if ($filter['displayText'] == "SOAS Archive"){$hidden="";$searchActive ="searchArchive";}?>
+      <? foreach ($filters as $i => $filter): ?>      
+      <?if ($filter['displayText'] == "SOAS Archive"){$hidden="";$searchActive ="searchArchive";$searchArchive =1;}?>
+      <?if ($filter['displayText'] == "SOAS Library"){$searchLibrary=1;}?>
+      <?if ($filter['displayText'] == "SOAS Digital Library"){$searchDigital =1;}?>
+      <?if ($filter['displayText'] == "SOAS Research Online"){$searchResearch =1;}?>
       <?if ($filter['displayText'] == "SOAS Library" || $filter['displayText'] == "SOAS Digital Library" || $filter['displayText'] == "SOAS Research Online"){$searchOthers ="searchOthers";}?>
         <?
           $index = isset($filter['field']) ? array_search($filter['field'], $collapsedFacets) : false;
@@ -78,7 +85,7 @@
     <? $allowExclude = $this->recommend->excludeAllowed($title); ?>
     <? $facets_before_more = $this->recommend->getShowMoreSetting($title); ?>
     <? $showMoreInLightbox = $this->recommend->getShowInLightboxSetting($title); ?>
-    <div <?if($title=="hierarchy_top_title") echo 'class="list-group facet'.' '.$hidden.'"'; else echo 'class="list-group facet"';?>   id="side-panel-<?=$this->escapeHtmlAttr($title) ?>">
+    <div <?if($title=="hierarchy_top_title") echo 'class="list-group facet'.' '.$hidden.'"'; else {if($title!="collection" && $title!="publishDate" && $title!="scb-callnumber-first" && $title!="language" && $title!="authorAndOtherStr"){echo 'class="list-group facet hidden-xs"';}else{ echo 'class="list-group facet"';}}?>   id="side-panel-<?=$this->escapeHtmlAttr($title) ?>">
       <div id ="<?=$this->transEsc($cluster['label'])?>" class="list-group-item title<? if(in_array($title, $collapsedFacets)): ?> collapsed<? endif ?>" data-toggle="collapse" href="#side-collapse-<?=$this->escapeHtmlAttr($title) ?>" >
         <?=$this->transEsc($cluster['label'])?>
       </div>
@@ -104,7 +111,7 @@
                 </div>
               </div>
               <? if ($rangeFacets[$title]['type'] == 'date'): ?>
-                <div class="slider-container">
+                <div class="slider-container hidden-xs">
                 <input type="text" class="hidden" id="<?=$this->escapeHtmlAttr($title)?><?=$this->escapeHtml($rangeFacets[$title]['type'])?>Slider"/>
                 </div>
               <? endif; ?>
@@ -218,6 +225,7 @@ JS;
                 <?=str_replace ('&amp;',"&",$this->escapeHtml($thisFacet['displayText']))?>
               </span>
             <? else: ?>
+                  
               <? $addURL = $this->currentPath().$results->getUrlQuery()->addFacet($title, $thisFacet['value'], $thisFacet['operator']); ?>
                         <span class="list-group-item facet<?=$thisFacet['operator'] ?><? if ($i>5): ?> <?=$moreClass ?><?endif ?>">
 	     <? if ($allowExclude): ?>
@@ -312,6 +320,27 @@ var searchOthers="<? echo $searchOthers;?>";
 
 var searchActiveInt = searchActive.localeCompare("searchArchive");
 var searchOthersInt = searchOthers.localeCompare("");
+
+var searchLibrary="<? echo $searchLibrary;?>";
+var searchDigital="<? echo $searchDigital;?>";
+var searchResearch="<?echo $searchResearch;?>";
+var searchArchive="<? echo $searchArchive;?>";
+
+
+
+
+//var searchLibraryInt = searchLibrary.localeCompare("true");
+//var searchDigitalInt = searchDigital.localeCompare("true");
+//var searchResearchInt = searchResearch.localeCompare("true");
+//var searchArchiveInt = searchArchive.localeCompare("true");
+
+//Lo descomento porque ahora los botones van de otra forma
+//if(searchLibrary == 1 && searchDigital == 0 && searchResearch == 0 && searchArchive == 0){ $("#rdBook").attr('checked', true);}
+//else if(searchLibrary == 0 && searchDigital == 1 && searchResearch == 0 && searchArchive == 0){ $("#rdBook").attr('checked', true);}
+//else if(searchLibrary == 0 && searchDigital == 0 && searchResearch == 1 && searchArchive == 0){ $("#rdBook").attr('checked', true);}
+//else if(searchLibrary == 0 && searchDigital == 0 && searchResearch == 0 && searchArchive == 1){ $("#rdArchive").attr('checked', true);}
+//else{$("#rdAll").attr('checked', true);}
+
 
 if(searchActiveInt ==0 && searchOthersInt ==0){//SOAS Archive selected
 $('#searchForm>ul.nav.nav-tabs li.active a').addClass("searchOff");

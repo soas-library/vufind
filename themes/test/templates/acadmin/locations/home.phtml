@@ -1,0 +1,67 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Location list'));
+      
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('Location list') . '</li>';
+?>
+<div class="row">
+<div class="<?=$this->layoutClass('mainbody')?>">
+<h2><?=$this->transEsc('Location list')?></h2>
+<?if(!empty($this->classmarks)):?>    
+<?foreach($this->classmarks as $classmark):?>
+<a id="<?=$classmark['id_classmark'];?>" <?if($this->id_classmark == $classmark['id_classmark']) { echo "class='classmark_letter bold'"; }else{ echo "class='classmark_letter'";}?>  href="<?=$this->url('acadmin/locations').'?id_classmark='.$classmark['id_classmark']?>"><?=$classmark['name'];?></a>
+<?endforeach?>
+<?endif;?>
+</br></br>
+<?=$this->flashmessages()?>    
+<?
+if(!empty($this->note)):
+	echo $this->note;
+	echo '</br></br>';
+endif;
+?>
+<form method="post" action="/Acadmin/Delete" name="deleteForm" id="deleteForm">
+<?if(!empty($this->locations)):?>  
+<div id="locationPanel">
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/location').'?id_classmark='.$this->id_classmark?>"><?=$this->transEsc('Add')?></a>
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/note').'?id_classmark='.$this->id_classmark?>"><?=$this->transEsc('Note')?></a>
+<input value="Delete" id="delete" name="delete" type="submit" class="btn btn-customized"/> 
+</div> 
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation"></th>
+<th class="thLocation"><?=$this->translate('Class mark')?></th>
+<th class="thLocation"><?=$this->translate('Level')?></th>
+<th class="thLocation"><?=$this->translate('Book stack number')?></th>
+<?if($this->periodical == '1'):?>
+<th class="thLocation"><?=$this->translate('Per L Large size periodicals (all)')?></th>
+<th class="thLocation"><?=$this->translate('Level')?></th>
+<th class="thLocation"><?=$this->translate('Book stack number')?></th>
+<?endif;?>
+ </tr>
+</thead>
+<tbody>
+<?foreach($this->locations as $location):?>
+	  <tr>
+	  <td><input class="" type="checkbox" name="check[]" id="<?=$location['id_location']?>" value="<?=$location['id_location']?>"></td>
+	  <td><a href="<?=$this->url('acadmin/location').'?id_location='.$location['id_location']?>"><?=$location['name'];?></a></td>
+	  <td><?=$location['level'];?></td>
+	  <td><?=$location['stack'];?></td>   
+	  <?if($this->periodical == '1'):?>
+	  <td><?=$location['periodical_name'];?></td>
+	  <td><?=$location['periodical_level'];?></td>
+	  <td><?=$location['periodical_stack'];?></td>
+  	  <?endif;?>
+  </tr>
+<?endforeach?>
+ </tbody>
+</table>
+</form>
+</div>
+<?endif;?>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

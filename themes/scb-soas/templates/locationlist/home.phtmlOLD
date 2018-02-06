@@ -1,0 +1,30 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Location List'));
+      $this->layout()->breadcrumbs = '<li class="active">' . $this->transEsc('Location list') . '</li>';
+
+?>
+<div class="row">
+<div class="<?=$this->layoutClass('mainbody')?>">
+<h2><?=$this->transEsc('Location list')?></h2>   
+<div><?=$this->description;?></div>
+</br>
+<h4><?=$this->transEsc('Class marks')?></h4>
+<ul class="links two-col">
+<li><a href="<?=$this->url('locationlist/location').'?from=A&to=F'?>"><?=$this->transEsc('Class Marks').' '.'A - F'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=G&to=L'?>"><?=$this->transEsc('Class Marks').' '.'G - L'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=M&to=Ref'?>"><?=$this->transEsc('Class Marks').' '.'M - R'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=S&to=T'?>"><?=$this->transEsc('Class Marks').' '.'S - T'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=U&to=U'?>"><?=$this->transEsc('Class Marks').' '.'U'?></a></li>	 			
+<li><a href="<?=$this->url('locationlist/location').'?from=V&to=W'?>"><?=$this->transEsc('Class Marks').' '.'V - W'?></a></li>		
+<li><a href="<?=$this->url('locationlist/location').'?from=X&to=X'?>"><?=$this->transEsc('Class Marks').' '.'X'?></a></li>	 		
+<li><a href="<?=$this->url('locationlist/location').'?from=Y&to=Z'?>"><?=$this->transEsc('Class Marks').' '.'Y - Z'?></a></li>	 	
+</ul>
+</div>    
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("locationlist/menu.phtml")?>
+</div>
+  
+  
+  
+  

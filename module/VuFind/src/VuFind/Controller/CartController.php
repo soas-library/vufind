@@ -333,6 +333,7 @@ class CartController extends AbstractBase
         if ($this->formWasSubmitted('submit')) {
             $format = $this->params()->fromPost('format');
             $url = $export->getBulkUrl($this->getViewRenderer(), $format, $ids);
+echo $url.'***';
             if ($export->needsRedirect($format)) {
                 return $this->redirect()->toUrl($url);
             }

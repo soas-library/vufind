@@ -16,13 +16,183 @@
   $advSearch = $options->getAdvancedSearchAction();
 
   $this->layout()->breadcrumbs = false;
+  
+  $this->headScript()->appendFile('carousel/carousel_init.js');
+  
 ?>
 
-<div class="searchHomeContent">
+
+
+<div class="searchHomeContent" >
+
+
+
+<div>
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse">
+    <span class="sr-only" tabindex="3">Toggle navigation</span>
+  </button>
+</div>
+<div class="pull-left">
+<? if (!isset($this->layout()->renderingError)): ?>
+  <div class="collapse navbar-collapse" id="header-collapse">
+   
+  </div>
+</div>
+
+<div id="logosoas" class="navbar-header">
+
+  <a id="logonew" href="/"><h2>SOAS University of London</h2></a>
+</div>
+
+
+
+
+
+<? endif; ?>
+
+
+
+
+
   <?=($this->ils()->getOfflineMode() == "ils-offline") ? $this->render('Helpers/ils-offline.phtml', ['offlineModeMsg' => 'ils_offline_home_message']) : ''?>
-  <div id="homesearchbox" class="well well-lg clearfix" role="search">
+  <div id="homesearchbox" class="well well-lg clearfix homecover homecovertop" role="search" >
+  <div class="col-sm-7" style="background-color: rgba(255, 197, 63, 0.98); min-height: 130px;  padding-top: 2%;" >
     <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
   </div>
+<? if(empty($this->layout()->breadcrumbs)): ?>
+  <div class="col-sm-5" style="padding: 0;">
+<?=$this->render('home_news.phtml')?>
+</div>
+<? endif; ?>
+
+  </div>
+
+</div>
+
+<h4 class="hidden-xs"><?=$this->transEsc('New Additions')?></h4>
+
+<div id="customNav" class="owl-nav"></div>
+<div id="customDots" class="owl-dots"></div>
+
+<div id="carousel">
+
+
+
+<div id="owl-example" class="owl-carousel hidden-xs">
+
+<?
+
+$url = 'http://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=scb_item_acquisition_date%3A*%0A&sort=scb_item_acquisition_date+desc&rows=60&fl=id&wt=xml&indent=true';
+//$url = 'http://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=id%3A%0A10238723&sort=scb_item_acquisition_date+desc&rows=60&fl=id&wt=xml&indent=true';
+
+
+//echo $url;
+
+$xml = simplexml_load_string(file_get_contents($url));
+
+//print_r($xml);
+//print_r('<br>');
+
+$new_items = [];
+
+foreach ($xml->result->doc as $doc) {
+	//print_r($doc);
+	//print_r('<br>');
+	$id_news = $doc->str;
+	//echo $id_news . '<br>';
+
+$url_description = 'http://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=id%3A' . $id_news . '%0A&rows=60&fl=id%2C+title_short%2C+author%2C+publishDate%2C+scb_item_location_c+scb_holding_location_c+shelf_location&wt=xml&indent=true';
+
+$xml_description = simplexml_load_string(file_get_contents($url_description));
+
+$author = [];
+
+foreach ($xml_description->result->doc->str as $str) {
+	//print_r($str['name']);
+	//print_r('<br>');
+	if (strcmp($str['name'], 'title_short') == 0 && !empty($str[0])) {
+		$title = $str[0];
+	}
+}
+	//echo $title . '<br>';
+
+foreach ($xml_description->result->doc->arr as $arr) {
+	//print_r($arr['name']);
+	//print_r('<br>');
+	if (strcmp($arr['name'], 'author') == 0 && !empty($arr->str)) {
+		foreach ($arr->str as $str) {
+			$author[] = $str;
+		}
+	}
+	if (strcmp($arr['name'], 'publishDate') == 0 && !empty($arr->str)) {
+		$publishDate = $arr->str[0];
+	}
+	
+	$scb_item_location_c=array();
+	if (strcmp($arr['name'], 'scb_item_location_c') == 0 && !empty($arr->str)) {
+		foreach ($arr->str as $str) {
+			if($str<>"...") $scb_item_location_c[] = $str;
+		}
+	}
+	$scb_holding_location_c=array();
+	if (strcmp($arr['name'], 'scb_holding_location_c') == 0 && !empty($arr->str)) {
+		foreach ($arr->str as $str) {
+			if($str<>"...") $scb_holding_location_c[] = $str;
+		}
+	}
+	$shelf_location=array();
+	if (strcmp($arr['name'], 'shelf_location') == 0 && !empty($arr->str)) {
+		foreach ($arr->str as $str) {
+			if($str<>"...") $shelf_location[] = $str;
+		}
+	}
+	$locations = array_unique (array_merge ($scb_item_location_c, $scb_holding_location_c,$shelf_location));
+	$locations = implode(",", $locations);
+}
+
+	$author = array_unique($author);
+	$author = implode(",", $author);
+	
+	// Control the empty fields to display
+
+	$title=str_replace("\"","",$title);
+	$author=str_replace("\"","",$author);
+
+        // Added by sb174 on 2017-12-14 (call no. F0181929)
+        $title=rtrim($title,"/");
+        $title=rtrim($title,":");
+	
+	$tooltip_title = '';
+	if (!empty($title)) {
+		$tooltip_title = $tooltip_title . $title . '</br>';
+	}
+	if (!empty($author)) {
+		$tooltip_title = $tooltip_title . $author . '</br>';
+	}
+	if ($publishDate != null) {
+		$tooltip_title = $tooltip_title . $publishDate . '</br>';
+	}
+	// Commented out by sb174 on 2017-12-14 (call no. F0181929)
+	#if (!empty($locations)) {
+	#	$tooltip_title = $tooltip_title . $locations . '</br>';
+	#}
+
+	
+	//$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $title . '</br>'.$author[0]. '</br>' .$publishDate.'</br>'.$locations.'"><img src="/CarouselCover/Show?id='. $id_news .'&size=large" alt="" border="0"></span></div></div></a>');
+	$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $tooltip_title .'"><img src="/CarouselCover/Show?id='. $id_news .'&title='.rawurlencode($title).'&size=large&type1=uu&type2=uu" alt="" border="0"></span></div></div></a>');
+	$new_items[] = $item;
+
+}
+
+//print_r($new_items);
+shuffle($new_items);
+
+foreach ($new_items as $i) {
+    echo html_entity_decode($i);
+}
+
+?>
+
 </div>
 
 <? $facetList = is_object($this->results) ? $this->results->getFacetList() : array(); ?>
@@ -99,4 +269,6 @@ JS;
       <? endif; ?>
     <? endforeach; ?>
   </div>
+
+
 <? endif; ?>

@@ -1,0 +1,15 @@
+<?$from= $_GET['from'];?>
+<?$to= $_GET['to'];?>
+<div id="bckMenuLocation"class="list-group">
+  <a href="<?=$this->url('locationlist')?>" class="list-group-item<?=strtolower($this->layout()->templateName) == "home" ? ' active' : ''?>"><?=$this->transEsc('Location List')?></a>
+  <div id="menuLocationList">
+  <a href="<?=$this->url('locationlist/location').'?from=A&to=F'?>" class="list-group-item<?=($from == 'A' && $to == 'F')? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> A - F</a>
+  <a href="<?=$this->url('locationlist/location').'?from=G&to=L'?>" class="list-group-item<?=($from == 'G' && $to == 'L') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> G - L</a>
+  <a href="<?=$this->url('locationlist/location').'?from=M&to=Ref'?>" class="list-group-item<?=($from == 'M' && $to == 'Ref') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> M - R</a>
+  <a href="<?=$this->url('locationlist/location').'?from=S&to=T'?>" class="list-group-item<?=($from == 'S' && $to == 'T') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> S - T</a>
+  <a href="<?=$this->url('locationlist/location').'?from=U&to=U'?>" class="list-group-item<?=($from == 'U' && $to == 'U') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> U</a>
+  <a href="<?=$this->url('locationlist/location').'?from=V&to=W'?>" class="list-group-item<?=($from == 'V' && $to == 'W') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> V - W</a>
+  <a href="<?=$this->url('locationlist/location').'?from=X&to=X'?>" class="list-group-item<?=($from == 'X' && $to == 'X') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> X</a>
+  <a href="<?=$this->url('locationlist/location').'?from=Y&to=Z'?>" class="list-group-item<?=($from == 'Y' && $to == 'Z') ? ' active' : ''?>"><?=$this->transEsc('Class Marks')?> Y - Z</a>
+  </div>
+</div>

@@ -59,6 +59,7 @@ function changeLimitReachedLabel(display) {
 
 var searchAjax = false;
 function doTreeSearch() {
+
   $('#treeSearchLoadingImg').removeClass('hidden');
   var keyword = $("#treeSearchText").val();
   if (keyword.length === 0) {
@@ -88,9 +89,9 @@ function doTreeSearch() {
           jstree._open_to(id);
         }
         for (var j = data.results.length; j--;) {
+      
           var tid = htmlEncodeId(data.results[j]);
-         //$('#hierarchyTree').find('#' + tid).addClass('jstree-search');
-          $('#hierarchyTree').find('#' + tid +'_lnk').addClass('jstree-search');
+         $('#hierarchyTree').find('#' + tid +'_lnk').addClass('jstree-search');
         }
         changeNoResultLabel(false);
         changeLimitReachedLabel(data.limitReached);
@@ -103,6 +104,7 @@ function doTreeSearch() {
 }
 
 function buildJSONNodes(xml) {
+
   var jsonNode = [];
   $(xml).children('item').each(function xmlTreeChildren() {
     var content = $(this).children('content');

@@ -122,6 +122,28 @@ class Auth extends \Zend\View\Helper\AbstractHelper
         return $this->getManager()->isLoggedIn();
     }
 
+     /**
+     * Checks whether the user is enabled to administration module.
+     *
+     * @return \VuFind\Db\Row\User|bool Object if user is logged in, false
+     * otherwise.
+     */
+    public function isAdminAuthorized()
+    {
+        return $this->getManager()->isAdminAuthorized();
+    }
+
+     /**
+     * Checks whether the user is enabled to administration module.
+     *
+     * @return \VuFind\Db\Row\User|bool Object if user is logged in, false
+     * otherwise.
+     */
+    public function isSuperAdminAuthorized()
+    {
+        return $this->getManager()->isSuperAdminAuthorized();
+    }
+
     /**
      * Render the create account form fields.
      *

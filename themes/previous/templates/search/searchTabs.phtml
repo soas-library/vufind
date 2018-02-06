@@ -1,0 +1,11 @@
+<? $searchTabs = $this->searchtabs()->getTabConfig($this->searchClassId, $this->lookfor, $this->searchIndex, $this->searchType, $this->hiddenFilters); ?>
+<? if (count($searchTabs) > 0): ?>
+  <ul class="nav nav-tabs">
+    <? foreach ($searchTabs as $tab): ?>
+      <li<?=$tab['selected'] ? ' class="active"' : ''?>>
+       <?$protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';?>
+        <a <?=$tab['selected'] ? 'href="' .$protocol.'://'.$_SERVER['SERVER_NAME'].'/Search/Results?type=AllFields'. '"' : 'href="' . $this->escapeHtmlAttr($tab['url']) . '"' ?>><?=$this->transEsc($tab['label']); ?></a>
+      </li>
+    <? endforeach; ?>
+  </ul>
+<? endif; ?>

@@ -264,14 +264,27 @@ class Generator
      *
      * @return string contents of image file
      */
-    public function generate($title, $author, $callnumber = null)
+    public function generate($title, $author, $callnumber = null, $collection = null)
     {
         // Generate seed from callnumber, title back up
         $seed = $this->createSeed($title, $callnumber);
-
         // Build the image
         $this->drawBackgroundLayer($seed);
         $this->drawTextLayer($title, $author);
+
+        // Render the image
+        $png = $this->renderPng();
+        $this->destroyImage();
+        return $png;
+    }
+    
+    public function generateWithoutText($title, $author, $callnumber = null, $collection = null)
+    {
+        // Generate seed from callnumber, title back up
+        $seed = $this->createSeed($title, $callnumber);
+        // Build the image
+        $this->drawBackgroundLayer($seed);
+        $this->drawTextLayerWithoutText($title, $author);
 
         // Render the image
         $png = $this->renderPng();
@@ -314,6 +327,16 @@ class Generator
             ? $this->$method($title, $author)
             : $this->drawDefaultText($title, $author);
     }
+        
+    protected function drawTextLayerWithoutText($title, $author)
+    {
+       // Construct a method name using the mode setting; if the method is not
+        // defined, use the default drawGridBackground().
+        $method = "drawTextWithoutText";
+        return method_exists($this, $method)
+            ? $this->$method($title, $author)
+            : $this->drawDefaultText($title, $author);
+    }
 
     /**
      * Position the text on the image using default rules.
@@ -332,6 +355,7 @@ class Generator
             $this->drawAuthor($author);
         }
     }
+    
 
     /**
      * Position the text on the image using "initials" rules.
@@ -548,6 +572,7 @@ class Generator
             );
         }
     }
+    
 
     /**
      * Render author at bottom in wrapped, white text with black border
@@ -694,6 +719,55 @@ class Generator
         imagettftext($this->im, $fontSize, 0, $x,   $y,   $mcolor, $font, $text);
     }
 
+
+ protected function drawTextWithoutText($text, $y, $font, $fontSize, $mcolor,
+        $scolor = false, $align = null
+    ) {
+        // If the wrap width is smaller than the image width, we want to account
+        // for this when right or left aligning to maintain padding on the image.
+        $wrapGap = ($this->width - $this->settings->wrapWidth) / 2;
+
+        $textWidth = $this->textWidth(
+            $text,
+            $font,
+            $fontSize
+        );
+        if ($textWidth > $this->width) {
+            $align = 'left';
+            $wrapGap = 0; // kill wrap gap to maximize text fit
+        }
+        if (null == $align) {
+            $align = $this->settings->textAlign;
+        }
+        if ($align == 'left') {
+            $x = $wrapGap;
+        }
+        if ($align == 'center') {
+            $x = ($this->width - $textWidth) / 2;
+        }
+        if ($align == 'right') {
+            $x = $this->width - ($textWidth + $wrapGap);
+        }
+
+        // Generate 5 lines of text, 4 offset in a border color
+        if ($scolor) {
+            imagettftext(
+                $this->im, $fontSize, 0, $x,   $y + 1, $scolor, $font, $text
+            );
+            imagettftext(
+                $this->im, $fontSize, 0, $x,   $y - 1, $scolor, $font, $text
+            );
+            imagettftext(
+                $this->im, $fontSize, 0, $x + 1, $y,   $scolor, $font, $text
+            );
+            imagettftext(
+                $this->im, $fontSize, 0, $x - 1, $y,   $scolor, $font, $text
+            );
+        }
+        // 1 centered in main color
+        //imagettftext($this->im, $fontSize, 0, $x,   $y,   $mcolor, $font, $text);
+    }
+    
     /**
      * Convert 16 long binary string to 8x8 color grid
      * Reflects vertically and horizontally

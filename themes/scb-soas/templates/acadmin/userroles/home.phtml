@@ -1,0 +1,48 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('User roles'));
+  
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/userroles') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('User roles') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('User roles')?></h2>
+
+<?=$this->flashmessages()?>  
+
+
+<form method="post" action="/Acadmin/Deleteuserrole" name="deleteUserRoleForm" id="deleteUserRoleForm">
+
+<div id="locationPanel">
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/userrole');?>"><?=$this->transEsc('Add')?></a>
+<input value="Delete" id="deleteButton" name="deleteButton" type="submit" class="btn btn-customized"/> 
+</div> 
+
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation" style="width:10%!important;"></th>
+<th class="thLocation"><?=$this->translate('Profile')?></th>
+ </tr>
+</thead>
+<tbody>
+
+<? foreach($this->profileList as $profile){ ?>
+	<tr>
+	<td><input class="" type="checkbox" name="check[]" id="<?=$profile['id_profile']?>" value="<?=$profile['id_profile']?>"></td>
+	<td><a href="<?=$this->url('acadmin/userrole').'?id_profile='.$profile['id_profile']?>"><?=$profile['name'];?></a></td>
+	</tr>
+<? } ?>
+
+ </tbody>
+</table>
+</form>
+
+  </div>
+  <div class="<?=$this->layoutClass('sidebar')?>">
+    <?=$this->render("acadmin/menu.phtml")?>
+  </div>
+  
+</div>
+

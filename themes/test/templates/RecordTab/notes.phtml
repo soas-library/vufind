@@ -60,7 +60,7 @@
       </td>
     </tr>
   <? endif; ?>
-   
+    
   
   <? $languageNotes = $this->driver->getLanguageNotes(); if (!empty($languageNotes)): ?>
      <? $contentDisplayed = true; ?>
@@ -69,6 +69,15 @@
           <td><? foreach ($languageNotes as $languageNote): ?><?= $this->escapeHtml($languageNote)?><br/><? endforeach; ?></td>
         </tr>
       <? endif; ?>
+
+ <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
+    <? if ($summary): ?>
+    <tr>
+    <? $contentDisplayed = true; ?>
+    	<th><?=$this->transEsc('Summary')?>: </th>
+      	<td><?=$summary?></td>
+      	</tr>
+    <? endif; ?>
 
   <? if (!isset($contentDisplayed) || !$contentDisplayed): // Avoid errors if there were no rows above ?>
     <tr><td><?=$this->transEsc('no_description')?></td></tr>

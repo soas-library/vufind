@@ -1,0 +1,304 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Access types'));
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Access types')?></h2>
+    <div id="content">
+    <div class="form-group">
+    	<button type="button" class="btn btn-primary add_form_field_types">Add New Type</button>
+    </div>
+
+<? if ($this->action == '1'): ?>
+<div class="alert alert-success">
+  <strong>Success!</strong> The settings were saved.
+</div>
+<? elseif ($this->action == '2'): ?>
+<div class="alert alert-danger">
+  <strong>Danger!</strong> Error.
+</div>
+<? elseif ($this->action == '3'): ?>
+<div class="alert alert-danger">
+  <strong>Danger!</strong> Anyone changes the file.
+</div>
+<? endif; ?>
+
+<div id="fieldLimit" class="alert alert-danger" style="display: none;">
+  <strong>Danger!</strong> You reached the number of fields limits.
+</div>
+
+<div id="typeLimit" class="alert alert-danger" style="display: none;">
+  <strong>Danger!</strong> You reached the number of types limits.
+</div>
+
+<form method="post" action="/Acadmin/Accesstypes" name="saveAccessForm" id="saveAccessForm">
+
+<div class="accessTypes">
+
+<?
+$numberOfTypes = $this->types;
+$types_names = $this->types_names;
+$types_values = $this->types_values;
+$roles_values = $this->roles_values;
+?>
+
+<? for ($i = 1; $i <= $this->types; $i++) { ?>
+
+ <div class="form-group type<?=$i?>">
+
+  <div class="form-inline" style="margin-bottom: 5px;">
+  	<button type="button" class="btn btn-primary add_form_field_<?=$i?>">Add New IPs</button>
+  	<button type="button" class="btn btn-danger delete_type_<?=$i?>">Delete Type</button>
+  </div>  <div style="margin-bottom: 5px;" class="form-inline"><input type="text" class="form-control" placeholder="Name" id="n<?=$i?>" name="n<?=$i?>" value="<?=$types_names[$i-1]?>"></div>
+
+<? foreach ($types_values[$i-1] as $num => $ip) { 
+	for ($j = 1; $j <= count($ip); $j++) {
+		$numberOfFields = count($ip) - 1;
+?>
+		<div style="margin-bottom: 5px;" class="form-inline"><input type="text" class="form-control" placeholder="IP / IP range" id="t<?=$i?>" name="t<?=$i?>[]" value="<?=$ip[$j-1]?>">
+		<? if($j > 1) { ?><button type="button" class="btn btn-danger delete">Delete</button><? } ?></div>
+<?
+	}
+} ?>
+
+<script>
+
+    var max_fields_types<?=$i?>      = 5-<?=$numberOfFields?>;
+    var wrapper_t<?=$i?>         = $(".type<?=$i?>");
+    var add_button_t<?=$i?>      = $(".add_form_field_<?=$i?>");
+    var delete_button_t<?=$i?>      = $(".delete_type_<?=$i?>");
+    var wrapper_types         = $(".accessTypes");
+    
+    var x_t<?=$i?> = 1;
+    $(add_button_t<?=$i?>).click(function(e){
+        $(".alert").hide();
+        e.preventDefault();
+        if(x_t<?=$i?> < max_fields_types<?=$i?>){
+            x_t<?=$i?>++;
+            $(wrapper_t<?=$i?>).append('<div style="margin-bottom: 5px;" class="form-inline"><input type="text" class="form-control" placeholder="IP / IP range" id="t<?=$i?>" name="t<?=$i?>[]"> <button type="button" class="btn btn-danger delete">Delete</button></div>');
+        }
+        else
+        {
+            $("#fieldLimit").show();
+            $("html,body").animate({
+            scrollTop: $("#fieldLimit").offset().top},
+            "slow");
+        }
+    });
+
+    $(delete_button_t<?=$i?>).click(function(e){
+ 	$(".alert").hide();
+	    bootbox.confirm({
+	        message: "Do you want to delete this access group?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	var x_types = parseInt($('#countTypes').val());
+	            	$('#countTypes').val(x_types - 1);
+	            	e.preventDefault();
+	            	$(wrapper_types).children('div.type<?=$i?>').remove();
+	            }
+	        }
+	    });
+    });
+
+    $(wrapper_t<?=$i?>).on("click",".delete", function(e){
+        $(".alert").hide();
+        var p = $(this);
+	    bootbox.confirm({
+	        message: "Do you want to delete this field?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	e.preventDefault();
+	            	p.parent('div').remove();
+	            	x_t<?=$i?>--;
+	            }
+	        }
+	    });
+    })
+
+
+</script>
+
+ </div>
+
+<? } ?>
+
+</div>
+
+<input type="hidden" name="save" id="save" value="0"/>
+<input type="hidden" name="types" id="types" value="<?=$this->types?>"/>
+<input type="hidden" name="countTypes" id="countTypes" value="1"/>
+<input type="hidden" name="roles" id="roles" value="<?php echo htmlentities(serialize($roles_values)); ?>"/>
+<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+
+<button id="saveAccess" type="button" class="btn btn-default">Save</button>
+
+</form>
+
+</div>
+
+    
+  </div>
+  <div class="<?=$this->layoutClass('sidebar')?>">
+    <?=$this->render("acadmin/menu.phtml")?>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+
+/* To save the data */
+
+	$('#save').val("0");
+	$("#saveAccess").click(function() {
+	    bootbox.confirm({
+	        message: "Do you want to save the settings?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#save').val("1");
+	            	$("#saveAccessForm").submit();
+	            }
+	        }
+	    });
+	});
+
+/* Types */
+
+    //var currentTypes = parseInt($('#types').val());
+    var max_fields      = 10-<?=$numberOfTypes?>;
+    var wrapper_types         = $(".accessTypes");
+    var add_button_types      = $(".add_form_field_types");
+    var delete_button_types      = $(".delete_types");
+
+/* Add types */
+
+    $(add_button_types).click(function(e){
+        var x_types = parseInt($('#countTypes').val());
+
+        $(".alert").hide();
+        e.preventDefault();
+        if(x_types <= max_fields){
+            var types = parseInt($('#types').val());
+            $('#types').val(types + 1);
+            $('#countTypes').val(x_types + 1);
+            $(wrapper_types).append('<div class="form-group type'+(types+1)+
+            '"><div style="margin-bottom: 5px;" class="form-inline"><button type="button" class="btn btn-primary add_form_field_'+(types+1)+
+            '">Add New Field</button> <button type="button" class="btn btn-danger delete_type_'+(types+1)+'">Delete Type</button>'+
+            '</div><div style="margin-bottom: 5px;" class="form-inline"><div style="margin-bottom: 5px;" class="form-inline">'+
+            '<input type="text" class="form-control" placeholder="Name" id="n'+(types+1)+'" name="n'+(types+1)+'"></div>'+
+            '<input type="text" class="form-control" placeholder="IP / IP range" id="t'
+            +(types+1)+'" name="t'+(types+1)+'[]"></div>'+
+            '<script>var max_fields_types'+(types+1)+'= 5;'+
+            'var wrapper_t'+(types+1)+'= $(".type'+(types+1)+'");'+
+            'var add_button_t'+(types+1)+'= $(".add_form_field_'+(types+1)+'");'+
+            'var delete_button_t'+(types+1)+'= $(".delete_type_'+(types+1)+'");'+
+            'var wrapper_types= $(".accessTypes");'+
+            'var x_t'+(types+1)+' = 1;'+
+            '$(add_button_t'+(types+1)+').click(function(e){'+
+            '$(".alert").hide();'+
+            'e.preventDefault();'+
+            'if(x_t'+(types+1)+' < max_fields_types'+(types+1)+'){'+
+            'x_t'+(types+1)+'++;'+
+            '$(wrapper_t'+(types+1)+').append(\'<div style="margin-bottom: 5px;" class="form-inline"><input type="text" class="form-control" placeholder="IP / IP range" id="t'+(types+1)+'" name="t'+(types+1)+'[]"><button type="button" class="btn btn-danger delete">Delete</button></div>\');'+
+            '}else{'+
+            '$("#fieldLimit").show();'+
+            '$("html,body").animate({'+
+            'scrollTop: $("#fieldLimit").offset().top},'+
+            '"slow");}'+
+            '});'+
+            '$(delete_button_t'+(types+1)+').click(function(e){'+
+            '$(".alert").hide();'+
+            'bootbox.confirm({'+
+	        'message: "Do you want to delete this access group?",'+
+	        'buttons: {'+
+	            'confirm: {'+
+	                'label: "Yes",'+
+	                'className: "btn-success"'+
+	            '},'+
+	            'cancel: {'+
+	                'label: "No",'+
+	                'className: "btn-danger"'+
+	            '}'+
+	        '},'+
+	        'callback: function (result) {'+
+	            'if(result) {'+
+	            	'var x_types = parseInt($("#countTypes").val());'+
+	            	'$("#countTypes").val(x_types - 1);'+
+	            	'e.preventDefault();'+
+	            	'$(wrapper_types).children("div.type'+(types+1)+'").remove();'+
+	            '}'+
+	        '}'+
+	    '});'+
+            '});'+
+            '$(wrapper_t'+(types+1)+').on("click",".delete", function(e){'+
+            '$(".alert").hide();'+
+            'var p = $(this);'+
+	    'bootbox.confirm({'+
+	        'message: "Do you want to delete this field?",'+
+	        'buttons: {'+
+	            'confirm: {'+
+	                'label: "Yes",'+
+	                'className: "btn-success"'+
+	            '},'+
+	            'cancel: {'+
+	                'label: "No",'+
+	                'className: "btn-danger"'+
+	            '}'+
+	        '},'+
+	        'callback: function (result) {'+
+	            'if(result) {'+
+	            	'e.preventDefault();'+
+	            	'p.parent("div").remove();'+
+	            	'x_t'+(types+1)+'--;'+
+	            '}'+
+	        '}'+
+	    '});'+
+            '})'+
+            '<\/script></div>');
+            $("html,body").animate({
+            scrollTop: $(".type"+ (types+1)).offset().top},
+            "slow");
+        }
+        else
+        {
+            $("#typeLimit").show();
+            $("html,body").animate({
+            scrollTop: $("#typeLimit").offset().top},
+            "slow");
+        }
+    });
+
+});
+</script>

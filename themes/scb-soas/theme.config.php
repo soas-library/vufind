@@ -5,6 +5,7 @@ return array(
         'vendor/font-awesome.min.css',
         'vendor/bootstrap-slider.css',
         'soas.css',
+        //'carousel/book.carousel.css'
     ),
     'js' => array(
         //CUSTOM CODE FOR SOAS LIBRARY
@@ -16,6 +17,8 @@ return array(
         'common.js',
         'lightbox.js',
         'archive.js',
+        'bootbox.min.js',
+        'carousel/owl.carousel.min.js'
     ),
     'favicon' => 'soas-favicon.ico',
 );

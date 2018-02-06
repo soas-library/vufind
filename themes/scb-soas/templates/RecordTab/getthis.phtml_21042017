@@ -210,16 +210,16 @@
 			<? if (empty($item['classmark'])): ?>
 				<? if (!empty($shelflocation)): ?>
 				<? foreach ($shelflocation as $location): ?>				
-				<td class="hidden-xs default_table_width"><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$this->escapeHtml($location);?></a></td>
+				<td class="hidden-xs default_table_width"><a href="https://www.soas.ac.uk/library/using/finding/location/"><?=$this->escapeHtml($location);?></a></td>
 				<? endforeach; ?>
 				<? endif; ?>
 			<? else:?>
-				<td class="hidden-xs default_table_width"><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$item['classmark']?></a></td>
+				<td class="hidden-xs default_table_width"><a href="https://www.soas.ac.uk/library/using/finding/location/"><?=$item['classmark']?></a></td>
 			<? endif; ?>
 
                 <? else:?>               
                         <td class="hidden-xs default_table_width"> 
-                        <?$place_link="http://www.soas.ac.uk/library/using/finding/location/";
+                        <?$place_link="https://www.soas.ac.uk/library/using/finding/location/";
                           if($place=="Archive & Special Collections")
                           	$place_link="https://www.soas.ac.uk/library/archives/";
                           else if ($place=="CURRENTLY UNAVAILABLE")
@@ -393,7 +393,7 @@
                 <? if (strpos($index,"holding")):?>
                     <?$hasHoldings=1;?>
                     <tr vocab="http://schema.org/" typeof="Offer">
-                        <td><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$holding['classmark'];?></td>
+                        <td><a href="https://www.soas.ac.uk/library/using/finding/location/"><?=$holding['classmark'];?></td>
                         <td>
                             <strong class="hidden-xs"><?=$this->transEsc("Call Number")?>:</strong> <? if ($holding['shelflist']): ?> <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holding['shelflist'])?>"><?=$this->escapeHtml($holding['shelflist'])?></a><? endif; ?>
                         </td>
@@ -415,7 +415,7 @@
             <table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($callnumer)?>">
                 <tr vocab="http://schema.org/" typeof="Offer">
                 <?if (!(in_array("Journal", $checkFormat))) :?>
-                    <td><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$shelfLocations[0];?></td>
+                    <td><a href="https://www.soas.ac.uk/library/using/finding/location/"><?=$shelfLocations[0];?></td>
                 <?endif;?>
                     <td>
                         <strong class="hidden-xs"><?=$this->transEsc("Call Number")?>:</strong> <? if ($callnumber): ?> <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($callnumber)?>"><?=$this->escapeHtml($callnumber)?></a><? endif; ?>

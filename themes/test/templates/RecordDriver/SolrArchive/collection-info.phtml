@@ -34,20 +34,21 @@
             <? foreach ($order as $orderAux): ?><?= html_entity_decode($this->escapeHtml($orderAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
         </td>
       </tr>
-       <?else:?>
-      <th><?=$this->transEsc('Order Number')?>:</th><td><?=$this->transEsc('Can not be requested')?></td>
       <? endif; ?>
       
   <? $order = $this->driver->getOrderWith(); if (!empty($order) && count($order)>0 && !empty($order[0])): ?>
    
-  
-  <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
+ 
+
+
+         <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
       <? if (isset($authors['main']) && !empty($authors['main'])): ?>
       <tr>
-        <th><?=$this->transEsc('Main Author')?>: </th>
+        <th class="labelTbl"><?=$this->transEsc('Main Author')?>: </th>
         <td property="author">
-					
-		<a href="<?=$this->record($this->driver)->getLink('author', $authors['main'])?>"><?=$this->escapeHtml($authors['main'])?></a>
+		<?foreach($authors['main'] as $authorAux=>$aux):?>
+		<a href="<?=$this->record($this->driver)->getLink('author', $authorAux)?>"><?=$this->escapeHtml($authorAux)?></a>
+		<?endforeach;?>
 		<br />
 		<? $linkedauthor = $this->driver->getLinkedAuthor(); if (!empty($linkedauthor)): ?>
 			<? foreach($linkedauthor as $field): ?>
@@ -62,7 +63,7 @@
 
       <? if (isset($authors['corporate']) && !empty($authors['corporate'])): ?>
       <tr>
-        <th><?=$this->transEsc('Corporate Author')?>: </th>
+        <th class="labelTbl"><?=$this->transEsc('Corporate Author')?>: </th>
         <td property="creator">
 		<a href="<?=$this->record($this->driver)->getLink('author', $authors['corporate'])?>"><?=$this->escapeHtml($authors['corporate'])?></a>
 		<br />		
@@ -78,9 +79,11 @@
 
       <? if (isset($authors['secondary']) && !empty($authors['secondary'])): ?>
       <tr>
-        <th><?=$this->transEsc('Other Authors')?>: </th>
+        <th class="labelTbl"><?=$this->transEsc('Other Authors')?>: </th>
         <td>  
-          <? $i = 0; foreach ($authors['secondary'] as $field): ?><?=($i++ == 0)?'':'; '?><span property="contributor"><a href="<?=$this->record($this->driver)->getLink('author', $field)?>"><?=$this->escapeHtml($field)?></a></span><? endforeach; ?>
+          <? $i = 0; foreach ($authors['secondary'] as $authorAux=>$aux): ?><?=($i++ == 0)?'':'; '?>
+          <span property="contributor"><a href="<?=$this->record($this->driver)->getLink('author', $authorAux)?>"><?=$this->escapeHtml($authorAux)?></a></span>
+          <? endforeach; ?>
 		<br />
 		  <? $linkedauthor2 = $this->driver->getLinkedAuthor2(); if (!empty($linkedauthor2)): ?>
             <? foreach ($linkedauthor2 as $linkauthor): ?><a href="<?=$this->record($this->driver)->getLink('author', $linkauthor)?>"><?= $this->escapeHtml($linkauthor)?></a>, 
@@ -90,6 +93,12 @@
 		</td>
       </tr>
       <? endif; ?>
+
+
+
+
+
+ 
       
       <tr>
         <th><?=$this->transEsc('Order')?>:</th>

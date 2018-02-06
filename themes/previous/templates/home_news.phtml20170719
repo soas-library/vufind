@@ -1,0 +1,10 @@
+<? if(empty($this->layout()->breadcrumbs)): ?> 
+      <div class="alert_news">
+      <strong>
+      <h3 class="font18">Library Update:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+      <p class="font12">The Library Issue and Membership Desks will be closed on Tuesday 18th July for Library staff training.</p>
+      <p class="font12">Please use the Self-Service Terminals for your transactions. We apologise for any inconvenience.</p>
+      <p class="font12">Normal service resumes at 9am on 19th July.</p>
+   </strong>
+  </div>
+<? endif; ?>

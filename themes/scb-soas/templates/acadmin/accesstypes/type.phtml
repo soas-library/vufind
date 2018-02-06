@@ -1,0 +1,182 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Access types'));
+  
+  // Set up breadcrumbs:
+  if(!empty($this->type) && $this->act_type == '1'):
+  	$this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Access types') . '</a></li> <li><a href="' . $this->url('acadmin/type') . '?t='. $this->type . '">' . $this->type . '</a></li> <li class="active">' . $this->transEsc('Edit') . '</li>';
+  elseif(!empty($this->type) && $this->act_type == '2'):
+  	$this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Access types') . '</a></li> <li><a href="' . $this->url('acadmin/type') . '?t='. $this->type . '">' . $this->type . '</a></li> <li class="active">' . $this->transEsc('Add') . '</li>';
+  else:
+  	$this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Access types') . '</a></li> <li class="active">' . $this->type . '</li>';
+  endif;
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Access type')?></h2>
+    
+<? if ($this->action == '1'): ?>
+<div class="alert alert-success">
+  <strong>Success!</strong> The settings were saved.
+</div>
+<? elseif ($this->action == '2'): ?>
+<div class="alert alert-danger">
+  <strong>Danger!</strong> Error.
+</div>
+<? elseif ($this->action == '3'): ?>
+<div class="alert alert-danger">
+  <strong>Danger!</strong> Anyone changes the file.
+</div>
+<? endif; ?>
+    
+<? if ($this->act_type == 0) { ?>
+
+<form method="post" action="/Acadmin/Type?t=<?=$this->type?>" name="deleteForm" id="deleteForm">
+
+<div id="locationPanel">
+<a  class="btn btn-customized" href="/Acadmin/Type?t=<?=$this->type?>&add=1"><?=$this->transEsc('Add')?></a>
+<input value="Delete" id="deleteButton" name="deleteButton" type="button" class="btn btn-customized"/> 
+</div> 
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation"></th>
+<th class="thLocation"><?=$this->translate('IPs')?></th>
+ </tr>
+</thead>
+<tbody>
+
+<? for ($i = 0; $i < count($this->ips); $i++) { ?>
+	<tr>
+	<td><input type="checkbox" name="check[]" id="<?=$i?>" value="<?=$i;?>"></td>
+	<td><a href="/Acadmin/Type?t=<?=$this->type?>&pos=<?=$i?>"><?=$this->ips[$i];?></a></td>
+	</tr>
+<? } ?>
+
+ </tbody>
+</table>
+
+<input type="hidden" name="delete" id="delete" value="0"/>
+<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+
+<?
+$file = '/usr/local/vufind/local/config/vufind/access.ini';
+if (file_exists($file)) {
+	$afterDelDate = date ("F d Y H:i:s.", filemtime($file));
+}
+?>
+
+</form>
+
+<? } else if($this->act_type == 1) { ?>
+	<form method="post" action="/Acadmin/Type?t=<?=$this->type?>" name="editForm" id="editForm">
+		<div class="form-group">
+			<label for="IP">IP / IP Range</label>
+			<input type="text" class="form-control" placeholder="IP/IP Range" id="ip" name="ip" value="<?=$this->ips;?>">
+			<input type="hidden" name="pos" id="pos" value="<?=$this->position;?>"/>
+			<input type="hidden" name="edit" id="edit" value="0"/>
+		</div>
+		<input value="Edit" id="editButton" name="editButton" type="button" class="btn btn-customized"/>
+		<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+	</form>
+<? } else if($this->act_type == 2) { ?>
+	<form method="post" action="/Acadmin/Type?t=<?=$this->type?>" name="addForm" id="addForm">
+		<div class="form-group">
+			<label for="IP">IP / IP Range</label>
+			<input type="text" class="form-control" placeholder="IP/IP Range" id="ip" name="ip" value="">
+			<input type="hidden" name="add" id="add" value="0"/>
+		</div>
+		<input value="Add" id="addButton" name="addButton" type="button" class="btn btn-customized"/>
+		<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+	</form>
+<? } ?>
+    
+  </div>
+  <div class="<?=$this->layoutClass('sidebar')?>">
+    <?=$this->render("acadmin/menu.phtml")?>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+
+/* To save the data */
+
+	$('#delete').val("0");
+	$("#deleteButton").click(function() {
+		$('#readDate').val("<?=$afterDelDate?>");
+	    bootbox.confirm({
+	        message: "Do you want to delete the IPs?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#delete').val("1");
+	            	$("#deleteForm").submit();
+	            }
+	        }
+	    });
+	});
+	
+
+/* To edit the data */
+
+	$('#edit').val("0");
+	$("#editButton").click(function() {
+	    bootbox.confirm({
+	        message: "Do you want to edit the IP?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#edit').val("1");
+	            	$("#editForm").submit();
+	            }
+	        }
+	    });
+	});
+
+/* To add a resource */
+
+	$('#add').val("0");
+	$("#addButton").click(function() {
+	    bootbox.confirm({
+	        message: "Do you want to add the IP?",
+	        buttons: {
+	            confirm: {
+	                label: 'Yes',
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: 'No',
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#add').val("1");
+	            	$("#addForm").submit();
+	            }
+	        }
+	    });
+	});
+
+});
+</script>

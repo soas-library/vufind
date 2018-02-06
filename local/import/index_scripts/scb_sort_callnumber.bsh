@@ -29,7 +29,6 @@ public List getSortCallNumber(Record record) {
             shelf = (DataField) fieldsIter.next();
             //String val = "", val0 = "", val1 = "", val2 = "";
             String val = "";
-
             List subfields = shelf.getSubfields();
             //System.out.println(subfields.size());
             for (int i = 0; i < subfields.size(); i++) {
@@ -67,8 +66,12 @@ public List getSortCallNumber(Record record) {
             //System.out.println(firstPart + lastPartWithout + "/" + lastPart);
             
             int tam = 11;
-            String toAdd = new String(new char[tam-lastPart.length()]).replace('\0', '0');
-            //System.out.println("toAdd: " + toAdd);
+            //System.out.println(lastPart.length());
+            if (tam-lastPart.length() > 0) {
+                String toAdd = new String(new char[tam-lastPart.length()]).replace('\0', '0');
+                //System.out.println("toAdd: " + toAdd);
+            }
+            else toAdd="";
             
             //System.out.println(firstPart + lastPartWithout + "/" + toAdd + lastPart);
             
@@ -95,10 +98,13 @@ public List getSortCallNumber(Record record) {
             result.add(val);
             
         }
-        
-        onlyOneResult.add(result.get(0));
-        
-        return onlyOneResult;
+        if (result.size()>0) {
+            onlyOneResult.add(result.get(0));
+             return onlyOneResult;
+        } 
+        else {
+            return null;
+        }
     }
     //otherwise return null
     return result;

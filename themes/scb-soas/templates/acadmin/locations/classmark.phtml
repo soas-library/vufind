@@ -1,0 +1,70 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Location list'));
+      
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/locations') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('Location list') . '</li>';
+?>
+<div class="row">
+<div class="<?=$this->layoutClass('mainbody')?>">
+<h4><?=$this->transEsc('Class mark by first letter')?></h4>
+<?if(!empty($this->classmarks)):?>    
+<?foreach($this->classmarks as $classmark):?>
+<a id="<?=$classmark['id_classmark'];?>" <?if($this->id_classmark == $classmark['id_classmark']) { echo "class='classmark_letter bold'"; }else{ echo "class='classmark_letter'";}?>  href="<?=$this->url('acadmin/locations').'?id_classmark='.$classmark['id_classmark']?>"><?=$classmark['name'];?></a>
+<?endforeach?>
+<?endif;?>
+<br>
+<h4><?=$this->transEsc('Class marks by library location')?></h4>
+<?if(!empty($this->levels)):?>    
+<?foreach($this->levels as $level):?>
+<a id="<?=$level['id_level'];?>" <?if($this->id_level == $level['id_level']) { echo "class='classmark_letter bold'"; }else{ echo "class='classmark_letter'";}?>  href="<?=$this->url('acadmin/classmark').'?id_level='.$level['id_level'].'&order=2'?>"><?=$level['name'];?></a>
+<?endforeach?>
+<?endif;?>
+</br></br>
+<?=$this->flashmessages()?>    
+<?
+if(!empty($this->note)):
+	echo $this->note;
+	echo '</br></br>';
+endif;
+?>
+<form method="post" action="/Acadmin/Delete" name="deleteForm" id="deleteForm">
+<a href="<?=$this->url('locationlist')?>" target="_blank"><?=$this->transEsc('Public page');?></a>
+<?if(!empty($this->locations)):?>  
+<div id="locationPanel">
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/maintext')?>"><?=$this->transEsc('Main text')?></a>
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/location').'?id_classmark='.$this->id_classmark?>"><?=$this->transEsc('Add')?></a>
+<a  class="btn btn-customized" href="<?=$this->url('acadmin/note').'?id_classmark='.$this->id_classmark?>"><?=$this->transEsc('Note')?></a>
+<input value="Delete" id="delete" name="delete" type="submit" class="btn btn-customized"/> 
+</div> 
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th class="thLocation"></th>
+<th class="thLocation"><?=$this->translate('Class mark')?></th>
+<th class="thLocation"><?=$this->translate('Book stack number')?></th>
+<th class="thLocation"><?=$this->translate('Library Location')?></th>
+<th class="thLocation"><?=$this->translate('Order By First Letter')?></th>
+<th class="thLocation"><?=$this->translate('Order By Library Location')?></th>
+ </tr>
+</thead>
+<tbody>
+<?foreach($this->locations as $location):?>
+	  <tr>
+	  <td><input class="" type="checkbox" name="check[]" id="<?=$location['id_location']?>" value="<?=$location['id_location']?>"></td>
+	  <td><a href="<?=$this->url('acadmin/location').'?id_location='.$location['id_location'].'&id_classmark='.$this->id_classmark?>"><?=$location['name'];?></a></td>
+	  <td><?=$location['stack'];?></td>
+	  <td><?=$location['level_name'];?></td>
+	  <td><?=$location['ordFirstLetter'];?></td>
+	  <td><?=$location['ordLibraryLocation'];?></td>
+  </tr>
+<?endforeach?>
+ </tbody>
+</table>
+</form>
+</div>
+<?endif;?>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

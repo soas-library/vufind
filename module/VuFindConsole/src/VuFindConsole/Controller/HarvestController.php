@@ -79,10 +79,8 @@ class HarvestController extends AbstractBase
             $ini = \VuFind\Config\Locator::getConfigPath('oai.ini', 'harvest');
             $opts->addArguments(['--ini=' . $ini]);
         }
-
         // Get the default VuFind HTTP client:
         $client = $this->getServiceLocator()->get('VuFind\Http')->createClient();
-
         // Run the job!
         $runner = new HarvesterConsoleRunner(
             $opts, $client, $this->getHarvestRoot()

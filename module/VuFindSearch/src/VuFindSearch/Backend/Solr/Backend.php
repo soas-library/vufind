@@ -108,10 +108,10 @@ class Backend extends AbstractBackend
     ) {
         $params = $params ?: new ParamBag();
         $this->injectResponseWriter($params);
-
-	/***SCB***/
-	if($offset < 0)$offset = 0;
-	/***END SCB***/
+ 	/***SCB***/		
+	if($offset < 0)
+	$offset = 0;
+        /***END SCB***/
         $params->set('rows', $limit);
         $params->set('start', $offset);
         $params->mergeWith($this->getQueryBuilder()->build($query));

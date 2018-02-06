@@ -1,4 +1,54 @@
 <?
+$posicion=$this->posicion;
+$posicion = str_pad($posicion, 3, "0", STR_PAD_LEFT);
+//print_r($posicion);
+
+$parts = parse_url($_SERVER["REQUEST_URI"]);
+parse_str($parts['query'], $query);
+
+$source = $query['source'];
+$from = $query['from'];
+$pag_query = $query['page'];
+
+$loading = 0;
+
+//print_r($pag_query); 
+
+$length = strlen($posicion);
+$pag = substr($posicion, 0, $length-2);
+$linea = substr($posicion, $length-2, $length);
+
+if($source != null) {
+if ($pag_query == null && $from != null) {
+    //echo 'Vacia';
+    $loading = 1;
+    $refr_url = $_SERVER[REQUEST_URI].'&page='.$pag;
+    /*print_r('</br>');
+    print_r($refr_url);
+    print_r('</br>');*/
+    header("Refresh:0; url=$refr_url");
+} else {
+    //echo 'Tiene la página';
+}
+}
+
+//print_r('</br>');
+//print_r($pag);
+//print_r('</br>');
+//print_r($linea);
+//print_r('</br>');
+
+$estado=$this->estado;
+/*print_r('</br>');
+print_r('*****');
+print_r('</br>');
+print_r($estado);
+print_r('</br>');
+print_r('*****');
+print_r('</br>');*/
+?>
+
+<?
 $total=$this->total;
 $por_pagina = $this->limit;
 $actual=$this->page;
@@ -23,6 +73,8 @@ $maxpags = 10;
   unset($_SESSION['arr_excel']);
   
 ?>
+
+<? if($loading == 1) { ?>
 
 <? /* LOAD THE LINK INFORMATION INTO $pageLinks, similar to smarty's {capture} */ ?>
 <? ob_start(); ?>
@@ -57,6 +109,61 @@ $maxpags = 10;
   <button type="submit" class="btn btn-primary"><i class="fa fa-search" name="btnBrowse"></i> <?=$this->transEsc("Browse")?></button>      
 
 </form>
+</div>
+
+ <div class="loader"></div> 
+ 
+ <? } else {?>
+
+<? /* LOAD THE LINK INFORMATION INTO $pageLinks, similar to smarty's {capture} */ ?>
+<? ob_start(); ?>
+  <ul class="pager">
+    <? if (isset($this->prevpage)): ?>
+      <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->prevpage))))?>">&laquo; <?=$this->transEsc('Prev')?></a></li>
+    <? else: ?>
+      <li class="disabled"><a href="#">&laquo; <?=$this->transEsc('Prev')?></a></li>
+    <? endif; ?>
+
+    <? if (isset($this->nextpage)): ?>
+      <li><a href="<?=$this->escapeHtmlAttr($this->url('alphabrowse-home', array(), array('query' => $baseQuery + array('page' => $this->nextpage))))?>"><?=$this->transEsc('Next')?> &raquo;</a></li>
+    <? else: ?>
+      <li class="disabled"><a href="#"><?=$this->transEsc('Next')?> &raquo;</a></li>
+    <? endif; ?>
+  </ul>
+<? $pageLinks = ob_get_contents(); ?>
+<? ob_end_clean(); ?>
+
+<div id="form1">
+<form class="form-inline" method="get" action="<?=$this->url('alphabrowse-home')?>" name="alphaBrowseForm" id="alphaBrowseForm">
+  <label for="alphaBrowseForm_source"><?=$this->transEsc('Browse Alphabetically') ?></label>
+  <select id="alphaBrowseForm_source" name="source" class="form-control">
+    <? foreach ($this->alphaBrowseTypes as $key => $item): ?>
+      <option value="<?=$this->escapeHtmlAttr($key) ?>"<? if ($this->source == $key): ?> selected="selected"<? endif; ?>><?=$this->transEsc($item) ?></option>
+    <? endforeach; ?>
+  </select>
+  <label for="alphaBrowseForm_from"><?=$this->transEsc('starting from') ?></label>
+  <input type="text" name="from" id="alphaBrowseForm_from" value="<?=$this->escapeHtmlAttr($this->from) ?>" class="form-control"/>
+  <!--<input class="btn btn-default" type="submit" value="<?=$this->transEsc('Browse') ?>"/>-->
+  <input type="hidden" name="excel" id="excel" value="0"/>
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search" name="btnBrowse"></i> <?=$this->transEsc("Browse")?></button>      
+
+</form>
+
+<!--ADDED BY SIMON BARRON <sb174@soas.ac.uk> on 2017-11-24
+A drop-down form to expand the limit on the number of items shown on a page
+  <form class="form-inline" action="<?=$this->url('alphabrowse-home')?>" name="sort">
+    <label for="sort_options_1"><?=$this->transEsc('Show')?></label>
+    <select id="sort_options_1" name="sort" class="jumpMenu form-control">
+        <option value="<?=$por_pagina?>"<?=$sortData['selected']?' selected
+="selected"':''?>>100</option>
+        <option value="<?=$por_pagina?>"<?=$sortData['selected']?' selected
+="selected"':''?>>200</option>
+    </select>
+    <noscript><input type="submit" class="btn btn-default" value="<?=$this->transEsc("Set")?>" /
+></noscript>
+  </form>
+END-->
+
 </div>
 
 <? if ($this->result): ?>
@@ -111,6 +218,9 @@ if($total>$por_pagina){
     <span id="exp_excel" class="csv hidden">
     <span><?=$this->transEsc('export_data_excel')?></span>
     <span><a class="csvlink" id="link_excel" name="link_excel"><?=$this->transEsc('excel_file');?></a></span>
+    </br>
+    <span><?=$this->transEsc('export_data_marc')?></span>
+    <span><a class="marclink" id="link_marc" name="link_marc"><?=$this->transEsc('excel_file');?></a></span>
     </span>
     <?endif;?>
     </hr>
@@ -119,9 +229,15 @@ if($total>$por_pagina){
     <table class="alphabrowse table table-striped fs14">
       <tr><td></td><th><?=$this->transEsc("alphabrowse_matches") ?></th></tr>
       
+<? if ($estado == "NONE"): ?>
+	<tr class="browse-match">
+	<td><?=$this->transEsc('your_match_would_be_here')?></td>
+	<td></td>
+<? endif; ?>
+      <?$arr_ids= array();?>
       <? foreach ($this->result['Browse']['items'] as $i => $item): ?>
       <?unset($arr_excel_row);?>
-      <? if (isset($this->highlight_row) && $row == $this->highlight_row): ?>
+      <? /*if (isset($this->highlight_row) && $row == $this->highlight_row): ?>
           <tr class="browse-match">
           <? if (isset($this->match_type) && ($this->match_type == "NONE")): ?>
             <?// this is the right row but query doesn't match value ?>
@@ -130,9 +246,22 @@ if($total>$por_pagina){
             </tr>
             <tr>
           <? endif; ?>
-        <? else: ?>
-          <tr>
+        <? else:*/ ?>
+        <? if(empty($row)):?>
+        	<? $row = 0;?>
         <? endif; ?>
+          <? if ($estado == "EXACT" && $linea-1 == str_pad($row, 2, "0", STR_PAD_LEFT) && $pag == $pag_query ): ?>
+          	<? /*echo '<tr class="'.$linea.'-'.$row.'">'*/ ?>
+          	<tr id="exact" class="browse-match">
+          <? elseif ($estado == "HEAD_OF_STRING" && $linea-1 == str_pad($row, 2, "0", STR_PAD_LEFT) && $pag == $pag_query ): ?>
+          	<tr id="head-of-string" class="browse-match-head-of-string">
+          <? else: ?>
+          	<? /*echo '<tr class="'.$row.'">'*/ ?>
+          	<tr>
+          <? endif; ?>
+        <? /*endif; */?>
+
+
         <td class="columnsAlpha">
           <?
           /*** SCA 20161018 ***/
@@ -159,7 +288,8 @@ if($total>$por_pagina){
 	                <? $query = array('type' => ucwords($this->source) . 'Browse', 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); ?>
 	            <? endif; ?>
             <? endif; ?>
-           
+           <?           
+           foreach($item['ids'] as $aux)array_push($arr_ids,$aux);?>
             <a class="<?echo $display_size_1;?>" href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
            
           <? else: ?>
@@ -273,7 +403,7 @@ if($total>$por_pagina){
           
         </td>
         <td><? if ($item['count'] > 0): echo $item['count']; endif; ?></td>   
-            
+          
         <? $row++; ?>
         <? endforeach; ?>
         <? if (isset($this->highlight_end)): ?>
@@ -284,7 +414,15 @@ if($total>$por_pagina){
         <? endif; ?>
       
     </table>
-  
+
+
+<? if ($estado == "EXACT"): ?>
+<? echo "<script> document.location.href='#exact';</script>"; ?>
+<? elseif ($estado == "HEAD_OF_STRING"): ?>
+<? echo "<script> document.location.href='#head-of-string';</script>"; ?>
+<? endif; ?>
+
+
   <?//= $pageLinks ?>
 <? endif; ?>
 
@@ -347,6 +485,16 @@ $(document).ready(function(){
           $("#alphaBrowseForm").submit();
            $('#excel').val("0");
        });
+       
+       $("#link_marc").click(function() {
+          	var ids=<?php echo json_encode($arr_ids);?>;
+		var export_txt="&i%5B%5D=Solr%7C";
+		var marc_export_txt = "";
+	    	for(var i=0;i<ids.length;i++)
+	    		marc_export_txt=marc_export_txt+export_txt+ids[i];
+	        window.open(location.protocol+'//'+window.location.hostname+'/Cart/doExport?f=MARC'+marc_export_txt,"_self");
+
+       });
 });
 
 var valorSelect = $('select#alphaBrowseForm_source').val();
@@ -359,3 +507,5 @@ $('select#alphaBrowseForm_source').on('change',function(){
     else $("#exp_excel").addClass("hidden");
 });
 </script>
+
+<? } ?>

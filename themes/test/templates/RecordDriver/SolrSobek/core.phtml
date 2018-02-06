@@ -1,3 +1,5 @@
+<? $sobek = $this->driver->userPermissions('Sobek'); ?>
+
 <?$item_sobek_txt = $this->driver->getTag856u();?>
 <?
   if($loggedin = $this->auth()->isLoggedIn()) {
@@ -51,6 +53,11 @@
   <? endif; ?>
 
     <h3 property="name"><?=$this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection())?></h3>
+    <? $alt246 = $this->driver->get246();if (!empty($alt246)): ?>  
+          <? foreach($alt246 as $field): ?>
+            <h4><?=$this->escapeHtml($field)?></h4>
+          <? endforeach; ?>
+    <? endif; ?> 
 
     <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
     <? if ($summary): ?>
@@ -77,13 +84,19 @@
    <div class="holdings">
   <? if (!empty($urls) || $openUrl || $item_sobek_txt != ""): ?>
   <table class="table table-responsive" summary="<?=$this->transEsc('Details')?>">
-  <? if (!empty($urls)): ?>
+  <? /* if (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
       <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
     <? endforeach; ?>
-  <?elseif($item_sobek_txt != ""):?>
-      <tr><td><a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+  <?elseif($item_sobek_txt != ""): */ ?>
+  <?if($item_sobek_txt != ""):?>
+  	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
+      		<tr><td><a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+      	<? else: ?>
+      		<tr><td>Not available</td></tr>
+        <?endif;?>
   <? endif; ?>
+  
   <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>
   <? endif; ?>
@@ -160,7 +173,7 @@
         </td>
       </tr>
       <? endif; ?>
-      
+       
       <? $authors = $this->driver->getDeduplicatedAuthors(); ?>
       <? if (isset($authors['main']) && !empty($authors['main'])): ?>
         <tr>
@@ -199,6 +212,15 @@
 	       <?endif;?>
           </td>
         </tr>
+      <?else:?>
+      	  <?if($this->driver->getElectronic()== "Electronic"):?>
+      	  <tr>
+          <th><?=$this->transEsc('Format')?>: </th>
+          <td>
+	  <span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
+	  </td>
+        </tr>
+	<?endif;?>
       <? endif; ?>
 
       <? $langs = $this->driver->getLanguages(); if (!empty($langs)): ?>
@@ -307,15 +329,21 @@
         <td>
           <? if ((!empty($urls)&& count($urls)>0 ) || $openUrl ):?>
           <? foreach ($urls as $current): ?>
-          <?echo 'BUCLE';?>
-            <a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtmlAttr($this->proxyUrl($current['url'])).'***' /*=$this->escapeHtml($current['desc'])*/?></a><br/>
+            <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
+              <a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtmlAttr($this->proxyUrl($current['url'])) ?></a><br/>
+            <? else: ?>
+              <span>Not available</span></br>
+            <? endif; ?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>
           <? endif; ?><? endif; ?>
           <? if ($item_sobek_txt != ""): ?>
+          	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
                       <a target="_blank" href="<?=$item_sobek_txt?>"><?=$item_sobek_txt /*=$this->escapeHtml($current['desc'])*/?></a><br/>
-
+          	<? else: ?>
+                      <span>Not available</span></br>
+          	<?endif;?>
           <?endif;?>
         </td>
       </tr>

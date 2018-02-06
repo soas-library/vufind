@@ -878,37 +878,40 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                 elseif (stripos($item['status'], 'LOSTANDPAID') > -1) {
                         $item['status'] = "Lost and paid";
                 }
-				elseif (stripos($item['status'], 'REPRTD-MISSING') > -1) {
+		elseif (stripos($item['status'], 'REPRTD-MISSING') > -1) {
                         $item['status'] = "Missing";
                 }
                 elseif (stripos($item['status'], 'LOANED') > -1) {
                         $item['status'] = "On loan";
                 }
-			    //Changed by HTC
- 				elseif (stripos($item['status'], 'ONHOLD') > -1) {
-                    //$item['status'] = "On holdshelf";
-					if(stripos($item['ptrn_q_pos'], '1') > -1){
-						$item['status'] = "On holdshelf";
-					}else{
-					$item['status'] = "On loan";
-					}
+                elseif (stripos($item['status'], 'RECENTLY-RETURNED') > -1) {
+                        $item['status'] = "Recently returned";
                 }
-				// END
+		//Changed by HTC
+ 		elseif (stripos($item['status'], 'ONHOLD') > -1) {
+                   //$item['status'] = "On holdshelf";
+		   if(stripos($item['ptrn_q_pos'], '1') > -1){
+		      $item['status'] = "On holdshelf";
+		   }else{
+		      $item['status'] = "On loan";
+		   }
+                }
+		// END
                 $item['location'] = (!empty($itemLocation) ? $itemLocation : $holdingLocation);
                 $item['reserve'] = '';
                 $item['callnumber'] = (!empty($itemCallNum) ? $itemCallNum : $holdingCallNum);
                 $item['duedate'] = (isset($row['DUE_DATE_TIME']) ? $row['DUE_DATE_TIME'] : false) ;
-				// CUSTOM CODE FOR SOAS LIBRARY
+		// CUSTOM CODE FOR SOAS LIBRARY
                 if (isset($item['duedate']) && $item['duedate']){
                         $item['duedate'] = substr($item['duedate'], 0, -9);
                         $item['duedate'] = date("d-m-Y", strtotime($item['duedate']));
                 }
                 $item['enumeration'] = $enumeration;
-				// END
+		// END
                 $item['returnDate'] = '';
                 $item['number'] = $copyNum . ' : ' . $enumeration;
                 $item['requests_placed'] = '';
-				//Changed by HTC
+		//Changed by HTC
                 $stmtReq = $this->db->prepare("select count(*) as no_req from ole.ole_dlvr_rqst_t where itm_id='".$item['barcode']."'");
 	        	$stmtReq->execute();
 				while($result = $stmtReq->fetch()){
@@ -1453,7 +1456,6 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
           $item_id = $details_arr[1];
 
             $uri = $this->circService . "?service={$service}&patronBarcode={$patronBarcode}&operatorId={$this->operatorId}&itemBarcode={$itemBarcode}";
-
             $request = new Request();
             $request->setMethod(Request::METHOD_POST);
             $request->setUri($uri);

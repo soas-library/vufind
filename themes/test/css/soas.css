@@ -2335,3 +2335,160 @@ ul.nav.nav-pills {
 .sourceSolr{
 padding-right: 15px!important;
 }
+/* Alphabrowse loader */
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #f2a900;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 45%;
+  margin: 5% 0;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Alphabrowse loader */
+
+/* Alphabrowse head of string highlight */
+
+.alphabrowse tr.browse-match-head-of-string td:first-child {
+    border-left: 0.2em solid #265680;
+}
+
+/* Alphabrowse head of string highlight */
+
+
+/*** ACCESS CONTROL***/
+.classmark_letter{
+padding-left:10px;
+    padding-left: 5px;
+    border-right: 1px solid #ccc;
+    padding-right: 5px;
+}
+
+
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #f2a900;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #f6c34c;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+table.GeneratedTable td, table.GeneratedTable th {
+    border-width: 2px;
+    border-color: #fff;
+    border-style: solid;
+    padding: 3px;
+}
+
+table.GeneratedTable thead , table.GeneratedTable tbody th {
+    background-color: #f6c34c;
+}
+
+table.GeneratedTable thead tr th {
+width:0%!important;
+}
+
+table.GeneratedTable td {
+    background-color: #e0e0e0;
+    padding: 6px 4px;
+    vertical-align: top;
+}
+.btn-customized{
+    color: #fff!important;
+    background-color: #00859b;
+    border-color: #ccc;    
+}
+a.btn.btn-customized{
+    color: #fff!important;
+}
+#locationPanel{
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#savePermissions {
+    margin-top: 2%;
+}
+
+.bold{
+font-weight:bold;
+}
+@media screen and (min-width: 640px)
+.two-col {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    -o-column-count: 2;
+    -ms-column-count: 2;
+    column-count: 2;
+    -moz-column-gap: 16px;
+    -webkit-column-gap: 16px;
+    -o-column-gap: 16px;
+    -ms-column-gap: 16px;
+    column-gap: 16px;
+}
+ul.links.two-col li{
+    padding-left: 18px;
+    background: url("../../../themes/scb-soas/images/chevron-bullet.png") no-repeat 8px 5px;
+    display: block;
+    clear: left;
+}
+.two-col{
+column-count: 2;
+padding-left: 0px;
+}
+.width5{
+width:5%!important;
+}
+.grey_color{
+background-color:#e0e0e0;
+}
+.soas_color{
+background-color:#f6c34c;
+}
+.classmark_name{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+#menuLocationList{
+padding-left:20px;
+}
+#bckMenuLocation{
+    margin-top: 20px;
+}
+.thLocation{
+    padding: 10px !important;
+}
+/*** END ACCESS CONTROL***/
+.archive_cover{
+    margin-top: -107px;
+    width: auto !important;
+    }

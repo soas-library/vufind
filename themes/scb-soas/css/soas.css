@@ -35,7 +35,7 @@ header.hidden-print div.container {
 }
 .container {
     -moz-border-radius: 10px 10px 10px 10px !important;
-    border: 1px solid #ddd !important;
+    /*border: 1px solid #ddd !important;*/
     background: none repeat scroll 0 0 #FFFFFF !important;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -95,7 +95,7 @@ a.white_link {
     margin-bottom: 50px;
     float: right;
     height: 100px;
-    width: 300px;
+   /* width: 300px;*/
 }
 
 .navbar-collapse {
@@ -710,7 +710,7 @@ footer {
     //background-color: #f2a900;
     background-color: rgb(251, 216, 118);
     color: #38270c;
-    border: 2px solid #63666a !important;
+   /* border: 2px solid #63666a !important;*/
 }
 
 .font18 {
@@ -928,11 +928,12 @@ div.sobek_cover div a img {
     max-width: 90px !important;
 }
 
-/* Highlight words */
+/* Highlight words 
 mark {
     font-weight: bold;
     background: transparent;
 }
+*/
 
 /* Holdings Result list */
 
@@ -2197,11 +2198,11 @@ padding:0px;
 }
 
 #boxClassmark{
-width:180px;
+/*width:180px;*/
 }
 
 #boxLoanType{
-width:110px;
+/*width:110px;*/
 }
 
 #boxAccess{
@@ -2334,4 +2335,328 @@ ul.nav.nav-pills {
 
 .sourceSolr{
 padding-right: 15px!important;
+}
+/* Alphabrowse loader */
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #f2a900;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 45%;
+  margin: 5% 0;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Alphabrowse loader */
+
+/* Alphabrowse head of string highlight */
+
+.alphabrowse tr.browse-match-head-of-string td:first-child {
+    border-left: 0.2em solid #265680;
+}
+
+/* Alphabrowse head of string highlight */
+
+
+/*** ACCESS CONTROL***/
+.classmark_letter{
+padding-left:10px;
+    padding-left: 5px;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+    font-weight:bold;
+}
+
+
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #f2a900;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #f6c34c;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+table.GeneratedTable td, table.GeneratedTable th {
+    border-width: 2px;
+    border-color: #fff;
+    border-style: solid;
+    padding: 3px;
+}
+
+table.GeneratedTable thead , table.GeneratedTable tbody th {
+    background-color: #f6c34c;
+}
+
+table.GeneratedTable thead tr th {
+width:0%!important;
+}
+
+table.GeneratedTable td {
+    background-color: #e0e0e0;
+    padding: 6px 4px;
+    vertical-align: top;
+}
+.btn-customized{
+    color: #fff!important;
+    background-color: #00859b;
+    border-color: #ccc;    
+}
+a.btn.btn-customized{
+    color: #fff!important;
+}
+#locationPanel{
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#savePermissions {
+    margin-top: 2%;
+}
+
+.bold{
+font-weight:bold;
+}
+@media screen and (min-width: 640px)
+.two-col {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    -o-column-count: 2;
+    -ms-column-count: 2;
+    column-count: 2;
+    -moz-column-gap: 16px;
+    -webkit-column-gap: 16px;
+    -o-column-gap: 16px;
+    -ms-column-gap: 16px;
+    column-gap: 16px;
+}
+ul.links.two-col li{
+    padding-left: 18px;
+    background: url("../../../themes/scb-soas/images/chevron-bullet.png") no-repeat 8px 5px;
+    display: block;
+    clear: left;
+}
+.two-col{
+column-count: 2;
+padding-left: 0px;
+}
+.width5{
+width:5%!important;
+}
+.grey_color{
+background-color:#e0e0e0;
+}
+.soas_color{
+background-color:#f6c34c;
+}
+.classmark_name{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+#menuLocationList{
+padding-left:20px;
+}
+#bckMenuLocation{
+    margin-top: 20px;
+}
+.thLocation{
+    padding: 10px !important;
+}
+/*** END ACCESS CONTROL***/
+.archive_cover{
+    margin-top: -107px;
+    width: auto !important;
+    }
+    
+    
+    
+/***NEW DESIGN (MOBILE)***/
+.radioSearch{
+margin-right:10px;
+font-weight:100;
+color: #333;
+}
+
+body {
+    background-color: rgba(229, 229, 229, 0.36);
+}
+
+.well {
+    background-color: #f2a900;
+}
+
+.btn-primary {
+    background-color: #63666a !important;
+    color: #fff !important;
+}
+
+.well-lg {
+    border-radius: 0px;
+}
+
+.alert_news {
+    border-radius: 0px;
+    background-color: rgba(255, 197, 63, 0.98);
+   /* margin-left: 150px;*/
+    color: #333;
+    border-width: 1px;
+    border-style: inherit;
+    border-color: #333;
+    margin-left: 30px;
+}
+
+input.searchForm_lookfor {
+    border-radius: 0px;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.btn-primary {
+    border-radius: 0px;
+}
+
+form#searchForm.searchForm.col-md-8.navbar-form.navbar-left ul.nav.nav-tabs{
+display:none;
+}
+
+#homesearchbox {
+    padding: 60px;
+}
+
+#divSearch{
+    margin-top: 0px;
+}
+
+.navbar-form{
+border-top: none;
+border-bottom: none;
+-webkit-box-shadow: none;
+box-shadow: none; 
+}
+
+.breadcrumb {
+    border-radius: 0px;
+}
+
+.form-control {
+    max-width: 650px!important;
+}
+.radioHome{
+float:left;
+}
+.left{
+float:left;
+}
+
+.box{
+margin-bottom: 5px;
+}
+
+.navbar-toggle{
+    background-image: url(../../../themes/scb-soas/images/mobile-menu.png)!important;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+form.searchForm .btn-link {
+    font-size: 11pt;
+    color: #333!important;
+    cursor: pointer;
+}
+
+form.searchForm{
+    margin-left: 0%;
+    margin-top: 2%;
+    width: 80% !important;
+}
+
+.infoAMR{
+    float: right;
+    display: block;
+}
+
+.fines-pay-total{
+float: right !important;
+}
+
+@media screen and (max-width: 767px){
+.modal-dialog{
+max-width:40%;
+}
+body.offcanvas.offcanvas-left.active .offcanvas-toggle {
+    left: 43%;
+    top: 29.2%;
+}
+body.offcanvas .sidebar {
+    width: 40%;
+}
+}
+
+#menu_top_new {
+    margin-top: -5px !important;
+    background-color: #63666a;
+    text-align: right;
+    display: block;
+}
+
+#logonew h2{
+    background: rgba(0, 0, 0, 0) url("../images/soas-logo-100years-orig.png") no-repeat scroll left top;
+    height: 57px;
+    margin: 30px 50px 14px 15px;
+    width: 146px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+.navbar-toggle {
+    margin-top: 30px;
+}
+
+
+@media (max-width:767px){.prevnext{padding: 0px 0px;     font-size: 11px;  !important}}
+@media (min-width:767px){.home_text_short{width: 65%;  !important}}
+
+
+.soasColor{
+color:#f2a900!important;
+}
+
+.GeneratedTablePublic {
+  /*width: inherit!important;*/
+}
+
+.onOrder{
+    color: #a94442;
+    margin-left: 5px;
 }

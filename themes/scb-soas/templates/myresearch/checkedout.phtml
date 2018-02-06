@@ -46,7 +46,7 @@ $(document).ready(function() {
           <div class="checkbox">
             <label>
               <input type="checkbox" name="selectAll" class="checkbox-select-all"/>
-              <?=$this->transEsc('select_page')?> |
+              <?=$this->transEsc('Select All')?> |
             </label>
             <input type="submit" id="renew1" class="btn btn-default" name="renewSelected" value="<?=$this->transEsc("renew_selected")?>" onclick="renew2.disable=true;" />
             <input type="submit" id="renew2" class="btn btn-default" name="renewAll" value="<?=$this->transEsc('renew_all')?>" onclick="renew1.disable=true;" />
@@ -88,8 +88,6 @@ $(document).ready(function() {
         <hr/>
         <? $ilsDetails = $resource->getExtraDetail('ils_details'); ?>
         <div id="record<?=$this->escapeHtmlAttr($resource->getUniqueId())?>" class="row result">
-          
-
           <? $cover = $this->record($resource)->getCover('checkedout', 'small'); ?>
           <? if ($cover): ?>
             <div class="col-sm-1">
@@ -122,7 +120,7 @@ $(document).ready(function() {
                 $title = $resource->getTitle();
                 $title = empty($title) ? $this->transEsc('Title not available') : $this->escapeHtml($title);
                 echo '<a href="' . $this->recordLink()->getUrl($resource) .
-                  '" class="title">' . $title . '</a>';
+                  '" class="title">' . rtrim($title,"/") . '</a>';
               } else if (isset($ilsDetails['title']) && !empty($ilsDetails['title'])){
                 // If the record is not available in Solr, perhaps the ILS driver sent us a title we can show...
                 echo $this->escapeHtml($ilsDetails['title']);
@@ -196,7 +194,7 @@ $(document).ready(function() {
 		        <? if ($showStatus): ?>
 		              <? if (isset($ilsDetails['dueStatus']) && $ilsDetails['dueStatus'] == "overdue"): ?>
 		                <div class="col-sm-3 alert-danger nobackground"><?=$this->transEsc("renew_item_overdue")?>
-		                <div class="black"><strong>**<?=$this->transEsc("fines will be calculated at point of returning the item")?></strong></div>
+		                <div class="black"><strong>**<?=$this->transEsc("Fines are charged DAILY and are not capped")?></strong></div>
 		                </div>
 		              <? elseif (isset($ilsDetails['dueStatus']) && $ilsDetails['dueStatus'] == "due"): ?>
 		                <div class="col-sm-3 alert-info nobackground"><?=$this->transEsc("renew_item_due")?></div>
@@ -252,7 +250,7 @@ $(document).ready(function() {
                       <? endif; ?>
 
 	              <? if (isset($ilsDetails['dueStatus']) && $ilsDetails['dueStatus'] == "overdue"): ?>
-	              <div class=""><strong>**<?=$this->transEsc("fines will be calculated at point of returning the item")?></strong></div>
+	              <div class=""><strong>**<?=$this->transEsc("Fines are charged DAILY and are not capped")?></strong></div>
 	              <? endif; ?>
 	              </div>
 	         <? endif; ?>

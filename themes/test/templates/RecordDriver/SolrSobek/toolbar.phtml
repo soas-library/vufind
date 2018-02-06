@@ -1,3 +1,8 @@
+<? 
+$account = $this->auth()->getManager();
+$orderOffsiteMaterial_access = $account->userPermissions('Order offsite material');
+?>
+
 <?
   $addThis = $this->addThis();
   if (!empty($addThis)) {
@@ -33,7 +38,9 @@
   <? endif; ?>
   
   <!--CUSTOM CODE ADDED FOR SOAS LIBRARY-->
+  <? if (!$orderOffsiteMaterial_access): ?>
     <li><a id="sms-record" class="modal-link <?=$controllerClass?>" href="<?=$this->url('record-sms', array('id'=>$id)) ?>" title="<?=$this->transEsc('Order offsite materials')?>"><i class="fa fa-share"></i> <?=$this->transEsc('Order offsite material')?></a></li>
+  <?endif;?>
   <!--END-->
   
   <? if (!empty($addThis)): ?>

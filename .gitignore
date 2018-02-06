@@ -24,6 +24,7 @@ local/httpd-vufind.conf
 local/import/callnumber.tmp
 local/import/solrmarc_core_3.0.6.jar
 local/import/sorted-callnumber.tmp
+local/importNEW
 import/solrmarc.log.1
 
 #Solr

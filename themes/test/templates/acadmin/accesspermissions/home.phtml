@@ -1,0 +1,113 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Access types'));
+  
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('Access permissions') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Access permissions')?></h2>    
+    
+<?
+$access_types = $this->accessTypes;
+$types_names = $this->types;
+$roles = $this->roles;
+?>
+
+<? if ($this->action == '1'): ?>
+<div class="alert alert-success">
+  <strong><?=$this->transEsc('Success!')?></strong> <?=$this->transEsc('The settings were saved.')?>
+</div>
+<? elseif ($this->action == '2'): ?>
+<div class="alert alert-danger">
+  <strong><?=$this->transEsc('')?>Danger!</strong> <?=$this->transEsc('Error.')?>
+</div>
+<? elseif ($this->action == '3'): ?>
+<div class="alert alert-danger">
+  <strong><?=$this->transEsc('Danger!')?></strong> <?=$this->transEsc('Anyone changes the file.')?>
+</div>
+<? endif; ?>
+
+<form method="post" action="/Acadmin/Accesspermissions" name="savePermissionsForm" id="savePermissionsForm">
+
+  <table class="GeneratedTable">
+    <thead>
+      <tr>
+        <th></th>
+        <? for ($i = 0; $i < count($types_names); $i++) { ?>
+        <th><?=$types_names[$i];?></th>
+        <? } ?>
+      </tr>
+    </thead>
+    <tbody>
+      <? for ($j = 0; $j < count($access_types); $j++) { ?>
+        <tr>
+          <th><?=$access_types[$j];?></th>
+          <? $cont = 0; ?>
+          <? for ($k = 0; $k < count($types_names); $k++) { 
+            if (in_array($access_types[$j], $roles[$k])) { ?>
+            	<td><input type="checkbox" name="<?=$cont?>[]" value="<?=$access_types[$j];?>" checked></td>
+            <? } else { ?>
+            	<td><input type="checkbox" name="<?=$cont?>[]" value="<?=$access_types[$j];?>"></td>
+            <? }
+            $cont++;
+           } ?>
+        </tr>
+      <? } ?>
+    </tbody>
+  </table>
+
+<input type="hidden" name="save" id="save" value="0"/>
+<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+
+<button id="savePermissions" type="button" class="btn btn-default"><?=$this->transEsc('Save')?></button>
+
+<?
+$file = '/usr/local/vufind/local/config/vufind/access.ini';
+if (file_exists($file)) {
+	$afterDelDate = date ("F d Y H:i:s.", filemtime($file));
+}
+?>
+
+</form>
+
+    
+  </div>
+  <div class="<?=$this->layoutClass('sidebar')?>">
+    <?=$this->render("acadmin/menu.phtml")?>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+
+/* To save the data */
+
+	$('#save').val("0");
+	$("#savePermissions").click(function() {
+	    $('#readDate').val("<?=$afterDelDate?>");
+	    bootbox.confirm({
+	        message: "<?=$this->transEsc('Do you want to save the settings?')?>",
+	        buttons: {
+	            confirm: {
+	                label: "<?=$this->transEsc('Yes')?>",
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: "<?=$this->transEsc('No')?>",
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#save').val("1");
+	            	$("#savePermissionsForm").submit();
+	            }
+	        }
+	    });
+	});
+});
+</script>
+

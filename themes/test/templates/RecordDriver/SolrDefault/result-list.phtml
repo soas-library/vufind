@@ -1,3 +1,10 @@
+<? 
+if($this->driver->getCollectionType()[0] == "SOAS Library")
+	$collectionType = $this->driver->userPermissions('OLE');
+else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
+	$collectionType = $this->driver->userPermissions('ePrints');
+?>
+
 <?
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
   $cover = $coverDetails['html'];
@@ -616,7 +623,11 @@
           <? if (!is_array($urls)) $urls = array();
             if(!$this->driver->isCollection()):
               foreach ($urls as $current): ?>
-                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
+                <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>
+                  <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
+                <? else: ?>
+                  <span>Not available</span></br>
+                <? endif; ?>
             <? endforeach; ?>
           <? endif; ?>
         <? endif; ?>

@@ -69,6 +69,16 @@ class User extends Gateway
         $this->session = $session;
     }
 
+    public function getAll() {
+	
+	$callback = function ($select)  {
+    		$select->order(array('cat_username ASC'));
+    	};
+     	return $this->select($callback);
+
+    }
+
+
     /**
      * Create a row for the specified username.
      *

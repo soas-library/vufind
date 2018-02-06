@@ -33,8 +33,6 @@
             <? foreach ($order as $orderAux): ?><?= html_entity_decode($this->escapeHtml($orderAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
         </td>
       </tr>
-       <?else:?>
-      <th class="labelTbl"><?=$this->transEsc('Order Number')?>:</th><td><?=$this->transEsc('Can not be requested')?></td>
       <? endif; ?>
     
   <? $summ = $this->driver->getSummary(); if (!empty($summ)): ?>
@@ -218,7 +216,7 @@
       <tr>
         <th class="labelTbl"><?=$this->transEsc('Document')?>:</th>
         <td>
-            <? foreach ($document as $documentAux): ?><a target="_blank" href="http://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"><?= $this->escapeHtml($documentAux)?></a><br/><? endforeach; ?>
+            <? foreach ($document as $documentAux): ?><a target="_blank" href="https://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"><?= $this->escapeHtml($documentAux)?></a><br/><? endforeach; ?>
         </td>
       </tr>
       <? endif; ?>
@@ -416,7 +414,7 @@
           <? endforeach; ?>
 		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
             <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+			<? foreach ($linkedtopic as $linktopic): ?><a href="http:///Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
             <br />
 			<? endforeach; ?>
           <? endif; ?>

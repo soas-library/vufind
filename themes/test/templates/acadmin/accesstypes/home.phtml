@@ -1,0 +1,156 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Access types'));
+  
+  // Set up breadcrumbs:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li> <li class="active">' . $this->transEsc('Access types') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Access types')?></h2>
+
+<? if ($this->action == '1'): ?>
+<div class="alert alert-success">
+  <strong><?=$this->transEsc('Success!')?></strong> <?=$this->transEsc('The settings were saved.')?>
+</div>
+<? elseif ($this->action == '2'): ?>
+<div class="alert alert-danger">
+  <strong><?=$this->transEsc('Danger!')?></strong> <?=$this->transEsc('Error.')?>
+</div>
+<? elseif ($this->action == '3'): ?>
+<div class="alert alert-danger">
+  <strong><?=$this->transEsc('Danger!')?></strong> <?=$this->transEsc('Anyone changes the file.')?>
+</div>
+<? endif; ?>
+
+<? if ($this->act_type == 0) { ?>
+
+<form method="post" action="/Acadmin/Accesstypes" name="deleteForm" id="deleteForm">
+
+<div id="locationPanel">
+<a  class="btn btn-customized" href="/Acadmin/Accesstypes?add=1"><?=$this->transEsc('Add')?></a>
+<input value="<?=$this->transEsc('Delete')?>" id="deleteButton" name="deleteButton" type="button" class="btn btn-customized"/> 
+</div> 
+
+<table class="GeneratedTable">
+<thead>
+<tr>
+<th></th>
+<th class="thLocation"><?=$this->translate('Types')?></th>
+<th class="thLocation"><?=$this->translate('IPs')?></th>
+ </tr>
+</thead>
+<tbody>
+
+<? for ($i = 0; $i < count($this->type_names); $i++) { ?>
+	<tr>
+	<td><input type="checkbox" name="check[]" id="<?=$i?>" value="<?=$this->type_names[$i];?>"></td>
+	<td><a href="/Acadmin/Type?t=<?=$this->type_names[$i];?>"><?=$this->type_names[$i];?></a></td>
+	<td>
+	<? for ($j = 0; $j < count($this->ip_values[$i]); $j++) { ?>
+	<p>
+	<? echo $this->ip_values[$i][$j];?>
+	</p>
+	<? } ?>
+	</td>
+	</tr>
+<? } ?>
+
+ </tbody>
+</table>
+
+<input type="hidden" name="delete" id="delete" value="0"/>
+<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+
+<?
+$file = '/usr/local/vufind/local/config/vufind/access.ini';
+if (file_exists($file)) {
+	$afterDelDate = date ("F d Y H:i:s.", filemtime($file));
+}
+?>
+
+</form>
+
+<? } else if($this->act_type == 1) { ?>
+
+	<form method="post" action="/Acadmin/Accesstypes" name="addForm" id="addForm">
+		<div class="form-group">
+			<label for="name"><?=$this->transEsc('New access type')?></label>
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="<?=$this->transEsc('Type name')?>" id="name" name="name" value="">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="<?=$this->transEsc('IP/IP Range')?>" id="ip" name="ip" value="">
+		</div>
+		<input value="<?=$this->transEsc('Add')?>" id="addButton" name="addButton" type="button" class="btn btn-customized"/>
+		<input type="hidden" name="add" id="add" value="0"/>
+		<input type="hidden" name="readDate" id="readDate" value="<?=$this->readDate?>"/>
+	</form>
+
+<? } ?>
+
+    
+  </div>
+  <div class="<?=$this->layoutClass('sidebar')?>">
+    <?=$this->render("acadmin/menu.phtml")?>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+
+	/* To delete the data */
+
+	$('#delete').val("0");
+	$("#deleteButton").click(function() {
+		$('#readDate').val("<?=$afterDelDate?>");
+	    bootbox.confirm({
+	        message: "<?=$this->transEsc('Do you want to delete the access types?')?>",
+	        buttons: {
+	            confirm: {
+	                label: "<?=$this->transEsc('Yes')?>",
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: "<?=$this->transEsc('No')?>",
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#delete').val("1");
+	            	$("#deleteForm").submit();
+	            }
+	        }
+	    });
+	});
+
+/* To add a resource */
+
+	$('#add').val("0");
+	$("#addButton").click(function() {
+	    bootbox.confirm({
+	        message: "<?=$this->transEsc('Do you want to add the access type?')?>",
+	        buttons: {
+	            confirm: {
+	                label: "<?=$this->transEsc('Yes')?>",
+	                className: 'btn-success'
+	            },
+	            cancel: {
+	                label: "<?=$this->transEsc('No')?>",
+	                className: 'btn-danger'
+	            }
+	        },
+	        callback: function (result) {
+	            if(result) {
+	            	$('#add').val("1");
+	            	$("#addForm").submit();
+	            }
+	        }
+	    });
+	});
+
+});
+</script>

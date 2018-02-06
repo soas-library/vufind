@@ -27,6 +27,7 @@
  */
 namespace VuFindConsole\Controller;
 use VuFind\XSLT\Importer, Zend\Console\Console, VuFind\XSLT\Import\Archive;
+use DOMDocument;
 
 /**
  * This controller handles various command-line tools
@@ -292,5 +293,234 @@ class ImportController extends AbstractBase
     		}
     	}
 
+    }
+    
+    
+    
+    /*
+     public function extractxmlsAction($xml = null)
+    {   
+	$GLOBALS['PATH_ARCHIVE_XML'] = '/usr/local/vufind/archivecollections/';
+	$GLOBALS['PATH_ARCHIVE_HARVEST'] = '/usr/local/vufind/local/harvest/Archive/';
+	$GLOBALS['PATH_ARCHIVE_INFO'] = '/usr/local/vufind/local/harvest/Archive/info.txt';
+	
+	$import = new Archive();
+	$id=1;
+
+	foreach (glob($GLOBALS['PATH_ARCHIVE_XML']."*.xml") as $filename) {
+	$file = realpath($filename);
+	$xml = file_get_contents($file);
+	    		
+	//  echo   $xml;		
+	$doc = new DOMDocument();
+	libxml_use_internal_errors(true);
+	$doc->loadHTML($xml);
+	libxml_clear_errors();
+	ini_set('memory_limit','10000M');
+	//Get collection
+	foreach (glob($GLOBALS['PATH_ARCHIVE_XML']."*.xml") as $filename) {
+   		$file = realpath($filename);
+    		$xml = file_get_contents($file);
+
+    		//Collection
+    		$xml = preg_replace ('/<c (.*)\<\/c\>/sU', '', $xml);
+    		//echo $xml;
+		$regex = '/<archdesc(.*)\<\/archdesc\>/sU';
+		preg_match_all($regex,$xml,$match2,PREG_PATTERN_ORDER);
+
+		foreach($match2[0] as $item) {
+			$name= $GLOBALS['PATH_ARCHIVE_HARVEST']."archive_" . $id . ".xml";
+
+			$item = str_replace(array('&'), array('&amp;'), $item);
+			$item = preg_replace ('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $item);
+			$item = preg_replace ('/<dsc(.*)\<\/dsc\>/sU', '', $item);
+			$item = str_replace('<did>','',$item);
+			$item = str_replace('</did>','',$item);
+			$item = str_replace('<archdesc relatedencoding="ISAD(G)v2" level="fonds">','',$item);
+			$item = str_replace('</archdesc>','',$item);
+			$item =  $item.'<level>Collection</level>';
+			$item = '<EADRecord>'.$item.'</EADRecord>';
+			
+			//Detect if status is Draft
+			$regex2 = '/<accessrestrict(.*)\>(.*)\<\/accessrestrict\>/sU'; 
+    			preg_match_all($regex2,$item,$match2,PREG_PATTERN_ORDER);
+    			$out = false;
+    			if(count($match2)>0) {
+    				foreach($match2[0] as $item2) {
+    					if('<accessrestrict encodinganalog="3.4.1"><p>Draft</p></accessrestrict>' == $item2){
+    						$out = true;
+    					}
+    				}
+    			}
+										
+			if(!$out){	
+			    	
+			        
+			         //Get id and title
+				$regex6 = '/<unitid(.*)\>(.*)\<\/unitid\>/sU'; 
+				preg_match_all($regex6,$item,$match6,PREG_PATTERN_ORDER);
+				$regex7 = '/<unittitle(.*)\>(.*)\<\/unittitle\>/sU'; 
+				preg_match_all($regex7,$item,$match7,PREG_PATTERN_ORDER);
+				if(!empty($match6) && count($match6)==3 && !empty($match6[2]) && $match6[2][0]!=""){    					
+					$idXML= $match6[2][0];					
+				}
+				if(!empty($match7) && count($match7)==3 && !empty($match7[2]) && $match7[2][0]!=""){    					
+					$titleXML= $match7[2][0];					
+				}
+		        	//Write in document
+		        	if(!empty($idXML) && $idXML != ""){
+			        	file_put_contents($name, trim($item));
+				        $id=$id+1;
+					$file_info = fopen($GLOBALS['PATH_ARCHIVE_INFO'], "a");
+					fwrite($file_info, $import->buidID($idXML).'*****'.$titleXML. PHP_EOL);
+					fclose($file_info); 
+				}
+			}
+		}
+    	}
+    		
+	        		
+	
+	$arrayAux = array();
+	$ellies = $doc->getElementsByTagName('c');
+	
+	//Sub-Collection, Sub-Sub-Collection, Serie, File, Item
+	foreach ($ellies as $one_el) {
+	    	if ($ih = $this->get_inner_html($one_el)){         
+			$level = $ih[0];
+			$item = $ih[1];
+
+	        	
+	        	$name= $GLOBALS['PATH_ARCHIVE_HARVEST']."archive_" . $id . ".xml";
+	        	$item = str_replace(array('&'), array('&amp;'), $item);
+			$item = preg_replace ('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $item);
+			$item = str_replace('<did>','',$item);
+			$item = str_replace('</did>','',$item);
+			$item = preg_replace ('/<c(.*)\<\/c\>/sU', '', $item);
+			$item = str_replace('</c>','',$item);
+			$item = str_replace('<archdesc relatedencoding="ISAD(G)v2" level="fonds">','',$item);
+			$item = str_replace('</archdesc>','',$item);
+			if($level != "") $item =  $item.'<level>'.$level.'</level>';
+			$item = '<EADRecord>'.$item.'</EADRecord>';
+			
+			//Detect if status is Draft
+			$regex2 = '/<accessrestrict(.*)\>(.*)\<\/accessrestrict\>/sU'; 
+    			preg_match_all($regex2,$item,$match2,PREG_PATTERN_ORDER);
+    			$out = false;
+    			if(count($match2)>0) {
+    				foreach($match2[0] as $item2) {
+    					if('<accessrestrict encodinganalog="3.4.1"><p>Draft</p></accessrestrict>' == $item2){
+    						$out = true;
+    					}
+    				}
+    			}								
+			if(!$out){	
+			    	file_put_contents($name, trim($item));
+		        	$id=$id+1;
+		        	
+		        	 //Get id and title
+				$regex6 = '/<unitid(.*)\>(.*)\<\/unitid\>/sU'; 
+				preg_match_all($regex6,$item,$match6,PREG_PATTERN_ORDER);
+				$regex7 = '/<unittitle(.*)\>(.*)\<\/unittitle\>/sU'; 
+				preg_match_all($regex7,$item,$match7,PREG_PATTERN_ORDER);
+				if(!empty($match6) && count($match6)==3 && !empty($match6[2]) && $match6[2][0]!=""){    					
+					$idXML= $match6[2][0];					
+				}
+				if(!empty($match7) && count($match7)==3 && !empty($match7[2]) && $match7[2][0]!=""){    					
+					$titleXML= $match7[2][0];					
+				}
+		        	//Write in document
+				$file_info = fopen($GLOBALS['PATH_ARCHIVE_INFO'], "a");
+				fwrite($file_info, $import->buidID($idXML).'*****'.$titleXML. PHP_EOL);
+				fclose($file_info);
+		       } 
+
+	     	}
+	}}
+	
+	
+
+    }
+   
+   
+
+    public function  get_inner_html( $node ) { 
+	   
+	 $innerHTML= ''; 
+		    $children = $node->childNodes; 
+		    foreach ($children as $child) { 
+		        $innerHTML .= $child->ownerDocument->saveXML( $child ); 
+		    } 
+		    $level = $node->getAttribute("level"); 
+		    $level2 = $node->getAttribute("otherlevel");
+		    
+		    if(strtolower($level) == "otherlevel")$level = $level2;
+		    $arr_node = array($level,$innerHTML);
+		    //return $innerHTML;
+		    return $arr_node;
+   }
+   
+   */
+   
+   
+    /**
+     * Tool to read a file and write relevant data
+     *
+     * @return \Zend\Console\Response
+     */
+    public function savetitleidAction()
+    {   
+	$GLOBALS['PATH_ARCHIVE_HARVEST'] = '/usr/local/vufind/local/harvest/Archive/';
+	$GLOBALS['PATH_ARCHIVE_INFO'] = '/usr/local/vufind/local/harvest/Archive/info.txt';
+
+    	$id=1;
+    	//getXMLs
+   	foreach (glob($GLOBALS['PATH_ARCHIVE_HARVEST']."*.xml") as $filename) {
+   		$file = realpath($filename);
+ 
+    		$xml = file_get_contents($file);  			
+    			$regex2 = '/<CatalogueStatus(.*)Draft\<\/CatalogueStatus\>/sU';
+    			preg_match_all($regex2,$xml,$match2,PREG_PATTERN_ORDER);
+    			$out = false;
+    			if(count($match2)>0) {
+    				foreach($match2[0] as $item2) {
+    					if('<CatalogueStatus urlencoded="Draft">Draft</CatalogueStatus>' == $item2){
+    						$out = true;
+    						unlink($filename);
+    					}
+    				}
+    			}
+    			if(!$out){
+				$xml = str_replace(array('&'), array('&amp;'), $xml);
+				$xml = preg_replace ('/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $xml);
+				$xml = str_replace(array('xmlns="http://www.ds.co.uk/Calm"'), array(''), $xml);
+	    			file_put_contents($filename, trim($xml));
+	    			$id=$id+1;
+	
+		
+	    			//Get relevant data from XML
+	    			$xml_aux=simplexml_load_file($filename);
+	    			$import = new Archive();
+	    			//Write in document
+	    			
+	    			$fp = fopen($GLOBALS['PATH_ARCHIVE_INFO'], "r");
+	    			$existe = false;
+				while(!feof($fp)) {
+					$linea = trim(fgets($fp));
+
+					if(trim(fgets($fp)) == trim($import->buidID($xml_aux->RefNo).'*****'.$xml_aux->Title)){
+						$existe=true;
+						break;
+					}	
+				}
+				fclose($fp);
+	    			
+	    			if(!$existe){
+	    				$file_info = fopen($GLOBALS['PATH_ARCHIVE_INFO'], "a");
+	    				fwrite($file_info, $import->buidID($xml_aux->RefNo).'*****'.$xml_aux->Title . PHP_EOL);
+	    				fclose($file_info);
+	    			}
+    			}
+    	}
     }
 }

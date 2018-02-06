@@ -976,11 +976,15 @@ class SolrMarc extends SolrDefault
     {
         // Special case for MARC:
         if ($format == 'marc21') {
+        	
             $xml = $this->getMarcRecord()->toXML();
+
             $xml = str_replace(
                 [chr(27), chr(28), chr(29), chr(30), chr(31)], ' ', $xml
             );
+            
             $xml = simplexml_load_string($xml);
+            
             if (!$xml || !isset($xml->record)) {
                 return false;
             }
@@ -1111,10 +1115,62 @@ class SolrMarc extends SolrDefault
                 $marc = str_replace(
                     ['#29;', '#30;', '#31;'], ["\x1D", "\x1E", "\x1F"], $marc
                 );
+                
+                
+                
+                // Special case - need to get the first 7 characters
+
+            $collection = $this->fields['collection'];
+            
+            if (in_array("SOAS Digital Library", $collection)) { 
+            	
+	            $file = "/usr/local/vufind/local/config/vufind/access.ini";
+	            $array_ini_access = parse_ini_file($file, true);
+	            $access = 'Sobek';
+	            /* Put the correct type in the moment */
+	            if (in_array($access, $array_ini_access['OPAC']['role'])) {
+		            $url = $this->fields['url'];
+		            
+		            for($i=0; $i < count($url); $i++ ) {
+		            	//print_r($url[$i]);
+		            	//print_r('</br>');
+			    	$file = "/usr/local/vufind/local/config/vufind/electronicResources.ini";
+			    	$array_ini = parse_ini_file($file, true);
+			    	$array_sobek_regex = $array_ini['Sobek']['regex'];
+			    	$notAvailable = "Not available";
+			    	
+			    	for($i=0; $i < count($array_sobek_regex); $i++ ) {
+			    		$regExpr = $array_sobek_regex[$i];
+			    		/*print_r($regExpr);
+			    		print_r('</br>');
+			    		print_r($url[$i]);
+			    		print_r('</br>');*/
+			    		if (preg_match("/".$regExpr."/", $url[$i])) {
+			    			$url_length = strlen($url[$i]);
+			    			/*print_r($url_length);
+			    			print_r('</br>');*/
+			    			$notAvailable = str_pad($notAvailable, $url_length);
+			    			/*print_r($notAvailable);
+			    			print_r('</br>');
+			    			print_r(strlen($notAvailable));
+			    			print_r('</br>');*/
+			    			$marc = str_replace([$url[$i]], $notAvailable, $marc);
+			    		}
+			    	}
+			    	
+		            }
+	            }
+            }
+
                 $marc = new \File_MARC($marc, \File_MARC::SOURCE_STRING);
             }
 
             $this->lazyMarcRecord = $marc->next();
+
+                    
+            //$i = $this->lazyMarcRecord->deleteFields("856");
+            //print_r($this->lazyMarcRecord->getFields("856"));
+            
             if (!$this->lazyMarcRecord) {
                 throw new \File_MARC_Exception('Cannot Process MARC Record');
             }
@@ -1329,7 +1385,10 @@ class SolrMarc extends SolrDefault
         return $this->getFieldArray('546');
     }
 
-    
+    public function get246()
+    {
+        return null;
+    }
     /** SCB **/
     
 }

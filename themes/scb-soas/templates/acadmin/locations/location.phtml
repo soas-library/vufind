@@ -1,0 +1,60 @@
+<?
+  $this->headTitle($this->translate('Location'));
+  if($this->id_level != "")
+  	$sort="&order=2";
+  $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/locations'). '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/locations') .'?id_classmark='.$this->id_classmark.'&id_level='.$this->id_level.$sort. '">' . $this->transEsc('Location list') . '</a></li> <li class="active">' . $this->transEsc('Location') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+  <?=$this->flashmessages()?> 
+    <h2><?=$this->transEsc('Location')?></h2>
+        </br>
+<form method="post" action="/Acadmin/Location" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="a"><?=$this->transEsc('Name')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Class mark')?>" id="classmark" name="classmark" value="<?=$this->location['name']?>">
+</div>
+<div class="form-group">
+<label for="b"><?=$this->transEsc('Class mark')?></label>
+<select id="classmarks" required oninvalid="this.setCustomValidity('<?=$this->transEsc('Required')?>')" onchange="this.setCustomValidity('')"  class="form-control" name="classmarks">
+  <?foreach ($this->classmarks  as $row) {?>
+          <option <?if($this->id_classmark == $row['id_classmark']) echo"selected"; ?> value="<?=$row['id_classmark']?>"><?=$row['name']?></option>
+  <?}?>
+</select>
+</div>
+<div class="form-group">
+<label for="b"><?=$this->transEsc('Library Location')?></label>
+<select id="levels" required oninvalid="this.setCustomValidity('<?=$this->transEsc('Required')?>')" onchange="this.setCustomValidity('')"  class="form-control" name="levels">
+  <?foreach ($this->levels  as $row) {?>
+          <option <?if($this->id_level == $row['id_level']) echo"selected"; ?> value="<?=$row['id_level']?>"><?=$row['name']?></option>
+  <?}?>
+</select>
+</div>  
+<div class="form-group">
+<label for="c"><?=$this->transEsc('Book stack number')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Book stack number')?>" id="stack" name="stack" value="<?=$this->location['stack']?>">
+</div>
+<div class="form-group">
+<label for="g"><?=$this->transEsc('Order By First Letter')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Order By First Letter')?>" id="ordFirstLetter" name="ordFirstLetter" value="<?=$this->location['ordFirstLetter']?>">
+</div>
+<div class="form-group">
+<label for="h"><?=$this->transEsc('Order By Library Location')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Order By Library Location')?>" id="ordLibraryLocation" name="ordLibraryLocation" value="<?=$this->location['ordLibraryLocation']?>">
+</div>
+<input type="text" class="form-control hidden"  id="id_location" name="id_location" value="<?=$this->location['id_location']?>">
+<input type="text" class="form-control hidden"  id="id_classmark" name="id_classmark" value="<?=$this->id_classmark?>">
+<input type="text" class="form-control hidden"  id="id_level" name="id_level" value="<?=$this->id_level?>">
+<input type="hidden" name="save" id="save" value="0"/>
+<?if(!empty($this->location) && $this->location['id_location']!=""):?>
+<input value="Save" id="modify" name="modify" type="submit" class="btn btn-customized"/>
+<?else:?>
+<input value="Save" id="create" name="create" type="submit" class="btn btn-customized"/>
+<?endif;?>
+</form>
+</div>
+
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

@@ -137,9 +137,12 @@ JS;
       // 3. It is set to a custom string; we should display the provided version
       // Set up default search box if no data was provided from the template;
       // this covers case 1.  Cases 2 and 3 are then covered by logic below.
+       
+       /***SCB _SERVER[REQUEST_URI] != "/Location/home"***/
       if (!isset($this->layout()->searchbox)) {
         $this->layout()->searchbox = $this->render('search/searchbox.phtml');
       }
+       /***SCB***/
     ?>
     <header class="hidden-print">
       <div class="container navbar">
@@ -147,7 +150,11 @@ JS;
           <span class="sr-only"><?=$this->layout()->srmessage ?></span>
         <? endif; ?>
         <a class="sr-only" tabindex="1" href="#content"><?=$this->transEsc('Skip to content') ?></a>
+        <? if ($_SERVER["REQUEST_URI"] =="/" && !$this->auth()->isLoggedIn()) :?>
+        <?=$this->render('headerHome.phtml')?>
+        <? else:?>
         <?=$this->render('header.phtml')?>
+        <? endif;?>
       </div>
       <div class="container">
         <nav class="nav searchbox hidden-lg hidden-print">

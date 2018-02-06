@@ -1,0 +1,69 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Location'));
+  
+   // Set up breadcrumbs:
+   if(!empty($this->location) && $this->location['id_location']!=""):
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/locations') . '">' . $this->transEsc('Location list') . '</a></li> <li class="active">' . $this->transEsc('Location') . '</li>';
+   else:
+    $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/accesstypes') . '">' . $this->transEsc('Administration') . '</a></li><li><a href="' . $this->url('acadmin/locations') . '">' . $this->transEsc('Location list') . '</a></li> <li class="active">' . $this->transEsc('Add') . '</li>';
+   endif;
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Location')?></h2>
+    
+    <?if(!empty($this->classmarks)):?>    
+    <?foreach($this->classmarks as $classmark):?>
+  <a id="<?=$classmark['id_classmark'];?>" class="classmark_letter" href="<?=$this->url('acadmin/locations').'?id_classmark='.$classmark['id_classmark']?>"><?=$classmark['name'];?></a>
+  <?endforeach?>
+<?endif;?>
+        </br></br>
+        
+<?=$this->flashmessages()?>    
+    <h3 class="bold"><?=$this->classmark['name']?></h3> 
+<form method="post" action="/Acadmin/Location" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="a"><?=$this->transEsc('Class mark')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Class mark')?>" id="classmark" name="classmark" value="<?=$this->location['name']?>">
+</div>
+<div class="form-group">
+<label for="b"><?=$this->transEsc('Level')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Level')?>" id="level" name="level" value="<?=$this->location['level']?>">
+</div>
+<div class="form-group">
+<label for="c"><?=$this->transEsc('Book stack number')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Book stack number')?>" id="stack" name="stack" value="<?=$this->location['stack']?>">
+</div>
+
+<?if($this->location['periodical']=='1'):?>
+<div class="form-group">
+<label for="d"><?=$this->transEsc('Per L Large size periodicals (all)')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Per L Large size periodicals (all)')?>" id="periodical_classmark" name="periodical_classmark" value="<?=$this->location['periodical_name']?>">
+</div>
+<div class="form-group">
+<label for="e"><?=$this->transEsc('Periodical level')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Periodical level')?>" id="periodical_level" name="periodical_level" value="<?=$this->location['peridical_level']?>">
+</div>
+<div class="form-group">
+<label for="f"><?=$this->transEsc('Periodical book stack number')?></label>
+<input type="text" class="form-control" placeholder="<?=$this->transEsc('Periodical book stack number')?>" id="periodical_stack" name="periodical_stack" value="<?=$this->location['periodical_stack']?>">
+</div>
+<?endif;?>
+
+<input type="text" class="form-control hidden"  id="id_location" name="id_location" value="<?=$this->location['id_location']?>">
+<input type="text" class="form-control hidden"  id="id_classmark" name="id_classmark" value="<?=$this->id_classmark?>">
+
+<input type="hidden" name="save" id="save" value="0"/>
+<?if(!empty($this->location) && $this->location['id_location']!=""):?>
+<input value="Save" id="modify" name="modify" type="submit" class="btn btn-customized"/>
+<?else:?>
+<input value="Save" id="create" name="create" type="submit" class="btn btn-customized"/>
+<?endif;?>
+</form>
+</div>
+
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

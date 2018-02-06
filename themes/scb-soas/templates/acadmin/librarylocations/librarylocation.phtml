@@ -1,0 +1,33 @@
+<?
+  // Set page title.
+  $this->headTitle($this->translate('Library Location'));
+  
+  // Set up breadcrumbs:
+  $this->layout()->breadcrumbs = '<li><a href="' . $this->url('myresearch-home') . '">' . $this->transEsc('Your Account') . '</a></li><li><a href="' . $this->url('acadmin/librarylocations') . '">' . $this->transEsc('Administration') . '</a></li>' . ' <li class="active">' . $this->transEsc('Library Location') . '</li>';
+?>
+<div class="row">
+  <div class="<?=$this->layoutClass('mainbody')?>">
+    <h2><?=$this->transEsc('Library location')?></h2>
+        
+        </br></br>
+        
+<?=$this->flashmessages()?>    
+<form method="post" action="/Acadmin/Librarylocation" name="saveForm" id="saveForm">
+<div class="form-group">
+<label for="description"><?=$this->transEsc('Library Location')?></label>
+<input  class="form-control"  id="description" name="description" value="<?=$this->librarylocation['name']?>"></input>
+</div>
+<input type="text" class="form-control hidden"  id="id_level" name="id_level" value="<?=$this->librarylocation['id_level']?>">
+
+<input type="hidden" name="save" id="save" value="0"/>
+<?if(!empty($this->librarylocation) && $this->librarylocation['id_level']!=""):?>
+<input value="Save" id="modify" name="modify" type="submit" class="btn btn-customized"/>
+<?else:?>
+<input value="Save" id="create" name="create" type="submit" class="btn btn-customized"/>
+<?endif;?>
+</form>
+</div>
+<div class="<?=$this->layoutClass('sidebar')?>">
+<?=$this->render("acadmin/menu.phtml")?>
+</div>
+</div>

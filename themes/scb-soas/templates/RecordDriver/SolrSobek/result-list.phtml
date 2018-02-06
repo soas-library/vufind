@@ -6,7 +6,7 @@
   $thumbnailAlignment = $this->record($this->driver)->getThumbnailAlignment('result');
   if ($cover):
     ob_start(); ?>
-    <div class="media-<?=$thumbnailAlignment ?> <?=$this->escapeHtmlAttr($coverDetails['size'])?>">
+    <div class="media-<?=$thumbnailAlignment ?> <?=$this->escapeHtmlAttr($coverDetails['size'])?> hidden-xs">
       <?=$cover ?>
     </div>
     <? $thumbnail = ob_get_contents(); ?>
@@ -25,6 +25,12 @@
           <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=$this->record($this->driver)->getTitleHtml()?>
           </a>
+          </br>
+          <? $alt246 = $this->driver->get246();if (!empty($alt246)): ?>  
+          <? foreach($alt246 as $field): ?>
+            <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>"><?=$this->escapeHtml($field)?></a></br>
+          <? endforeach; ?>
+          <? endif; ?> 
         </div>
 
         <div>
@@ -125,14 +131,20 @@
           $openUrlActive = $openUrl->isActive();
           // Account for replace_other_urls setting
           $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+          $url = $this->driver->getSolrUrl();
 
           if ($openUrlActive || !empty($urls)): ?>
           <? if ($openUrlActive): ?>
             <br/>
             <?=$openUrl->renderTemplate()?>
           <? endif; ?>
-          <? if (!is_array($urls)) $urls = array();
-	            if(!$this->driver->isCollection()):
+          <? if (!empty($url)):?>
+              <? foreach ($url as $field):?>
+                   <a href="<?=$this->escapeHtml($field)?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
+              <? endforeach;?>
+          <? endif; ?>
+          <? elseif (!is_array($urls)):?>
+	            <? if(!$this->driver->isCollection()):
 	              foreach ($urls as $current): ?>
 	                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
 	            <? endforeach; ?>

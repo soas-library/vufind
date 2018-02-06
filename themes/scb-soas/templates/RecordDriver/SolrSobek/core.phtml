@@ -18,12 +18,12 @@
     return ' (' . implode(', ', array_unique(array_map($translate, $roles))) . ')';
   };
 ?>
-<div class="row" vocab="http://schema.org/" resource="#record" typeof="<?=$this->driver->getSchemaOrgFormats()?> Product">
+<div class="row" vocab="https://schema.org/" resource="#record" typeof="<?=$this->driver->getSchemaOrgFormats()?> Product">
   <? $QRCode = $this->record($this->driver)->getQRCode("core");
      $cover = $this->record($this->driver)->getCover('core', 'medium', $this->record($this->driver)->getThumbnail('large'));
      $preview = $this->record($this->driver)->getPreviews(); ?>
   <? if ($QRCode || $cover || $preview): ?>
-  <div class="col-sm-3 img-col">
+  <div class="col-sm-3 img-col hidden-xs">
     <div class="text-center">
       <? /* Display thumbnail if appropriate: */ ?>
       <? if($cover): ?>
@@ -51,6 +51,17 @@
   <? endif; ?>
 
     <h3 property="name"><?=$this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection())?></h3>
+    
+    
+          <? $alt246 = $this->driver->get246();if (!empty($alt246)): ?>
+   
+          <? foreach($alt246 as $field): ?>
+            <h4><?=$this->escapeHtml($field)?></h4>
+          <? endforeach; ?>
+
+      <? endif; ?> 
+    
+
 
     <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
     <? if ($summary): ?>
@@ -73,11 +84,16 @@
         $openUrlActive = $openUrl->isActive();
         // Account for replace_other_urls setting
         $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+        $url = $this->driver->getSolrUrl();
       ?>
    <div class="holdings">
   <? if (!empty($urls) || $openUrl || $item_sobek_txt != ""): ?>
   <table class="table table-responsive" summary="<?=$this->transEsc('Details')?>">
-  <? if (!empty($urls)): ?>
+  <? if (!empty($url)):?>
+    <? foreach ($url as $field):?>
+	<tr><td><a target="_blank" href="<?=$this->escapeHtml($field)?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+    <? endforeach; ?>
+  <? elseif (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
       <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
     <? endforeach; ?>
@@ -107,7 +123,7 @@
         </td>
       </tr>
       <? endif; ?>
-      
+            
       <? $journalTitle = $this->driver->getContainerTitle(); if (!empty($journalTitle)): ?>
       <tr>
         <th><?=$this->transEsc('Published in')?>:</th>
@@ -194,11 +210,17 @@
           <th><?=$this->transEsc('Format')?>: </th>
           <td><?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	       <?if($this->driver->getElectronic()== "Electronic"):?>
-	       <span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
-	       <?endif;?>
           </td>
         </tr>
+      <?else:?>
+      	  <?if($this->driver->getElectronic()== "Electronic"):?>
+      	  <tr>
+          <th><?=$this->transEsc('Format')?>: </th>
+          <td>
+	  <span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
+	  </td>
+        </tr>
+	       <?endif;?>
       <? endif; ?>
 
       <? $langs = $this->driver->getLanguages(); if (!empty($langs)): ?>
@@ -287,7 +309,7 @@
           <? endforeach; ?>
 		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
             <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+			<? foreach ($linkedtopic as $linktopic): ?><a href="/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
             <br />
 			<? endforeach; ?>
           <? endif; ?>
@@ -313,7 +335,7 @@
             <?=$openUrl->renderTemplate()?><br/>
           <? endif; ?><? endif; ?>
           <? if ($item_sobek_txt != ""): ?>
-                      <a target="_blank" href="<?=$item_sobek_txt?>"><?=$item_sobek_txt /*=$this->escapeHtml($current['desc'])*/?></a><br/>
+            <a target="_blank" href="<?=$item_sobek_txt?>"><?=$item_sobek_txt /*=$this->escapeHtml($current['desc'])*/?></a><br/>
 
           <?endif;?>
         </td>

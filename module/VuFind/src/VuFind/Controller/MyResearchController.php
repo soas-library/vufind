@@ -395,7 +395,7 @@ class MyResearchController extends AbstractBase
         ) {
             try {
                 if (!$this->getAuthManager()->isLoggedIn()) {
-                    $this->getAuthManager()->login($this->getRequest());
+                   $this->getAuthManager()->login($this->getRequest());
                 }
             } catch (AuthException $e) {
                 $this->processAuthenticationException($e);
@@ -404,18 +404,20 @@ class MyResearchController extends AbstractBase
 
         // Not logged in?  Force user to log in:
         if (!$this->getAuthManager()->isLoggedIn()) {
+
             $this->setFollowupUrlToReferer();
             return $this->forwardTo('MyResearch', 'Login');
         }
         // Logged in?  Forward user to followup action
         // or default action (if no followup provided):
+
         if ($url = $this->getFollowupUrl()) {
             $this->clearFollowupUrl();
             // If a user clicks on the "Your Account" link, we want to be sure
             // they get to their account rather than being redirected to an old
             // followup URL. We'll use a redirect=0 GET flag to indicate this:
             if ($this->params()->fromQuery('redirect', true)) {
-               //return $this->redirect()->toUrl($url);
+                return $this->redirect()->toUrl($url);
             }
         }
 
@@ -427,6 +429,7 @@ class MyResearchController extends AbstractBase
         if ($page == 'Favorites' && !$this->listsEnabled()) {
             return $this->forwardTo('Search', 'History');
         }
+
         return $this->forwardTo('MyResearch', $page);
     }
 
@@ -1384,6 +1387,10 @@ class MyResearchController extends AbstractBase
 //var_dump($patron);
         // Connect to the ILS:
         $catalog = $this->getILS();
+
+        // Display account blocks, if any:
+        //$this->addAccountBlocksToFlashMessenger($catalog, $patron);
+
         //$patron = '046B1512504A80';
         // Get the current renewal status and process renewal form, if necessary:
         $renewStatus = $catalog->checkFunction('Renewals', compact('patron'));
@@ -1396,8 +1403,9 @@ class MyResearchController extends AbstractBase
         // By default, assume we will not need to display a renewal form:
         $renewForm = false;
 
+
         // Get checked out item details:
-        //SCB. This user has checked out items
+        //SCB. Lina
         //$patron['barcode']= '044B913A493480';
         //SCB Claudia
         //$patron['barcode']= '042F124A334680';
@@ -1411,23 +1419,24 @@ echo '<pre>';
 print_r($result2);
 echo '</pre>';*/
 
-        $resultWithStatus=array();
-        foreach($result as $item) {
-            $resultDriver=  $catalog->getHolding($item['id']);
-            foreach($resultDriver as $itemDriver) {
-                if ($itemDriver['barcode']==$item['item_id']) {
-                   $item['status'] = $itemDriver['status'];
-                }
-                if ($itemDriver['req_count']>0) {
-                   $item['status'] = 'REQUESTED';
-                }
-                if ($itemDriver['claimsReturned']>0) {
-                   $item['status'] = 'CLAIMS RETURNED';
-                }
-            }
-            $resultWithStatus[]=$item;
-        }
-        $result = $resultWithStatus;
+        //COMMENTED OUT BY sb174 2017-11-09
+        //$resultWithStatus=array();
+        //foreach($result as $item) {
+        //    $resultDriver=  $catalog->getHolding($item['id']);
+        //    foreach($resultDriver as $itemDriver) {
+        //        if ($itemDriver['barcode']==$item['item_id']) {
+        //          $item['status'] = $itemDriver['status'];
+        //        }
+        //        if ($itemDriver['req_count']>0) {
+        //           $item['status'] = 'Requested';
+        //        }
+        //        if ($itemDriver['claimsReturned']>0) {
+        //           $item['status'] = 'Claims returned';
+        //       }
+        //    }
+        //    $resultWithStatus[]=$item;
+        //}
+        //$result = $resultWithStatus;
         //echo "<pre>";
         //print_r($result);
         //echo '</pre>';
@@ -1455,7 +1464,7 @@ echo '</pre>';*/
         foreach ($result as $i => $current) {
             // Add renewal details if appropriate:
             $current = $this->renewals()->addRenewDetails(
-                $catalog, $current, $renewStatus
+               $catalog, $current, $renewStatus
             );
             if ($renewStatus && !isset($current['renew_link'])
                 && $current['renewable']
@@ -1464,7 +1473,7 @@ echo '</pre>';*/
                 $renewForm = true;
             }
 
-            // Build record driver (only for the current visible page):
+           // Build record driver (only for the current visible page):
             if ($i >= $pageStart && $i <= $pageEnd) {
                 $transactions[] = $this->getDriverForILSRecord($current);
             } else {
@@ -1475,7 +1484,7 @@ echo '</pre>';*/
         return $this->createViewModel(
             compact(
                 'transactions', 'renewForm', 'renewResult', 'paginator',
-                'hiddenTransactions'
+                'hiddenTransactions', 'displayItemBarcode'
             )
         );
     }

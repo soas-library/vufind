@@ -7,7 +7,7 @@
   <? $i = 0; foreach ($this->statusItems as $item): ?>
     <? if (++$i == 5) break; // Show no more than 5 items ?>
     <tr>
-      <!--<td><a href="http://www.soas.ac.uk/library/using/finding/location/"><?=$this->escapeHtml($item['location'])?></a></td>-->
+      <!--<td><a href="/Locationlist"><?=$this->escapeHtml($item['location'])?></a></td>-->
       <td><a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($item['callnumber'])?>"><?=$this->escapeHtml($item['callnumber'])?></a></td>
       <? /*<td class="fullLocation">
         <? $locationText = $this->transEsc('location_' . $item['location'], array(), $item['location']); ?>

@@ -1,3 +1,5 @@
+<? $archive = $this->driver->userPermissions('Archive'); ?>
+
 <?
   if($loggedin = $this->auth()->isLoggedIn()) {
     $user_id = $loggedin->id;
@@ -112,8 +114,6 @@
             <? foreach ($order as $orderAux): ?><?= html_entity_decode($this->escapeHtml($orderAux), ENT_QUOTES | ENT_HTML5)?><br/><? endforeach; ?>
         </td>
       </tr>
-      <?else:?>
-      <th><?=$this->transEsc('Order Number')?>:</th><td><?=$this->transEsc('Can not be requested')?></td>
       <? endif; ?>
       
       <? $dateCreation = $this->driver->getDateCreation(); if (!empty($dateCreation) && count($dateCreation)>0 && !empty($dateCreation[0])): ?>
@@ -349,7 +349,11 @@
         <th><?=$this->transEsc('Online Access')?>: </th>
         <td>
           <? foreach ($urls as $current): ?>
-            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+            <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $archive)): ?>
+              <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+            <? else: ?>
+              <span>Not available</span></br>
+            <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>

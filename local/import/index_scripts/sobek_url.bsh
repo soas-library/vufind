@@ -1,0 +1,33 @@
+/**
+ * Custom 856 script.
+ *
+ * This can be used to override built-in SolrMarc custom functions.  If you change
+ * this script, you will need to activate it in import/marc_local.properties before
+ * it will be applied during indexing.
+ */
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+/**
+ * Determine the item URL using the 001 field
+ *
+ * @param  Record    record
+ * @return Array     item location
+ */
+
+public String getSobekUrl(Record record) {
+
+String val = indexer.getFirstFieldVal(record, "001");
+
+if (val != null) 
+{
+    val = val.replaceAll("_", "/");
+    val = "https://digital.soas.ac.uk/" + val;
+    return val;
+} 
+else 
+{
+    return val;
+}
+}

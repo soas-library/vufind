@@ -258,7 +258,6 @@ class Export
         // Get an array of enabled export formats (from config, or use defaults
         // if nothing in config array).
         $active = $this->getActiveFormats('record');
-
         // Loop through all possible formats:
         $formats = [];
         foreach (array_keys($this->exportConfig->toArray()) as $format) {
