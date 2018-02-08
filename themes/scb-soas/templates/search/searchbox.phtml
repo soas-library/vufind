@@ -72,9 +72,40 @@
     <div class="radioHome"><input id="rdBook" type="radio" name="filter[]" value='-collection:"SOAS Archive"'/><label class="radioSearch"><?=$this->transEsc('Print/Books and Media')?></label></input></div>
     <div class="radioHome"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><label class="radioSearch"><?=$this->transEsc('Online Resources')?></label></input></div>
     <div class="radioHome"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><label class="radioSearch"><?=$this->transEsc('Archives')?></label></input></div>
+    <?
+      $filterDetails = $this->searchbox()->getFilterDetails(
+          isset($this->filterList) && is_array($this->filterList) ? $this->filterList : array(),
+          isset($this->checkboxFilters) && is_array($this->checkboxFilters) ? $this->checkboxFilters : array()
+      );
+    ?>
+    <? if ((isset($hasDefaultsApplied) && $hasDefaultsApplied) || !empty($filterDetails)): ?>
+      <? $defaultFilterState = $options->getRetainFilterSetting() ? ' checked="checked"' : ''; ?>
+      <div class="checkbox col-md-4 hidden-xs hidden-sm" style="float:right;">
+        <label>
+          <input onChange="$('.applied-filter').click()" type="checkbox"<?=$defaultFilterState?> class="searchFormKeepFilters"/>
+          <?=$this->transEsc("basic_search_keep_filters")?>
+        </label>
+      </div>
+      <div class="hidden">
+        <? foreach ($filterDetails as $current): ?>
+          <input class="applied-filter" id="<?=$this->escapeHtmlAttr($current['id'])?>" type="checkbox"<?=$defaultFilterState?> name="filter[]" value="<?=$this->escapeHtmlAttr($current['value'])?>" />
+          <label for="<?=$this->escapeHtmlAttr($current['id'])?>"><?=$this->escapeHtml($current['value'])?></label>
+        <? endforeach; ?>
+        <? if (isset($hasDefaultsApplied) && $hasDefaultsApplied): ?>
+          <!-- this is a hidden element that flags whether or not default filters have been applied;
+               it is intentionally unlabeled, as users are not meant to manipulate it directly. -->
+          <input class="applied-filter" id="dfApplied" type="checkbox" name="dfApplied" value="1"<?=$defaultFilterState?> />
+        <? endif; ?>
+      </div>
+    <? endif; ?>
+    <? foreach ($hiddenFilters as $key => $filter): ?>
+      <? foreach ($filter as $value): ?>
+        <input type="hidden" name="hiddenFilters[]" value="<?=$this->escapeHtmlAttr($key) . ':' . $this->escapeHtmlAttr($value)?>" />
+      <? endforeach; ?>
+    <? endforeach; ?>
     </div>    
     
-    <div id="divSearch" class="col-md-9  hidden-md hidden-lg">
+    <div id="divSearch" class="col-md-9 hidden-md hidden-lg">
     <div class="radioHome"><input id="rdBook" type="radio" name="filter[]" value='*:*' checked="checked"/><label class="radioSearch"><?=$this->transEsc('Books')?></label></input></div>
     <div class="radioHome"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><label class="radioSearch"><?=$this->transEsc('Online')?></label></input></div>
     <div class="radioHome"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><label class="radioSearch"><?=$this->transEsc('Archives')?></label></input></div>
@@ -91,7 +122,7 @@
           <input type="checkbox" <?=$isSelected ? 'checked="checked" ' : ''?>name="shard[]" value='<?=$this->escapeHtmlAttr($shard)?>' /> <?=$this->transEsc($shard)?>
       <? endforeach; ?>
     <? endif; ?>
-    <?
+<!--     <?
       $filterDetails = $this->searchbox()->getFilterDetails(
           isset($this->filterList) && is_array($this->filterList) ? $this->filterList : array(),
           isset($this->checkboxFilters) && is_array($this->checkboxFilters) ? $this->checkboxFilters : array()
@@ -121,7 +152,7 @@
       <? foreach ($filter as $value): ?>
         <input type="hidden" name="hiddenFilters[]" value="<?=$this->escapeHtmlAttr($key) . ':' . $this->escapeHtmlAttr($value)?>" />
       <? endforeach; ?>
-    <? endforeach; ?>
+    <? endforeach; ?> -->
     <?
       /* Show hidden field for active search class when in combined handler mode. */
       if ($this->searchbox()->combinedHandlersActive()) {
