@@ -268,14 +268,14 @@ label.checkbox, .normal {
 /*.result:nth-child(2n)*/
 #result1, #result3, #result5, #result7, #result9, #result11, #result13, #result15, #result17, #result19 {
     background-color: #f0e1cf;
-    border-radius: 10px;
+    border-radius: 0px;
     padding-top: 0.5em;
     padding-left: 1em;
     padding-bottom: 0.5em;
 }
 
 #result0, #result2, #result4, #result6, #result8, #result10, #result12, #result14, #result16, #result18 {
-    border-radius: 10px;
+    border-radius: 0px;
     padding-top: 0.5em;
     padding-left: 1em;
     padding-bottom: 0.5em;
@@ -679,7 +679,7 @@ background-image: url("../../../themes/scb-soas/images/silk/physical.png");
     border: 1px solid #ddd;
 }
 
-/* Herramientas de Búsqueda */
+/* Herramientas de Bï¿½squeda */
 
 .searchtools .fa {
     color: black;
