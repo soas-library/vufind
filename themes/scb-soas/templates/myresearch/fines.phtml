@@ -26,28 +26,28 @@
     <? else: ?>
       <? if($this->paymentsEnabled): ?>
         <?if($totalDuePay>0):?>
-        <p class="pull-right help-block">
+        <p class="pull-left help-block">
           Select items to pay
-         <?=$paymentButton ?>
+         
         </p>
         <?endif;?>
       <? endif; ?>
       <span class="clearfix"></span>
 
-
+      <? $i=0 ?>
       <? foreach ($this->fines as $record): ?>
 
        <?$out=false;?>
       <?if($statusOut1 == $record['fine'] ||  $statusOut2 == $record['fine'])$out=true;?>
 
        <? if ((double)$record['balance'] > 0): ?>
-          <table style="width:100%">
+          <table id="result<?=$i++ ?>" style="width:100%">
           <tr>
-          <td style="width:15%">
+          <td style="width:10%; text-align:center; vertical-align:middle">
 
           <?if(!$out):?>
           <? if ((double)$record['balance'] > 0): ?>
-          <input type="checkbox" class="fine-checkbox" name="fines[]" data-amount="<?=$record['balance'] ?>" value="<?=$record['id'] ?>" checked="1"/>
+          <input style="text-align:center; vertical-align:middle" type="checkbox" class="fine-checkbox" name="fines[]" data-amount="<?=$record['balance'] ?>" value="<?=$record['id'] ?>" checked="1"/>
           <?endif;?>
           <?else:?>
           <? if ((double)$record['balance'] > 0): ?>
@@ -58,33 +58,21 @@
 
 
           </td>
-          <td style="width:85%">
-          <ul>
-          <li>
+          <td style="width:90%">
           <b><?=$this->transEsc('Title')?>:</b>
             <? if (empty($record['title'])): ?>
-              <?=$this->transEsc('not_applicable')?>
+              <?=$this->transEsc('not_applicable')?><br/>
             <? else: ?>
-              <?=$this->escapeHtml(trim($record['title'], '/:'))?>
+              <?=$this->escapeHtml(trim($record['title'], '/:'))?><br/>
             <? endif; ?>
-          </li>
-          <li>
             <b><?=$this->transEsc('Checked Out')?>:</b>
-            <?=isset($record['checkoutDate']) ? $this->escapeHtml($record['checkoutDate']) : ''?>
-          </li>
-          <li>
+            <?=isset($record['checkoutDate']) ? $this->escapeHtml($record['checkoutDate']) : ''?><br/>
             <b><?=$this->transEsc('Due Date')?>:</b>
-            <?=isset($record['dueDate']) ? $this->escapeHtml($record['dueDate']) : ''?>
-          </li>
-          <li>
+            <?=isset($record['dueDate']) ? $this->escapeHtml($record['dueDate']) : ''?><br/>
             <b><?=$this->transEsc('Fine')?>:</b>
-            <?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?>
-          </li>
-          <li>
+            <?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?><br/>
             <b><?=$this->transEsc('Balance')?>:</b>
-            <?=isset($record['balance']) ? $this->escapeHtml($record['balance']) : ''?>
-          </li>
-          </ul>
+            <?=isset($record['balance']) ? $this->escapeHtml($record['balance']) : ''?><br/>
           </td>
           </tr>
           </table>
@@ -95,6 +83,7 @@
       <? endforeach; ?>
 
     <? endif; ?>
+  <?=$paymentButton ?>
   </form>
   <script>
     var fineTotal = 0;
