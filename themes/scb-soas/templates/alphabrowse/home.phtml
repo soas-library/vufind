@@ -28,7 +28,7 @@ if ($pag_query == null && $from != null) {
     print_r('</br>');*/
     header("Refresh:0; url=$refr_url");
 } else {
-    //echo 'Tiene la página';
+    //echo 'Tiene la pï¿½gina';
 }
 }
 
@@ -285,7 +285,9 @@ if($total>$por_pagina){
 	              <? $query = array('type' => 'AllFields', 'filter[]' => '~hierarchy_top_title:"' . addcslashes($item['heading'], '"')); ?>
 	            
 	            <? else: ?>
-	                <? $query = array('type' => ucwords($this->source) . 'Browse', 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); ?>
+                  <!-- Edited by sb174 on 2018-02-18 -->
+                  <? $query = array('type' => ucwords($this->source), 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); ?>
+	                <? /* $query = array('type' => ucwords($this->source) . 'Browse', 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); */?>
 	            <? endif; ?>
             <? endif; ?>
            <?           
