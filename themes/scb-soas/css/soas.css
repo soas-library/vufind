@@ -2660,3 +2660,9 @@ color:#f2a900!important;
     color: #a94442;
     margin-left: 5px;
 }
+
+/***ADDED BY SB174 ON 2018-02-16***/
+a.wrap{
+  display: inline-block;
+  width: 83%;
+}
