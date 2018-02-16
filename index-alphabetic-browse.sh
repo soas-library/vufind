@@ -87,4 +87,4 @@ build_browse "author" "author_browse"
 build_browse "callnumber" "callnumber" 1 "-Dbibleech=StoredFieldLeech -Dsortfield=callnumber -Dvaluefield=callnumber"
 #build_browse "callnumber" "callnumber-sort" 1 "-Dbibleech=StoredFieldLeech -Dsortfield=callnumber-sort -Dvaluefield=callnumber"
 build_browse "hierarchy_top_title" "hierarchy_top_title_browse"
-
+build_browse "series" "series_browse"
