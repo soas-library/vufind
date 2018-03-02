@@ -2666,3 +2666,7 @@ a.wrap{
   display: inline-block;
   width: 83%;
 }
+
+table.fines{
+  margin-bottom:20px;
+}

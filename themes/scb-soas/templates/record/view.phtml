@@ -23,7 +23,7 @@
     <? if ($this->scrollData['previousRecord']): ?>
       <? if ($this->scrollData['firstRecord']): ?>
         <li>
-          <a href="<?=$this->recordLink()->getUrl($this->scrollData['firstRecord'])?>" title="<?=$this->transEsc('First Search Result')?>" rel="nofollow" class="prevnext">&laquo; <?=$this->transEsc('First')?></a>
+          <a href="<?=$this->recordLink()->getUrl($this->scrollData['firstRecord'])?>" title="<?=$this->transEsc('First Search Result')?>" rel="nofollow" class="prevnext hidden-xs">&laquo; <?=$this->transEsc('First')?></a>
         </li>
       <? endif; ?>
       <li>
@@ -31,24 +31,24 @@
       </li>
     <? else: ?>
       <? if ($this->scrollData['firstRecord']): ?>
-        <li class="disabled prevnext"><a href="#">&laquo; <?=$this->transEsc('First')?></a></li>
+        <li class="disabled prevnext hidden-xs"><a href="#">&laquo; <?=$this->transEsc('First')?></a></li>
       <? endif; ?>
       <li class="disabled prevnext"><a href="#">&laquo; <?=$this->transEsc('Prev')?></a></li>
     <? endif; ?>
-    <span class="prevnext hidden-xs"><?=$this->localizedNumber($this->scrollData['currentPosition']) . ' ' . $this->transEsc('of') . ' ' . $this->localizedNumber($this->scrollData['resultTotal']) ?></span>
+    <span class="prevnext"><?=$this->localizedNumber($this->scrollData['currentPosition']) . ' ' . $this->transEsc('of') . ' ' . $this->localizedNumber($this->scrollData['resultTotal']) ?></span>
     <? if ($this->scrollData['nextRecord']): ?>
       <li>
         <a href="<?=$this->recordLink()->getUrl($this->scrollData['nextRecord'])?>" title="<?=$this->transEsc('Next Search Result')?>" rel="nofollow" class="prevnext"><?=$this->transEsc('Next')?> &raquo;</a>
       </li>
       <? if ($this->scrollData['lastRecord']): ?>
         <li>
-          <a href="<?=$this->recordLink()->getUrl($this->scrollData['lastRecord'])?>" title="<?=$this->transEsc('Last Search Result')?>" rel="nofollow" class="prevnext"><?=$this->transEsc('Last')?> &raquo;</a>
+          <a href="<?=$this->recordLink()->getUrl($this->scrollData['lastRecord'])?>" title="<?=$this->transEsc('Last Search Result')?>" rel="nofollow" class="prevnext hidden-xs"><?=$this->transEsc('Last')?> &raquo;</a>
         </li>
       <? endif; ?>
      <? else: ?>
       <li class="disabled prevnext"><a href="#"><?=$this->transEsc('Next')?> &raquo;</a></li>
       <? if ($this->scrollData['lastRecord']): ?>
-        <li class="disabled prevnext"><a href="#"><?=$this->transEsc('Last')?> &raquo;</a></li>
+        <li class="disabled prevnext hidden-xs"><a href="#"><?=$this->transEsc('Last')?> &raquo;</a></li>
       <? endif; ?>
     <? endif; ?>
   </ul>
