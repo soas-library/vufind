@@ -2670,3 +2670,9 @@ a.wrap{
 table.fines{
   margin-bottom:20px;
 }
+
+/***ADDED BY SB174 ON 2018-03-22***/
+.alphabrowse .titles {
+    width: 10%;
+    text-align: center;
+}

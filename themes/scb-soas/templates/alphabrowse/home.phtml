@@ -227,7 +227,18 @@ if($total>$por_pagina){
 </div>
 
     <table class="alphabrowse table table-striped fs14">
-      <tr><td></td><th><?=$this->transEsc("alphabrowse_matches") ?></th></tr>
+      <!--<tr><td></td><th><?=$this->transEsc("alphabrowse_matches") ?></th></tr>-->
+    <thead>
+      <tr>
+        <th class="<?=$this->source ?>">
+          <?=$this->transEsc("browse_" . $this->source) ?>
+        </th>
+        <?php foreach ($this->extras as $e): ?>
+            <th><?=$this->transEsc("browse_" . $e) ?></th>
+        <?php endforeach; ?>
+        <th class="titles"><?=$this->transEsc("alphabrowse_matches") ?></th>
+      </tr>
+    </thead>
       
 <? if ($estado == "NONE"): ?>
 	<tr class="browse-match">
@@ -292,7 +303,8 @@ if($total>$por_pagina){
             <? endif; ?>
            <?           
            foreach($item['ids'] as $aux)array_push($arr_ids,$aux);?>
-            <a class="<?echo $display_size_1;?>" href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
+            <!--<a class="<?echo $display_size_1;?>" href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>-->
+		<a href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
            
           <? else: ?>
             <span  class="<?echo $display_size_1;?>"><?=$this->escapeHtml($item['heading'])?></span>
@@ -308,20 +320,21 @@ if($total>$por_pagina){
             <?
           /*** SCA 20161018 ***/
           
-          	$display_size=floor(6/count($this->extras));
-          	if(strpos($extraName,"title") !== false)
-          		$display_size = 6;
-          	if(strpos($extraName,"shelf_location") !== false)
-          		$display_size = 3;
-          	
-          	if(strpos($extraName,"scb_display_item_location") !== false)
-          		$display_size = $display_size." hidden";
-          	if(strpos($extraName,"hierarchy_top_id") !== false)
-          			$display_size = $display_size." hidden";
+          	#$display_size=floor(6/count($this->extras));
+          	#if(strpos($extraName,"title") !== false)
+          	#	$display_size = 6;
+          	#if(strpos($extraName,"shelf_location") !== false)
+          	#	$display_size = 3;
+          	#
+          	#if(strpos($extraName,"scb_display_item_location") !== false)
+          	#	$display_size = $display_size." hidden";
+          	#if(strpos($extraName,"hierarchy_top_id") !== false)
+          	#		$display_size = $display_size." hidden";
 
           /*** FIN SCA 20161018 ***/	          	
           ?>
-            <div class="col-sm-<?=$display_size; ?>">
+            <!--<td class="col-sm-<?=$display_size; ?>">-->
+              <td>
               <?
                 $extraDisplayArray = array();
                 foreach ($extraData as $j => $e) {
@@ -404,7 +417,7 @@ if($total>$por_pagina){
           <? endif; ?>
           
         </td>
-        <td><? if ($item['count'] > 0): echo $item['count']; endif; ?></td>   
+        <td class="titles"><? if ($item['count'] > 0): echo $item['count']; endif; ?></td>   
           
         <? $row++; ?>
         <? endforeach; ?>

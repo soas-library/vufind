@@ -125,7 +125,7 @@
     <!--Commented out 2017-11-08 by sb174 to return Advanced link to home page-->
     <?# if ($this->url() !="/") :?>
         <? if ($advSearch): ?>
-            <a href="<?=$this->url($advSearch) . ((isset($this->searchId) && $this->searchId) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-link hidden-xs" rel="nofollow"><?=$this->transEsc("Advanced")?></a>
+            <a href="<?=$this->url($advSearch) . ((isset($this->searchId) && $this->searchId) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-link" rel="nofollow"><?=$this->transEsc("Advanced")?></a>
         <? endif; ?>
     <?# endif; ?>
 
