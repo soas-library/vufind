@@ -317,7 +317,7 @@ if($total>$por_pagina){
             foreach ($this->extras as $ei => $extraName):
               $extraData = $item['extras'][$extraName];
           ?>
-            <?
+          <?
           /*** SCA 20161018 ***/
           
           	#$display_size=floor(6/count($this->extras));
@@ -349,7 +349,7 @@ if($total>$por_pagina){
                 }
 	       $extraDisplayArray=$extraDisplayArray2;
 	       /***FIN SCB 10/10/2016***/
-
+    
 	//Si estamos en shelf_location , mirar el valor en scb_display_item_location, y si es != de 'MAIN' poner en blanco el valr de "shelf_location"
 	if(stripos($extraName, 'shelf_location') !== false){
 		$extraDataAux = $item['extras']['scb_display_item_location'];
@@ -373,13 +373,15 @@ if($total>$por_pagina){
 
         if(stripos($extraName, 'is_hierarchy_id') !== false):
         echo (empty($extraDisplayArray)) ? '&nbsp;' : '<a class="hierarchyTreeLinkText" data-lightbox href="'.$context.'://'.$_SERVER['SERVER_NAME'].'/Collection/'.implode($extraDisplayArray).'/HierarchyTree?hierarchy='.implode($extraDisplayArray).'#tabnav" data-lightbox-href="'.$context.'://'.$_SERVER['SERVER_NAME'].'/Collection/'.implode($extraDisplayArray).'/AjaxTab?hierarchy='.implode($extraDisplayArray).'" data-lightbox-post="tab=hierarchytree">'.'<i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>'.$this->transEsc('hierarchy_view_context').'</a>';
+        elseif(stripos($extraName, 'title') !== false):
+          echo (empty($extraDisplayArray)) ? '&nbsp;' : implode('<br /><br />', $extraDisplayArray);
         else:
-        echo (empty($extraDisplayArray)) ? '&nbsp;' : implode('<br />', $extraDisplayArray);
+          echo (empty($extraDisplayArray)) ? '&nbsp;' : implode('<br />', $extraDisplayArray);
         endif;
                         
                 
                 if(stripos($extraName, 'shelf_location') !== false){$arr_excel_row[2]=implode(' ', $extraDisplayArray);}
-                else if(stripos($extraName, 'title') !== false){$arr_excel_row[1]=implode(' ', $extraDisplayArray);}
+                elseif(stripos($extraName, 'title') !== false){$arr_excel_row[1]=implode(' ', $extraDisplayArray);}
                 
               ?>
             </div>
