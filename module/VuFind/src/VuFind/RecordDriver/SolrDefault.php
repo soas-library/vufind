@@ -2645,6 +2645,16 @@ class SolrDefault extends AbstractBase
     }
    
     /** SCB **/
+ 
+    # ADDED BY sb174 ON 2018-03-26 to enable callnumber display in Description tab
+
+    public function getCallnumberDesc()
+    {
+        return isset($this->fields['callnumber_desc'])
+            ? $this->fields['callnumber_desc'] : '';
+    }
+
+    # END
 
     public function determineUserType($ip) {
 

@@ -111,7 +111,18 @@ if(!empty($arCol))$colType = $arCol[0];
       </td>
     </tr>
   <? endif; ?>
-  
+ 
+  <? $callnumber_desc = $this->driver->getCallnumberDesc(); if (!empty($callnumber_desc)): ?>
+     <tr>
+        <th><?=$this->transEsc('Classmark')?>: </th>
+        <td>
+           <? foreach ($callnumber_desc as $field): ?>
+              <?=$this->escapeHtml($field)?><br/>
+           <? endforeach; ?>
+        </td>
+     </tr>
+  <? endif; ?>
+ 
          <? $subjects = $this->driver->getAllSubjectHeadings(); if (!empty($subjects)): ?>
       <tr>
         <th><?=$this->transEsc('Subjects')?>: </th>
