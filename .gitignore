@@ -17,6 +17,7 @@ nohup.out
 #Local
 archivecollections/*
 mrcfiles/
+public/sitemap*
 local/cache/
 local/config/
 local/harvest/*
@@ -30,9 +31,9 @@ import/solrmarc.log.1
 #Solr
 solr/vufind/alphabetical_browse/
 solr/vufind/authority/
-solr/vufind/biblio/
 solr/vufind/summ/
 solr/vufind/toc/
+solr/vufind/biblio/index/
 solr/vufind/biblio/spellShingle/
 solr/vufind/biblio/spellchecker/
 solr/vufind/biblio/tlog/tlog*
