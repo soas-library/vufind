@@ -158,11 +158,11 @@
                    </xsl:if>
                </xsl:for-each>
 
-               <xsl:for-each select="//dc:relation">
+               <xsl:if test="//dc:relation">
                        <field name="url">
-                           <xsl:value-of select="//dc:relation[normalize-space()]"/>
+                           <xsl:value-of select="concat(//dc:relation[normalize-space()], '&#xA;')"/>
                        </field>
-               </xsl:for-each>
+               </xsl:if>
             </doc>
         </add>
     </xsl:template>
