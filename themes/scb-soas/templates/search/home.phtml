@@ -56,7 +56,7 @@
 
   <?=($this->ils()->getOfflineMode() == "ils-offline") ? $this->render('Helpers/ils-offline.phtml', ['offlineModeMsg' => 'ils_offline_home_message']) : ''?>
   <div id="homesearchbox" class="well well-lg clearfix homecover homecovertop" role="search" >
-  <div class="col-sm-7" style="background-color: rgba(255, 197, 63, 0.98); min-height: 130px;  padding-top: 2%;" >
+  <div id="mainsearchbox" class="col-sm-7" >
     <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
   </div>
 <? if(empty($this->layout()->breadcrumbs)): ?>

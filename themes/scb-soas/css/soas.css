@@ -2676,3 +2676,22 @@ table.fines{
     width: 10%;
     text-align: center;
 }
+
+/***ADDED BY SB174 ON 2018-04-25***/
+
+
+@media (min-width: 768px) {
+  #mainsearchbox {
+    background-color: rgba(255, 197, 63, 0.98); 
+    min-height: 130px;  
+    padding-top: 2%;
+  }
+}
+
+@media (max-width: 767px) {
+  #mainsearchbox {
+    background-color: rgba(255, 197, 63, 0.98); 
+    min-height: 175px;  
+    padding-top: 2%;
+  }
+}
