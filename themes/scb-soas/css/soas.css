@@ -752,6 +752,7 @@ footer {
     margin-top: -10px;
     margin-bottom: 10px;
     padding: 10px;
+    background-color:#f0e1cf;
 }
 
 .lnkThumbnail {
@@ -759,7 +760,7 @@ footer {
 }
 
 .carousel-inner {
-    max-height: 150px;
+    max-height: 180px;
 }
 
 .carousel-control.left, .carousel-control.right {
@@ -767,7 +768,7 @@ footer {
 }
 
 a span.fa.fa-chevron-left.glyphicon-chevron-left, a span.fa.fa-chevron-right.glyphicon-chevron-right {
-    color: #fff;
+    color: #000;
 }
 
 .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
@@ -791,6 +792,11 @@ a.carousel-control:focus {
     display: block;
 }
 
+.carousel-title {
+  font-weight:700;
+  text-align:center;
+}
+
 .itemImage {
     width: 16.66% !important;
 }
@@ -799,6 +805,9 @@ a.carousel-control:focus {
     max-width: 100%;
     max-width: 110px;
     margin: 10px 0;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #000;
 }
 
 #similar-items-carousel .hover-overlay, .hover-overlay {
@@ -823,9 +832,9 @@ a.carousel-control:focus {
     height: auto;
 }
 
-.carousel-control.right {
+/*.carousel-control.right {
     right: 95px !important;
-}
+}*/
 
 .specialWidht {
     width: 5% !important;
