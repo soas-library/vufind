@@ -158,7 +158,11 @@ JS;
           <span class="sr-only"><?=$this->layout()->srmessage ?></span>
         <? endif; ?>
         <a class="sr-only" tabindex="1" href="#content"><?=$this->transEsc('Skip to content') ?></a>
+        <? if ($_SERVER["REQUEST_URI"] =="/" && !$this->auth()->isLoggedIn()) :?>
+        <?=$this->render('headerHome.phtml')?>
+        <? else:?>
         <?=$this->render('header.phtml')?>
+        <? endif;?>
       </div>
       <div class="container">
         <nav class="nav searchbox hidden-lg hidden-print">

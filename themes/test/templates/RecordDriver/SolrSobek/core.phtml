@@ -80,22 +80,28 @@
         $openUrlActive = $openUrl->isActive();
         // Account for replace_other_urls setting
         $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+        $url = $this->driver->getSolrUrl();
       ?>
    <div class="holdings">
   <? if (!empty($urls) || $openUrl || $item_sobek_txt != ""): ?>
   <table class="table table-responsive" summary="<?=$this->transEsc('Details')?>">
-  <? /* if (!empty($urls)): ?>
+  <? if (!empty($url)):?>
+    <? foreach ($url as $field):?>
+	<tr><td><a target="_blank" href="<?=$this->escapeHtml($field)?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+    <? endforeach; ?>
+  <? elseif (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
       <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
     <? endforeach; ?>
-  <?elseif($item_sobek_txt != ""): */ ?>
+  <?elseif($item_sobek_txt != ""):?>
   <?if($item_sobek_txt != ""):?>
   	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
       		<tr><td><a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
-      	<? else: ?>
-      		<tr><td>Not available</td></tr>
-        <?endif;?>
+    <? else: ?>
+    	<tr><td>Not available</td></tr>
+    <?endif;?>
   <? endif; ?>
+<? endif; ?>
   
   <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>

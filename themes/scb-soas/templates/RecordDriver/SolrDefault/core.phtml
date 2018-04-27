@@ -1,3 +1,9 @@
+<? 
+if($this->driver->getCollectionType()[0] == "SOAS Library")
+	$collectionType = $this->driver->userPermissions('OLE');
+else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
+	$collectionType = $this->driver->userPermissions('ePrints');
+?>
 <?
   if($loggedin = $this->auth()->isLoggedIn()) {
     $user_id = $loggedin->id;
@@ -156,7 +162,11 @@
   
   <? if (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
+	  <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
       <tr><td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a></td></tr>
+      <? else: ?>
+        <tr><td>Not available</td></tr>
+      <? endif; ?>
     <? endforeach; ?>
   <? endif; ?>
   <? if ($openUrlActive): ?>
@@ -863,7 +873,11 @@
         <th><?=$this->transEsc('Online Access')?>: </th>
         <td>
           <? foreach ($urls as $current): ?>
+            <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>																																			
             <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+            <? else: ?>
+              <span>Not available</span></br>
+            <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>

@@ -1,3 +1,4 @@
+<? $sobek = $this->driver->userPermissions('Sobek'); ?>
 <?$item_sobek_txt = $this->driver->getTag856u();?>
 <?
   if($loggedin = $this->auth()->isLoggedIn()) {
@@ -98,8 +99,14 @@
       <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
     <? endforeach; ?>
   <?elseif($item_sobek_txt != ""):?>
+  <?if($item_sobek_txt != ""):?>
+  	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
       <tr><td><a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+    <? else: ?>
+    	<tr><td>Not available</td></tr>
+    <?endif;?>
   <? endif; ?>
+<? endif; ?>
   <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>
   <? endif; ?>
@@ -329,15 +336,21 @@
         <td>
           <? if ((!empty($urls)&& count($urls)>0 ) || $openUrl ):?>
           <? foreach ($urls as $current): ?>
+            <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
             <a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtmlAttr($this->proxyUrl($current['url'])) /*=$this->escapeHtml($current['desc'])*/?></a><br/>
+            <? else: ?>
+              <span>Not available</span></br>
+            <? endif; ?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>
             <?=$openUrl->renderTemplate()?><br/>
           <? endif; ?><? endif; ?>
           <? if ($item_sobek_txt != ""): ?>
-          cheese
+          	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
             <a target="_blank" href="<?=$item_sobek_txt?>"><?=$item_sobek_txt /*=$this->escapeHtml($current['desc'])*/?></a><br/>
-
+          	<? else: ?>
+                      <span>Not available</span></br>
+          	<?endif;?>
           <?endif;?>
         </td>
       </tr>
