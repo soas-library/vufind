@@ -753,6 +753,8 @@ footer {
     margin-bottom: 10px;
     padding: 10px;
     background-color:#f0e1cf;
+    margin: 0 auto;
+    width: 90%; 
 }
 
 .lnkThumbnail {
@@ -790,11 +792,6 @@ a.carousel-control:focus {
 
 .carousel-inner > .active, .carousel-inner > .next, .carousel-inner > .prev {
     display: block;
-}
-
-.carousel-title {
-  font-weight:700;
-  text-align:center;
 }
 
 .itemImage {
@@ -2701,4 +2698,10 @@ table.fines{
     min-height: 175px;  
     padding-top: 2%;
   }
+}
+
+/***ADDED BY SB174 ON 2018-04-27***/
+.carousel-title {
+  font-weight:700;
+  text-align:center;
 }
