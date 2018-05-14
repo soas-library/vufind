@@ -165,7 +165,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	  <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
       <tr><td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a></td></tr>
       <? else: ?>
-        <tr><td>Not available</td></tr>
+        <tr><td><?=$this->transEsc("Not available")?></td></tr>
       <? endif; ?>
     <? endforeach; ?>
   <? endif; ?>
@@ -876,7 +876,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
             <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>																																			
             <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
             <? else: ?>
-              <span>Not available</span></br>
+              <span><?=$this->transEsc("Not available")?></span></br>
             <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>

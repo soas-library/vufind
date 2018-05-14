@@ -223,7 +223,7 @@
             	<? if($this->driver->getRegExpr($archive_url, $archive)): ?>
             		<a target="_blank" href="<?=$archive_url?>"><?= $this->escapeHtml($documentAux)?></a><br/>
             	<? else: ?>
-            		<span>Not available</span></br>
+            		<span><?=$this->transEsc("Not available")?></span></br>
             	<? endif; ?>
             <? endforeach; ?>
         </td>

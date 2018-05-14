@@ -24,7 +24,7 @@
 	          <? if($this->driver->getRegExpr($value, $eprints)): ?>
 	          	<?=$this->escapeHtml(is_array($value) ? print_r($value, true) : html_entity_decode($value, ENT_QUOTES | ENT_HTML5))?><br />
 	          <? else: ?>
-	          	<span>Not available</span></br>
+	          	<span><?=$this->transEsc("Not available")?></span></br>
 	          <? endif; ?>
 	        <? endforeach; ?>
 	<? elseif($this->escapeHtml($field)=="scb_document" && in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
@@ -34,7 +34,7 @@
 	          <? if($this->driver->getRegExpr($value, $archive)): ?>
 	          	<?=$this->escapeHtml(is_array($value) ? print_r($value, true) : html_entity_decode($value, ENT_QUOTES | ENT_HTML5))?><br />
 	          <? else: ?>
-	          	<span>Not available</span></br>
+	          	<span><?=$this->transEsc("Not available")?></span></br>
 	          <? endif; ?>
 	        <? endforeach; ?>
         <? else: ?>

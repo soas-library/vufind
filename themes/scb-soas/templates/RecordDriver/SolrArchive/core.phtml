@@ -351,7 +351,7 @@
             <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $archive)): ?>
             <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
             <? else: ?>
-              <span>Not available</span></br>
+              <span><?=$this->transEsc("Not available")?></span></br>
             <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>

@@ -150,7 +150,7 @@
 	                <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
 	                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
 	                <? else: ?>
-	                  <span>Not available</span></br>
+	                  <span><?=$this->transEsc("Not available")?></span></br>
 	                <? endif; ?>
 	            <? endforeach; ?>
 	          <? endif; ?>        
@@ -160,7 +160,7 @@
             	<i class="fa fa-external-link"></i> <?=$this->transEsc('click_here_for_full_text')?>
            	 </a><br/>
              <? else: ?>
-                <span>Not available</span></br>
+                <span><?=$this->transEsc("Not available")?></span></br>
              <? endif; ?>
            <? endif; ?>
        

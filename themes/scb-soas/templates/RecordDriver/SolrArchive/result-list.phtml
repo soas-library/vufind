@@ -200,7 +200,7 @@
                 <? if($this->driver->getRegExpr($this->escapeHtmlAttr($this->proxyUrl($current['url'])), $archive)): ?>
 					<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
                 <? else: ?>
-                  <span>Not available</span></br>
+                  <span><?=$this->transEsc("Not available")?></span></br>
                 <? endif; ?>
             <? endforeach; ?>
           <? endif; ?>
