@@ -1522,7 +1522,9 @@ echo '</pre>';*/
         
         /** SCB **/
    
-        //$patron['barcode']= '044B913A493480';
+       // $patron['barcode']= '044B913A493480';
+       // $patron['barcode']= '044B913A493480';
+       // $patron['barcode']= '042F124A334680';
         $patron = $patron['barcode'];
         $circService=$catalog->getCirculation();
         // Get the data directly, so we have a unique id.

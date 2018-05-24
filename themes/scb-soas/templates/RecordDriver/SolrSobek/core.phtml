@@ -92,11 +92,19 @@
   <table class="table table-responsive" summary="<?=$this->transEsc('Details')?>">
   <? if (!empty($url)):?>
     <? foreach ($url as $field):?>
-	<tr><td><a target="_blank" href="<?=$this->escapeHtml($field)?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+        <? if($this->driver->getRegExpr($field, $sobek)): ?>
+		<tr><td><a target="_blank" href="<?=$this->escapeHtml($field)?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+         <? else: ?>
+    	    <tr><td><?=$this->transEsc("Not available")?></td></tr>
+        <?endif;?>
     <? endforeach; ?>
   <? elseif (!empty($urls)): ?>
     <? foreach ($urls as $current): ?>
-      <tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+	<? if($this->driver->getRegExpr($current, $sobek)): ?>
+      		<tr><td><a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc('click_here_for_full_text')?></a></td></tr>
+	 <? else: ?>
+            <tr><td><?=$this->transEsc("Not available")?></td></tr>
+        <?endif;?>
     <? endforeach; ?>
   <?elseif($item_sobek_txt != ""):?>
   <?if($item_sobek_txt != ""):?>

@@ -4,7 +4,6 @@ $footer_section1 = $account->userPermissions('Footer: section 1');
 $footer_section2 = $account->userPermissions('Footer: section 2');
 $footer_section3 = $account->userPermissions('Footer: section 3');
 $footer_section4 = $account->userPermissions('Footer: section 4');
-$contact_access = $account->userPermissions('Footer: contact SOAS Library');
 $searTips_access = "";
 $nonRomScripts_access = "";
 $privPolicy_access = "";
@@ -53,11 +52,6 @@ $contact_access = "";
       <li><a href="http://www.soas.ac.uk/library/subjects/" title="<?=$this->transEsc('Subject Guides')?>"><?=$this->transEsc('Subject Guides')?></a></li>
       <? if (!$privPolicy_access) { ?>
       	<li><a href="<?=$this->url('help-home')?>?topic=privacy" data-lightbox class="help-link" title="<?=$this->transEsc('Privacy Policy')?>"><?=$this->transEsc('Privacy Policy')?></a></li>
-      <? } ?>
-      <? if ($contact_access) { ?>
-      	<li><a href="mailto:libenquiry@soas.ac.uk?Subject=<?=$this->transEsc('Contact SOAS Library')?>" target="_top"><?=$this->transEsc('Contact SOAS Library')?></a></li>
-      <? } else { ?>
-      	<li><a href="http://www.soas.ac.uk/library/contact/" title="<?=$this->transEsc('Contact SOAS Library')?>"><?=$this->transEsc('Contact SOAS Library')?></a></li>
       <? } ?>
     </ul>
   </div>
