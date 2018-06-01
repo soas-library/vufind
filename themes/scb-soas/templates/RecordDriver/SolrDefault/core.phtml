@@ -268,7 +268,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
     	else
     	$class_txt="class='hidden_holdings2'";
     ?>
-    <!--SCB-2017/11/23 Show only once onder text
+    <!--SCB-2017/11/23 Show only once order text
     <? if (strpos($row['status'],'ONORDER') !== false):?>
     	<?$showOnOrder= true;?>
     	<?$class_txt=  $class_txt.'hidden';?>
@@ -600,7 +600,14 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
                     				$showOnOrderAux = true;
                     		}
                     	?>
-			<? if ($showOnOrderAux):?><span class="onOrder"><?=$this->transEsc("On order")?></span><? endif; ?>
+			<? $formats = $this->driver->getFormats(); ?>
+			<? if((strpos($formats[0],"Journal")) === false):?>
+				<? if ($showOnOrderAux):?>
+					<span class="onOrder">
+						<?=$this->transEsc("On order")?>
+					</span>
+				<? endif; ?>
+			<? endif; ?>
                     </td>
                 </tr>
             </table>
