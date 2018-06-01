@@ -66,11 +66,11 @@ Use your SOAS ID  (or for external users LW number) and password.
 </ul>
 <ul role="navigation" class="nav navbar-nav navbar-right">
 
-      <? if ($feedback_access) { ?>
-      	<li><a class="white_link" href="mailto:libenquiry@soas.ac.uk?Subject=<?=$this->transEsc('Contact SOAS Library')?>" target="_top"><?=$this->transEsc('Contact SOAS Library')?></a></li>
+      <!--<? if ($feedback_access) { ?>
+      	<li><a class="white_link" href="mailto:libenquiry@soas.ac.uk?Subject=<?=$this->transEsc('Contact SOAS Library')?>" target="_top"><?=$this->transEsc("Feedback")?></a></li></a></li>
       <? } else { ?>
-	<li><a class="white_link" href="http://www.soas.ac.uk/library/contact/" title="<?=$this->transEsc('Contact SOAS Library')?>"><?=$this->transEsc('Contact SOAS Library')?></a></li>
-      <? } ?>
+		<li><a class="white_link" href="http://www.soas.ac.uk/library/contact/" title="<?=$this->transEsc('Contact SOAS Library')?>"><?=$this->transEsc("Feedback")?></a></li></a></li>
+      <? } ?>-->
 
         <? if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1): ?>
           <li class="language dropdown">
@@ -86,8 +86,7 @@ Use your SOAS ID  (or for external users LW number) and password.
           </li>
         <? endif; ?>
         
-	<li class="white_link"><a class="white_link" class="menu_top" href="/Locationlist"><i class="fa fa-search" id="library_item_menu"></i><?=$this->transEsc("Locate library item")?></a></li>				 
-        <li class="white_link"><a class="white_link" class="menu_top" href="https://www.soas.ac.uk/library/using/finding/off-site-materials/"><i class="fa fa-share" id="off_site_menu"></i><?=$this->transEsc("Off-site Materials")?></a></li>
+		<li class="white_link"><a class="white_link" class="menu_top" href="/Locationlist"><i class="fa fa-search" id="library_item_menu"></i><?=$this->transEsc("Locate library item")?></a></li>				 
         <? if (!$about_access) {?>
         <li><a id="link_about" href="<?=$this->url('help-home')?>?topic=about" data-lightbox class="help-link" title="<?=$this->transEsc('About')?>"><?=$this->transEsc('About')?></a></li>
         <?}?>
