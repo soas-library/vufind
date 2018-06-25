@@ -1,3 +1,4 @@
+<? $sobek = $this->driver->userPermissions('Sobek'); ?>
 <?$item_sobek_txt = $this->driver->getTag856u();?>
 <? 
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
@@ -146,13 +147,21 @@
           <? elseif (!is_array($urls)):?>
 	            <? if(!$this->driver->isCollection()):
 	              foreach ($urls as $current): ?>
+	                <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
 	                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=$this->transEsc('click_here_for_full_text')?></a><br/>
+	                <? else: ?>
+	                  <span><?=$this->transEsc("Not available")?></span></br>
+	                <? endif; ?>
 	            <? endforeach; ?>
 	          <? endif; ?>        
            <?elseif($item_sobek_txt != ""):?>
+	       <? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>																	  
       		<a href="<?=$item_sobek_txt?>" class="fulltext" target="new">
             	<i class="fa fa-external-link"></i> <?=$this->transEsc('click_here_for_full_text')?>
            	 </a><br/>
+             <? else: ?>
+                <span><?=$this->transEsc("Not available")?></span></br>
+             <? endif; ?>
            <? endif; ?>
        
        <?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>

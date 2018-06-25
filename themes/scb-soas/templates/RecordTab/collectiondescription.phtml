@@ -215,9 +215,19 @@
        <? $document = $this->driver->getDocument(); if (!empty($document) && count($document)>0  && !empty($document[0])): ?>
       <tr>
         <th class="labelTbl"><?=$this->transEsc('Document')?>:</th>
+        <? if(in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
+        <? $archive = $this->driver->userPermissions('Archive'); ?>		   
         <td>
-            <? foreach ($document as $documentAux): ?><a target="_blank" href="https://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"><?= $this->escapeHtml($documentAux)?></a><br/><? endforeach; ?>
+            <? foreach ($document as $documentAux): ?>
+            	<? $archive_url = "http://archives.soas.ac.uk/CalmView/GetDocument.ashx?db=Catalog&fname=<?=$this->escapeHtml($documentAux)?>"; ?>
+            	<? if($this->driver->getRegExpr($archive_url, $archive)): ?>
+            		<a target="_blank" href="<?=$archive_url?>"><?= $this->escapeHtml($documentAux)?></a><br/>
+            	<? else: ?>
+            		<span><?=$this->transEsc("Not available")?></span></br>
+            	<? endif; ?>
+            <? endforeach; ?>
         </td>
+        <? endif; ?>
       </tr>
       <? endif; ?>
       

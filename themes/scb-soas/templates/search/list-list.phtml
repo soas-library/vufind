@@ -49,6 +49,8 @@
   
 <? endforeach; ?>
 
+<?php /*
+//Commented out at request of Library Digital Services on 2018-05-14 by sb174
 
 <?if(!empty($arr_cover)):?>
 </br>
@@ -60,7 +62,7 @@ $parameters = str_replace("/Search/Results","",$relativeUrl);
 <div id="thumbnail_gallery" class="hidden">
 <span><a class="lnkThumbnail hidden" href="<?=$this->url('search-thumbnail').$parameters?>"><?=$this->transEsc('thumbnail_gallery')?></a></span>
 <div id="similar-items-carousel" class="carousel" data-ride="carousel">
-
+<div class="carousel-title"><?=$this->transEsc('Similar items from SOAS Digital Library')?></div>
     <div class="carousel-inner">
     <?$cerrado=false;$count=0;$countItem=0;foreach ($arr_cover as $cover):?>
     <? if (($count == 0) || ($count % 5 == 0)){?>
@@ -108,6 +110,8 @@ $parameters = str_replace("/Search/Results","",$relativeUrl);
 </div>
   
 <?endif;?>
+
+*/ ?>
 
 <p id="numberResult" class="hidden"></p>
 

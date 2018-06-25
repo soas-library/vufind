@@ -635,7 +635,7 @@ class Manager implements \ZfcRbac\Identity\IdentityProviderInterface
         $array_ini = parse_ini_file($file, true);
         
         foreach ($array_ini as $type => $access_type) {	
-            $position = array_search($access_type['ipRange'] , $ip);
+            $position = array_search($ip,$access_type['ipRange']);
             $range = $access_type['ipRange'];
             foreach($range as $rangeAux){
 	            if (strpos($rangeAux,$ip)!==false) {
@@ -654,18 +654,18 @@ class Manager implements \ZfcRbac\Identity\IdentityProviderInterface
     	//$browser_ip = $_SERVER['REMOTE_ADDR'];
 
 	$browser_ip = '';
-	    if ($_SERVER['HTTP_CLIENT_IP'])
-        $browser_ip = $_SERVER['HTTP_CLIENT_IP'];
-    	    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_X_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED'];
-	    else if($_SERVER['HTTP_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED'];
-	    else if($_SERVER['REMOTE_ADDR'])
-        $browser_ip = $_SERVER['REMOTE_ADDR'];
+	    if (getenv('HTTP_CLIENT_IP'))
+        $browser_ip = getenv('HTTP_CLIENT_IP');
+    	    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $browser_ip = getenv('HTTP_X_FORWARDED_FOR');
+	    else if(getenv('HTTP_X_FORWARDED'))
+        $browser_ip = getenv('HTTP_X_FORWARDED');
+	    else if(getenv('HTTP_FORWARDED_FOR'))
+        $browser_ip = getenv('HTTP_FORWARDED_FOR');
+	    else if(getenv('HTTP_FORWARDED'))
+        $browser_ip = getenv('HTTP_FORWARDED');
+	    else if(getenv('REMOTE_ADDR'))
+        $browser_ip = getenv('REMOTE_ADDR');
 	    else
         $browser_ip = 'UNKNOWN';    	
 

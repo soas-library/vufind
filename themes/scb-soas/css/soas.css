@@ -752,6 +752,9 @@ footer {
     margin-top: -10px;
     margin-bottom: 10px;
     padding: 10px;
+    background-color:#f0e1cf;
+    margin: 0 auto;
+    width: 90%; 
 }
 
 .lnkThumbnail {
@@ -759,7 +762,7 @@ footer {
 }
 
 .carousel-inner {
-    max-height: 150px;
+    max-height: 180px;
 }
 
 .carousel-control.left, .carousel-control.right {
@@ -767,7 +770,7 @@ footer {
 }
 
 a span.fa.fa-chevron-left.glyphicon-chevron-left, a span.fa.fa-chevron-right.glyphicon-chevron-right {
-    color: #fff;
+    color: #000;
 }
 
 .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev, .carousel-control .icon-next {
@@ -799,6 +802,9 @@ a.carousel-control:focus {
     max-width: 100%;
     max-width: 110px;
     margin: 10px 0;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #000;
 }
 
 #similar-items-carousel .hover-overlay, .hover-overlay {
@@ -823,9 +829,9 @@ a.carousel-control:focus {
     height: auto;
 }
 
-.carousel-control.right {
+/*.carousel-control.right {
     right: 95px !important;
-}
+}*/
 
 .specialWidht {
     width: 5% !important;
@@ -2675,4 +2681,27 @@ table.fines{
 .alphabrowse .titles {
     width: 10%;
     text-align: center;
+}
+
+/***ADDED BY SB174 ON 2018-04-25***/
+@media (min-width: 768px) {
+  #mainsearchbox {
+    background-color: rgba(255, 197, 63, 0.98); 
+    min-height: 130px;  
+    padding-top: 2%;
+  }
+}
+
+@media (max-width: 767px) {
+  #mainsearchbox {
+    background-color: rgba(255, 197, 63, 0.98); 
+    min-height: 175px;  
+    padding-top: 2%;
+  }
+}
+
+/***ADDED BY SB174 ON 2018-04-27***/
+.carousel-title {
+  font-weight:700;
+  text-align:center;
 }
