@@ -398,18 +398,6 @@ if(!empty($arCol))$colType = $arCol[0];
         <? endforeach; ?></h3>
     <? endif; ?>
   
-    
-    
-    <? $classmark = $this->driver->getClassmark(); if (!empty($classmark)): ?>
-    <? $contentDisplayed = true; ?>
- 	<tr>
-        <th class="labelTbl"><?=$this->transEsc('Reference number')?>:</th>
-        <td>
-            <a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($classmark)?>"><?= $this->escapeHtml($classmark)?></a><br/>
-        </td>
-      </tr>
-  <? endif; ?>
-  
    <? $order = $this->driver->getOrderWith(); if (!empty($order) && count($order)>0 && !empty($order[0])): ?>
       <tr>
         <th class="labelTbl"><?=$this->transEsc('Order Number')?>:</th>

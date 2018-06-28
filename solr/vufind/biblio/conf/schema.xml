@@ -371,6 +371,17 @@
    <field name="hierarchy_top_title_browse" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END CALM -->
 
+   <!-- FIHRIST FIELDS -->
+   <field name="summary" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="incipit" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="colophon" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="form" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="material" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="extent" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="hand" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="history" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="availability" type="string" indexed="true" stored="true" multiValued="true"/>
+
    <!-- Dynamic fields for customization without schema modification -->
    <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
    <dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true"/>
