@@ -1,0 +1,144 @@
+<? $fihrist = $this->driver->userPermissions('Fihrist'); ?>
+<?
+  $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
+  $cover = $coverDetails['html'];
+  $thumbnail = false;
+  $thumbnailAlignment = $this->record($this->driver)->getThumbnailAlignment('result');
+  if ($cover):
+    ob_start(); ?>
+    <div class="media-<?=$thumbnailAlignment ?> <?=$this->escapeHtmlAttr($coverDetails['size'])?> hidden-xs">
+      <?=$cover ?>
+      <img alt="Cover Image" data-linkpreview="true" class="recordcover archive_cover" src="../../../themes/scb-soas/images/manuscript.png">
+    </div>
+    <? $thumbnail = ob_get_contents(); ?>
+  <? ob_end_clean(); ?>
+<? endif; ?>
+<input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId" />
+<input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getSourceIdentifier())?>" class="hiddenSource" />
+<div class="media">
+  <? if ($thumbnail && $thumbnailAlignment == 'left'): ?>
+    <?=$thumbnail ?>
+  <? endif ?>
+  <div class="media-body">
+    <div class="row short-view">
+      <div class="col-sm-9 middle">
+	    <div>
+			<? $linkedtitle = $this->driver->getLinkedTitle(); if (!empty($linkedtitle)): ?>
+				<a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title">
+					<? foreach($linkedtitle as $field): ?>
+						<?=$this->escapeHtml($field)?><br/>
+					<? endforeach; ?></h3>
+				</a>
+			<? endif; ?>
+		</div>
+        <div>
+          <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
+            <?=html_entity_decode($this->record($this->driver)->getTitleHtml(), ENT_QUOTES | ENT_HTML5);?>
+          </a>
+        </div>
+
+        <div>
+          <? if($this->driver->isCollection()): ?>
+          <?  ;?>
+            <?$txtSummary=implode('<br>', array_map(array($this, 'escapeHtml'), $this->driver->getSummary()));?>
+			<strong><?=$this->transEsc("Summary")?>:</strong>			
+              <?if(strlen($txtSummary)>200)
+              	echo html_entity_decode(substr($txtSummary,0,200), ENT_QUOTES | ENT_HTML5).' ... <a class="view_more" href="'.$this->recordLink()->getUrl($this->driver).'">'.$this->transEsc('View more').'</a>';
+              else
+              	echo $txtSummary;
+				?>
+          <? else: ?>
+            <? $summAuthors = $this->driver->getPrimaryAuthorsWithHighlighting(); if (!empty($summAuthors)): ?>
+              <?=$this->transEsc('by')?>
+              <? $authorCount = count($summAuthors); foreach ($summAuthors as $i => $summAuthor): ?>
+                <a href="<?=$this->record($this->driver)->getLink('author', $this->highlight($summAuthor, null, true, false))?>"><?=$this->highlight($summAuthor)?></a><?=$i + 1 < $authorCount ? ',' : ''?>
+              <? endforeach; ?>
+			  <? $summAuthors = $this->driver->getPrimaryLinkedAuthorsWithHighlighting();if (!empty($summAuthors)): ?>
+              <br><?=$this->transEsc('by')?>
+              <? $authorCount = count($summAuthors); foreach ($summAuthors as $i => $summAuthor): ?>
+                <a href="<?=$this->record($this->driver)->getLink('author', $this->highlight($summAuthor, null, true, false))?>"><?=$this->highlight($summAuthor)?></a><?=$i + 1 < $authorCount ? ',' : ''?>
+              <? endforeach; ?>
+            <? endif; ?>
+          <? endif; ?>
+          <? endif; ?>
+        </div>
+
+        <? if(!$this->driver->isCollection()): ?>
+          <? if ($snippet = $this->driver->getHighlightedSnippet()): ?>
+            <? if (!empty($snippet['caption'])): ?>
+              <strong><?=$this->transEsc($snippet['caption']) ?>:</strong> ';
+            <? endif; ?>
+            <? if (!empty($snippet['snippet'])): ?>
+              <span class="quotestart">&#8220;</span>...<?=$this->highlight($snippet['snippet']) ?>...<span class="quoteend">&#8221;</span><br/>
+            <? endif; ?>
+          <? endif; ?>
+        <? endif; ?>
+		
+		<? $form = $this->driver->getForm();if (!empty($form)): ?>
+			<? foreach ($form as $field):?>
+				<strong><?=$this->transEsc("Level")?>: </strong><? echo(ucfirst($field)) ?>
+				<br/>
+			<? endforeach; ?>
+		<? endif; ?>
+		
+		<? if($this->driver->getNumberItems()): ?>
+			<strong><?=$this->transEsc("Contains")?>: </strong><?=$this->driver->getNumberItems() ?> items
+		<? endif; ?>
+        
+	<script>
+			$(document).ready(function(){
+			$("#tooltip-ex a").tooltip({
+			placement : 'top'
+			});
+			});
+	</script>
+	<table class="table table-responsive" summary="<?=$this->transEsc('Calm info')?> 
+	<tr class="hidden_holdings2">
+	<? if (!empty($locationDisplay)): ?><td id="boxArchive" class="col-sm-3"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$this->escapeHtml($locationDisplay)?></a></div></td><? endif; ?>
+	<? if (!empty($classmark)): ?><td id="boxClassmark" class="col-sm-3"><?=$classmark?></td><? endif; ?>
+	<? if (!empty($loantype)): ?><td id="boxLoanType" class="col-sm-3"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($loantype)?></a></div></td><? endif; ?>
+	<? if (!empty($accessStatus)): ?>
+				<? foreach ($accessStatus as $accessStatusAux): ?>
+				<?if($this->escapeHtml($accessStatusAux) == "Open"):?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml($accessStatusAux)?></td>
+				<?else:?>
+				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml($accessStatusAux)?></td>
+				<?endif;?>
+				<? endforeach; ?>
+    <? endif; ?>
+	</tr>
+</table>
+
+<!-- END CALM --> 
+
+      </div>
+      <div class="col-sm-3 right hidden-print">
+        <? if ($this->userlist()->getMode() !== 'disabled'): ?>
+          <? /* Add to favorites */ ?>
+          <i class="fa fa-fw fa-star" aria-hidden="true"></i> <a href="<?=$this->recordLink()->getActionUrl($this->driver, 'Save')?>" data-lightbox class="save-record" data-id="<?=$this->escapeHtmlAttr($this->driver->getUniqueId()) ?>"><?=$this->transEsc('Add to favorites')?></a><br/>
+          <? /* Saved lists */ ?>
+          <div class="savedLists alert alert-info hidden">
+            <strong><?=$this->transEsc("Saved in")?>:</strong>
+          </div>
+        <? endif; ?>
+		<br/>
+		<? /* Hierarchy tree link */ ?>
+        <? $trees = $this->driver->tryMethod('getHierarchyTrees'); if (!empty($trees)): ?>
+          <? foreach ($trees as $hierarchyID => $hierarchyTitle): ?>
+            <div class="hierarchyTreeLink hidden-xs">
+              <input type="hidden" value="<?=$this->escapeHtmlAttr($hierarchyID)?>" class="hiddenHierarchyId" />
+              <i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>
+              <a class="hierarchyTreeLinkText" data-lightbox href="<?=$this->recordLink()->getTabUrl($this->driver, 'HierarchyTree')?>?hierarchy=<?=urlencode($hierarchyID)?>#tabnav" title="<?=$this->transEsc('hierarchy_tree')?>" data-lightbox-href="<?=$this->recordLink()->getTabUrl($this->driver, 'AjaxTab')?>?hierarchy=<?=urlencode($hierarchyID)?>" data-lightbox-post="tab=hierarchytree">
+                <?=$this->transEsc('hierarchy_view_context').' ('.$this->driver->getNumberItems().' '.$this->transEsc('items').')'?><? if (count($trees) > 1): ?>: <?=$this->escapeHtml($hierarchyTitle)?><? endif; ?>
+              </a>
+            </div>
+          <? endforeach; ?>
+        <? endif; ?>
+      </div>
+    </div>
+
+  </div>
+  <? if ($thumbnail && $thumbnailAlignment == 'right'): ?>
+    <?=$thumbnail ?>
+  <? endif ?>
+</div>
