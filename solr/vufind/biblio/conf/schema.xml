@@ -375,7 +375,7 @@
    <field name="summary" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="incipit" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="colophon" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="form" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="form" type="string" indexed="true" stored="true" />
    <field name="material" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="extent" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="hand" type="string" indexed="true" stored="true" multiValued="true"/>
