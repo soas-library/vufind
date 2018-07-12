@@ -217,6 +217,25 @@ class Factory
     
     /** SCB **/
 
+    /** edited by sb174 on 2018-07-09 **/
+    /**
+     * Factory for SolrDefault record driver.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return SolrDefault
+     */
+    public static function getSolrFihrist(ServiceManager $sm)
+    {
+        return new SolrFihrist(
+            $sm->getServiceLocator()->get('VuFind\Config')->get('config'),
+            null,
+            $sm->getServiceLocator()->get('VuFind\Config')->get('searches')
+        );
+    }
+
+    /** end 2018-07-09 **/
+
     /**
      * Factory for SolrMarcRemote record driver.
      *

@@ -46,6 +46,9 @@
 	                    <field name="callnumber">
 	                        <xsl:value-of select="//RefNo" />
 	                    </field>
+	                    <field name="callnumber_txt">
+	                        <xsl:value-of select="//RefNo" />
+	                    </field>
                     </xsl:if>
                 </xsl:if>
                  

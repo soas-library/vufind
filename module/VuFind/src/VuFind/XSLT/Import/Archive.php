@@ -153,7 +153,9 @@ class Archive
 				while(!feof($file))
 				{
 					$arr_row = explode ( "*****" , fgets($file));
-					if(strpos($id,$arr_row[0])===false){}
+					#Edited by sb174 on 2018-06-28
+					#if(strpos($id,$arr_row[0])===false){}
+					if((preg_match("/\b".$id."$\b/", $arr_row[0]))===0){}
 					else{return trim($arr_row[1]);}
 				}
 				fclose($file);

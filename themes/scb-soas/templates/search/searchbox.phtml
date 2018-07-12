@@ -1,3 +1,8 @@
+<? $account = $this->auth()->getManager(); ?>
+<?
+/* Access permissions */
+$online_access = $account->userPermissions('Online Resources');
+?>
 <?
     // Set default value if necessary:
     if (!isset($this->searchClassId)) {
@@ -60,7 +65,9 @@
     <div id="divSearch" class="col-md-12 hidden-xs hidden-sm">
     <div class="radioHome"><label class="radioSearch"><input id="rdAll" type="radio" name="filter[]" value='*:*' checked="checked"><?=$this->transEsc('All collections')?></label></input></div>
     <div class="radioHome"><label class="radioSearch"><input id="rdBook" type="radio" name="filter[]" value='-collection:"SOAS Archive"'/><?=$this->transEsc('Print, books, and media')?></label></input></div>
-    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online resources')?></label></input></div>
+    <? if (!$online_access) { ?>
+    	<div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online resources')?></label></input></div>
+    <?}?>
     <div class="radioHome"><label class="radioSearch"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><?=$this->transEsc('Archives')?></label></input></div>
     <?
       $filterDetails = $this->searchbox()->getFilterDetails(
@@ -97,7 +104,9 @@
     
     <div id="divSearch" class="col-md-9 hidden-md hidden-lg">
     <div class="radioHome"><label class="radioSearch"><input id="rdBook" type="radio" name="filter[]" value='*:*' checked="checked"/><?=$this->transEsc('Books')?></label></input></div>
-    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online')?></label></input></div>
+    <? if (!$online_access) { ?>
+ 	   <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online')?></label></input></div>
+    <?}?>
     <div class="radioHome"><label class="radioSearch"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><?=$this->transEsc('Archives')?></label></input></div>
     </div>
 
@@ -138,7 +147,9 @@
     <div id="divSearch" class="col-md-12 hidden-xs hidden-sm">
     <div class="radioHome"><label class="radioSearch"><input id="rdAll" type="radio" name="filter[]" value='*:*' checked="checked"><?=$this->transEsc('All collections')?></label></input></div>
     <div class="radioHome"><label class="radioSearch"><input id="rdBook" type="radio" name="filter[]" value='-collection:"SOAS Archive"'/><?=$this->transEsc('Print, books, and media')?></label></input></div>
-    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online resources')?></label></input></div>
+    <? if (!$online_access) { ?>
+	    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online resources')?></label></input></div>
+    <?}?>
     <div class="radioHome"><label class="radioSearch"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><?=$this->transEsc('Archives')?></label></input></div>
     <?
       $filterDetails = $this->searchbox()->getFilterDetails(
@@ -175,7 +186,9 @@
     
     <div id="divSearch" class="col-md-9 hidden-md hidden-lg">
     <div class="radioHome"><label class="radioSearch"><input id="rdBook" type="radio" name="filter[]" value='*:*' checked="checked"/><?=$this->transEsc('Books')?></label></input></div>
-    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online')?></label></input></div>
+    <? if (!$online_access) { ?>
+	    <div class="radioHome"><label class="radioSearch"><input id="rdOnline" type="radio" name="filter[]" value="Online" onclick="openEds();"/><?=$this->transEsc('Online')?></label></input></div>
+    <?}?>
     <div class="radioHome"><label class="radioSearch"><input id="rdArchive" type="radio" name="filter[]" value='collection:"SOAS Archive"' /><?=$this->transEsc('Archives')?></label></input></div>
     </div>
 
