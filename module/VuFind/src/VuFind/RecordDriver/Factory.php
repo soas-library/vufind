@@ -225,9 +225,9 @@ class Factory
      *
      * @return SolrDefault
      */
-    public static function getSolrFihrist(ServiceManager $sm)
+    public static function getSolrManuscript(ServiceManager $sm)
     {
-        return new SolrFihrist(
+        return new SolrManuscript(
             $sm->getServiceLocator()->get('VuFind\Config')->get('config'),
             null,
             $sm->getServiceLocator()->get('VuFind\Config')->get('searches')

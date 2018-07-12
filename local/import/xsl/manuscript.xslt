@@ -5,7 +5,7 @@
 	xmlns:tei="http://www.tei-c.org/ns/1.0">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">SOAS, University of London</xsl:param>
-    <xsl:param name="collection">FIHRIST</xsl:param>
+    <xsl:param name="collection">SOAS Manuscripts</xsl:param>
     <xsl:template match="tei:teiHeader">
 	
 		<add>
@@ -18,8 +18,11 @@
                 </field>
 
                 <!-- RECORDTYPE -->
-                <field name="recordtype">fihrist</field>
+                <field name="recordtype">manuscript</field>
 
+				<!-- FORMAT -->
+                <field name="format">Manuscript</field>
+				
                 <!-- ALLFIELDS -->
                 <field name="allfields">
                     <xsl:value-of select="normalize-space(string(.))"/>
@@ -39,6 +42,13 @@
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:summary">
 					<field name="summary">
 						<xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:summary)"/>
+					</field>
+				</xsl:if>
+				
+				<!-- CLASSMARK -->
+				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno">
+					<field name="callnumber">
+						<xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno"/>
 					</field>
 				</xsl:if>
 				
@@ -69,7 +79,7 @@
                 </xsl:if>
 				
 				<!-- PHYSICAL DESCRIPTION -->
- 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc">
+ 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc">
                     <field name="form">
                         <xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/@form"/>
                     </field>
@@ -77,23 +87,61 @@
 					<field name="material">
 						<xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"/>
 					</field>
-					
+				
 					<field name="extent">
 						<xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent)"/>
 					</field>
+					
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']">			
+						<field name="leaf_height">
+							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:height,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/@unit)"/>
+						</field>
+						
+						<field name="leaf_width">
+							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:width,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/@unit)"/>
+						</field>
+					</xsl:if>
+					
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']">				
+						<field name="written_height">
+							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:height,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/@unit)"/>
+						</field>
+						
+						<field name="written_width">
+							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:width,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/@unit)"/>
+						</field>
+					</xsl:if>
                 </xsl:if>
 				
-				<!-- HAND DESCRIPTION -->
+				<!-- HAND --> 
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc">
-                    <field name="hand">
+                    <field name="hand_scope">
+                        <xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/@scope"/>
+                    </field>
+					
+					<field name="hand_script">
+                        <xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/@script"/>
+                    </field>
+					
+					<field name="hand_medium">
+                        <xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/@medium"/>
+                    </field>
+					
+					<field name="hand_desc">
                         <xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc)"/>
                     </field>
                 </xsl:if>
-				
+		
 				<!-- HISTORY -->
-				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:history">
+				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:recordHist">
                     <field name="history">
-                        <xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:history)"/>
+                        <xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:recordHist/tei:source)"/>
+                    </field>
+                </xsl:if>
+				
+				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:history/tei:acquisition">
+                    <field name="acquisition">
+                        <xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:history/tei:acquisition)"/>
                     </field>
                 </xsl:if>
 				
@@ -102,7 +150,30 @@
                     <field name="availability">
                         <xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability)"/>
                     </field>
+					
+					<field name="availability_status">
+                        <xsl:value-of select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability/@status"/>
+                    </field>
                 </xsl:if>
+				
+				<!-- SUBJECTS -->
+				<xsl:for-each select="tei:fileDesc/tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
+                    <field name="topic">
+                        <xsl:value-of select="tei:ref/tei:term"/>
+                    </field>
+					
+					<field name="topic_unstemmed">
+                        <xsl:value-of select="tei:ref/tei:term"/>
+                    </field>
+					
+					<field name="topic_facet">
+                        <xsl:value-of select="tei:ref/tei:term"/>
+                    </field>
+					
+					<field name="topic_browse">
+                        <xsl:value-of select="tei:ref/tei:term"/>
+                    </field>
+                </xsl:for-each>
 				
 				<!-- HIERARCHY -->
 				<field name="hierarchytype">Default</field>		
@@ -138,7 +209,10 @@
                 </field>
 
                 <!-- RECORDTYPE -->
-                <field name="recordtype">fihrist</field>
+                <field name="recordtype">manuscript</field>
+				
+				<!-- FORMAT -->
+                <field name="format">Manuscript</field>
 
                 <!-- ALLFIELDS -->
                 <field name="allfields">
@@ -153,6 +227,11 @@
                 <!-- COLLECTION -->
                 <field name="collection">
                     <xsl:value-of select="$collection" />
+                </field>
+				
+                <!-- ITEM NO. -->
+                <field name="item_number">
+                    <xsl:value-of select="@xml:n" />
                 </field>
 				
 				<!-- TITLE -->
@@ -219,6 +298,19 @@
 						<xsl:value-of select="tei:colophon"/>
 					</field>
 				</xsl:if>
+				
+				<!-- AVAILABILITY -->
+ 				<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability">
+                    <field name="availability">
+                        <xsl:value-of select="normalize-space(//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability)"/>
+                    </field>
+                </xsl:if>
+				
+				<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability/@status">
+                    <field name="availability_status">
+                        <xsl:value-of select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:additional/tei:adminInfo/tei:availability/@status"/>
+                    </field>
+                </xsl:if>
 
 				<!-- HIERARCHY -->
 				<field name="hierarchytype">Default</field>		

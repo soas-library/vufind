@@ -267,7 +267,7 @@ class Loader extends \VuFind\ImageLoader
             if (isset($this->config->Content->makeDynamicCovers)
                 && $this->config->Content->makeDynamicCovers
             ) {
-            	if($settings['collection']== 'SOAS Archive')
+            	if($settings['collection']== 'SOAS Archive'||$settings['collection']== 'SOAS Manuscripts')
             	$this->image = $this->getCoverGenerator()->generateWithoutText(
                     $settings['title'], $settings['author'], $settings['callnumber']
                 );
