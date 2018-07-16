@@ -92,7 +92,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 <? $offsite = false;?>
 
 <!-- SERIALS: DISPLAY SERIALS HOLDINGS (866), HOLDINGS LOCATION (946$l), AND HOLDINGS CLASSMARK (946$a) -->
-	<? $format =  $this->driver->getFormats(); ?>
 	<? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
 		<table class="table table-responsive" summary="<?=$this->transEsc('Journal holdings details')?>">
 		<? foreach($journalholdings as $field): ?>
@@ -102,26 +101,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 			</tr>
 		<? endforeach; ?>
 		</table>
-		
-		<? $item_information = $this->driver->getItemInformation(); if (!empty($item_information)): ?>
-			<table class="table table-responsive" summary="<?=$this->transEsc('Item details')?> ">
-		
-				<? foreach ($item_information as $field): ?>
-					<? $item = explode(" : ",$field); ?>
-					<tr vocab="http://schema.org/" typeof="Offer">
-						<td><a target="_blank" href="/Locationlist?ll=<?=$item[0];?>&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
-						</td>
-						<td>
-							<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
-							<? if ($item[1]): ?> 
-								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($item[1])?>"><?=$this->escapeHtml($item[1])?></a>
-							<? endif; ?>
-						</td>
-					</tr>
-				<? endforeach; ?>
-			</table>
-			
-		<? endif; ?>
 		
 	<? endif; ?>
 <!-- END SERIALS -->
@@ -178,7 +157,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 			
 			?>
 
-<!-- BIBS WITH ITEMS: DISPLAY ITEM LOCATION (947l), ITEM CLASSMARK (947a), ITEM LOAN TYPE (API), ITEM STATUS (API) -->
+<!-- BIBS WITH ITEMS: DISPLAY ITEM LOCATION (947l), ITEM CLASSMARK (947a), ITEM LOAN TYPE (MYSQL), ITEM STATUS (MYSQL) -->
 			
 	<? foreach ($holdings as $holding): ?>
 		<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
@@ -242,7 +221,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 				<? $check = (isset($row['check']) && $row['check']); ?>
 				<? $checkStorageRetrievalRequest = (isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest']); ?>
 
-				<? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
+				<? if (isset($row['type']) && $row['type'] != ""): ?>
 					<!-- SCB Change -->
 					<?$count_holdings=$count_holdings+1;?>
 					<?if($count_holdings > 6)
@@ -289,9 +268,9 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 							<? endif;?>
 						<? endif; ?>
 						<!-- END SCB LocationList --> 
-		
 
 						<? if (stripos($place, 'Main') !== false): ?>
+							<? $place = "Main Library" ;?>
 							<? $shelflocation = $this->driver->getShelfLocation();?>
 							<? if (empty($item['classmark'])): ?>
 								<? if (!empty($holdingShelflist[0])):?>
@@ -301,6 +280,8 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 										<? foreach ($shelflocation as $location): ?>
 											<td class="hidden-xs4 default_table_width"><a target="_blank" href="/Locationlist?ll=<?=$this->escapeHtml($location);?>&cm=<?=$classmarkLocationList;?>"><?=$this->escapeHtml($location);?></a></td>
 										<? endforeach; ?>
+									<? else: ?>
+										<td class="hidden-xs4 default_table_width"><a target="_blank" href="/Locationlist?ll=<?=$this->escapeHtml($place);?>&cm=<?=$classmarkLocationList;?>"><?=$this->escapeHtml($place);?></a></td>
 									<? endif; ?>
 								<? endif;?>
 							<? else:?>
@@ -314,6 +295,10 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 										$place_link="/Locationlist?ll=Archives xxxxx Special Collections";
 									else if($place=="Closed Access -ask at Issue Desk")
 										$place_link="/Locationlist?ll=Closed Access";
+									else if($place=="SCRR"){
+										$place = "Archive & Special Collections";
+										$place_link="/Locationlist?ll=Archives xxxxx Special Collections";
+										}
 									else if ($place=="CURRENTLY UNAVAILABLE")
 										$unavailable = true;
 								?>		 
@@ -534,7 +519,16 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 							<? foreach ($holdings_information as $field): ?>
 								<? $holdings = explode(" : ",$field); ?>
 								<tr vocab="http://schema.org/" typeof="Offer">
-									<td><a target="_blank" href="/Locationlist?ll=<?=$holdings[0];?>&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+									<td>
+										<? if($holdings[0]=="Archive & Special Collections"): ?>
+											<a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+										<? elseif($holdings[0]=="Closed access"): ?>
+											<a target="_blank" href="/Locationlist?ll=Closed Access&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+										<? elseif($holdings[0]=="Mobile stacks, Level F"): ?>
+											<a target="_blank" href="/Locationlist?ll=Level F&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+										<? else: ?>
+											<a target="_blank" href="/Locationlist?ll=<?=$holdings[0];?>&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+										<? endif; ?>
 									</td>
 									<td>
 										<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
@@ -608,9 +602,8 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 
 <!-- END UNCLEAR -->
 
-<!-- BIB WITH MORE THAN SIX HOLDINGS? -->
+<!-- BIB WITH MORE THAN SIX ITEMS: SHOW 'DISPLAY ALL' LINK  -->
 
-<!-- When there are no items (947) or holdings (946) or 082 we check the $z subfield -->
 <?if($count_holdings > 6):?>
 	<div id="div_show_more"><span onclick="showAllHoldings()"><?=$this->transEsc("DISPLAY ALL").' ...'?></span></div>
 	<div id="div_show_less" class="hidden"><span onclick="showLessHoldings()"><?=$this->transEsc("SHOW LESS").' ...'?></span></div>

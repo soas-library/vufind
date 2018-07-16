@@ -823,7 +823,7 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                     LEFT JOIN ole_dlvr_item_avail_stat_t istat on i.ITEM_STATUS_ID = istat.ITEM_AVAIL_STAT_ID
                     LEFT JOIN ole_cat_itm_typ_t itype on if(i.TEMP_ITEM_TYPE_ID is not null, i.TEMP_ITEM_TYPE_ID, i.ITEM_TYPE_ID) = itype.ITM_TYP_CD_ID
                     LEFT JOIN ole_locn_t loc on loc.LOCN_CD = SUBSTRING_INDEX(i.LOCATION, \'/\', -1)
-                    JOIN ole_cat_itm_typ_t type ON i.ITEM_TYPE_ID = type.ITM_TYP_CD_ID
+                    LEFT JOIN ole_cat_itm_typ_t type ON i.ITEM_TYPE_ID = type.ITM_TYP_CD_ID
                     WHERE i.STAFF_ONLY = \'N\'
                     AND i.HOLDINGS_ID = :holdingId';
 
@@ -886,6 +886,9 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                 }
                 elseif (stripos($item['status'], 'RECENTLY-RETURNED') > -1) {
                         $item['status'] = "Recently returned";
+                }
+                elseif (stripos($item['status'], 'LOST') > -1) {
+                        $item['status'] = "Lost";
                 }
 		//Changed by HTC
  		elseif (stripos($item['status'], 'ONHOLD') > -1) {
