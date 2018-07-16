@@ -156,7 +156,8 @@
    <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- Generic Fields -->
    <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="format" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!--<field name="format" type="string" indexed="true" stored="true" multiValued="true"/>-->
+   <field name="format" type="string" indexed="true" stored="true"/>
    <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <!-- SCB New author facet -->
    <field name="authorAndOther" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
@@ -334,6 +335,12 @@
    <field name="scb_format" type="string" indexed="true" stored="true" multiValued="false"/>
    <field name="scb-callnumber-first" type="string" indexed="true" stored="true" multiValued="true"/>
    <!--SCB NEW FIELDS-->
+   
+   <!--ADDED BY SB174 2018-07-12-->
+   <field name="holdings_information" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_information" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- END -->
+
    <!--/** SCB **/-->
          
    <!-- CALM -->

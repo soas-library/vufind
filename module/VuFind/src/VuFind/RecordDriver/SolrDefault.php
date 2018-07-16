@@ -2345,7 +2345,7 @@ class SolrDefault extends AbstractBase
 
     public function getComplete947()
    {
-         $barcodes = $this->getItemBarcode();
+        $barcodes = $this->getItemBarcode();
         $shelflists= $this->getItemShelfList();
         $shelflistsEnum= $this->getItemShelfListEnumeration();
 
@@ -2655,7 +2655,22 @@ class SolrDefault extends AbstractBase
     }
 
     # END
+	
+	# ADDED BY sb174 ON 2018-07-12
+	public function getHoldingsInformation()
+    {
+        return isset($this->fields['holdings_information'])
+            ? $this->fields['holdings_information'] : '';
+    }
 
+	public function getItemInformation()
+    {
+        return isset($this->fields['item_information'])
+            ? $this->fields['item_information'] : '';
+    }
+
+	# END
+	
     public function determineUserType($ip) {
 
         $file = "local/config/vufind/access.ini";
