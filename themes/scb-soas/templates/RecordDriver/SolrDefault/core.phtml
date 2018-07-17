@@ -91,7 +91,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 <div class="holdings">
 <? $offsite = false;?>
 
-<!-- SERIALS: DISPLAY SERIALS HOLDINGS (866), HOLDINGS LOCATION (946$l), AND HOLDINGS CLASSMARK (946$a) -->
+<!-- SERIALS: DISPLAY SERIALS HOLDINGS (866) -->
 	<? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
 		<table class="table table-responsive" summary="<?=$this->transEsc('Journal holdings details')?>">
 		<? foreach($journalholdings as $field): ?>
@@ -292,12 +292,15 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 							<td class="hidden-xs6 default_table_width"> 
 								<?$place_link="/Locationlist?cm=".$classmarkLocationList;
 									if($place=="Archive & Special Collections")
-										$place_link="/Locationlist?ll=Archives xxxxx Special Collections";
+										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
 									else if($place=="Closed Access -ask at Issue Desk")
-										$place_link="/Locationlist?ll=Closed Access";
+										$place_link="/Locationlist?ll=Closed Access&cm=".$classmarkLocationList;
 									else if($place=="SCRR"){
 										$place = "Archive & Special Collections";
-										$place_link="/Locationlist?ll=Archives xxxxx Special Collections";
+										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
+										}
+									else if($place=="Jewish Music Institute"){
+										$place_link="/Locationlist?ll=jmi&cm=".$classmarkLocationList;
 										}
 									else if ($place=="CURRENTLY UNAVAILABLE")
 										$unavailable = true;
@@ -309,12 +312,12 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 										$("#sms-record").removeAttr("data-lightbox");
 										document.getElementById("sms-record").target = "_blank";
 									</script>
-								<? endif;?>			   
+								<? endif;?>
 								<?if(stripos($place, 'OFFSITE') !== false): 
 									$place_link="/Locationlist?ll=OFFSITE&cm=".$classmarkLocationList;
 								endif;?>	   
 								<? if (stripos($place, 'DAGENHAM') !== false | stripos($place, 'EGHAM') !== false): ?>
-									<?$place= 'OFFSITE';
+									<?$place= 'Offsite';
 										$place_link="/Locationlist?ll=OFFSITE";
 									?>
 								<? endif; ?>
@@ -505,7 +508,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 
 <!-- END BIB WITH ITEMS -->	
 
-<!-- BIB WITH NO ITEMS, ONLY HOLDINGS: DISPLAY -->
+<!-- BIB WITH NO ITEMS, ONLY HOLDINGS: DISPLAY HOLDINGS LOCATION (946$l) AND HOLDINGS CLASSMARK (946$a) -->
 	
 <!-- When there are no items (947) we display the (946) -->
 	<? $item_information = $this->driver->getItemInformation(); if (empty($item_information)): ?>
@@ -515,7 +518,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 
 					<? $holdings_information = $this->driver->getHoldingsInformation(); if (!empty($holdings_information)): ?>
 						<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details')?> ">
-			
 							<? foreach ($holdings_information as $field): ?>
 								<? $holdings = explode(" : ",$field); ?>
 								<tr vocab="http://schema.org/" typeof="Offer">

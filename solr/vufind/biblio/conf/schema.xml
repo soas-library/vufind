@@ -157,7 +157,7 @@
    <!-- Generic Fields -->
    <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
    <!--<field name="format" type="string" indexed="true" stored="true" multiValued="true"/>-->
-   <field name="format" type="string" indexed="true" stored="true"/>
+   <field name="format" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <!-- SCB New author facet -->
    <field name="authorAndOther" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
