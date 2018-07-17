@@ -102,6 +102,36 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		<? endforeach; ?>
 		</table>
 		
+		<!-- DISPLAY ITEM LOCATION (947l) AND ITEM CLASSMARK (947a) FOR ITEMS WHICH DO NOT HAVE BARCODES OR LOAN TYPES -->
+		<? $item_information = $this->driver->getItemInformation(); if (!empty($item_information)): ?>
+			<table class="table table-responsive" summary="<?=$this->transEsc('Item details')?> ">
+				<? foreach ($item_information as $field): ?>
+					<? $item = explode(" : ",$field); ?>
+						<? if ($item[0]!=="Main Library"): ?>
+							<tr vocab="http://schema.org/" typeof="Offer">
+								<td>
+									<? if($item[0]=="Archive & Special Collections"): ?>
+										<a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
+									<? elseif($item[0]=="Closed access"): ?>
+										<a target="_blank" href="/Locationlist?ll=Closed Access&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
+									<? elseif($item[0]=="Mobile stacks, Level F"): ?>
+										<a target="_blank" href="/Locationlist?ll=Level F&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
+									<? else: ?>
+										<a target="_blank" href="/Locationlist?ll=<?=$item[0];?>&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
+									<? endif; ?>
+								</td>
+								<td>
+									<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
+									<? if ($item[1]): ?> 
+										<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($item[1])?>"><?=$this->escapeHtml($item[1])?></a>
+									<? endif; ?>
+								</td>
+							</tr>
+						<? endif; ?>
+					<? endforeach; ?>
+				</table>
+			<? endif; ?>
+		<!-- END ITEMS WITH NO BARCODES OR LOAN TYPES -->
 	<? endif; ?>
 <!-- END SERIALS -->
 
@@ -744,7 +774,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		  <td><?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>
 				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		   <?if($this->driver->getElectronic()== "Electronic"):?>
-		   <span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
+				<span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
 		   <?endif;?>
 		  </td>
 		</tr>
