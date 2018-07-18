@@ -102,36 +102,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		<? endforeach; ?>
 		</table>
 		
-		<!-- DISPLAY ITEM LOCATION (947l) AND ITEM CLASSMARK (947a) FOR ITEMS WHICH DO NOT HAVE BARCODES OR LOAN TYPES -->
-		<? $item_information = $this->driver->getItemInformation(); if (!empty($item_information)): ?>
-			<table class="table table-responsive" summary="<?=$this->transEsc('Item details')?> ">
-				<? foreach ($item_information as $field): ?>
-					<? $item = explode(" : ",$field); ?>
-						<? if ($item[0]!=="Main Library"): ?>
-							<tr vocab="http://schema.org/" typeof="Offer">
-								<td>
-									<? if($item[0]=="Archive & Special Collections"): ?>
-										<a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
-									<? elseif($item[0]=="Closed access"): ?>
-										<a target="_blank" href="/Locationlist?ll=Closed Access&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
-									<? elseif($item[0]=="Mobile stacks, Level F"): ?>
-										<a target="_blank" href="/Locationlist?ll=Level F&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
-									<? else: ?>
-										<a target="_blank" href="/Locationlist?ll=<?=$item[0];?>&cm=<?=$this->escapeHtml($item[1])?>"><?=$item[0];?></td>
-									<? endif; ?>
-								</td>
-								<td>
-									<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
-									<? if ($item[1]): ?> 
-										<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($item[1])?>"><?=$this->escapeHtml($item[1])?></a>
-									<? endif; ?>
-								</td>
-							</tr>
-						<? endif; ?>
-					<? endforeach; ?>
-				</table>
-			<? endif; ?>
-		<!-- END ITEMS WITH NO BARCODES OR LOAN TYPES -->
+
 	<? endif; ?>
 <!-- END SERIALS -->
 
@@ -186,7 +157,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 			   }
 			
 			?>
-
+		
 <!-- BIBS WITH ITEMS: DISPLAY ITEM LOCATION (947l), ITEM CLASSMARK (947a), ITEM LOAN TYPE (MYSQL), ITEM STATUS (MYSQL) -->
 			
 	<? foreach ($holdings as $holding): ?>
@@ -251,7 +222,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 				<? $check = (isset($row['check']) && $row['check']); ?>
 				<? $checkStorageRetrievalRequest = (isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest']); ?>
 
-				<? if (isset($row['type']) && $row['type'] != ""): ?>
+				<? if (array_key_exists("barcode",$row)): ?>
 					<!-- SCB Change -->
 					<?$count_holdings=$count_holdings+1;?>
 					<?if($count_holdings > 6)
@@ -315,7 +286,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 									<? endif; ?>
 								<? endif;?>
 							<? else:?>
-								<td class="hidden-xs5 default_table_width"><a target="_blank" href="/Locationlist?ll=<?=$item['classmark'];?>&cm=<?=$classmarkLocationList;?>"><?=$item['classmark']?></a></td>
+								<td class="hidden-xs5 default_table_width"><a target="_blank" href="/Locationlist?ll=<?=$item['classmark'];?>&cm=<?=$classmarkLocationList;?>"><?=$this->escapeHtml($place);?></a></td>
 							<? endif; ?>
 
 						<? else:?>				 
@@ -323,8 +294,10 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 								<?$place_link="/Locationlist?cm=".$classmarkLocationList;
 									if($place=="Archive & Special Collections")
 										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
-									else if($place=="Closed Access -ask at Issue Desk")
+									else if($place=="Closed Access, ask at Issue Desk"){
+										$place = "Closed access";
 										$place_link="/Locationlist?ll=Closed Access&cm=".$classmarkLocationList;
+									}
 									else if($place=="SCRR"){
 										$place = "Archive & Special Collections";
 										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
