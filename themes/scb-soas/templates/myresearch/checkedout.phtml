@@ -52,6 +52,9 @@ $(document).ready(function() {
             <input type="submit" id="renew2" class="btn btn-default" name="renewAll" value="<?=$this->transEsc('renew_all')?>" onclick="renew1.disable=true;" />
             </div>
           <div class="">
+			<!-- ADDED BY sb174 ON 2018-07-19 -->
+			<strong><?=$this->transEsc('Not all items on this list may be eligible for renewal.')?></strong><br/>
+			<!-- END -->
             <strong><?=$this->transEsc('After renewing, please refresh the page to see new due dates.')?></strong>
             <a class="btn btn-default" id="refresh" href="<?=$this->url('myresearch-checkedout')?>"><?=$this->transEsc("Refresh page")?></a>
           </div>
@@ -133,7 +136,9 @@ $(document).ready(function() {
               <?=$this->transEsc('by')?>:
               <a href="<?=$this->record($resource)->getLink('author', $listAuthors[0])?>"><?=$this->escapeHtml($listAuthors[0])?></a><? if (count($listAuthors) > 1): ?>, <?=$this->transEsc('more_authors_abbrev')?><? endif; ?><br/>
             <? endif; ?>
-            <? if (count($resource->getFormats()) > 0): ?>
+            
+			<!-- EDITED OUT BY sb174 ON 2018-07-19 -->
+			<!--<? if (count($resource->getFormats()) > 0): ?>
               <?=$this->record($resource)->getFormatList() ?>
               <br/>
             <? endif; ?>
@@ -145,7 +150,7 @@ $(document).ready(function() {
             <? if (!empty($ilsDetails['publication_year'])): ?>
               <strong><?=$this->transEsc('Year of Publication')?>:</strong> <?=$this->escapeHtml($ilsDetails['publication_year'])?>
               <br />
-            <? endif; ?>
+            <? endif; ?>-->
 
             <? if (!empty($ilsDetails['institution_name']) && (empty($ilsDetails['borrowingLocation']) || $ilsDetails['institution_name'] != $ilsDetails['borrowingLocation'])): ?>
               <strong><?=$this->transEsc('location_' . $ilsDetails['institution_name'], array(), $ilsDetails['institution_name'])?></strong>
@@ -257,10 +262,11 @@ $(document).ready(function() {
 
 	            <? if ($showStatus && isset($ilsDetails['message']) && !empty($ilsDetails['message'])): ?>
                       <? if($ilsDetails['status']<>'LOST' && $ilsDetails['status']<>'REQUESTED'  && $ilsDetails['status']<>'CLAIMS RETURNED'):?>
-	              <div class="col-sm-2 alert-info nobackground"><?=$this->transEsc($ilsDetails['message'])?></div>
+					  <!-- EDITED OUT BY sb174 ON 2018-07-19 -->
+						<!-- div class="col-sm-2 alert-info nobackground"><?=$this->transEsc($ilsDetails['message'])?></div>-->
                       <? endif; ?>
 	            <? endif; ?>
-	            <? if (isset($ilsDetails['renewable']) && $ilsDetails['renewable'] && isset($ilsDetails['renew_link'])): ?>
+				<? if (isset($ilsDetails['renewable']) && $ilsDetails['renewable'] && isset($ilsDetails['renew_link'])): ?>
 	              <a href="<?=$this->escapeHtmlAttr($ilsDetails['renew_link'])?>"><?=$this->transEsc('renew_item')?></a>
 	            <? endif; ?>
             

@@ -101,8 +101,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 			</tr>
 		<? endforeach; ?>
 		</table>
-		
-
 	<? endif; ?>
 <!-- END SERIALS -->
 
@@ -301,10 +299,10 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 									else if($place=="SCRR"){
 										$place = "Archive & Special Collections";
 										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
-										}
+									}
 									else if($place=="Jewish Music Institute"){
 										$place_link="/Locationlist?ll=jmi&cm=".$classmarkLocationList;
-										}
+									}
 									else if ($place=="CURRENTLY UNAVAILABLE")
 										$unavailable = true;
 								?>		 
