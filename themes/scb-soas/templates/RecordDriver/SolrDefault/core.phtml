@@ -249,6 +249,8 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						$item= $scbitems[$barcode]; ?>
 						<? if(empty($item['location'])):?>
 							<? $place=$row['location']?>
+						<? elseif($row['location']=="Mobile Stacks, Level F"):?>
+							<? $place=$row['location']?>
 						<? else:?>
 							<? $place=$item['location']?>
 						<? endif;?>
@@ -269,7 +271,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						<!-- END SCB LocationList --> 
 
 						<? if (stripos($place, 'Main') !== false): ?>
-							<? $place = "Main Library" ;?>
+							<? $place = "..." ;?>
 							<? $shelflocation = $this->driver->getShelfLocation();?>
 							<? if (empty($item['classmark'])): ?>
 								<? if (!empty($holdingShelflist[0])):?>
@@ -513,39 +515,32 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	
 <!-- When there are no items (947) we display the (946) -->
 	<? $item_information = $this->driver->getItemInformation(); if (empty($item_information)): ?>
-			<? foreach ($scbitems as $index=>$holding): ?>
-				<? if (strpos($index,"holding")===false):?>
-				<?else:?>
-
-					<? $holdings_information = $this->driver->getHoldingsInformation(); if (!empty($holdings_information)): ?>
-						<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details')?> ">
-							<? foreach ($holdings_information as $field): ?>
-								<? $holdings = explode(" : ",$field); ?>
-								<tr vocab="http://schema.org/" typeof="Offer">
-									<td>
-										<? if($holdings[0]=="Archive & Special Collections"): ?>
-											<a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
-										<? elseif($holdings[0]=="Closed access"): ?>
-											<a target="_blank" href="/Locationlist?ll=Closed Access&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
-										<? elseif($holdings[0]=="Mobile stacks, Level F"): ?>
-											<a target="_blank" href="/Locationlist?ll=Level F&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
-										<? else: ?>
-											<a target="_blank" href="/Locationlist?ll=<?=$holdings[0];?>&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
-										<? endif; ?>
-									</td>
-									<td>
-										<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
-										<? if ($holdings[1]): ?> 
-											<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?>"><?=$this->escapeHtml($holdings[1])?></a>
-										<? endif; ?>
-									</td>
-								</tr>
-							<? endforeach; ?>
-						</table>
-					<? endif; ?>
-				<? endif; ?>
-			<? endforeach; ?>
-		</table>
+		<? $holdings_information = $this->driver->getHoldingsInformation(); if (!empty($holdings_information)): ?>
+			<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details')?> ">
+				<? foreach ($holdings_information as $field): ?>
+					<? $holdings = explode(" : ",$field); ?>
+					<tr vocab="http://schema.org/" typeof="Offer">
+						<td>
+							<? if($holdings[0]=="Archive & Special Collections"): ?>
+								<a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+							<? elseif($holdings[0]=="Closed access"): ?>
+								<a target="_blank" href="/Locationlist?ll=Closed Access&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+							<? elseif($holdings[0]=="Mobile stacks, Level F"): ?>
+								<a target="_blank" href="/Locationlist?ll=Level F&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+							<? else: ?>
+								<a target="_blank" href="/Locationlist?ll=<?=$holdings[0];?>&cm=<?=$this->escapeHtml($holdings[1])?>"><?=$holdings[0];?></td>
+							<? endif; ?>
+						</td>
+						<td>
+							<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
+							<? if ($holdings[1]): ?> 
+								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?>"><?=$this->escapeHtml($holdings[1])?></a>
+							<? endif; ?>
+						</td>
+					</tr>
+				<? endforeach; ?>
+			</table>
+		<? endif; ?>
 	<? endif; ?>
 	
 <!-- END BIB WITH NO ITEMS, ONLY HOLDINGS -->
