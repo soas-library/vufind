@@ -6,6 +6,294 @@
    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.15</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.16</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.17</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.18</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.19</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.20</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.21</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.22</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.23</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.24</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.25</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.26</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.27</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.28</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.29</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.30</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.31</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.1.32</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.01</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.02</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.03</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.04</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.05</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.06</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.07</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.08</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.09</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.2.10</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.01a</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.01b</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.02</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.03</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.04</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.05</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.06</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.07</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.08</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.09</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.10</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.11</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.12</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.13</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.14</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.15</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.16</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.17</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.18</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.19</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.20</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.21</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.22</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.3.23</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.01</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.02</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.03</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.04</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.05</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.06</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.07</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.08</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.09</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.10</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.11</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.12</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.13</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.14</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.4.15</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.5</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.5.01</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_92.5.02</loc>
   <changefreq>weekly</changefreq>
 </url>
@@ -9242,10 +9530,6 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.00</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
   <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.01</loc>
   <changefreq>weekly</changefreq>
 </url>
@@ -9482,14 +9766,6 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.08.07</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.08.08</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
   <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.09</loc>
   <changefreq>weekly</changefreq>
 </url>
@@ -9555,10 +9831,6 @@
 </url>
 <url>
   <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.11</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://vfdev01.lis.soas.ac.uk//Record/WSC.11.00A</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
