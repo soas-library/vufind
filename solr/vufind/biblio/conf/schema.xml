@@ -339,6 +339,7 @@
    <!--ADDED BY SB174 2018-07-12-->
    <field name="holdings_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_information" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
 
    <!--/** SCB **/-->

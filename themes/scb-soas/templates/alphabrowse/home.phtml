@@ -233,7 +233,7 @@ END-->
 						<?=$this->transEsc("browse_" . $this->source) ?>
 					</th>
 					<?php foreach ($this->extras as $e): ?>
-						<? if(stripos($e, 'scb_item_location') !== false){?>
+						<? if(stripos($e, 'item_location') !== false){?>
 						<? }else{ ?>
 							<th><?=$this->transEsc("browse_" . $e) ?></th>
 						<? } ?>
@@ -316,11 +316,11 @@ END-->
 					$extra_items = $this->extras;
 					// EDITED BY sb174 ON 2018-07-25
 					// THIS CODE IS FOR CALLNUMBER ALPHABROWSE TO ENSURE THAT LOCATIONS GET DISPLAYED CORRECTLY
-					// If item location is set i.e. if we're using callnumber alphabrowse
-					if(isset($item['extras']['scb_item_location'])){
+					// If item_location is set as an alphabrowse extra i.e. if we're using callnumber alphabrowse
+					if(isset($item['extras']['item_location'])){
 					    
-						// If item location is set as MAIN, then remove scb_item_location and display shelf_location
-						if(stripos($item['extras']['scb_item_location'][0][0], 'MAIN') !== false){
+						// If item location is set as MAIN, then remove item_location and display shelf_location
+						if(stripos($item['extras']['item_location'][0][0], 'MAIN') !== false){
 							unset($extra_items[2]);
 							foreach ($extra_items as $ei => $extraName):
 							$extraData = $item['extras'][$extraName];
@@ -336,9 +336,9 @@ END-->
 								</td>
 							<? endforeach; ?>
 					<? 	
-						// If item location is not set as MAIN, then replace shelf_location with scb_item_location in array and display new shelf_location
+						// If item location is not set as MAIN, then replace shelf_location with item_location in array and display new shelf_location
 						}else{
-							$item['extras']['shelf_location'][0][0]=$item['extras']['scb_item_location'][0][0];
+							$item['extras']['shelf_location'][0][0]=$item['extras']['item_location'][0][0];
 							unset($extra_items[2]);
 							foreach ($extra_items as $ei => $extraName):
 								$extraData = $item['extras'][$extraName];
