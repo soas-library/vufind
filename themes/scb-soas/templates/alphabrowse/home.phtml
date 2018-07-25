@@ -320,7 +320,7 @@ END-->
 					if(isset($item['extras']['item_location'])){
 					    
 						// If item location is set as MAIN, then remove item_location and display shelf_location
-						if(stripos($item['extras']['item_location'][0][0], 'MAIN') !== false){
+						if(stripos($item['extras']['item_location'][0][0], 'Main Library') !== false){
 							unset($extra_items[2]);
 							foreach ($extra_items as $ei => $extraName):
 							$extraData = $item['extras'][$extraName];
