@@ -1304,11 +1304,11 @@ class SolrMarc extends SolrDefault
         $shelflists= $this->getItemShelfList();
         $shelflistsEnum= $this->getItemShelfListEnumeration();
 
-        $locations= $this->getDisplayItemLocation();
-        $classmarks = $this->getItemLocation_c();
+        $locations= $this->getItemLocation_c();
+        $classmarks = $this->getItemShelfList();
 
-        $holdingShelflists= $this->getHoldingShelfList();
-        $holdingClassmarks = $this->getHoldingLocation_c();
+        $holdingShelflists= $this->getHoldingLocation_c();
+        $holdingClassmarks = $this->getHoldingShelfList();
                                              
         $classmarksAux = array();
         foreach($classmarks as $classmark) {

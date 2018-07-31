@@ -3,15 +3,22 @@
 <? if(empty($this->layout()->breadcrumbs)): ?>
 		<div class="alert_news pull-right-xs pull-right">
 		<strong class="home_text_short" style="float:left;">
-		<h3 class="fronth3 font18">Library term-time opening hours:</h3>
+		<!--<h3 class="fronth3 font18">Library term-time opening hours:</h3>
 		<p class="font12">Monday to Friday 09:00 to 23:30<br/>
 Saturday & Sunday 10:30 to 23:30<br/></br>
 		<? if (!$times_access) :?>
 			For further information, see
 			<a href="https://www.soas.ac.uk/library/using/openingtimes/">https://www.soas.ac.uk/library/using/openingtimes/</a>
 		<?endif;?>
+		</p>-->
+		<h3 class="fronth3 font18">Library term-time opening hours:</h3>
+		<p class="font12">Monday to Friday 09:00 to 23:30<br/>
+Saturday & Sunday 10:30 to 23:30<br/></br>
+		<? if (!$times_access) :?>
+			There is a planned library closure on Sunday 5th August. For further information, see <a href="https://www.soas.ac.uk/news/newsitem133185.html">https://www.soas.ac.uk/news/newsitem133185.html</a></a>
+		<?endif;?>
 		</p>
-      <!--<h3 class="fronth3 font18">SOAS Library update:</h3>
+		<!--<h3 class="fronth3 font18">SOAS Library update:</h3>
       <p class="font12">The library catalogue will be unavailable between 11:00 and 12:00 on Tuesday 28th December 2017. Please complete your transactions before this time to avoid disappointment.<br/>
       <h3 class="fronth3 font18">SOAS Library Christmas opening hours:</h3>
       <p class="font12">The Library will be closed on Sunday 24th December, Monday 25th December, and Tuesday 26th December.<br/>

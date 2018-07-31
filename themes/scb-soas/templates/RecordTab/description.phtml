@@ -59,6 +59,7 @@ if(!empty($arCol))$colType = $arCol[0];
       <? endif; ?>
 
      <? if (isset($authors['corporate']) && !empty($authors['corporate'])): ?>
+	 <? $contentDisplayed = true; ?>
         <tr>
           <th class="labelTbl"><?=$this->transEsc(count($authors['corporate']) > 1 ? 'Corporate Author' : 'Corporate Authors')?>: </th>
           <td>
@@ -68,13 +69,15 @@ if(!empty($arCol))$colType = $arCol[0];
       <? endif; ?>
       
        <? $langs = $this->driver->getLanguages(); if (!empty($langs)): ?>
+	   <? $contentDisplayed = true; ?>
         <tr>
           <th class="labelTbl"><?=$this->transEsc('Language')?>: </th>
           <td><? foreach ($langs as $lang): ?><?= $this->escapeHtml($lang)?><br/><? endforeach; ?></td>
         </tr>
       <? endif; ?>
       
-        <? $publications = $this->driver->getPublicationDetails(); if (!empty($publications)): ?>
+    <? $publications = $this->driver->getPublicationDetails(); if (!empty($publications)): ?>
+	<? $contentDisplayed = true; ?>
       <tr>
         <th class="labelTbl"><?=$this->transEsc('Published')?>: </th>
         <td> 
