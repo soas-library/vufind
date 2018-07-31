@@ -42,9 +42,9 @@ use VuFind\Code\ISBN, VuFind\View\Helper\Root\RecordLink;
  * @link     http://vufind.org/wiki/vufind2:record_drivers Wiki
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  */
-class SolrFihrist extends SolrDefault
+class SolrManuscript extends SolrDefault
 {
-    // NEW FIELDS FOR SOLRFIHRIST - ADDED BY SB174 ON 2018-07-09
+    // NEW FIELDS FOR SOLRMANUSCRIPT - ADDED BY SB174 ON 2018-07-09
 	public function getSummary()
 	{
 		return isset($this->fields['summary']) ?
@@ -55,6 +55,18 @@ class SolrFihrist extends SolrDefault
 	{
 		return isset($this->fields['form']) ?
 		$this->fields['form'] : '';
+	}
+	
+	public function getAvailability()
+	{
+		return isset($this->fields['availability']) ?
+		$this->fields['availability'] : '';
+	}
+	
+	public function getAvailabilityStatus()
+	{
+		return isset($this->fields['availability_status']) ?
+		$this->fields['availability_status'] : '';
 	}
 
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
@@ -182,7 +194,7 @@ class SolrFihrist extends SolrDefault
 			//$protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 			//$url = $protocol.'://localhost:8080/solr/biblio/select?q=collection%3A%22SOAS+Archive%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
 			$protocol = "http";
-			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22FIHRIST%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
+			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
 			$xml = simplexml_load_string(file_get_contents($url));
 			$itemNumber = $xml->result["numFound"];
 			

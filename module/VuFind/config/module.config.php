@@ -475,7 +475,7 @@ $config = [
 		    'solrarchive' => 'VuFind\RecordDriver\Factory::getSolrArchive',
                     /** SCB **/
                     /** edited by sb174 on 2018-07-09 **/
-                    'solrfihrist' => 'VuFind\RecordDriver\Factory::getSolrFihrist',
+                    'solrmanuscript' => 'VuFind\RecordDriver\Factory::getSolrManuscript',
                     /** end 2018-07-09 **/
                     'solrmarcremote' => 'VuFind\RecordDriver\Factory::getSolrMarcRemote',
                     'solrreserves' => 'VuFind\RecordDriver\Factory::getSolrReserves',

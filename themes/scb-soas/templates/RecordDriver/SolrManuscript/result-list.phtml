@@ -1,4 +1,4 @@
-<? $fihrist = $this->driver->userPermissions('Fihrist'); ?>
+<? $manuscript = $this->driver->userPermissions('Manuscript'); ?>
 <?
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
   $cover = $coverDetails['html'];
@@ -48,12 +48,12 @@
               	echo $txtSummary;
 				?>
           <? else: ?>
-            <? $summAuthors = $this->driver->getPrimaryAuthorsWithHighlighting(); if (!empty($summAuthors)): ?>
+		  	<? $summAuthors = $this->driver->getPrimaryLinkedAuthorsWithHighlighting();if (!empty($summAuthors)): ?>
               <?=$this->transEsc('by')?>
               <? $authorCount = count($summAuthors); foreach ($summAuthors as $i => $summAuthor): ?>
                 <a href="<?=$this->record($this->driver)->getLink('author', $this->highlight($summAuthor, null, true, false))?>"><?=$this->highlight($summAuthor)?></a><?=$i + 1 < $authorCount ? ',' : ''?>
               <? endforeach; ?>
-			  <? $summAuthors = $this->driver->getPrimaryLinkedAuthorsWithHighlighting();if (!empty($summAuthors)): ?>
+            <? $summAuthors = $this->driver->getPrimaryAuthorsWithHighlighting(); if (!empty($summAuthors)): ?>
               <br><?=$this->transEsc('by')?>
               <? $authorCount = count($summAuthors); foreach ($summAuthors as $i => $summAuthor): ?>
                 <a href="<?=$this->record($this->driver)->getLink('author', $this->highlight($summAuthor, null, true, false))?>"><?=$this->highlight($summAuthor)?></a><?=$i + 1 < $authorCount ? ',' : ''?>
@@ -75,16 +75,28 @@
         <? endif; ?>
 		
 		<? $form = $this->driver->getForm();if (!empty($form)): ?>
-			<? foreach ($form as $field):?>
-				<strong><?=$this->transEsc("Level")?>: </strong><? echo(ucfirst($field)) ?>
-				<br/>
-			<? endforeach; ?>
-		<? endif; ?>
-		
-		<? if($this->driver->getNumberItems()): ?>
-			<strong><?=$this->transEsc("Contains")?>: </strong><?=$this->driver->getNumberItems() ?> items
+			<strong><?=$this->transEsc("Level")?>: </strong><? echo(ucfirst($form)) ?>
+			<br/>
+			<? if($this->driver->getNumberItems()): ?>
+				<strong><?=$this->transEsc("Contains")?>: </strong><?=$this->driver->getNumberItems() ?> items
+			<? endif; ?>
+		<?else:?>
+			<? $top_title = $this->driver->getTopTitle();if (!empty($top_title)): ?>
+				<? foreach ($top_title as $field): ?>
+					<strong><?=$this->transEsc("In manuscript")?>: </strong><?=$this->escapeHtml($field) ?>
+					<br/>
+				<? endforeach; ?>
+			<? endif; ?>
+			<strong><?=$this->transEsc("Level")?>: </strong>Item
+			<br/>
 		<? endif; ?>
         
+		<?
+		$classmark = $this->driver->getClassmark();
+		$availability = $this->driver->getAvailability();
+		$availability_status = $this->driver->getAvailabilityStatus();
+		?>
+		
 	<script>
 			$(document).ready(function(){
 			$("#tooltip-ex a").tooltip({
@@ -92,26 +104,34 @@
 			});
 			});
 	</script>
-	<table class="table table-responsive" summary="<?=$this->transEsc('Calm info')?> 
+	<table class="table table-responsive" summary="<?=$this->transEsc('manuscript access')?>">
 	<tr class="hidden_holdings2">
-	<? if (!empty($locationDisplay)): ?><td id="boxArchive" class="col-sm-3"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$this->escapeHtml($locationDisplay)?></a></div></td><? endif; ?>
-	<? if (!empty($classmark)): ?><td id="boxClassmark" class="col-sm-3"><?=$classmark?></td><? endif; ?>
-	<? if (!empty($loantype)): ?><td id="boxLoanType" class="col-sm-3"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($loantype)?></a></div></td><? endif; ?>
-	<? if (!empty($accessStatus)): ?>
-				<? foreach ($accessStatus as $accessStatusAux): ?>
-				<?if($this->escapeHtml($accessStatusAux) == "Open"):?>
-				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml($accessStatusAux)?></td>
-				<?else:?>
-				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml($accessStatusAux)?></td>
-				<?endif;?>
-				<? endforeach; ?>
+	
+	<td id="boxArchive" class="col-sm-3"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$this->transEsc("Archive & Special Collections")?></a></div></td>
+	
+	<? if (!empty($classmark)): ?>
+		<td id="boxClassmark" class="col-sm-3"><?=$classmark?></td>
+	<? endif; ?>
+	
+	<td id="boxLoanType" class="col-sm-3"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->escapeHtml($availability[0])?>"><?=$this->transEsc("Reference only")?></a></div></td>
+	
+	<? if (!empty($availability_status)): ?>
+		<? foreach ($availability_status as $field): ?>
+			<?if($this->escapeHtml($field) == "Open"):?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?else:?>
+				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?endif;?>
+		<? endforeach; ?>
     <? endif; ?>
+	
 	</tr>
 </table>
 
-<!-- END CALM --> 
-
+	<?=$this->record($this->driver)->getFormatList() ?>
+	
       </div>
+	  
       <div class="col-sm-3 right hidden-print">
         <? if ($this->userlist()->getMode() !== 'disabled'): ?>
           <? /* Add to favorites */ ?>
@@ -129,14 +149,14 @@
               <input type="hidden" value="<?=$this->escapeHtmlAttr($hierarchyID)?>" class="hiddenHierarchyId" />
               <i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>
               <a class="hierarchyTreeLinkText" data-lightbox href="<?=$this->recordLink()->getTabUrl($this->driver, 'HierarchyTree')?>?hierarchy=<?=urlencode($hierarchyID)?>#tabnav" title="<?=$this->transEsc('hierarchy_tree')?>" data-lightbox-href="<?=$this->recordLink()->getTabUrl($this->driver, 'AjaxTab')?>?hierarchy=<?=urlencode($hierarchyID)?>" data-lightbox-post="tab=hierarchytree">
-                <?=$this->transEsc('hierarchy_view_context').' ('.$this->driver->getNumberItems().' '.$this->transEsc('items').')'?><? if (count($trees) > 1): ?>: <?=$this->escapeHtml($hierarchyTitle)?><? endif; ?>
+                <?=$this->transEsc('manuscript_view_context').' ('.$this->driver->getNumberItems().' '.$this->transEsc('items').')'?><? if (count($trees) > 1): ?>: <?=$this->escapeHtml($hierarchyTitle)?><? endif; ?>
               </a>
             </div>
           <? endforeach; ?>
         <? endif; ?>
       </div>
     </div>
-
+	
   </div>
   <? if ($thumbnail && $thumbnailAlignment == 'right'): ?>
     <?=$thumbnail ?>
