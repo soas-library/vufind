@@ -54,6 +54,8 @@ $(document).ready(function() {
           <div class="">
 			<!-- ADDED BY sb174 ON 2018-07-19 -->
 			<strong><?=$this->transEsc('Not all items on this list may be eligible for renewal.')?></strong><br/>
+			<?=$this->transEsc('renewal_rules')?><br/>
+			<?=$this->transEsc('renewal_note')?><br/>
 			<!-- END -->
             <strong><?=$this->transEsc('After renewing, please refresh the page to see new due dates.')?></strong>
             <a class="btn btn-default" id="refresh" href="<?=$this->url('myresearch-checkedout')?>"><?=$this->transEsc("Refresh page")?></a>

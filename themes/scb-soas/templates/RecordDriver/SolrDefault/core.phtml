@@ -231,7 +231,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 					<!--SCB-2017/11/23 Show only once order text-->
 					<? if (strpos($row['status'],'ONORDER') !== false):?>
 						<?$showOnOrder= true;?>
-					<?$class_txt=  $class_txt.'hidden';?>
+						<?$class_txt=$class_txt.'hidden';?>
 					<? endif; ?>
  
 					<? $hasItems=1;?>
@@ -504,7 +504,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	<!-- ON ORDER STATUS -->
 	
 	<? if ($showOnOrder):?>
-		<span class="onOrder"><?=$this->transEsc("On order")?></span>  
+		<span class="onOrder"><?=$this->transEsc("On order")?></span>
 	<? endif; ?>
 
 	<!-- END ON ORDER STATUS -->

@@ -340,6 +340,7 @@
    <field name="holdings_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_info_with_shelving" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
 
    <!--/** SCB **/-->
