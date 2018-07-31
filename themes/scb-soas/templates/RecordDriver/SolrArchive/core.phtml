@@ -86,7 +86,7 @@
 		<table class="table table-responsive" summary="<?=$this->transEsc('Calm info')?> 
 	<tr class="hidden_holdings2">
 	<? if (!empty($locationDisplay)): ?>
-	<td id="boxArchive"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archive & Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archives xxxxx Special Collections")?>"><?=$locationDisplay?></a></div></td>
+	<td id="boxArchive"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>"><?=$locationDisplay?></a></td>
 	<? endif; ?>
 	<? if (!empty($classmark)): ?><td><a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($classmark)?>"><?=$classmark?></a></td><? endif; ?>
 	<? if (!empty($loantype)): ?><td ><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($loantype)?></a></div></td><? endif; ?>

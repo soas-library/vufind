@@ -24,6 +24,7 @@
 
 				<!-- ITEM LOCATION BY DEFAULT -->	             
 	             <field name="scb_item_location">Archive &amp; Special Collections</field>
+				<field name="item_location">Archive &amp; Special Collections</field>
 	             
 	           <!-- ITEM LOCATION BY DEFAULT -->	             
 	             <field name="scb_loan_type">Reference only</field>
