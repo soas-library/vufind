@@ -480,7 +480,7 @@
 
     <lst name="callnumber">
       <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/callnumber_browse.db</str>
-      <str name="field">callnumber</str>
+      <str name="field">full_callnumber_browse</str>
     </lst>
     <!--/** SCB **/-->
 
