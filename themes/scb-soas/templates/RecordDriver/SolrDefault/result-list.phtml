@@ -247,7 +247,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 					<!--SCB-2017/11/23 Show only once order text-->
 					<? if (strpos($row['status'],'ONORDER') !== false):?>
 						<?$showOnOrder= true;?>
-					<?$class_txt=  $class_txt.'hidden';?>
+						<?$class_txt=$class_txt.'hidden';?>
 					<? endif; ?>
  
 					<? $hasItems=1;?>
@@ -265,7 +265,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						$item= $scbitems[$barcode]; ?>
 						<? if(empty($item['location'])):?>
 							<? $place=$row['location']?>
-						<? elseif($row['location']=="Mobile Stacks, Level F"):?>
+						<? elseif($row['location']!=="MAIN"):?>
 							<? $place=$row['location']?>
 						<? else:?>
 							<? $place=$item['location']?>
@@ -286,8 +286,8 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						<? endif; ?>
 						<!-- END SCB LocationList --> 
 
-						<? if (stripos($place, 'Main Library') !== false): ?>
-							<? $place = "Main Library" ;?>
+						<? if (stripos($place, 'Main') !== false): ?>
+							<? $place = "..." ;?>
 							<? $shelflocation = $this->driver->getShelfLocation();?>
 							<? if (empty($item['classmark'])): ?>
 								<? if (!empty($holdingShelflist[0])):?>
@@ -520,7 +520,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	<!-- ON ORDER STATUS -->
 	
 	<? if ($showOnOrder):?>
-		<span class="onOrder"><?=$this->transEsc("On order")?></span>  
+		<span class="onOrder"><?=$this->transEsc("On order")?></span>
 	<? endif; ?>
 
 	<!-- END ON ORDER STATUS -->
