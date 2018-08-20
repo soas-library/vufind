@@ -342,6 +342,11 @@
    <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_info_with_shelving" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
+   <!--ADDED BY sb174 2018-08-14 FOR VERSION 2018-08-->
+   <field name="holding_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- END -->
 
    <!--/** SCB **/-->
          
@@ -380,16 +385,27 @@
    <field name="hierarchy_top_title_browse" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END CALM -->
 
-   <!-- FIHRIST FIELDS -->
+   <!-- MANUSCRIPT FIELDS -->
    <field name="summary" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="incipit" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="colophon" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="form" type="string" indexed="true" stored="true" />
    <field name="material" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="extent" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="hand" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="leaf_height" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="leaf_width" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="written_height" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="written_width" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="hand_scope" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="hand_script" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="hand_medium" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="hand_desc" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="history" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="acquisition" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="availability" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="availability_status" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_number" type="string" indexed="true" stored="true"/>
+
 
    <!-- Dynamic fields for customization without schema modification -->
    <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
@@ -429,9 +445,9 @@
  <!--/** SCB **/-->
  <!-- SCB New author facet -->
  <copyField source="authorAndOther" dest="authorAndOtherStr"/>
-<!-- SCB New author facet -->
-<!--/** SCB **/-->
-<copyField source="author_additional" dest="author_additionalStr"/>
+ <!-- SCB New author facet -->
+ <!--/** SCB **/-->
+ <copyField source="author_additional" dest="author_additionalStr"/>
  <copyField source="author_corporate" dest="author_browse"/>
  <!--/** SCB **/-->
  <copyField source="publisher" dest="publisherStr"/>

@@ -330,7 +330,7 @@ class Record extends AbstractHelper
      *
      * @return string
      */
-    public function getTitleHtml($maxLength = 180)
+    public function getTitleHtml($maxLength = 100)
     {
         $highlightedTitle = $this->driver->tryMethod('getHighlightedTitle');
         $title = trim($this->driver->tryMethod('getTitle'));

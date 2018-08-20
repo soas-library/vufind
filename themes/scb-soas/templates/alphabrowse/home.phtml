@@ -286,7 +286,7 @@ END-->
 
 					/*** FIN SCA 20161018 ***/		
 				?>
-				
+						
 				<? if ($item['count'] > 0): ?>
 					<?/* linking using bib ids is generally more reliable than doing searches for headings, but headings give shorter queries and don't look as strange. */?>
 
@@ -301,19 +301,40 @@ END-->
 							<? /* $query = array('type' => ucwords($this->source) . 'Browse', 'lookfor' => '"' . addcslashes($item['heading'], '"') . '"'); */?>
 						<? endif; ?>
 					<? endif; ?>
-					<?           
-						foreach($item['ids'] as $aux)array_push($arr_ids,$aux);?>
-							<!--<a class="<?echo $display_size_1;?>" href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>-->
-							<a href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
+					<? 
+					// EDITED BY sb174 ON 2018-08-14
+					// THIS CODE IS TO RESTRICT HEADINGS DISPLAY TO 100 CHARACTERS
+					?>
+					<? foreach($item['ids'] as $aux)array_push($arr_ids,$aux);?>
+							<? if(strlen($item['heading']) > 100): ?>
+								<a href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml((substr($item['heading'], 0, 100)). '...')?></a>
+							<? else: ?>
+								<a href="<?=$this->escapeHtmlAttr($this->url('search-results', array(), array('query' => $query)))?>"><?=$this->escapeHtml($item['heading'])?></a>
+							<? endif; ?>
 				<? else: ?>
-					<span  class="<?echo $display_size_1;?>"><?=$this->escapeHtml($item['heading'])?></span>
+					<? if(strlen($item['heading']) > 100): ?>
+						<span class="<?echo $display_size_1;?>"><?=$this->escapeHtml((substr($item['heading'], 0, 100)). '...')?></span>
+					<? else: ?>
+						<span class="<?echo $display_size_1;?>"><?=$this->escapeHtml($item['heading'])?></span>
+					<? endif; ?>
 				<? endif; ?>
+				<? 
+					// END 2018-08-14
+				?>
 
 
 				<?$arr_excel_row[0]=$this->escapeHtml($item['heading']);?>
 
 				<?
 					$extra_items = $this->extras;
+					
+					// EDITED BY sb174 ON 2018-08-14
+					// THIS CODE IS TO RESTRICT TITLE DISPLAY TO 100 CHARACTERS
+					if(strlen($item['extras']['title'][0][0]) > 100):
+						$item['extras']['title'][0][0] = substr($item['extras']['title'][0][0], 0, 100) . '...';
+					endif;
+					// END 2018-08-14
+					
 					// EDITED BY sb174 ON 2018-07-25
 					// THIS CODE IS FOR CALLNUMBER ALPHABROWSE TO ENSURE THAT LOCATIONS GET DISPLAYED CORRECTLY
 					// If item_location is set as an alphabrowse extra i.e. if we're using callnumber alphabrowse
@@ -323,9 +344,9 @@ END-->
 						if(stripos($item['extras']['item_location'][0][0], 'Main Library') !== false){
 							unset($extra_items[2]);
 							foreach ($extra_items as $ei => $extraName):
-							$extraData = $item['extras'][$extraName];
+								$extraData = $item['extras'][$extraName];
 				?>
-								<td class="col-sm-<?=floor(6/count($this->extras)) ?> cheese">
+								<td class="col-sm-<?=floor(6/count($this->extras)) ?>">
 									<?
 										$extraDisplayArray = array();
 										foreach ($extraData as $j => $e) {

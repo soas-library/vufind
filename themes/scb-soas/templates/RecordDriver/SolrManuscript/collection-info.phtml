@@ -24,6 +24,46 @@
 
     <a id="moreInfoToggle" href="#" style="display:none;"><?=$this->transEsc('more_info_toggle')?></a>
     </br>
+	
+	<?
+		$classmark = $this->driver->getClassmark();
+		$availability = $this->driver->getAvailability();
+		$availability_status = $this->driver->getAvailabilityStatus();
+	?>
+		
+	<script>
+			$(document).ready(function(){
+			$("#tooltip-ex a").tooltip({
+			placement : 'top'
+			});
+			});
+	</script>
+	<div class="holdings">
+	<table class="table table-responsive" summary="<?=$this->transEsc('manuscript access')?>">
+	<tr class="hidden_holdings2">
+	
+	<td id="boxArchive" class="col-sm-3"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$this->transEsc("Archive & Special Collections")?></a></div></td>
+	
+	<? if (!empty($classmark)): ?>
+		<td id="boxClassmark" class="col-sm-3"><?=$classmark?></td>
+	<? endif; ?>
+	
+	<td id="boxLoanType" class="col-sm-3"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->escapeHtml($availability[0])?>"><?=$this->transEsc("Reference only")?></a></div></td>
+	
+	<? if (!empty($availability_status)): ?>
+		<? foreach ($availability_status as $field): ?>
+			<?if($this->escapeHtml($field) == "Open"):?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?else:?>
+				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?endif;?>
+		<? endforeach; ?>
+    <? endif; ?>
+	
+	</tr>
+	</table>
+	</div>
+	
     <?/* Display Main Details */?>
     <table id="collectionInfo" class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
 
@@ -140,6 +180,7 @@
       <? endif; ?>
       
     </table>
+	
     </br>
     <?/* End Main Details */?>
   </div>

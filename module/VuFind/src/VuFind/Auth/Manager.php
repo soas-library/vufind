@@ -653,21 +653,21 @@ class Manager implements \ZfcRbac\Identity\IdentityProviderInterface
     	$userType = "OPAC";
     	//$browser_ip = $_SERVER['REMOTE_ADDR'];
 
-	$browser_ip = '';
+		$browser_ip = '';
 	    if (getenv('HTTP_CLIENT_IP'))
-        $browser_ip = getenv('HTTP_CLIENT_IP');
-    	    else if(getenv('HTTP_X_FORWARDED_FOR'))
-        $browser_ip = getenv('HTTP_X_FORWARDED_FOR');
+			$browser_ip = getenv('HTTP_CLIENT_IP');
+    	else if(getenv('HTTP_X_FORWARDED_FOR'))
+			$browser_ip = getenv('HTTP_X_FORWARDED_FOR');
 	    else if(getenv('HTTP_X_FORWARDED'))
-        $browser_ip = getenv('HTTP_X_FORWARDED');
+			$browser_ip = getenv('HTTP_X_FORWARDED');
 	    else if(getenv('HTTP_FORWARDED_FOR'))
-        $browser_ip = getenv('HTTP_FORWARDED_FOR');
+			$browser_ip = getenv('HTTP_FORWARDED_FOR');
 	    else if(getenv('HTTP_FORWARDED'))
-        $browser_ip = getenv('HTTP_FORWARDED');
+			$browser_ip = getenv('HTTP_FORWARDED');
 	    else if(getenv('REMOTE_ADDR'))
-        $browser_ip = getenv('REMOTE_ADDR');
+			$browser_ip = getenv('REMOTE_ADDR');
 	    else
-        $browser_ip = 'UNKNOWN';    	
+			$browser_ip = 'UNKNOWN';    	
 
         $userType = $this->determineUserType($browser_ip);
         

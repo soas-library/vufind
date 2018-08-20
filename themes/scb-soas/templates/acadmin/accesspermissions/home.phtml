@@ -8,7 +8,14 @@
 <div class="row">
   <div class="<?=$this->layoutClass('mainbody')?>">
     <h2><?=$this->transEsc('Access permissions')?></h2>    
-    
+	
+	<!-- ADDED BY sb174 ON 2018-08-13 -->
+	<div class="">
+		<?=$this->transEsc('access_instructions')?><br/>
+    </div>
+	<!-- END -->
+	
+	
 <?
 $access_types = $this->accessTypes;
 $types_names = $this->types;
