@@ -61,6 +61,13 @@
 	                    </field>
                     </xsl:if>
                 </xsl:if>
+				
+				<!-- PREFIX NUMBER -->
+				<xsl:if test="//RefNo">
+                 	<field name="prefix_number">
+	                    <xsl:value-of select="replace(//RefNo, '^.*/', '')" />
+	                </field>
+                </xsl:if>
                 
                 <!-- PREVIOUSNUMBER -->
                 <xsl:if test="//PreviousNumbers">

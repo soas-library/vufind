@@ -342,7 +342,7 @@
    <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_info_with_shelving" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
-   <!--ADDED BY sb174 2018-08-14 FOR VERSION 2018-08-->
+   <!--ADDED BY sb174 2018-08-14 FOR VERSION Aug-2018-->
    <field name="holding_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="item_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -383,6 +383,9 @@
    <field name="scb_rules" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_date_description" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="hierarchy_top_title_browse" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!--ADDED BY sb174 2018-08-21 FOR VERSION Sept-2018-->
+   <field name="prefix_number" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- END -->
    <!-- END CALM -->
 
    <!-- MANUSCRIPT FIELDS -->

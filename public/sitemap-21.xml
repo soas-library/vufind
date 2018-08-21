@@ -6,6 +6,14 @@
    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_80.5.1.6</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_80.5.2</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>http://vfdev01.lis.soas.ac.uk//Record/PP_MS_80.5.2.1</loc>
   <changefreq>weekly</changefreq>
 </url>
