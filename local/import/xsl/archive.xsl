@@ -62,12 +62,14 @@
                     </xsl:if>
                 </xsl:if>
 				
+				<!--ADDED BY sb174 2018-08-21 FOR VERSION Sept-2018-->
 				<!-- PREFIX NUMBER -->
 				<xsl:if test="//RefNo">
                  	<field name="prefix_number">
-	                    <xsl:value-of select="replace(//RefNo, '^.*/', '')" />
+	                    <xsl:value-of select="php:function('Archive::getPrefixNumber', normalize-space(//RefNo))" />
 	                </field>
                 </xsl:if>
+				<!--END 2018-08-21-->
                 
                 <!-- PREVIOUSNUMBER -->
                 <xsl:if test="//PreviousNumbers">
@@ -403,6 +405,16 @@
                         	</xsl:if>
                         </xsl:if>
                     </field>
+					
+					<!--ADDED BY sb174 2018-08-21 FOR VERSION Sept-2018-->
+					<field name="hierarchy_top_id_raw">
+	               		<xsl:if test="php:function('Archive::getTopParent', normalize-space(//RefNo))">
+	               			<xsl:if test="string-length(.) > 0">
+                        		<xsl:value-of select="php:function('Archive::getTopParentRaw', normalize-space(//RefNo))"/>
+                        	</xsl:if>
+                        </xsl:if>
+                    </field>
+					<!--END 2018-08-21-->
                     
                     <field name="hierarchy_parent_id">
                       	<xsl:if test="php:function('Archive::getAboveParent', normalize-space(//RefNo))">
@@ -430,8 +442,6 @@
                         </xsl:if>
                     </field>  
                     
-                 
-                    
                   <field name="is_hierarchy_id">
                   	<xsl:if test="php:function('Archive::getHierarchyID', normalize-space(//RefNo))">
                     	<xsl:value-of select="php:function('Archive::getHierarchyID', normalize-space(//RefNo))"/>
@@ -444,9 +454,9 @@
                     </xsl:if>
                   </field>  
                                    
-	                <field name="hierarchy_sequence">
-	                        <xsl:value-of select="php:function('Archive::buidID', normalize-space(//RefNo))"/>
-	                </field>
+	              <field name="hierarchy_sequence">
+						<xsl:value-of select="php:function('Archive::buidID', normalize-space(//RefNo))"/>
+	              </field>
 
             </doc>
         </add>
