@@ -740,12 +740,12 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                 /*Set convenience variables.*/
                 $status = $row['item_status_code'];
                 $available = (in_array($status, $this->item_available_codes) ? true:false);
-                $location = $row['locn_name'];
+                $location = $row['location'];
 
                 /*Build item array*/ 
                 $item['id'] = $id;
                 $item['status'] = $status;
-                $item['location'] = $row['locn_name'];
+                $item['location'] = $row['location'];
                 $item['reserve'] = 'N';
                 $item['callnumber'] = (string) $row[2] . ' ' . $row['holding_call_number'];
                 $item['availability'] = $available;
@@ -849,7 +849,7 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                 $holdtype = ($available == true) ? "hold":"recall";
                 $itemTypeArray = ($row['itype_name'] ? explode('-', $row['itype_name']) : array());
                 $itemTypeName = trim($itemTypeArray[0]);
-                $itemLocation = $row['locn_name'];
+                $itemLocation = $row['location'];
                 $itemLocCodes = $row['location'];
 				//Change By Htc
 				$item['ptrn_q_pos']=0;
