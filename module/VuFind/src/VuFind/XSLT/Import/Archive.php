@@ -71,8 +71,8 @@ class Archive
 	
 	public static function getPrefixNumber($ref)
 	{
-		$id = substr($ref, strrpos($ref, '/') + 1);
-		return $id;
+		$prefix_number = preg_replace('/^.*\/\s*/', '', $ref);
+		return $prefix_number;
 	}
 	#END 2018-08-21
 	

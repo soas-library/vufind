@@ -383,10 +383,10 @@
    <field name="scb_rules" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_date_description" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="hierarchy_top_title_browse" type="string" indexed="true" stored="true" multiValued="true"/>
-   <!--ADDED BY sb174 2018-08-21 FOR VERSION Sept-2018-->
+   <!--ADDED BY sb174 2018-08-21 FOR VERSION sept-2018-->
    <field name="prefix_number" type="string" indexed="true" stored="true"/>
    <field name="hierarchy_top_id_raw" type="string" indexed="true" stored="true" multiValued="true"/>
-   <!-- END -->
+   <!-- END 2018-08-21 -->
    <!-- END CALM -->
 
    <!-- MANUSCRIPT FIELDS -->
