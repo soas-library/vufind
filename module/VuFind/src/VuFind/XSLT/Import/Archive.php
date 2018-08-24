@@ -74,6 +74,13 @@ class Archive
 		$prefix_number = preg_replace('/^.*\/\s*/', '', $ref);
 		return $prefix_number;
 	}
+	
+	public static function buildHierarchySequence($ref)
+	{
+		$ref = str_replace("/",".00",$ref);
+		$ref = str_replace(" ","_",$ref);
+		return $ref;
+	}
 	#END 2018-08-21
 	
 	public static function getAboveParent($ref)

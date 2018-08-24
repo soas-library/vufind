@@ -455,7 +455,7 @@
                   </field>  
                                    
 	              <field name="hierarchy_sequence">
-						<xsl:value-of select="php:function('Archive::buidID', normalize-space(//RefNo))"/>
+						<xsl:value-of select="php:function('Archive::buildHierarchySequence', normalize-space(//RefNo))"/>
 	              </field>
 
             </doc>
