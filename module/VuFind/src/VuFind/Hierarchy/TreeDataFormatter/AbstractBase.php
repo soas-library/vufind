@@ -209,7 +209,7 @@ abstract class AbstractBase
      */
     protected function pickPrefixNumber($record, $parentID)
     {
-        $prefix_number = isset($record->prefix_number) ? $record->prefix_number[0] : $record->id;
+        $prefix_number = isset($record->prefix_number) ? $record->prefix_number : $record->id;
         return $prefix_number;
     }
 	#END 2018-08-24
