@@ -8,6 +8,9 @@
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">SOAS, University of London</xsl:param>
     <xsl:param name="collection">Directory of Open Access Books</xsl:param>
+	<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+	<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+	
     <xsl:template match="oai_dc:dc">
         <add>
             <doc>
@@ -88,7 +91,7 @@
                 <!-- TYPE -->
                 <xsl:if test="//dc:type">
                     <field name="format">
-                        <xsl:value-of select="//dc:type" />
+                        <xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
                     </field>
                 </xsl:if>
 
@@ -151,7 +154,7 @@
 
                 <!-- URL -->
                <xsl:for-each select="//dc:identifier">
-                   <xsl:if test="substring(., 1, 21) = &quot;http:&quot;">
+                   <xsl:if test="contains(.,'http')">
                        <field name="url">
                            <xsl:value-of select="." />
                        </field>
