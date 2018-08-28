@@ -314,6 +314,10 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 										$place = "Closed access";
 										$place_link="/Locationlist?ll=Closed Access&cm=".$classmarkLocationList;
 									}
+									else if($place=="MOBILE"){
+										$place = "Mobile stacks, Level F";
+										$place_link="/Locationlist?ll=Level F&cm=".$classmarkLocationList;
+									}
 									else if($place=="SCRR"){
 										$place = "Archive & Special Collections";
 										$place_link="/Locationlist?ll=Archives xxxxx Special Collections&cm=".$classmarkLocationList;
