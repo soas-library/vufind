@@ -21,7 +21,7 @@
                 </field>
 
                 <!-- RECORDTYPE -->
-                <field name="recordtype">doaj</field>
+                <field name="recordtype">DOAJ</field>
 
                 <!-- FULLRECORD -->
                 <!-- disabled for now; records are so large that they cause memory problems!
