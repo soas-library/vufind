@@ -340,9 +340,9 @@
    <field name="holdings_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="item_info_with_shelving" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="full_item_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
-   <!--ADDED BY sb174 2018-08-14 FOR VERSION Aug-2018-->
+   <!--ADDED BY sb174 2018-08-14 FOR VERSION aug-2018-->
    <field name="holding_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="item_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
