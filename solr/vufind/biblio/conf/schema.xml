@@ -346,9 +346,10 @@
    <field name="holding_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="item_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
-   <!-- END -->
-
-   <!--/** SCB **/-->
+   <!-- END aug-2018-->
+   <!--ADDED BY sb174 2018-09-03 FOR VERSION sept-2018-->
+   <field name="rights" type="text" indexed="true" stored="true" />
+   <!-- END sept-2018-->
          
    <!-- CALM -->
    <field name="scb_loan_type" type="string" indexed="true" stored="true"/>

@@ -166,6 +166,14 @@
                            <xsl:value-of select="concat(//dc:relation[normalize-space()], '&#xA;')"/>
                        </field>
                </xsl:if>
+			   
+			    <!-- RIGHTS -->
+               <xsl:for-each select="//dc:rights">
+					<field name="rights">
+                        <xsl:value-of select="." />
+                    </field>
+               </xsl:for-each>
+
             </doc>
         </add>
     </xsl:template>
