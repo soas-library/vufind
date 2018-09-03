@@ -52,12 +52,29 @@ class Archive
 	{
 		$arIDs = explode("/", $ref);
 		//if(count($arIDs)<2) return "";
-		
+
 		$id= $arIDs[0];
 		$id = str_replace("/",".",$id);
 		$id = str_replace(" ","_",$id);
 		return $id;
 	}
+	
+	#ADDED BY sb174 2018-08-21 FOR VERSION Sept-2018-->
+	public static function getTopParentRaw($ref)
+	{
+		$arIDs = explode("/", $ref);
+		//if(count($arIDs)<2) return "";
+
+		$id= $arIDs[0];
+		return $id;
+	}
+	
+	public static function getPrefixNumber($ref)
+	{
+		$id = substr($ref, strrpos($ref, '/') + 1);
+		return $id;
+	}
+	#END 2018-08-21
 	
 	public static function getAboveParent($ref)
 	{

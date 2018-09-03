@@ -249,7 +249,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						$item= $scbitems[$barcode]; ?>
 						<? if(empty($item['location'])):?>
 							<? $place=$row['location']?>
-						<? elseif($row['location']=="Mobile Stacks, Level F"):?>
+						<? elseif($row['location']!=="MAIN"):?>
 							<? $place=$row['location']?>
 						<? else:?>
 							<? $place=$item['location']?>
@@ -297,6 +297,10 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 									else if($place=="Closed Access, ask at Issue Desk"){
 										$place = "Closed access";
 										$place_link="/Locationlist?ll=Closed Access&cm=".$classmarkLocationList;
+									}
+									else if($place=="MOBILE"){
+										$place = "Mobile stacks, Level F";
+										$place_link="/Locationlist?ll=Level F&cm=".$classmarkLocationList;
 									}
 									else if($place=="SCRR"){
 										$place = "Archive & Special Collections";
