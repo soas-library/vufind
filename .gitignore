@@ -37,3 +37,6 @@ solr/vufind/biblio/index/
 solr/vufind/biblio/spellShingle/
 solr/vufind/biblio/spellchecker/
 solr/vufind/biblio/tlog/tlog*
+
+#Subversion
+.svn

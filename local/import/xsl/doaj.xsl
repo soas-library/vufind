@@ -174,6 +174,15 @@
                     </field>
                </xsl:for-each>
 
+			   <!-- ISSN -->
+               <xsl:for-each select="//dc:identifier">
+					<xsl:if test="not(contains(., 'http'))">
+						<field name="issn">
+							<xsl:value-of select="." />
+						</field>
+					</xsl:if>
+               </xsl:for-each>
+			   
             </doc>
         </add>
     </xsl:template>

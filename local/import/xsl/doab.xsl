@@ -173,6 +173,15 @@
                         <xsl:value-of select="." />
                     </field>
                </xsl:for-each>
+			   
+			   <!-- ISBN -->
+               <xsl:for-each select="//dc:identifier">
+                   <xsl:if test="contains(.,'ISBN: ')">
+                       <field name="isbn">
+                           <xsl:value-of select="substring(., 7, 13)" />
+                       </field>
+                   </xsl:if>
+               </xsl:for-each>
 
             </doc>
         </add>
