@@ -523,10 +523,13 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	
 	<!-- ON ORDER STATUS -->
 	
-	<? if ($showOnOrder):?>
-		<span class="onOrder"><?=$this->transEsc("On order")?></span>
+	<? $format = $this->driver->getFormats(); ?>
+	<? if ($format[0] != "Journal"): ?>
+		<? if ($showOnOrder):?>
+			<span class="onOrder"><?=$this->transEsc("On order")?></span>
+		<? endif; ?>
 	<? endif; ?>
-
+	
 	<!-- END ON ORDER STATUS -->
 
 <!-- END BIB WITH ITEMS -->	
