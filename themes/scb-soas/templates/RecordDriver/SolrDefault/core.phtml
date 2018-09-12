@@ -538,7 +538,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						<td>
 							<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
 							<? if ($holdings[1]): ?> 
-								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?>"><?=$this->escapeHtml($holdings[1])?></a>
+								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?> <?=$this->escapeHtml($holdings[2])?>"><?=$this->escapeHtml($holdings[1])?> <?=$this->escapeHtml($holdings[2])?></a>
 							<? endif; ?>
 						</td>
 					</tr>
