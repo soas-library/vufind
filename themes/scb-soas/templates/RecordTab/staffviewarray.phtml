@@ -27,7 +27,7 @@
 	          	<span><?=$this->transEsc("Not available")?></span></br>
 	          <? endif; ?>
 	        <? endforeach; ?>
-	<? elseif($this->escapeHtml($field)=="scb_document" && in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
+		<? elseif($this->escapeHtml($field)=="scb_document" && in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
 	        <? $archive = $this->driver->userPermissions('Archive'); ?>
 	        <? if (!is_array($values)) { $values = array($values); } ?>
 	        <? foreach ($values as $value): ?>
