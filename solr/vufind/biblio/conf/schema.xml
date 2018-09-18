@@ -348,7 +348,7 @@
    <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END aug-2018-->
    <!--ADDED BY sb174 2018-09-03 FOR VERSION sept-2018-->
-   <field name="rights" type="text" indexed="true" stored="true" />
+   <field name="rights" type="string" indexed="true" stored="true" />
    <field name="subject" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="subject_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
    <!-- END sept-2018-->

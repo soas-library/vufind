@@ -741,7 +741,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		</tr>
 	  <? endif; ?>
 
-<? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
+	<? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
 		<tr>
 		  <th><?=$this->transEsc('Format')?>: </th>
 		  <td><?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>
@@ -750,6 +750,19 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 				<span class="label label-info iconlabel electronic"><?=$this->transEsc("Electronic")?></span>
 		   <?endif;?>
 		  </td>
+		</tr>
+	  <? endif; ?>
+	  
+	  <? $rights = $this->driver->getRights(); if (!empty($rights)): ?>
+		<tr>
+			<th><?=$this->transEsc('License rights')?>: </th>
+			<td>
+				<? if (stripos($rights, 'http') !== false): ?>
+					<a href="<?=$this->escapeHtml($rights)?>"><?=$this->escapeHtml($rights)?></a>
+				<? else: ?>
+					<?=$this->escapeHtml($rights)?>
+				<? endif; ?>
+			</td>
 		</tr>
 	  <? endif; ?>
 	  
