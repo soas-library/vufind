@@ -89,10 +89,23 @@
                 </xsl:if>
                 
                 <!-- TYPE -->
-                <xsl:if test="//dc:type">
+                <!--<xsl:if test="//dc:type">
                     <field name="format">
                         <xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
                     </field>
+                </xsl:if>-->
+				
+				<xsl:if test="//dc:type">
+					<xsl:choose>
+						<xsl:when test="contains(.,'book')">
+							<field name="format">eBook</field>
+						</xsl:when>
+						<xsl:when test="not(contains(.,'book'))">
+							<field name="format">
+								<xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
+							</field>
+						</xsl:when>
+                    </xsl:choose>
                 </xsl:if>
 
                 <!-- AUTHOR -->
