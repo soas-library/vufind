@@ -349,6 +349,8 @@
    <!-- END aug-2018-->
    <!--ADDED BY sb174 2018-09-03 FOR VERSION sept-2018-->
    <field name="rights" type="text" indexed="true" stored="true" />
+   <field name="subject" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="subject_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
    <!-- END sept-2018-->
          
    <!-- CALM -->
@@ -466,13 +468,14 @@
  <copyField source="format"    dest="allfields"/>
  <copyField source="format"    dest="allfields_unstemmed"/>
  
- <!--/** SCB **/-->
  <!-- CopyFields ADDED FOR SOAS LIBRARY -->
  <copyField source="linked_title_browse" dest="linked_title_browse_fullStr"/>
  <copyField source="linked_title_browse" dest="linked_title_browse_unstemmed"/>
  <copyField source="series" dest="series_browse"/>
  <!--END-->
- <!--/** SCB **/-->
+ <!--ADDED BY sb174 2018-09-18 FOR VERSION sept-2018-->
+ <copyField source="subject" dest="subject_unstemmed"/>
+ <!--END-->
  
  <!-- CopyFields for call numbers -->
  <copyField source="dewey-raw" dest="dewey-search"/>

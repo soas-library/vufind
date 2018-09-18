@@ -67,7 +67,7 @@
                 <xsl:if test="//dc:subject">
                     <xsl:for-each select="//dc:subject">
                         <xsl:if test="string-length() > 0">
-                            <field name="topic">
+                            <field name="subject">
                                 <xsl:value-of select="normalize-space()"/>
                             </field>
                         </xsl:if>
@@ -154,7 +154,7 @@
 
                 <!-- URL -->
                <xsl:for-each select="//dc:identifier">
-                   <xsl:if test="contains(.,'http')">
+                   <xsl:if test="contains(.,'https://www.doabooks.org')">
                        <field name="url">
                            <xsl:value-of select="." />
                        </field>
