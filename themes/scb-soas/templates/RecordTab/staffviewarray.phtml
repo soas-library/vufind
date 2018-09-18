@@ -5,7 +5,7 @@
 <table class="citation table table-striped">
   <? foreach ($this->driver->getRawData() as $field => $values): ?>
 
-    <?if($this->escapeHtml($field)!="collection" && $this->escapeHtml($field)!="recordtype" && $this->escapeHtml($field)!="id" && $this->escapeHtml($field)!="scb_calm_location_display" && 
+    <?if($this->escapeHtml($field)!="scb_calm_location_display" && 
     $this->escapeHtml($field)!="spellingShingle" && 
     $this->escapeHtml($field)!="spelling" && $this->escapeHtml($field)!="title_short" && $this->escapeHtml($field)!="title_full" && 
     $this->escapeHtml($field)!="title_fullStr" && $this->escapeHtml($field)!="title_full_unstemmed" && $this->escapeHtml($field)!="title_sort" && $this->escapeHtml($field)!="hierarchytype" && 
