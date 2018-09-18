@@ -753,19 +753,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		</tr>
 	  <? endif; ?>
 	  
-	  <? $rights = $this->driver->getRights(); if (!empty($rights)): ?>
-		<tr>
-			<th><?=$this->transEsc('License rights')?>: </th>
-			<td>
-				<? if (stripos($rights, 'http') !== false): ?>
-					<a href="<?=$this->escapeHtml($rights)?>"><?=$this->escapeHtml($rights)?></a>
-				<? else: ?>
-					<?=$this->escapeHtml($rights)?>
-				<? endif; ?>
-			</td>
-		</tr>
-	  <? endif; ?>
-	  
 	  <? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
 		<tr valign="top">
 		  <th><?=$this->transEsc('Holdings')?>: </th>

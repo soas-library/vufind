@@ -44,13 +44,13 @@ use VuFind\Code\ISBN, VuFind\View\Helper\Root\RecordLink;
  */
 class SolrDoab extends SolrDefault
 {
-    // NEW FIELDS FOR SOLRDOAB - ADDED BY SB174 ON 2018-09-18
+    // NEW FIELDS FOR SOLRDOAB - ADDED BY SB174 ON 2018-09-18 for sept-2018 release
 	public function getRights()
     {
         return isset($this->fields['rights'])
             ? $this->fields['rights'] : '';
     }
-	# END 2018-09-18
+	# END sept-2018
 
     public function userPermissions($access)
     {

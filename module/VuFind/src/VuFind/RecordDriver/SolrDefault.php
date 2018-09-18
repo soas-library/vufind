@@ -2670,14 +2670,6 @@ class SolrDefault extends AbstractBase
     }
 	# END 2018-07-12
 	
-	# ADDED BY sb174 ON 2018-09-18 for sept-2018 release
-	public function getRights()
-    {
-        return isset($this->fields['rights'])
-            ? $this->fields['rights'] : '';
-    }
-	# END 2018-09-18
-	
     public function determineUserType($ip) {
 
         $file = "local/config/vufind/access.ini";

@@ -342,12 +342,12 @@
    <field name="item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="full_item_information" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END -->
-   <!--ADDED BY sb174 2018-08-14 FOR VERSION aug-2018-->
+   <!--ADDED BY sb174 2018-08-14 FOR aug-2018 RELEASE-->
    <field name="holding_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="item_callnumber" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="full_callnumber_browse" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END aug-2018-->
-   <!--ADDED BY sb174 2018-09-03 FOR VERSION sept-2018-->
+   <!--ADDED BY sb174 2018-09-03 FOR sept-2018 RELEASE-->
    <field name="rights" type="string" indexed="true" stored="true" />
    <field name="subject" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="subject_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
