@@ -235,6 +235,25 @@ class Factory
     }
 
     /** end 2018-07-09 **/
+	
+	/** added by sb174 on 2018-09-18 for sept-2018 release **/
+    /**
+     * Factory for SolrDefault record driver.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return SolrDefault
+     */
+    public static function getSolrDoab(ServiceManager $sm)
+    {
+        return new SolrDoab(
+            $sm->getServiceLocator()->get('VuFind\Config')->get('config'),
+            null,
+            $sm->getServiceLocator()->get('VuFind\Config')->get('searches')
+        );
+    }
+
+    /** end sept-2018 **/
 
     /**
      * Factory for SolrMarcRemote record driver.
