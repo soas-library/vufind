@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/2001/XMLSchema-instance">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">SOAS, University of London</xsl:param>
-    <xsl:param name="collection">Open access books</xsl:param>
+    <xsl:param name="collection">Directory of Open Access Books</xsl:param>
 	<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
 	<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
 	
