@@ -30,7 +30,7 @@ public List getHoldingLocation(Record record) {
             if (subfields_l != null) {
                 while (subfieldsIter_l.hasNext()) {
                     val = subfieldsIter_l.next().getData().trim();
-                    //if (val.equals("DAGENHAM")) val="OFFSITE";
+                    //if (val.equals("RAINHAM")) val="OFFSITE";
                     //if (val.equals("EGHAM")) val="OFFSITE";
                     result.add(val);
                 }

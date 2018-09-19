@@ -30,7 +30,7 @@ public List getItemOrder(Record record) {
             if (subfields_z != null) {
                 while (subfieldsIter_z.hasNext()) {
                     val = subfieldsIter_z.next().getData().trim();
-                    //if (val.equals("DAGENHAM")) val="OFFSITE";
+                    //if (val.equals("RAINHAM")) val="OFFSITE";
                     //if (val.equals("EGHAM")) val="OFFSITE";
                     result.add(val);
                 }
