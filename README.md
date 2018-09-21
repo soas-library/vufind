@@ -28,6 +28,8 @@ To retrieve changes in the UAT server:
 
 To merge changes from a dev branch into the master 'soas' branch, merge [BRANCH NAME] into soas via pull request: [https://help.github.com/articles/merging-a-pull-request/](https://help.github.com/articles/merging-a-pull-request/) 
 
+New releases are thoroughly documented as part of the pull request. See [https://github.com/soas-library/vufind/pulls?q=is%3Apr+is%3Aclosed](https://github.com/soas-library/vufind/pulls?q=is%3Apr+is%3Aclosed).
+
 ### 1.1.2: Crontab 
 
 The crontab on the VuFind server is under the root username. To see it:
