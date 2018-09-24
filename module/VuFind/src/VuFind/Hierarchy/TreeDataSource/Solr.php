@@ -122,8 +122,10 @@ class Solr extends AbstractBase
                 'q'  => [$q],
                 'fq' => $this->filters,
                 'hl' => ['false'],
-                'fl' => ['title,id,hierarchy_parent_id,hierarchy_top_id,'
+				#EDITED BY sb174 2018-08-24 FOR VERSION sept-2018-->
+                'fl' => ['prefix_number,title,id,hierarchy_parent_id,hierarchy_top_id,'
                     . 'is_hierarchy_id,hierarchy_sequence,title_in_hierarchy'],
+				#END 2018-08-24
                 'wt' => ['json'],
                 'json.nl' => ['arrarr'],
                 'rows' => [$rows], // Integer max

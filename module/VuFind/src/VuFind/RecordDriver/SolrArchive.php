@@ -62,6 +62,7 @@ class SolrArchive extends SolrDefault
 		return isset($this->fields['scb_alt_ref_no']) ?
 		$this->fields['scb_alt_ref_no'] : '';
 	}
+	
 	//PREVIOUSNUMBERS
 	public function getPreviousNumbers()
 	{

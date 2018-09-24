@@ -5,8 +5,9 @@
 <table class="citation table table-striped">
   <? foreach ($this->driver->getRawData() as $field => $values): ?>
 
-    <?if($this->escapeHtml($field)!="collection" && $this->escapeHtml($field)!="recordtype" && $this->escapeHtml($field)!="id" && $this->escapeHtml($field)!="scb_calm_location_display" && 
-    $this->escapeHtml($field)!="spellingShingle" && $this->escapeHtml($field)!="title_short" && $this->escapeHtml($field)!="title_full" && 
+    <?if($this->escapeHtml($field)!="scb_calm_location_display" && 
+    $this->escapeHtml($field)!="spellingShingle" && 
+    $this->escapeHtml($field)!="spelling" && $this->escapeHtml($field)!="title_short" && $this->escapeHtml($field)!="title_full" && 
     $this->escapeHtml($field)!="title_fullStr" && $this->escapeHtml($field)!="title_full_unstemmed" && $this->escapeHtml($field)!="title_sort" && $this->escapeHtml($field)!="hierarchytype" && 
     $this->escapeHtml($field)!="hierarchy_top_id" && $this->escapeHtml($field)!="hierarchy_parent_id" && $this->escapeHtml($field)!="hierarchy_top_title" && $this->escapeHtml($field)!="hierarchy_top_title_browse" && 
     $this->escapeHtml($field)!="hierarchy_parent_title" && $this->escapeHtml($field)!="is_hierarchy_id" && $this->escapeHtml($field)!="is_hierarchy_title" &&
@@ -27,7 +28,7 @@
 	          	<span><?=$this->transEsc("Not available")?></span></br>
 	          <? endif; ?>
 	        <? endforeach; ?>
-	<? elseif($this->escapeHtml($field)=="scb_document" && in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
+		<? elseif($this->escapeHtml($field)=="scb_document" && in_array("SOAS Archive", $this->driver->getCollectionType()) ): ?>
 	        <? $archive = $this->driver->userPermissions('Archive'); ?>
 	        <? if (!is_array($values)) { $values = array($values); } ?>
 	        <? foreach ($values as $value): ?>

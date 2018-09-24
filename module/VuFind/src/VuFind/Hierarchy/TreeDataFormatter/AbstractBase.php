@@ -196,6 +196,23 @@ abstract class AbstractBase
         return null != $parentID && isset($titles[$parentID])
             ? $titles[$parentID] : $title;
     }
+	
+	#ADDED BY sb174 2018-08-24 FOR VERSION sept-2018-->
+	/**
+     * Retrieve prefix number for the record.
+     *
+     * @param object $record   Solr record to format
+     * @param string $parentID The starting point for the current recursion
+     * (equivalent to Solr field hierarchy_parent_id)
+     *
+     * @return string
+     */
+    protected function pickPrefixNumber($record, $parentID)
+    {
+        $prefix_number = isset($record->prefix_number) ? $record->prefix_number : $record->id;
+        return $prefix_number;
+    }
+	#END 2018-08-24
 
     /**
      * Sort Nodes

@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/2001/XMLSchema-instance">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">SOAS, University of London</xsl:param>
-    <xsl:param name="collection">Directory of Open Access Journals</xsl:param>
+    <xsl:param name="collection">Directory of Open Access Books</xsl:param>
 	<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
 	<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
 	
@@ -21,7 +21,7 @@
                 </field>
 
                 <!-- RECORDTYPE -->
-                <field name="recordtype">DOAJ</field>
+                <field name="recordtype">doab</field>
 
                 <!-- FULLRECORD -->
                 <!-- disabled for now; records are so large that they cause memory problems!
@@ -67,7 +67,7 @@
                 <xsl:if test="//dc:subject">
                     <xsl:for-each select="//dc:subject">
                         <xsl:if test="string-length() > 0">
-                            <field name="topic">
+                            <field name="subject">
                                 <xsl:value-of select="normalize-space()"/>
                             </field>
                         </xsl:if>
@@ -89,10 +89,23 @@
                 </xsl:if>
                 
                 <!-- TYPE -->
-                <xsl:if test="//dc:type">
+                <!--<xsl:if test="//dc:type">
                     <field name="format">
                         <xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
                     </field>
+                </xsl:if>-->
+				
+				<xsl:if test="//dc:type">
+					<xsl:choose>
+						<xsl:when test="contains(.,'book')">
+							<field name="format">eBook</field>
+						</xsl:when>
+						<xsl:when test="not(contains(.,'book'))">
+							<field name="format">
+								<xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
+							</field>
+						</xsl:when>
+                    </xsl:choose>
                 </xsl:if>
 
                 <!-- AUTHOR -->
@@ -154,7 +167,7 @@
 
                 <!-- URL -->
                <xsl:for-each select="//dc:identifier">
-                   <xsl:if test="contains(.,'http')">
+                   <xsl:if test="contains(.,'https://www.doabooks.org')">
                        <field name="url">
                            <xsl:value-of select="." />
                        </field>
@@ -167,22 +180,22 @@
                        </field>
                </xsl:if>
 			   
-			    <!-- RIGHTS -->
+			   	<!-- RIGHTS -->
                <xsl:for-each select="//dc:rights">
 					<field name="rights">
                         <xsl:value-of select="." />
                     </field>
                </xsl:for-each>
-
-			   <!-- ISSN -->
-               <xsl:for-each select="//dc:identifier">
-					<xsl:if test="not(contains(., 'http'))">
-						<field name="issn">
-							<xsl:value-of select="." />
-						</field>
-					</xsl:if>
-               </xsl:for-each>
 			   
+			   <!-- ISBN -->
+               <xsl:for-each select="//dc:identifier">
+                   <xsl:if test="contains(.,'ISBN: ')">
+                       <field name="isbn">
+                           <xsl:value-of select="substring(., 7, 13)" />
+                       </field>
+                   </xsl:if>
+               </xsl:for-each>
+
             </doc>
         </add>
     </xsl:template>

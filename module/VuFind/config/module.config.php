@@ -472,11 +472,14 @@ $config = [
                     'solrmarc' => 'VuFind\RecordDriver\Factory::getSolrMarc',
                     /** SCB **/
                     'solrsobek' => 'VuFind\RecordDriver\Factory::getSolrSobek',
-		    'solrarchive' => 'VuFind\RecordDriver\Factory::getSolrArchive',
+					'solrarchive' => 'VuFind\RecordDriver\Factory::getSolrArchive',
                     /** SCB **/
                     /** edited by sb174 on 2018-07-09 **/
                     'solrmanuscript' => 'VuFind\RecordDriver\Factory::getSolrManuscript',
                     /** end 2018-07-09 **/
+					/** edited by sb174 on 2018-09-18 for sept-2018 release **/
+                    'solrdoab' => 'VuFind\RecordDriver\Factory::getSolrDoab',
+                    /** end sept-2018 **/
                     'solrmarcremote' => 'VuFind\RecordDriver\Factory::getSolrMarcRemote',
                     'solrreserves' => 'VuFind\RecordDriver\Factory::getSolrReserves',
                     'solrweb' => 'VuFind\RecordDriver\Factory::getSolrWeb',

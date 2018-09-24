@@ -62,7 +62,10 @@ class Json extends AbstractBase
         $raw = [
             'id' => $record->id,
             'type' => $this->isCollection($record) ? 'collection' : 'record',
-            'title' => $this->pickTitle($record, $parentID)
+            'title' => $this->pickTitle($record, $parentID),
+			#ADDED BY sb174 2018-08-24 FOR VERSION sept-2018-->
+			'prefix_number' => $this->pickPrefixNumber($record, $parentID),
+			#END 2018-08-24
         ];
 
         if (isset($this->childMap[$record->id])) {

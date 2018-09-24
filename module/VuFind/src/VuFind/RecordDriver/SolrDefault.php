@@ -915,7 +915,7 @@ class SolrDefault extends AbstractBase
         if (empty($params['rft.au'])) {
                 $params['rft.au'] = $this->getSecondaryAuthors();
         }
-        $params['rft.aucorp'] = $this->getCorporateAuthor();
+        $params['rft.aucorp'] = $this->getCorporateAuthors();
         $pubPlace = $this->getPlacesOfPublication();
         $pubPlace = empty($pubPlace) ? '' : $pubPlace[0];
         $params['rft.place'] = $pubPlace;
@@ -2668,8 +2668,7 @@ class SolrDefault extends AbstractBase
         return isset($this->fields['item_information'])
             ? $this->fields['item_information'] : '';
     }
-
-	# END
+	# END 2018-07-12
 	
     public function determineUserType($ip) {
 

@@ -101,6 +101,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 			</tr>
 		<? endforeach; ?>
 		</table>
+		<?$showOnOrder = false;?>
 	<? endif; ?>
 <!-- END SERIALS -->
 
@@ -323,7 +324,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 								<?if(stripos($place, 'OFFSITE') !== false): 
 									$place_link="/Locationlist?ll=OFFSITE&cm=".$classmarkLocationList;
 								endif;?>	   
-								<? if (stripos($place, 'DAGENHAM') !== false | stripos($place, 'EGHAM') !== false): ?>
+								<? if (stripos($place, 'RAINHAM') !== false | stripos($place, 'EGHAM') !== false): ?>
 									<?$place= 'Offsite';
 										$place_link="/Locationlist?ll=OFFSITE";
 									?>
@@ -507,10 +508,13 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	
 	<!-- ON ORDER STATUS -->
 	
-	<? if ($showOnOrder):?>
-		<span class="onOrder"><?=$this->transEsc("On order")?></span>
+	<? $format = $this->driver->getFormats(); ?>
+	<? if ($format[0] != "Journal"): ?>
+		<? if ($showOnOrder):?>
+			<span class="onOrder"><?=$this->transEsc("On order")?></span>
+		<? endif; ?>
 	<? endif; ?>
-
+	
 	<!-- END ON ORDER STATUS -->
 
 <!-- END BIB WITH ITEMS -->	
@@ -538,7 +542,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 						<td>
 							<strong class="hidden"><?=$this->transEsc("Call Number")?>:</strong> 
 							<? if ($holdings[1]): ?> 
-								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?>"><?=$this->escapeHtml($holdings[1])?></a>
+								<a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($holdings[1])?> <?=$this->escapeHtml($holdings[2])?>"><?=$this->escapeHtml($holdings[1])?> <?=$this->escapeHtml($holdings[2])?></a>
 							<? endif; ?>
 						</td>
 					</tr>
@@ -610,7 +614,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 	<div id="div_show_more"><span onclick="showAllHoldings()"><?=$this->transEsc("DISPLAY ALL").' ...'?></span></div>
 	<div id="div_show_less" class="hidden"><span onclick="showLessHoldings()"><?=$this->transEsc("SHOW LESS").' ...'?></span></div>
 <?endif;?>
-
 
 </div>
 
@@ -738,7 +741,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		</tr>
 	  <? endif; ?>
 
-<? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
+	<? $formats = $this->driver->getFormats(); if (!empty($formats)): ?>
 		<tr>
 		  <th><?=$this->transEsc('Format')?>: </th>
 		  <td><?=str_replace('class="', 'class="label label-info ', $this->record($this->driver)->getFormatList())?>

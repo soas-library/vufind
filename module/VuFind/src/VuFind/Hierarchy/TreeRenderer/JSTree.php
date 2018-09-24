@@ -171,7 +171,9 @@ class JSTree extends AbstractBase
         $escaper = new \Zend\Escaper\Escaper('utf-8');
         $ret = [
             'id' => preg_replace('/\W/', '-', $node->id),
-            'text' => $escaper->escapeHtml($node->title),
+			#EDITED BY sb174 2018-08-24 FOR VERSION sept-2018-->
+            'text' => $escaper->escapeHtml($node->prefix_number . " - " . $node->title),
+			#END 2018-08-24
             'li_attr' => [
                 'recordid' => $node->id
             ],
