@@ -172,7 +172,7 @@
    <!-- SCB New author facet -->
    <field name="author_variant" type="text" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <field name="author_role" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="author_facet" type="textFacet" indexed="true" stored="false" multiValued="true"/>
+   <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
    <field name="author_sort" type="string" indexed="true" stored="true"/>
    <field name="title" type="text" indexed="true" stored="true"/>
    <field name="title_sort" type="string" indexed="true" stored="true"/>
@@ -446,6 +446,9 @@
  <!-- CopyFields for Faceting on Text -->
  <copyField source="title_full" dest="title_fullStr"/>
  <copyField source="title_full" dest="title_full_unstemmed"/>
+ <copyField source="author" dest="author_facet"/>
+ <copyField source="author2" dest="author_facet"/>
+ <copyField source="author_corporate" dest="author_facet"/>
  <!--/** SCB **/-->
  <copyField source="author" dest="authorStr"/>
  <copyField source="author2" dest="author2Str"/>
