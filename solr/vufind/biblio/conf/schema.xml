@@ -164,7 +164,7 @@
    <field name="author_id" type="textFacet" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <!-- SCB New author facet -->
    <!-- SCB change -->
-   <field name="author-letter" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
+   <field name="author_letter" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <field name="authorStr" type="textFacet" indexed="false" stored="true" multiValued="true"/>
    <!-- SCB change -->
    <!-- SCB New author facet -->

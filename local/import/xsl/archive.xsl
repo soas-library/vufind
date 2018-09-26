@@ -137,7 +137,7 @@
                                 <field name="author">
                                     <xsl:value-of select="."/>
                                 </field>
-                                <field name="author-letter">
+                                <field name="author_letter">
                                     <xsl:value-of select="."/>
                                 </field>
                             </xsl:if>
