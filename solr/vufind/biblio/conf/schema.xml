@@ -3,7 +3,9 @@
   <types>
     <!-- Define fieldType long as it is needed by the _version_ field required by Solr 4.x -->
     <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+	
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+	
     <fieldType name="textFacet" class="solr.TextField" sortMissingLast="true" omitNorms="true">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
@@ -11,15 +13,6 @@
         <filter class="solr.PatternReplaceFilterFactory" pattern="(?&lt;!\b[A-Z])[.\s]*$" replacement="" replace="first"/>
       </analyzer>
     </fieldType>
-    
-    <!--/** SCB **/-->
-    <fieldType name="textFacetRaw" class="solr.TextField" sortMissingLast="true" omitNorms="true">
-      <analyzer>
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <!-- this is just like textFacet but without punctuation stripping. -->
-      </analyzer>
-    </fieldType>
-    <!--/** SCB **/-->
     
     <fieldType name="text" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
@@ -32,12 +25,10 @@
         <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
         <filter class="solr.SnowballPorterFilterFactory" language="English"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <!--/** SCB **/-->
         <filter class="solr.ArabicNormalizationFilterFactory"/>
         <filter class="solr.ArabicStemFilterFactory"/>
         <filter class="solr.CJKWidthFilterFactory"/>
         <filter class="solr.CJKBigramFilterFactory"/> 
-        <!--/** SCB **/-->
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.ICUTokenizerFactory"/>
@@ -50,14 +41,13 @@
         <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
         <filter class="solr.SnowballPorterFilterFactory" language="English"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <!--/** SCB **/-->
         <filter class="solr.ArabicNormalizationFilterFactory"/>
         <filter class="solr.ArabicStemFilterFactory"/>
         <filter class="solr.CJKWidthFilterFactory"/>
         <filter class="solr.CJKBigramFilterFactory"/>
-        <!--/** SCB **/-->
       </analyzer>
     </fieldType>
+	
     <!-- Text Field without Stemming and Synonyms -->
     <fieldType name="textProper" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
@@ -78,6 +68,7 @@
         -->
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
+	  
     </fieldType>
     <!-- Basic Text Field for use with Spell Correction -->
     <fieldType name="textSpell" class="solr.TextField" positionIncrementGap="100">
@@ -91,6 +82,7 @@
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <!-- More advanced spell checking field. -->
     <fieldType name="textSpellShingle" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
@@ -112,6 +104,7 @@
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <!-- Text Field for Normalized ISBN/ISSN Numbers - take first chunk of text
          prior to whitespace, force to lowercase, strip non-ISBN/ISSN characters,
          omit results that are empty after stripping. -->
@@ -123,6 +116,7 @@
         <filter class="solr.LengthFilterFactory" min="1" max="100" />
       </analyzer>
     </fieldType>
+	
     <!-- case-insensitive/whitespace-agnostic field type for callnumber searching -->
     <fieldType name="callnumberSearch" class="solr.TextField" sortMissingLast="true" omitNorms="true">
       <analyzer>
@@ -131,11 +125,16 @@
         <filter class="solr.ICUFoldingFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <fieldType name="date" class="solr.TrieDateField" sortMissingLast="true" omitNorms="true" precisionStep="6"/>
+	
     <fieldType name="random" class="solr.RandomSortField" indexed="true" />
+	
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true" omitNorms="true"/>
+	
     <!-- add geo field to handle geographic search and display capabilities -->
     <fieldType name="geo" class="solr.SpatialRecursivePrefixTreeFieldType" distErrPct="0.025" maxDistErr="0.000009" distanceUnits="degrees" />
+	
   </types>
  <fields>
    <!-- Required by Solr 4.x -->
