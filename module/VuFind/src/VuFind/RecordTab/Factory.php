@@ -300,4 +300,19 @@ class Factory
             $useRecaptcha
         );
     }
+	
+	/**
+     * Factory for ManuscriptWorks tab plugin.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return ManuscriptWorks
+     */
+    public static function getManuscriptWorks(ServiceManager $sm)
+    {
+        return new ManuscriptWorks(
+            $sm->getServiceLocator()->get('VuFind\SearchRunner'),
+            $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
+        );
+    }
 }

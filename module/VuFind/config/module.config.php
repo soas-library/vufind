@@ -506,13 +506,18 @@ $config = [
                     'similaritemscarousel' => 'VuFind\RecordTab\Factory::getSimilarItemsCarousel',
                     'usercomments' => 'VuFind\RecordTab\Factory::getUserComments',
                     'notes' => 'VuFind\RecordTab\Factory::getNotes',
+					/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+					'manuscriptworks' => 'VuFind\RecordTab\Factory::getManuscriptWorks',
+					/** END oct-2018 **/
                 ],
                 'invokables' => [
                     'description' => 'VuFind\RecordTab\Description',
                     'staffviewarray' => 'VuFind\RecordTab\StaffViewArray',
                     'staffviewmarc' => 'VuFind\RecordTab\StaffViewMARC',
-					'staffviewtei' => 'VuFind\RecordTab\StaffViewTEI',
                     'toc' => 'VuFind\RecordTab\TOC',
+					/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+					'staffviewtei' => 'VuFind\RecordTab\StaffViewTEI',
+					/** END oct-2018 **/
                 ],
                 'initializers' => [
                     'ZfcRbac\Initializer\AuthorizationServiceInitializer'
@@ -628,7 +633,7 @@ $config = [
 			'VuFind\RecordDriver\SolrManuscript' => [
                 'tabs' => [
                     'CollectionDescription' => 'CollectionDescription',
-                    'CollectionList' => 'CollectionList',
+					'ManuscriptWorks'  => 'ManuscriptWorks',
 					'Details' => 'StaffViewTEI'
                 ],
                 'defaultTab' => 'CollectionDescription',
