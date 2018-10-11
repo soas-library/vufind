@@ -68,6 +68,12 @@ class SolrManuscript extends SolrDefault
 		return isset($this->fields['availability_status']) ?
 		$this->fields['availability_status'] : '';
 	}
+	
+	public function getFullRecord()
+	{
+		return isset($this->fields['fullrecord']) ?
+		$this->fields['fullrecord'] : '';
+	}
 
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO

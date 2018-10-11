@@ -511,6 +511,7 @@ $config = [
                     'description' => 'VuFind\RecordTab\Description',
                     'staffviewarray' => 'VuFind\RecordTab\StaffViewArray',
                     'staffviewmarc' => 'VuFind\RecordTab\StaffViewMARC',
+					'staffviewtei' => 'VuFind\RecordTab\StaffViewTEI',
                     'toc' => 'VuFind\RecordTab\TOC',
                 ],
                 'initializers' => [
@@ -623,6 +624,17 @@ $config = [
                 ],
                 'defaultTab' => null,
             ],
+			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+			'VuFind\RecordDriver\SolrManuscript' => [
+                'tabs' => [
+                    'CollectionDescription' => 'CollectionDescription',
+                    'CollectionList' => 'CollectionList',
+					'Details' => 'StaffViewTEI'
+                ],
+                'defaultTab' => 'CollectionDescription',
+                'backgroundLoadedTabs' => [ 'CollectionDescription']
+            ],
+			/** END oct-2018 **/
         ],
         // This section controls which tabs are used for which record driver classes.
         // Each sub-array is a map from a tab name (as used in a record URL) to a tab
@@ -674,9 +686,9 @@ $config = [
                     //'Holdings' => 'HoldingsILS', 'Description' => 'Description',
                     //# CUSTOM EDITING FOR SOAS LIBRARY
                     //# @editor   Simon Barron <sb174@soas.ac.uk>
-		    //'Holdings' => 'HoldingsILS', 
-		    'Description' => 'Description',
-		    'Notes' => 'Notes', 
+					//'Holdings' => 'HoldingsILS', 
+					'Description' => 'Description',
+					'Notes' => 'Notes', 
                     /** SCB **/
                     'TOC' => 'TOC', 'UserComments' => 'UserComments',
                     'Reviews' => 'Reviews', 'Excerpt' => 'Excerpt',
@@ -746,6 +758,17 @@ $config = [
                 'Map', 'Details']
             ],
             /** SCB **/
+			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+			'VuFind\RecordDriver\SolrManuscript' => [
+                'tabs' => [
+                    'Description' => 'Description',
+                    'HierarchyTree' => 'HierarchyTree',
+                    'Details' => 'StaffViewArray'
+                ],
+                'defaultTab' => ['Description'],
+                'backgroundLoadedTabs' => [ 'Description', 'HierarchyTree', 'Details']
+            ],
+			/** END oct-2018 **/
             'VuFind\RecordDriver\Summon' => [
                 'tabs' => [
                     'Description' => 'Description',

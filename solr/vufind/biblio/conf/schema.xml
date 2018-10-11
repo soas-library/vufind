@@ -384,7 +384,7 @@
    <!-- END 2018-08-21 -->
    <!-- END CALM -->
 
-   <!-- MANUSCRIPT FIELDS -->
+   <!-- MANUSCRIPT FIELDS FOR oct-2018 RELEASE -->
    <field name="summary" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="incipit" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="colophon" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -404,7 +404,7 @@
    <field name="availability" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="availability_status" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_number" type="string" indexed="true" stored="true"/>
-
+   <!-- END MANUSCRIPT -->
 
    <!-- Dynamic fields for customization without schema modification -->
    <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
