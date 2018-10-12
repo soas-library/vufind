@@ -220,7 +220,7 @@
 
                 <!-- FULLRECORD -->
                 <field name="fullrecord">
-                    <xsl:value-of select="normalize-space(string(//tei:teiHeader))"/>
+                    <xsl:copy-of select="normalize-space(string(//tei:teiHeader))"/>
                 </field>
 
                 <!-- INSTITUTION -->

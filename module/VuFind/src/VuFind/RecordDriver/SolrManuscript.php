@@ -74,7 +74,73 @@ class SolrManuscript extends SolrDefault
 		return isset($this->fields['fullrecord']) ?
 		$this->fields['fullrecord'] : '';
 	}
+	
+	public function getExtent()
+	{
+		return isset($this->fields['extent']) ?
+		$this->fields['extent'] : '';
+	}
+	
+	public function getLeafHeight()
+	{
+		return isset($this->fields['leaf_height']) ?
+		$this->fields['leaf_height'] : '';
+	}
+	
+	public function getLeafWidth()
+	{
+		return isset($this->fields['leaf_width']) ?
+		$this->fields['leaf_width'] : '';
+	}
 
+	public function getWrittenHeight()
+	{
+		return isset($this->fields['written_height']) ?
+		$this->fields['written_height'] : '';
+	}
+	
+	public function getWrittenWidth()
+	{
+		return isset($this->fields['written_width']) ?
+		$this->fields['written_width'] : '';
+	}
+	
+	public function getHandDesc()
+	{
+		return isset($this->fields['hand_desc']) ?
+		$this->fields['hand_desc'] : '';
+	}
+	
+	public function getHandScope()
+	{
+		return isset($this->fields['hand_scope']) ?
+		$this->fields['hand_scope'] : '';
+	}
+	
+	public function getHandScript()
+	{
+		return isset($this->fields['hand_script']) ?
+		$this->fields['hand_script'] : '';
+	}
+	
+	public function getHandMedium()
+	{
+		return isset($this->fields['hand_medium']) ?
+		$this->fields['hand_medium'] : '';
+	}
+	
+	public function getAcquisition()
+	{
+		return isset($this->fields['acquisition']) ?
+		$this->fields['acquisition'] : '';
+	}
+	
+	public function getHistory()
+	{
+		return isset($this->fields['history']) ?
+		$this->fields['history'] : '';
+	}
+	
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO
 	public function getClassmark()
