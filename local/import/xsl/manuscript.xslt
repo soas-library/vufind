@@ -22,7 +22,7 @@
 
 				<!-- FORMAT -->
                 <field name="format">Manuscript</field>
-				
+						
                 <!-- FULLRECORD -->
                 <field name="fullrecord">
                     <xsl:value-of select="normalize-space(string(.))"/>
@@ -37,6 +37,9 @@
                 <field name="collection">
                     <xsl:value-of select="$collection" />
                 </field>
+				
+				<!-- SCB_LEVEL_FACET -->
+				<field name="scb_level_facet">0/Codex</field>
 				
 				<!-- SUMMARY -->
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:summary">
@@ -232,6 +235,9 @@
                 <field name="collection">
                     <xsl:value-of select="$collection" />
                 </field>
+				
+				<!-- SCB_LEVEL_FACET -->
+				<field name="scb_level_facet">1/Item</field>
 				
                 <!-- ITEM NO. -->
                 <field name="item_number">
