@@ -199,7 +199,7 @@ class Archive
 	}
 	
 	
-	public static function getLevelFacet($level)
+	public static function getLevelSort($level)
 	{
 		$level_facet = "";
 		$levelAux = trim($level);

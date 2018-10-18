@@ -117,8 +117,8 @@
                 
                 <xsl:if test="//Level !=''">
                  	<xsl:if test="string-length(.) > 0">
-	                    <field name="scb_level_facet">
-	                        <xsl:value-of select="php:function('Archive::getLevelFacet', normalize-space(//Level))"/>
+	                    <field name="level_sort">
+	                        <xsl:value-of select="php:function('Archive::getLevelSort', normalize-space(//Level))"/>
 	                    </field>
                     </xsl:if>
                 </xsl:if>

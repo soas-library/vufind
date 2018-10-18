@@ -38,8 +38,8 @@
                     <xsl:value-of select="$collection" />
                 </field>
 				
-				<!-- SCB_LEVEL_FACET -->
-				<field name="scb_level_facet">0/Codex</field>
+				<!-- LEVEL FOR SORTING -->
+				<field name="level_sort">0/Codex</field>
 				
 				<!-- SUMMARY -->
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:summary">
@@ -236,8 +236,8 @@
                     <xsl:value-of select="$collection" />
                 </field>
 				
-				<!-- SCB_LEVEL_FACET -->
-				<field name="scb_level_facet">1/Item</field>
+				<!-- LEVEL FOR SORTING -->
+				<field name="level_sort">1/Item</field>
 				
                 <!-- ITEM NO. -->
                 <field name="item_number">
