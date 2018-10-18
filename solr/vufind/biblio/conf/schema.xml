@@ -343,6 +343,7 @@
    <!-- END sept-2018-->
    <!--ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE-->
    <field name="author_corporate_facet" type="textProper" indexed="true" stored="true" multiValued="true"/>
+   <field name="level_sort" type="string" indexed="true" stored="true"/>
    <!-- END oct-2018-->
          
    <!-- CALM -->
@@ -353,7 +354,6 @@
    <field name="scb_previous_numbers" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_date_creation" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_level" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="scb_level_facet" type="string" indexed="true" stored="true"/>
    <field name="scb_extent" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_admin_history" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_custodial_history" type="string" indexed="true" stored="true" multiValued="true"/>

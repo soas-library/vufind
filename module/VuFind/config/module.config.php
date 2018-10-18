@@ -768,7 +768,7 @@ $config = [
                 'tabs' => [
                     'Description' => 'Description',
                     'HierarchyTree' => 'HierarchyTree',
-                    'Details' => 'StaffViewArray'
+                    'Details' => 'StaffViewTEI'
                 ],
                 'defaultTab' => ['Description'],
                 'backgroundLoadedTabs' => [ 'Description', 'HierarchyTree', 'Details']
