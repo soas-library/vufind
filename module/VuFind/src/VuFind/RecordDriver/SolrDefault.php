@@ -823,6 +823,10 @@ class SolrDefault extends AbstractBase
         $formats = $this->getFormats();
         if (in_array('Book', $formats)) {
             return 'Book';
+		// ADDED BY sb174 2018-10-31 FOR nov-2018 RELEASE
+		} else if (in_array('eBook', $formats)) {
+            return 'Book';
+		// END nov-2018
         } else if (in_array('Article', $formats)) {
             return 'Article';
         } else if (in_array('Journal', $formats)) {
@@ -835,13 +839,6 @@ class SolrDefault extends AbstractBase
             return 'Book';
         }
         return 'UnknownFormat';
-        /** SCB **/
-        
-        // EDITED FOR SOAS LIBRARY
-        //$params = $this->getBookOpenURLParams($format);
-        // END
-        
-        /** SCB **/
     }
 
     /**
@@ -908,8 +905,6 @@ class SolrDefault extends AbstractBase
         }
         $params['rft.au'] = $this->getPrimaryAuthor();
         
-        /** SCB **/
-        
         //CUSTOM CODE ADDED FOR SOAS LIBRARY
         //@author Simon Barron <sb174@soas.ac.uk>
         if (empty($params['rft.au'])) {
@@ -923,8 +918,6 @@ class SolrDefault extends AbstractBase
         $pages = empty($pages) ? '' : $pages[0];
         $params['rft.tpages'] = $pages;
         //END
-        
-        /** SCB **/
         
         $publishers = $this->getPublishers();
         if (count($publishers) > 0) {
