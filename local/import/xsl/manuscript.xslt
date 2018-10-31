@@ -22,9 +22,9 @@
 
 				<!-- FORMAT -->
                 <field name="format">Manuscript</field>
-				
-                <!-- ALLFIELDS -->
-                <field name="allfields">
+						
+                <!-- FULLRECORD -->
+                <field name="fullrecord">
                     <xsl:value-of select="normalize-space(string(.))"/>
                 </field>
 
@@ -37,6 +37,9 @@
                 <field name="collection">
                     <xsl:value-of select="$collection" />
                 </field>
+				
+				<!-- LEVEL FOR SORTING -->
+				<field name="level_sort">0/Codex</field>
 				
 				<!-- SUMMARY -->
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:summary">
@@ -92,21 +95,25 @@
 						<xsl:value-of select="normalize-space(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent)"/>
 					</field>
 					
-					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']">			
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:height">			
 						<field name="leaf_height">
 							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:height,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/@unit)"/>
 						</field>
-						
+					</xsl:if>
+					
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:width">		
 						<field name="leaf_width">
 							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/tei:width,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='leaf']/@unit)"/>
 						</field>
 					</xsl:if>
 					
-					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']">				
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:height">				
 						<field name="written_height">
 							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:height,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/@unit)"/>
 						</field>
-						
+					</xsl:if>
+					
+					<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:width">	
 						<field name="written_width">
 							<xsl:value-of select="concat(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/tei:width,' ',tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions[@type='written']/@unit)"/>
 						</field>
@@ -214,9 +221,9 @@
 				<!-- FORMAT -->
                 <field name="format">Manuscript</field>
 
-                <!-- ALLFIELDS -->
-                <field name="allfields">
-                    <xsl:value-of select="normalize-space(string(.))"/>
+                <!-- FULLRECORD -->
+                <field name="fullrecord">
+                    <xsl:copy-of select="normalize-space(string(//tei:teiHeader))"/>
                 </field>
 
                 <!-- INSTITUTION -->
@@ -228,6 +235,9 @@
                 <field name="collection">
                     <xsl:value-of select="$collection" />
                 </field>
+				
+				<!-- LEVEL FOR SORTING -->
+				<field name="level_sort">1/Item</field>
 				
                 <!-- ITEM NO. -->
                 <field name="item_number">

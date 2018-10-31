@@ -477,7 +477,7 @@ $config = [
                     /** edited by sb174 on 2018-07-09 **/
                     'solrmanuscript' => 'VuFind\RecordDriver\Factory::getSolrManuscript',
                     /** end 2018-07-09 **/
-					/** edited by sb174 on 2018-09-18 for sept-2018 release **/
+                    /** edited by sb174 on 2018-09-18 for sept-2018 release **/
                     'solrdoab' => 'VuFind\RecordDriver\Factory::getSolrDoab',
                     /** end sept-2018 **/
                     'solrmarcremote' => 'VuFind\RecordDriver\Factory::getSolrMarcRemote',
@@ -506,12 +506,18 @@ $config = [
                     'similaritemscarousel' => 'VuFind\RecordTab\Factory::getSimilarItemsCarousel',
                     'usercomments' => 'VuFind\RecordTab\Factory::getUserComments',
                     'notes' => 'VuFind\RecordTab\Factory::getNotes',
+					/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+					'manuscriptworks' => 'VuFind\RecordTab\Factory::getManuscriptWorks',
+					/** END oct-2018 **/
                 ],
                 'invokables' => [
                     'description' => 'VuFind\RecordTab\Description',
                     'staffviewarray' => 'VuFind\RecordTab\StaffViewArray',
                     'staffviewmarc' => 'VuFind\RecordTab\StaffViewMARC',
                     'toc' => 'VuFind\RecordTab\TOC',
+					/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+					'staffviewtei' => 'VuFind\RecordTab\StaffViewTEI',
+					/** END oct-2018 **/
                 ],
                 'initializers' => [
                     'ZfcRbac\Initializer\AuthorizationServiceInitializer'
@@ -623,6 +629,17 @@ $config = [
                 ],
                 'defaultTab' => null,
             ],
+			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+			'VuFind\RecordDriver\SolrManuscript' => [
+                'tabs' => [
+                    'CodexDescription' => 'CodexDescription',
+					'ManuscriptWorks'  => 'ManuscriptWorks',
+					'Details' => 'StaffViewTEI'
+                ],
+                'defaultTab' => 'ManuscriptWorks',
+                'backgroundLoadedTabs' => [ 'CollectionDescription']
+            ],
+			/** END oct-2018 **/
         ],
         // This section controls which tabs are used for which record driver classes.
         // Each sub-array is a map from a tab name (as used in a record URL) to a tab
@@ -674,9 +691,9 @@ $config = [
                     //'Holdings' => 'HoldingsILS', 'Description' => 'Description',
                     //# CUSTOM EDITING FOR SOAS LIBRARY
                     //# @editor   Simon Barron <sb174@soas.ac.uk>
-		    //'Holdings' => 'HoldingsILS', 
-		    'Description' => 'Description',
-		    'Notes' => 'Notes', 
+					//'Holdings' => 'HoldingsILS', 
+					'Description' => 'Description',
+					'Notes' => 'Notes', 
                     /** SCB **/
                     'TOC' => 'TOC', 'UserComments' => 'UserComments',
                     'Reviews' => 'Reviews', 'Excerpt' => 'Excerpt',
@@ -746,6 +763,17 @@ $config = [
                 'Map', 'Details']
             ],
             /** SCB **/
+			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+			'VuFind\RecordDriver\SolrManuscript' => [
+                'tabs' => [
+                    'Description' => 'Description',
+                    'HierarchyTree' => 'HierarchyTree',
+                    'Details' => 'StaffViewTEI'
+                ],
+                'defaultTab' => ['Description'],
+                'backgroundLoadedTabs' => [ 'Description', 'HierarchyTree', 'Details']
+            ],
+			/** END oct-2018 **/
             'VuFind\RecordDriver\Summon' => [
                 'tabs' => [
                     'Description' => 'Description',

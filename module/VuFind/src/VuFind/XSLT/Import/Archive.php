@@ -199,7 +199,7 @@ class Archive
 	}
 	
 	
-	public static function getLevelFacet($level)
+	public static function getLevelSort($level)
 	{
 		$level_facet = "";
 		$levelAux = trim($level);
@@ -214,7 +214,7 @@ class Archive
 		else if($level=="Sub-Series")$level_facet = "5/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/";
 		else if($level=="Sub-Sub-Series")$level_facet = "6/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/Sub-Sub-Series/";
 		else if($level=="File")$level_facet = "7/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/Sub-Sub-Series/File";
-		else if($level=="Item")$level_facet = "7/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/Sub-Sub-Series/Item";
+		else if($level=="Item")$level_facet = "8/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/Sub-Sub-Series/File/Item";
 		else $level_facet = "7/Collection/Sub-Collection/Sub-Sub-Collection/Sub-Sub-Sub-Collection/Series/Sub-Series/Sub-Sub-Series/File";
 		
 		return $level_facet;

@@ -300,4 +300,36 @@ class Factory
             $useRecaptcha
         );
     }
+	
+	/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
+	/**
+     * Factory for ManuscriptWorks tab plugin.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return ManuscriptWorks
+     */
+    public static function getManuscriptWorks(ServiceManager $sm)
+    {
+        return new ManuscriptWorks(
+            $sm->getServiceLocator()->get('VuFind\SearchRunner'),
+            $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
+        );
+    }
+	
+	/**
+     * Factory for CodexDescription tab plugin.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return CodexDescription
+     */
+    public static function getCodexDescription(ServiceManager $sm)
+    {
+        return new CodexDescription(
+            $sm->getServiceLocator()->get('VuFind\SearchRunner'),
+            $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
+        );
+    }
+	/** END oct-2018 **/
 }

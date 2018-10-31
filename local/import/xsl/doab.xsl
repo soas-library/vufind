@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/2001/XMLSchema-instance">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">SOAS, University of London</xsl:param>
-    <xsl:param name="collection">Directory of Open Access Books</xsl:param>
+    <xsl:param name="collection">SOAS Library</xsl:param>
 	<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
 	<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
 	
@@ -119,7 +119,7 @@
                                 <field name="author">
                                     <xsl:value-of select="normalize-space()"/>
                                 </field>
-                                <field name="author-letter">
+                                <field name="author_letter">
                                     <xsl:value-of select="normalize-space()"/>
                                 </field>
                             </xsl:if>

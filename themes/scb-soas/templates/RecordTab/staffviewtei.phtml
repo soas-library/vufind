@@ -1,0 +1,13 @@
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Staff view') . ': ' . $this->driver->getBreadcrumb());
+?>
+<table class="citation table table-striped">
+	<? $fullrecord = $this->driver->getFullRecord(); ?>
+	<tr>
+		<td>
+			<span><?=$this->escapeHtml($fullrecord)?></span></br>
+		</td>
+	</tr>
+	
+</table>

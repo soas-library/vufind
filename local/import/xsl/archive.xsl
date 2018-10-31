@@ -50,6 +50,9 @@
 	                    <field name="callnumber_txt">
 	                        <xsl:value-of select="//RefNo" />
 	                    </field>
+						<field name="callnumber-sort">
+	                        <xsl:value-of select="//RefNo" />
+	                    </field>
                     </xsl:if>
                 </xsl:if>
                  
@@ -114,8 +117,8 @@
                 
                 <xsl:if test="//Level !=''">
                  	<xsl:if test="string-length(.) > 0">
-	                    <field name="scb_level_facet">
-	                        <xsl:value-of select="php:function('Archive::getLevelFacet', normalize-space(//Level))"/>
+	                    <field name="level_sort">
+	                        <xsl:value-of select="php:function('Archive::getLevelSort', normalize-space(//Level))"/>
 	                    </field>
                     </xsl:if>
                 </xsl:if>
@@ -137,7 +140,7 @@
                                 <field name="author">
                                     <xsl:value-of select="."/>
                                 </field>
-                                <field name="author-letter">
+                                <field name="author_letter">
                                     <xsl:value-of select="."/>
                                 </field>
                             </xsl:if>

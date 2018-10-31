@@ -3,7 +3,9 @@
   <types>
     <!-- Define fieldType long as it is needed by the _version_ field required by Solr 4.x -->
     <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+	
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+	
     <fieldType name="textFacet" class="solr.TextField" sortMissingLast="true" omitNorms="true">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
@@ -12,52 +14,36 @@
       </analyzer>
     </fieldType>
     
-    <!--/** SCB **/-->
-    <fieldType name="textFacetRaw" class="solr.TextField" sortMissingLast="true" omitNorms="true">
-      <analyzer>
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <!-- this is just like textFacet but without punctuation stripping. -->
-      </analyzer>
-    </fieldType>
-    <!--/** SCB **/-->
-    
     <fieldType name="text" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" splitOnCaseChange="1"/>
-        <!--/** SCB **/
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        -->
         <filter class="solr.ICUFoldingFilterFactory"/>
         <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
         <filter class="solr.SnowballPorterFilterFactory" language="English"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <!--/** SCB **/-->
         <filter class="solr.ArabicNormalizationFilterFactory"/>
         <filter class="solr.ArabicStemFilterFactory"/>
         <filter class="solr.CJKWidthFilterFactory"/>
         <filter class="solr.CJKBigramFilterFactory"/> 
-        <!--/** SCB **/-->
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0" splitOnCaseChange="1"/>
-        <!--/** SCB **/
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        -->
         <filter class="solr.ICUFoldingFilterFactory"/>
         <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
         <filter class="solr.SnowballPorterFilterFactory" language="English"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <!--/** SCB **/-->
         <filter class="solr.ArabicNormalizationFilterFactory"/>
         <filter class="solr.ArabicStemFilterFactory"/>
         <filter class="solr.CJKWidthFilterFactory"/>
         <filter class="solr.CJKBigramFilterFactory"/>
-        <!--/** SCB **/-->
       </analyzer>
     </fieldType>
+	
     <!-- Text Field without Stemming and Synonyms -->
     <fieldType name="textProper" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
@@ -78,6 +64,7 @@
         -->
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
+	  
     </fieldType>
     <!-- Basic Text Field for use with Spell Correction -->
     <fieldType name="textSpell" class="solr.TextField" positionIncrementGap="100">
@@ -85,33 +72,29 @@
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
-        <!--/** SCB **/
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        -->
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <!-- More advanced spell checking field. -->
     <fieldType name="textSpellShingle" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
-        <!--/** SCB **/
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        -->
         <filter class="solr.ShingleFilterFactory" maxShingleSize="2" outputUnigrams="false"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
-        <!--/** SCB **/
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
-        -->
         <filter class="solr.ShingleFilterFactory" maxShingleSize="2" outputUnigrams="false"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <!-- Text Field for Normalized ISBN/ISSN Numbers - take first chunk of text
          prior to whitespace, force to lowercase, strip non-ISBN/ISSN characters,
          omit results that are empty after stripping. -->
@@ -123,6 +106,7 @@
         <filter class="solr.LengthFilterFactory" min="1" max="100" />
       </analyzer>
     </fieldType>
+	
     <!-- case-insensitive/whitespace-agnostic field type for callnumber searching -->
     <fieldType name="callnumberSearch" class="solr.TextField" sortMissingLast="true" omitNorms="true">
       <analyzer>
@@ -131,11 +115,16 @@
         <filter class="solr.ICUFoldingFilterFactory"/>
       </analyzer>
     </fieldType>
+	
     <fieldType name="date" class="solr.TrieDateField" sortMissingLast="true" omitNorms="true" precisionStep="6"/>
+	
     <fieldType name="random" class="solr.RandomSortField" indexed="true" />
+	
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true" omitNorms="true"/>
+	
     <!-- add geo field to handle geographic search and display capabilities -->
     <fieldType name="geo" class="solr.SpatialRecursivePrefixTreeFieldType" distErrPct="0.025" maxDistErr="0.000009" distanceUnits="degrees" />
+	
   </types>
  <fields>
    <!-- Required by Solr 4.x -->
@@ -164,7 +153,7 @@
    <field name="author_id" type="textFacet" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <!-- SCB New author facet -->
    <!-- SCB change -->
-   <field name="author-letter" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
+   <field name="author_letter" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <field name="authorStr" type="textFacet" indexed="false" stored="true" multiValued="true"/>
    <!-- SCB change -->
    <!-- SCB New author facet -->
@@ -172,7 +161,7 @@
    <!-- SCB New author facet -->
    <field name="author_variant" type="text" indexed="true" stored="true" multiValued="true" termVectors="true"/>
    <field name="author_role" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="author_facet" type="textFacet" indexed="true" stored="false" multiValued="true"/>
+   <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
    <field name="author_sort" type="string" indexed="true" stored="true"/>
    <field name="title" type="text" indexed="true" stored="true"/>
    <field name="title_sort" type="string" indexed="true" stored="true"/>
@@ -352,6 +341,10 @@
    <field name="subject" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="subject_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
    <!-- END sept-2018-->
+   <!--ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE-->
+   <field name="author_corporate_facet" type="textProper" indexed="true" stored="true" multiValued="true"/>
+   <field name="level_sort" type="string" indexed="true" stored="true"/>
+   <!-- END oct-2018-->
          
    <!-- CALM -->
    <field name="scb_loan_type" type="string" indexed="true" stored="true"/>
@@ -361,7 +354,6 @@
    <field name="scb_previous_numbers" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_date_creation" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_level" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="scb_level_facet" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_extent" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_admin_history" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_custodial_history" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -386,13 +378,13 @@
    <field name="scb_rules" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_date_description" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="hierarchy_top_title_browse" type="string" indexed="true" stored="true" multiValued="true"/>
-   <!--ADDED BY sb174 2018-08-21 FOR VERSION sept-2018-->
+   <!--ADDED BY sb174 2018-08-21 FOR sept-2018 RELEASE-->
    <field name="prefix_number" type="string" indexed="true" stored="true"/>
    <field name="hierarchy_top_id_raw" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END 2018-08-21 -->
    <!-- END CALM -->
 
-   <!-- MANUSCRIPT FIELDS -->
+   <!-- MANUSCRIPT FIELDS FOR oct-2018 RELEASE -->
    <field name="summary" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="incipit" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="colophon" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -412,7 +404,7 @@
    <field name="availability" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="availability_status" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_number" type="string" indexed="true" stored="true"/>
-
+   <!-- END MANUSCRIPT -->
 
    <!-- Dynamic fields for customization without schema modification -->
    <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
@@ -446,6 +438,12 @@
  <!-- CopyFields for Faceting on Text -->
  <copyField source="title_full" dest="title_fullStr"/>
  <copyField source="title_full" dest="title_full_unstemmed"/>
+ <copyField source="author" dest="author_facet"/>
+ <copyField source="author2" dest="author_facet"/>
+ <!-- ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE-->
+ <copyField source="author_corporate_facet" dest="author_facet"/>
+ <!--<copyField source="author_corporate" dest="author_facet"/>-->
+ <!-- END oct-2018 -->
  <!--/** SCB **/-->
  <copyField source="author" dest="authorStr"/>
  <copyField source="author2" dest="author2Str"/>
