@@ -632,7 +632,7 @@ $config = [
 			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
 			'VuFind\RecordDriver\SolrManuscript' => [
                 'tabs' => [
-                    'CodexDescription' => 'CodexDescription',
+                    'ManuscriptCodexDescription' => 'ManuscriptCodexDescription',
 					'ManuscriptWorks'  => 'ManuscriptWorks',
 					'Details' => 'StaffViewTEI'
                 ],
