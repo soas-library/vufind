@@ -182,33 +182,33 @@ class CarouselGenerator
             //$leaves = explode(',', array($this->$leaves));
             
             // Commented out by sb174 on 2017-12-14 (call no. F0181929)
-            $leaves = array("/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf01.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf02.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf03.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf04.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf05.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf06.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf07.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf08.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf09.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf10.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf11.png",
-            "/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf12.png",
-            );
-            // Added by sb174 on 2017-12-14 to change leaves to snowflakes for winter (call no. F0181929)
-            #$leaves = array("/usr/local/vufind/themes/scb-soas/images/coverleaves/snow01.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow02.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow03.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow04.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow05.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow06.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow07.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow08.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow09.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow10.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow11.png",
-            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/snow12.png",
+            #$leaves = array("/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf01.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf02.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf03.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf04.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf05.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf06.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf07.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf08.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf09.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf10.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf11.png",
+            #"/usr/local/vufind/themes/scb-soas/images/coverleaves/leaf12.png",
             #);
+            // Added by sb174 on 2017-12-14 to change leaves to snowflakes for winter (call no. F0181929)
+            $leaves = array("/usr/local/vufind/themes/scb-soas/images/coverleaves/snow01.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow02.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow03.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow04.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow05.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow06.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow07.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow08.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow09.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow10.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow11.png",
+            "/usr/local/vufind/themes/scb-soas/images/coverleaves/snow12.png",
+            );
             $claves_aleatorias = array_rand($leaves, 1);
             $image=$leaves[$claves_aleatorias];
         //}
