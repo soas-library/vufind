@@ -332,4 +332,20 @@ class Factory
         );
     }
 	/** END oct-2018 **/
+	
+	/** ADDED BY sb174 2018-11-22 FOR nov-2018 RELEASE **/
+	/**
+     * Factory for ManuscriptItemDescription tab plugin.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return ManuscriptItemDescription
+     */
+    public static function getManuscriptItemDescription(ServiceManager $sm)
+    {
+        return new ManuscriptItemDescription(
+            $sm->getServiceLocator()->get('VuFind\SearchRunner'),
+            $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
+        );
+    }
 }
