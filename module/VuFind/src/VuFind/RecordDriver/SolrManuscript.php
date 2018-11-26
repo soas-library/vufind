@@ -266,10 +266,9 @@ class SolrManuscript extends SolrDefault
 			//$protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 			//$url = $protocol.'://localhost:8080/solr/biblio/select?q=collection%3A%22SOAS+Archive%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
 			$protocol = "http";
-			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
+			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22+AND+form%3A%22item%22&wt=xml&indent=true';
 			$xml = simplexml_load_string(file_get_contents($url));
 			$itemNumber = $xml->result["numFound"];
-			
 		}
 		return $itemNumber;	
 	}

@@ -634,6 +634,7 @@ $config = [
                 'tabs' => [
                     'ManuscriptCodexDescription' => 'ManuscriptCodexDescription',
 					'ManuscriptWorks'  => 'ManuscriptWorks',
+					'HierarchyTree' => 'HierarchyTree',
 					'Details' => 'StaffViewTEI'
                 ],
                 'defaultTab' => 'ManuscriptWorks',

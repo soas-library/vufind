@@ -316,9 +316,7 @@
 				
 					<!-- PHYSICAL DESCRIPTION -->
 					<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc">
-						<field name="form">
-							<xsl:value-of select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/@form"/>
-						</field>
+						<field name="form">item</field>
 					
 						<field name="material">
 							<xsl:value-of select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"/>

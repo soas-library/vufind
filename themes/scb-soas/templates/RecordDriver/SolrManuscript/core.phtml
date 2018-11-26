@@ -60,6 +60,11 @@
 
       <? endif; ?> 
 	
+		<? $codex = $this->driver->getClassmark(); ?>
+		<? if ($codex): ?>
+			<p>In codex: <?=$this->escapeHtml($codex)?></p>
+		<? endif; ?>
+	
     <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? html_entity_decode($this->escapeHtml($summary[0]), ENT_QUOTES | ENT_HTML5)  : false; ?>
     <? if ($summary): ?>
       <p><?=$this->truncate($summary, 300)?></p>

@@ -348,4 +348,5 @@ class Factory
             $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
         );
     }
+	/** END nov-2018 **/
 }

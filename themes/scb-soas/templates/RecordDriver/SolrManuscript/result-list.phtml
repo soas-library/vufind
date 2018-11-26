@@ -35,8 +35,16 @@
           <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=html_entity_decode($this->record($this->driver)->getTitleHtml(), ENT_QUOTES | ENT_HTML5);?>
           </a>
+		  
+		<? $form = $this->driver->getForm();?>
+			<? if ($form === "item"): ?>
+				<? $codex = $this->driver->getClassmark(); ?>
+				<? if ($codex): ?>
+					<p>In codex: <?=$this->escapeHtml($codex)?></p>
+				<? endif; ?>
+			<? endif; ?>
         </div>
-
+		
         <div>
           <? if($this->driver->isCollection()): ?>
           <?  ;?>
