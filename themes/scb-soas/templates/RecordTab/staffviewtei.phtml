@@ -3,10 +3,10 @@
     $this->headTitle($this->translate('Staff view') . ': ' . $this->driver->getBreadcrumb());
 ?>
 <table class="citation table table-striped">
-	<? $fullrecord = $this->driver->getFullRecord(); ?>
+	<? $github_link = "https://github.com/fihristorg/fihrist-mss/blob/master/collections/school%20of%20oriental%20and%20african%20studies/" . $this->driver->getTopId() . ".xml"; ?>
 	<tr>
 		<td>
-			<span><?=$this->escapeHtml($fullrecord)?></span></br>
+			<span><a href="<?=$this->escapeHtml($github_link)?>"><?=$this->transEsc("View full record on Fihrist's GitHub repository")?></a></span></br>
 		</td>
 	</tr>
 </table>
