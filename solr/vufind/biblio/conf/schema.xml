@@ -404,6 +404,11 @@
    <field name="availability" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="availability_status" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_number" type="string" indexed="true" stored="true"/>
+   <!-- MANUSCRIPT FIELDS FOR dec-2018 RELEASE -->
+   <field name="explicit" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="textLang" type="string" indexed="true" stored="true" />
+   <field name="filiation" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="pagination" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- END MANUSCRIPT -->
 
    <!-- Dynamic fields for customization without schema modification -->

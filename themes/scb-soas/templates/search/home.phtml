@@ -180,11 +180,9 @@ foreach ($xml->result->doc as $doc) {
 	#	$tooltip_title = $tooltip_title . $locations . '</br>';
 	#}
 
-	
 	//$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $title . '</br>'.$author[0]. '</br>' .$publishDate.'</br>'.$locations.'"><img src="/CarouselCover/Show?id='. $id_news .'&size=large" alt="" border="0"></span></div></div></a>');
 	$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $tooltip_title .'"><img src="/CarouselCover/Show?id='. $id_news .'&title='.rawurlencode($title).'&size=large&type1=uu&type2=uu" alt="" border="0"></span></div></div></a>');
 	$new_items[] = $item;
-
 }
 
 //print_r($new_items);

@@ -120,6 +120,13 @@
 					</xsl:if>
                 </xsl:if>
 				
+				<!-- PAGINATION -->
+				<xsl:for-each select="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:ref">
+                    <field name="pagination">
+                        <xsl:value-of select="."/>
+                    </field>
+                </xsl:for-each>
+				
 				<!-- HAND --> 
 				<xsl:if test="tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc">
                     <field name="hand_scope">
@@ -164,21 +171,21 @@
                 </xsl:if>
 				
 				<!-- SUBJECTS -->
-				<xsl:for-each select="tei:fileDesc/tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
+				<xsl:for-each select="tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
                     <field name="topic">
-                        <xsl:value-of select="tei:ref/tei:term"/>
+                        <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
 					
 					<field name="topic_unstemmed">
-                        <xsl:value-of select="tei:ref/tei:term"/>
+                        <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
 					
 					<field name="topic_facet">
-                        <xsl:value-of select="tei:ref/tei:term"/>
+                        <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
 					
 					<field name="topic_browse">
-                        <xsl:value-of select="tei:ref/tei:term"/>
+                        <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
                 </xsl:for-each>
 				
@@ -300,10 +307,31 @@
 						</field>
 					</xsl:if>
 				
+					<!-- URL -->
+					<xsl:if test="tei:listBibl/tei:bibl/tei:ref">
+						<field name="url">
+							<xsl:value-of select="tei:listBibl/tei:bibl/tei:ref/@target"/>
+						</field>
+					</xsl:if>
+				
+					<!-- NOTE -->
+					<xsl:if test="tei:note">
+						<field name="note">
+							<xsl:value-of select="tei:note"/>
+						</field>
+					</xsl:if>
+				
 					<!-- INCIPIT -->
 					<xsl:if test="tei:incipit">
 						<field name="incipit">
 							<xsl:value-of select="tei:incipit"/>
+						</field>
+					</xsl:if>
+					
+					<!-- EXPLICIT -->
+					<xsl:if test="tei:explicit">
+						<field name="explicit">
+							<xsl:value-of select="tei:explicit"/>
 						</field>
 					</xsl:if>
 				
@@ -311,6 +339,20 @@
 					<xsl:if test="tei:colophon">
 						<field name="colophon">
 							<xsl:value-of select="tei:colophon"/>
+						</field>
+					</xsl:if>
+					
+					<!-- FILIATION -->
+					<xsl:if test="tei:filiation">
+						<field name="filiation">
+							<xsl:value-of select="tei:filiation"/>
+						</field>
+					</xsl:if>
+				
+					<!-- LANGUAGE -->
+					<xsl:if test="tei:textLang">
+						<field name="textLang">
+							<xsl:value-of select="tei:textLang"/>
 						</field>
 					</xsl:if>
 				
@@ -350,6 +392,13 @@
 							</field>
 						</xsl:if>
 					</xsl:if>
+				
+					<!-- PAGINATION -->
+					<xsl:for-each select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent/tei:ref">
+						<field name="pagination">
+							<xsl:value-of select="."/>
+						</field>
+					</xsl:for-each>
 				
 					<!-- HAND -->
 					<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc">
@@ -396,6 +445,25 @@
 						</field>
 					</xsl:if>
 
+					<!-- SUBJECTS -->
+					<xsl:for-each select="//tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
+						<field name="topic">
+							<xsl:value-of select="normalize-space(tei:term)"/>
+						</field>
+					
+						<field name="topic_unstemmed">
+							<xsl:value-of select="normalize-space(tei:term)"/>
+						</field>
+					
+						<field name="topic_facet">
+							<xsl:value-of select="normalize-space(tei:term)"/>
+						</field>
+					
+						<field name="topic_browse">
+							<xsl:value-of select="normalize-space(tei:term)"/>
+						</field>
+					</xsl:for-each>
+					
 					<!-- HIERARCHY -->
 					<field name="hierarchytype">Default</field>		
 

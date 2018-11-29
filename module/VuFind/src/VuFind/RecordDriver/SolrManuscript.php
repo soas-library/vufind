@@ -141,6 +141,48 @@ class SolrManuscript extends SolrDefault
 		$this->fields['history'] : '';
 	}
 	
+	public function getTextLang()
+	{
+		return isset($this->fields['textLang']) ?
+		$this->fields['textLang'] : '';
+	}
+	
+	public function getNote()
+	{
+		return isset($this->fields['note']) ?
+		$this->fields['note'] : '';
+	}
+	
+	public function getIncipit()
+	{
+		return isset($this->fields['incipit']) ?
+		$this->fields['incipit'] : '';
+	}
+		
+	public function getExplicit()
+	{
+		return isset($this->fields['explicit']) ?
+		$this->fields['explicit'] : '';
+	}
+	
+	public function getColophon()
+	{
+		return isset($this->fields['colophon']) ?
+		$this->fields['colophon'] : '';
+	}
+	
+	public function getFiliation()
+	{
+		return isset($this->fields['filiation']) ?
+		$this->fields['filiation'] : '';
+	}
+	
+	public function getPagination()
+	{
+		return isset($this->fields['pagination']) ?
+		$this->fields['pagination'] : '';
+	}
+	
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO
 	public function getClassmark()
