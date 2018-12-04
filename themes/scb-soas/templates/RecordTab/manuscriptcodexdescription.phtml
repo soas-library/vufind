@@ -1,0 +1,225 @@
+<?$GLOBALS['MAX_WORD_FIELD'] = "550";?>
+<?
+    // Set page title.
+    $this->headTitle($this->translate('Description') . ': ' . $this->driver->getBreadcrumb());
+
+    // Grab clean ISBN for convenience:
+    $isbn = $this->driver->getCleanISBN();
+?>
+<table class="table table-striped" summary="<?=$this->transEsc('Description')?>">
+      
+    <? $classmark = $this->driver->getClassmark(); if (!empty($classmark)): ?>
+	<? $contentDisplayed = true; ?>
+		<tr>
+			<th class="labelTbl"><?=$this->transEsc('Reference number')?>:</th>
+			<td>
+				<?= $this->escapeHtml($classmark)?><br/>
+			</td>
+		</tr>
+	<? endif; ?>
+	
+	<? $extent = $this->driver->getExtent(); if (!empty($extent)): ?>
+		<tr>
+			<th class="labelTbl"><?=$this->transEsc('Dimensions')?>:</th>
+			<td></td>
+		</tr>
+		
+		<? $pagination = $this->driver->getPagination(); if (!empty($pagination)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Pagination')?>:</th>
+				<td>
+					<? $i = 1; ?>
+					<? foreach ($pagination as $field): ?>
+						Item <?= $this->escapeHtml($i)?>: <?= $this->escapeHtml($field)?><br/>
+						<? $i++; ?>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+  
+		<? $leaf_height = $this->driver->getLeafHeight(); if (!empty($leaf_height)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf height')?>:</th>
+				<td>
+					<? foreach ($leaf_height as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<? $leaf_width = $this->driver->getLeafWidth(); if (!empty($leaf_width)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf width')?>:</th>
+				<td>
+					<? foreach ($leaf_width as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+	
+		<? $written_height = $this->driver->getWrittenHeight(); if (!empty($written_height)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written height')?>:</th>
+				<td>
+					<? foreach ($written_height as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+	
+		<? $written_width = $this->driver->getWrittenWidth(); if (!empty($written_width)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written width')?>:</th>
+				<td>
+					<? foreach ($written_width as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+	
+	<? endif; ?>
+	
+	<? $hand_desc = $this->driver->getHandDesc(); if (!empty($hand_desc)): ?>
+		<tr>
+			<th class="labelTbl"><?=$this->transEsc('Hand notes')?>:</th>
+			<td></td>
+		</tr>
+  
+		<? $hand_scope = $this->driver->getHandScope(); if (!empty($hand_scope)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Hand scope')?>:</th>
+				<td>
+					<? foreach ($hand_scope as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<? $hand_script = $this->driver->getHandScript(); if (!empty($hand_script)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Hand script')?>:</th>
+				<td>
+					<? foreach ($hand_script as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<? $hand_medium = $this->driver->getHandMedium(); if (!empty($hand_medium)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Hand medium')?>:</th>
+				<td>
+					<? foreach ($hand_medium as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<tr>
+			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Hand description')?>:</th>
+			<td>
+				<? foreach ($hand_desc as $field): ?>
+					<?= $this->escapeHtml($field)?><br/>
+				<? endforeach; ?>
+			</td>
+		</tr>
+	<? endif; ?>
+	
+	<? $history = $this->driver->getHistory(); if (!empty($history)): ?>
+		<tr>
+			<th class="labelTbl"><?=$this->transEsc('History')?>:</th>
+			<td></td>
+		</tr>
+  
+		<? $acquisition = $this->driver->getAcquisition(); if (!empty($acquisition)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Acquisition')?>:</th>
+				<td>
+					<? foreach ($acquisition as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<tr>
+			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Record history')?>:</th>
+			<td>
+				<? foreach ($history as $field): ?>
+					<?= $this->escapeHtml($field)?><br/>
+				<? endforeach; ?>
+			</td>
+		</tr>
+	<? endif; ?>
+	
+	<? $subjects = $this->driver->getAllSubjectHeadings(); if (!empty($subjects)): ?>
+      <tr>
+        <th><?=$this->transEsc('Subjects')?>: </th>
+        <td>  
+          <? foreach ($subjects as $field): ?>
+          <div class="subjectLine" property="keywords">
+            <? $subject = ''; ?>
+            <? if(count($field) == 1) $field = explode('--', $field[0]); ?>
+            <? $i = 0; foreach ($field as $subfield): ?>
+              <?=($i++ == 0) ? '' : ' &gt; '?>
+              <? $subject = trim($subject . ' ' . $subfield); ?>
+              <a class="backlink" title="<?=$this->escapeHtmlAttr($subject)?>" href="<?=$this->record($this->driver)->getLink('subject', $subject)?>"><?=trim($this->escapeHtml($subfield))?></a>
+            <? endforeach; ?>
+          </div>
+          <? endforeach; ?>
+		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
+            <br />
+			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+            <br />
+			<? endforeach; ?>
+          <? endif; ?>
+        </td>
+      </tr>
+    <? endif; ?>
+	
+  <? if (!isset($contentDisplayed) || !$contentDisplayed): // Avoid errors if there were no rows above ?>
+    <tr><td><?=$this->transEsc('no_description')?></td></tr>
+  <? endif; ?>
+</table>
+
+<script>
+function showAdminHistory() {
+$('#adminHistoryShort').addClass("hidden");
+$('#adminHistoryAll').removeClass("hidden");
+	}
+function showCustodialHistory() {
+	$('#custodialHistoryShort').addClass("hidden");
+	$('#custodialHistoryAll').removeClass("hidden");
+	}
+function showArrangement() {
+	$('#arrangementShort').addClass("hidden");
+	$('#arrangementAll').removeClass("hidden");
+	}
+function showCopyright() {
+	$('#copyrightShort').addClass("hidden");
+	$('#copyrightAll').removeClass("hidden");
+	}
+function showUserrestrictions() {
+	$('#userrestrictionsShort').addClass("hidden");
+	$('#userrestrictionsAll').removeClass("hidden");
+	}
+function showRelatedMaterial() {
+	$('#relatedMaterialShort').addClass("hidden");
+	$('#relatedMaterialAll').removeClass("hidden");
+	}	
+function showCopies() {
+	$('#copiesShort').addClass("hidden");
+	$('#copiesAll').removeClass("hidden");
+	}	
+</script>
+
+
+
+
