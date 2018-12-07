@@ -116,7 +116,7 @@
             if(!$this->driver->isCollection()):
               foreach ($urls as $current): ?>
                 <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>															
-                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('Digital version available at SOAS Digital Collections') : $this->escapeHtml($current['desc'])?></a><br/></br>
+                <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" class="fulltext" target="new"><i class="fa fa-external-link" aria-hidden="true"></i> <?=($current['url'] == $current['desc']) ? $this->transEsc('click_here_for_full_text') : $this->escapeHtml($current['desc'])?></a><br/></br>
 	            <? else: ?>
                   <span><?=$this->transEsc("Not available")?></span></br></br>
                 <? endif; ?>

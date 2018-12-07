@@ -140,7 +140,7 @@
 						foreach ($urls as $current): ?>
 							<? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
 								<tr>
-									<td>Digital version available at SOAS Digital Collections: <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a>
+									<td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc("click_here_for_full_text")?></a>
 									</td>
 								</tr>
 							<? else: ?>
@@ -358,31 +358,6 @@
 		  <? $linkedimprint = $this->driver->getLinkedImprint(); if (!empty($linkedimprint)): ?>
               <? foreach ($linkedimprint as $field): ?><?= $this->escapeHtml($field)?><br/>
 			  <? endforeach; ?>
-          <? endif; ?>
-        </td>
-      </tr>
-      <? endif; ?>
-
-      <? $subjects = $this->driver->getAllSubjectHeadings(); if (!empty($subjects)): ?>
-      <tr>
-        <th><?=$this->transEsc('Subjects')?>: </th>
-        <td>  
-          <? foreach ($subjects as $field): ?>
-          <div class="subjectLine" property="keywords">
-            <? $subject = ''; ?>
-            <? if(count($field) == 1) $field = explode('--', $field[0]); ?>
-            <? $i = 0; foreach ($field as $subfield): ?>
-              <?=($i++ == 0) ? '' : ' &gt; '?>
-              <? $subject = trim($subject . ' ' . $subfield); ?>
-              <a class="backlink" title="<?=$this->escapeHtmlAttr($subject)?>" href="<?=$this->record($this->driver)->getLink('subject', $subject)?>"><?=trim($this->escapeHtml($subfield))?></a>
-            <? endforeach; ?>
-          </div>
-          <? endforeach; ?>
-		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
-            <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
-            <br />
-			<? endforeach; ?>
           <? endif; ?>
         </td>
       </tr>
