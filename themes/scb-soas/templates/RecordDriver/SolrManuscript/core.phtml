@@ -60,6 +60,11 @@
 
       <? endif; ?> 
 	
+		<? $codex = $this->driver->getClassmark(); ?>
+		<? if ($codex): ?>
+			<p><strong>In codex:</strong> <?=$this->escapeHtml($codex)?></p>
+		<? endif; ?>
+	
     <? $summary = $this->driver->getSummary(); $summary = isset($summary[0]) ? html_entity_decode($this->escapeHtml($summary[0]), ENT_QUOTES | ENT_HTML5)  : false; ?>
     <? if ($summary): ?>
       <p><?=$this->truncate($summary, 300)?></p>
@@ -77,38 +82,76 @@
     <? endif; ?>
     
     
-    <script>
+	<?
+		$classmark = $this->driver->getClassmark();
+		$availability = $this->driver->getAvailability();
+		$availability_status = $this->driver->getAvailabilityStatus();
+	?>
+		
+	<script>
 			$(document).ready(function(){
 			$("#tooltip-ex a").tooltip({
 			placement : 'top'
 			});
 			});
-	</script>	
-		<?
-	 $classmark = $this->driver->getClassmark();
-	 $locationDisplay = $this->driver->getLocationDisplay();
-	 $loantype = $this->driver->getLoanType();
-	 $accessStatus= $this->driver->getAccessStatus();
-	?>
+	</script>
 	<div class="holdings">
-		<table class="table table-responsive" summary="<?=$this->transEsc('Calm info')?> 
+	<table class="table table-responsive" summary="<?=$this->transEsc('manuscript access')?>">
 	<tr class="hidden_holdings2">
-	<? if (!empty($locationDisplay)): ?>
-	<td id="boxArchive"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archive & Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archives xxxxx Special Collections")?>"><?=$locationDisplay?></a></div></td>
+	
+	<td id="boxArchive" class="col-sm-3"><div id="tooltip-ex"><a target="_blank" href="/Locationlist?ll=Archives xxxxx Special Collections&cm=<?=$classmark?>" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Archive & Special Collections")?>"><?=$this->transEsc("Archive & Special Collections")?></a></div></td>
+	
+	<? if (!empty($classmark)): ?>
+		<td id="boxClassmark" class="col-sm-3"><?=$classmark?></td>
 	<? endif; ?>
-	<? if (!empty($classmark)): ?><td><a href="/Alphabrowse/Home?source=callnumber&from=<?=$this->escapeHtml($classmark)?>"><?=$classmark?></a></td><? endif; ?>
-	<? if (!empty($loantype)): ?><td ><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->transEsc("Only for use in the library")?>"><?=$this->escapeHtml($loantype)?></a></div></td><? endif; ?>
-	<? if (!empty($accessStatus)): ?>
-				<? foreach ($accessStatus as $accessStatusAux): ?>
-				<?if($this->escapeHtml($accessStatusAux) == "Open"):?>
-				<td class="text-success"><?=$this->escapeHtml($accessStatusAux)?></td>
-				<?else:?>
-				<td class="text-danger"><?=$this->escapeHtml($accessStatusAux)?></td>
-				<?endif;?>
-				<? endforeach; ?>
+	
+	<td id="boxLoanType" class="col-sm-3"><div id="tooltip-ex"><a href="https://www.soas.ac.uk/library/archives/services/requesting-material/" data-toggle="tooltip" data-original-title="<?=$this->escapeHtml($availability[0])?>"><?=$this->transEsc("Reference only")?></a></div></td>
+	
+	<? if (!empty($availability_status)): ?>
+		<? foreach ($availability_status as $field): ?>
+			<?if($this->escapeHtml($field) == "Open"):?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?else:?>
+				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?endif;?>
+		<? endforeach; ?>
     <? endif; ?>
+	
 	</tr>
-</table>
+	</table>
+	
+	<? /* We need to find out if we're supposed to display an OpenURL link ($openUrlActive),
+          but even if we don't plan to display the link, we still want to get the $openUrl
+          value for use in generating a COinS (Z3988) tag -- see bottom of file.
+        */
+        $openUrl = $this->openUrl($this->driver, 'results');
+        $openUrlActive = $openUrl->isActive();
+        // Account for replace_other_urls setting
+        $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+
+		if ((!empty($urls) || $openUrlActive) && (strpos($urls[0]['url'],'digital.soas.ac.uk') !== false)): ?>
+			<table class="table table-responsive">
+				<? if ($openUrlActive): ?>
+					<br/>
+					<?=$openUrl->renderTemplate()?>
+				<? endif; ?>
+				<? if (!is_array($urls)) $urls = array();
+					if(!$this->driver->isCollection()):
+						foreach ($urls as $current): ?>
+							<? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
+								<tr>
+									<td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->transEsc("click_here_for_full_text")?></a>
+									</td>
+								</tr>
+							<? else: ?>
+								<tr>
+									<td><?=$this->transEsc("Not available")?></td>
+								</tr>
+							<? endif; ?>
+						<? endforeach; ?>
+					<? endif; ?>
+				<? endif; ?>
+			</table>
 	</div>	
 
     <?/* Display Main Details */?>
@@ -152,17 +195,16 @@
           </td>
         </tr>
       <? endif; ?>
-      
-      <? $journalTitle = $this->driver->getContainerTitle(); if (!empty($journalTitle)): ?>
+	  
+	  <? $level = $this->driver->getForm(); if (!empty($level)): ?>
       <tr>
-        <th><?=$this->transEsc('Journal Title')?>:</th>
+        <th><?=$this->transEsc('Level')?>:</th>
         <td>
-          <a href="<?=$this->record($this->driver)->getLink('journaltitle', $journalTitle)?>"><?=$this->escapeHtml($journalTitle)?></a>
-          <? $ref = $this->driver->getContainerReference(); if (!empty($ref)) { echo $this->escapeHtml($ref); } ?>
+            <?=$this->escapeHtml(ucfirst($level))?><br/>
         </td>
       </tr>
       <? endif; ?>
-
+      
       <? $nextTitles = $this->driver->getNewerTitles(); $prevTitles = $this->driver->getPreviousTitles(); ?>
       <? if (!empty($nextTitles)): ?>
       <tr>
@@ -230,16 +272,70 @@
         </tr>
       <? endif; ?>
 
-      
-       <? $journalholdings = $this->driver->getJournalHoldings(); if (!empty($journalholdings)): ?>
-        <tr valign="top">
-          <th><?=$this->transEsc('Holdings')?>: </th>
-          <td><? foreach ($journalholdings as $field): ?><?= $this->escapeHtml($field)?><br/><? endforeach; ?></td>
-        </tr>
+	  <? $language = $this->driver->getTextLang(); if (!empty($language)): ?>
+      <tr>
+        <th><?=$this->transEsc('Language')?>: </th>
+        <td>
+            <?=$this->escapeHtml($language)?><br/>
+        </td>
+      </tr>
       <? endif; ?>
 
-      
-
+	  <? $note = $this->driver->getNote(); if (!empty($note)): ?>
+      <tr>
+        <th><?=$this->transEsc('Note')?>: </th>
+        <td>
+            <? foreach($note as $field): ?>
+				<?=$this->escapeHtml($field)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+	  
+	  <? $incipit = $this->driver->getIncipit(); if (!empty($incipit)): ?>
+      <tr>
+        <th><?=$this->transEsc('Incipit')?>: </th>
+        <td>
+            <? foreach($incipit as $field): ?>
+				<?=$this->escapeHtml($field)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+	  
+	  <? $explicit = $this->driver->getExplicit(); if (!empty($explicit)): ?>
+      <tr>
+        <th><?=$this->transEsc('Explicit')?>: </th>
+        <td>
+            <? foreach($explicit as $field): ?>
+				<?=$this->escapeHtml($field)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+	  
+	  <? $colophon = $this->driver->getColophon(); if (!empty($colophon)): ?>
+      <tr>
+        <th><?=$this->transEsc('Colophon')?>: </th>
+        <td>
+            <? foreach($colophon as $field): ?>
+				<?=$this->escapeHtml($field)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+	  
+	  <? $filiation = $this->driver->getFiliation(); if (!empty($filiation)): ?>
+      <tr>
+        <th><?=$this->transEsc('Filiation')?>: </th>
+        <td>
+            <? foreach($filiation as $field): ?>
+				<?=$this->escapeHtml($field)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+      <? endif; ?>
+	  
       <? $publications = $this->driver->getPublicationDetails(); if (!empty($publications)): ?>
       <tr>
         <th><?=$this->transEsc('Published')?>: </th>
@@ -266,100 +362,24 @@
         </td>
       </tr>
       <? endif; ?>
-
-      <? $edition = $this->driver->getEdition(); if (!empty($edition)): ?>
-      <tr>
-        <th><?=$this->transEsc('Edition')?>: </th>
-        <td property="bookEdition">
-		<?=$this->escapeHtml($edition)?>
-		<br />
-		
-		<? $linkededition = $this->driver->getLinkedEdition(); if (!empty($linkededition)): ?>
-			<? foreach($linkededition as $field): ?>
-            <?=$this->escapeHtml($field)?>
-			<br />
-			<? endforeach; ?>
-		<? endif; ?>
-		
-		</td>
-      </tr>
-      <? endif; ?>
-
-      <?/* Display series section if at least one series exists. */?>
-      <? $series = $this->driver->getSeries(); if (!empty($series)): ?>
-      <tr>
-        <th><?=$this->transEsc('Series')?>: </th>
-        <td>
-          <? foreach ($series as $field): ?>
-            <?/* Depending on the record driver, $field may either be an array with
-               "name" and "number" keys or a flat string containing only the series
-               name.  We should account for both cases to maximize compatibility. */?>
-            <? if (is_array($field)): ?>
-              <? if (!empty($field['name'])): ?>
-                <a href="<?=$this->record($this->driver)->getLink('series', $field['name'])?>"><?=$this->escapeHtml($field['name'])?></a>
-                <? if (!empty($field['number'])): ?>
-                  <?=$this->escapeHtml($field['number'])?>
-                <? endif; ?>
-                <br/>
-              <? endif; ?>
-            <? else: ?>
-              <a href="<?=$this->record($this->driver)->getLink('series', $field)?>"><?=$this->escapeHtml($field)?></a><br/>
-            <? endif; ?>
-          <? endforeach; ?>
-		  
-		  <? $linkedseries = $this->driver->getLinkedSeries(); if (!empty($linkedseries)): ?>
-            <? foreach ($linkedseries as $linkseries): ?><a href="<?=$this->record($this->driver)->getLink('series', $field['name'])?>"><?= $this->escapeHtml($linkseries)?></a>
-               <? if (!empty($field['number'])): ?> ; <?=$this->escapeHtml($field['number'])?>
-               <? endif; ?><br/>
-            <? endforeach; ?>
-          <? endif; ?>
-		  
-        </td>
-      </tr>
-      <? endif; ?>
-
-      <? $subjects = $this->driver->getAllSubjectHeadings(); if (!empty($subjects)): ?>
-      <tr>
-        <th><?=$this->transEsc('Subjects')?>: </th>
-        <td>  
-          <? foreach ($subjects as $field): ?>
-          <div class="subjectLine" property="keywords">
-            <? $subject = ''; ?>
-            <? if(count($field) == 1) $field = explode('--', $field[0]); ?>
-            <? $i = 0; foreach ($field as $subfield): ?>
-              <?=($i++ == 0) ? '' : ' &gt; '?>
-              <? $subject = trim($subject . ' ' . $subfield); ?>
-              <a class="backlink" title="<?=$this->escapeHtmlAttr($subject)?>" href="<?=$this->record($this->driver)->getLink('subject', $subject)?>"><?=trim($this->escapeHtml($subfield))?></a>
-            <? endforeach; ?>
-          </div>
-          <? endforeach; ?>
-		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
-            <br />
-			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
-            <br />
-			<? endforeach; ?>
-          <? endif; ?>
-        </td>
-      </tr>
-      <? endif; ?>
       
-
-
       <?
         $openUrl = $this->openUrl($this->driver, 'record');
         $openUrlActive = $openUrl->isActive();
         // Account for replace_other_urls setting
         $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
       ?>
-      <? if (!empty($urls) || $openUrlActive): ?>
+      <? if ((!empty($urls) || $openUrlActive) && (strpos($urls[0]['url'],'digital.soas.ac.uk') !== false)): ?>
       <tr>
         <th><?=$this->transEsc('Online Access')?>: </th>
         <td>
           <? foreach ($urls as $current): ?>
             <? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $archive)): ?>
-            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+				<? if(strpos($this->proxyUrl($current['url']),'digital.soas.ac.uk') !== false): ?>
+					<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+				<? endif; ?>
             <? else: ?>
-              <span><?=$this->transEsc("Not available")?></span></br>
+				<span><?=$this->transEsc("Not available")?></span></br>
             <?endif;?>
           <? endforeach; ?>
           <? if ($openUrlActive): ?>

@@ -318,18 +318,35 @@ class Factory
     }
 	
 	/**
-     * Factory for CodexDescription tab plugin.
+     * Factory for ManuscriptCodexDescription tab plugin.
      *
      * @param ServiceManager $sm Service manager.
      *
-     * @return CodexDescription
+     * @return ManuscriptCodexDescription
      */
-    public static function getCodexDescription(ServiceManager $sm)
+    public static function getManuscriptCodexDescription(ServiceManager $sm)
     {
-        return new CodexDescription(
+        return new ManuscriptCodexDescription(
             $sm->getServiceLocator()->get('VuFind\SearchRunner'),
             $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
         );
     }
 	/** END oct-2018 **/
+	
+	/** ADDED BY sb174 2018-11-22 FOR nov-2018 RELEASE **/
+	/**
+     * Factory for ManuscriptItemDescription tab plugin.
+     *
+     * @param ServiceManager $sm Service manager.
+     *
+     * @return ManuscriptItemDescription
+     */
+    public static function getManuscriptItemDescription(ServiceManager $sm)
+    {
+        return new ManuscriptItemDescription(
+            $sm->getServiceLocator()->get('VuFind\SearchRunner'),
+            $sm->getServiceLocator()->get('VuFind\RecommendPluginManager')
+        );
+    }
+	/** END nov-2018 **/
 }

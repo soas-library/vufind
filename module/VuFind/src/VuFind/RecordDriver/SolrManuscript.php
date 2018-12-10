@@ -141,6 +141,48 @@ class SolrManuscript extends SolrDefault
 		$this->fields['history'] : '';
 	}
 	
+	public function getTextLang()
+	{
+		return isset($this->fields['textLang']) ?
+		$this->fields['textLang'] : '';
+	}
+	
+	public function getNote()
+	{
+		return isset($this->fields['note']) ?
+		$this->fields['note'] : '';
+	}
+	
+	public function getIncipit()
+	{
+		return isset($this->fields['incipit']) ?
+		$this->fields['incipit'] : '';
+	}
+		
+	public function getExplicit()
+	{
+		return isset($this->fields['explicit']) ?
+		$this->fields['explicit'] : '';
+	}
+	
+	public function getColophon()
+	{
+		return isset($this->fields['colophon']) ?
+		$this->fields['colophon'] : '';
+	}
+	
+	public function getFiliation()
+	{
+		return isset($this->fields['filiation']) ?
+		$this->fields['filiation'] : '';
+	}
+	
+	public function getPagination()
+	{
+		return isset($this->fields['pagination']) ?
+		$this->fields['pagination'] : '';
+	}
+	
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO
 	public function getClassmark()
@@ -266,10 +308,9 @@ class SolrManuscript extends SolrDefault
 			//$protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 			//$url = $protocol.'://localhost:8080/solr/biblio/select?q=collection%3A%22SOAS+Archive%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
 			$protocol = "http";
-			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
+			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22+AND+form%3A%22item%22&wt=xml&indent=true';
 			$xml = simplexml_load_string(file_get_contents($url));
 			$itemNumber = $xml->result["numFound"];
-			
 		}
 		return $itemNumber;	
 	}

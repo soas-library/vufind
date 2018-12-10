@@ -632,8 +632,9 @@ $config = [
 			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
 			'VuFind\RecordDriver\SolrManuscript' => [
                 'tabs' => [
-                    'CodexDescription' => 'CodexDescription',
+                    'ManuscriptCodexDescription' => 'ManuscriptCodexDescription',
 					'ManuscriptWorks'  => 'ManuscriptWorks',
+					'HierarchyTree' => 'HierarchyTree',
 					'Details' => 'StaffViewTEI'
                 ],
                 'defaultTab' => 'ManuscriptWorks',
@@ -766,12 +767,12 @@ $config = [
 			/** ADDED BY sb174 2018-10-11 FOR oct-2018 RELEASE **/
 			'VuFind\RecordDriver\SolrManuscript' => [
                 'tabs' => [
-                    'Description' => 'Description',
+                    'ManuscriptItemDescription' => 'ManuscriptItemDescription',
                     'HierarchyTree' => 'HierarchyTree',
                     'Details' => 'StaffViewTEI'
                 ],
-                'defaultTab' => ['Description'],
-                'backgroundLoadedTabs' => [ 'Description', 'HierarchyTree', 'Details']
+                'defaultTab' => ['ManuscriptItemDescription'],
+                'backgroundLoadedTabs' => [ 'ManuscriptItemDescription', 'HierarchyTree', 'Details']
             ],
 			/** END oct-2018 **/
             'VuFind\RecordDriver\Summon' => [

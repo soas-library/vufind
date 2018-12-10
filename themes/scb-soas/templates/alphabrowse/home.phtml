@@ -388,7 +388,7 @@ END-->
 										$extraDisplayArray = array_unique(array_merge($extraDisplayArray, $e));
 									}
 									if(stripos($extraName, 'is_hierarchy_id') !== false):
-										echo (empty($extraDisplayArray)) ? '&nbsp;' : '<a class="hierarchyTreeLinkText" data-lightbox href="'.$context.'://'.$_SERVER['SERVER_NAME'].'/Collection/'.implode($extraDisplayArray).'/HierarchyTree?hierarchy='.implode($extraDisplayArray).'#tabnav" data-lightbox-href="'.$context.'://'.$_SERVER['SERVER_NAME'].'/Collection/'.implode($extraDisplayArray).'/AjaxTab?hierarchy='.implode($extraDisplayArray).'" data-lightbox-post="tab=hierarchytree">'.'<i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>'.$this->transEsc('hierarchy_view_context').'</a>';
+										echo (empty($extraDisplayArray)) ? '&nbsp;' : '<a class="hierarchyTreeLinkText" data-lightbox href="/Collection/'.implode($extraDisplayArray).'/HierarchyTree?hierarchy='.implode($extraDisplayArray).'#tabnav" data-lightbox-href="/Collection/'.implode($extraDisplayArray).'/AjaxTab?hierarchy='.implode($extraDisplayArray).'" data-lightbox-post="tab=hierarchytree">'.'<i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>'.$this->transEsc('hierarchy_view_context').'</a>';
 									elseif(stripos($extraName, 'title') !== false):
 										echo (empty($extraDisplayArray)) ? '&nbsp;' : implode('<br /><br />', $extraDisplayArray);
 									else:

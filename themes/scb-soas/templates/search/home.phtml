@@ -101,54 +101,57 @@ foreach ($xml->result->doc as $doc) {
 	$id_news = $doc->str;
 	//echo $id_news . '<br>';
 
-$url_description = 'http://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=id%3A' . $id_news . '%0A&rows=60&fl=id%2C+title_short%2C+author%2C+publishDate%2C+scb_item_location_c+scb_holding_location_c+shelf_location&wt=xml&indent=true';
+	$url_description = 'http://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=id%3A' . $id_news . '%0A&rows=60&fl=id%2C+title_short%2C+author%2C+publishDate%2C+scb_item_location_c+scb_holding_location_c+shelf_location&wt=xml&indent=true';
 
-$xml_description = simplexml_load_string(file_get_contents($url_description));
+	$xml_description = simplexml_load_string(file_get_contents($url_description));
 
-$author = [];
+	$author = [];
 
-foreach ($xml_description->result->doc->str as $str) {
-	//print_r($str['name']);
-	//print_r('<br>');
-	if (strcmp($str['name'], 'title_short') == 0 && !empty($str[0])) {
-		$title = $str[0];
+	foreach ($xml_description->result->doc->str as $str) {
+		//print_r($str['name']);
+		//print_r('<br>');
+		if (strcmp($str['name'], 'title_short') == 0 && !empty($str[0])) {
+			$title = $str[0];
+		}
 	}
-}
 	//echo $title . '<br>';
 
-foreach ($xml_description->result->doc->arr as $arr) {
-	//print_r($arr['name']);
-	//print_r('<br>');
-	if (strcmp($arr['name'], 'author') == 0 && !empty($arr->str)) {
-		foreach ($arr->str as $str) {
-			$author[] = $str;
+	foreach ($xml_description->result->doc->arr as $arr) {
+		//print_r($arr['name']);
+		//print_r('<br>');
+		if (strcmp($arr['name'], 'author') == 0 && !empty($arr->str)) {
+			foreach ($arr->str as $str) {
+				$author[] = $str;
+			}
 		}
-	}
-	if (strcmp($arr['name'], 'publishDate') == 0 && !empty($arr->str)) {
-		$publishDate = $arr->str[0];
-	}
+		if (strcmp($arr['name'], 'publishDate') == 0 && !empty($arr->str)) {
+			$publishDate = $arr->str[0];
+		}
 	
-	$scb_item_location_c=array();
-	if (strcmp($arr['name'], 'scb_item_location_c') == 0 && !empty($arr->str)) {
-		foreach ($arr->str as $str) {
-			if($str<>"...") $scb_item_location_c[] = $str;
+		$scb_item_location_c=array();
+		if (strcmp($arr['name'], 'scb_item_location_c') == 0 && !empty($arr->str)) {
+			foreach ($arr->str as $str) {
+				if($str<>"...") $scb_item_location_c[] = $str;
+			}
 		}
-	}
-	$scb_holding_location_c=array();
-	if (strcmp($arr['name'], 'scb_holding_location_c') == 0 && !empty($arr->str)) {
-		foreach ($arr->str as $str) {
-			if($str<>"...") $scb_holding_location_c[] = $str;
+		
+		$scb_holding_location_c=array();
+		if (strcmp($arr['name'], 'scb_holding_location_c') == 0 && !empty($arr->str)) {
+			foreach ($arr->str as $str) {
+				if($str<>"...") $scb_holding_location_c[] = $str;
+			}
 		}
-	}
-	$shelf_location=array();
-	if (strcmp($arr['name'], 'shelf_location') == 0 && !empty($arr->str)) {
-		foreach ($arr->str as $str) {
-			if($str<>"...") $shelf_location[] = $str;
+		
+		$shelf_location=array();
+		if (strcmp($arr['name'], 'shelf_location') == 0 && !empty($arr->str)) {
+			foreach ($arr->str as $str) {
+				if($str<>"...") $shelf_location[] = $str;
+			}
 		}
+	
+		$locations = array_unique (array_merge ($scb_item_location_c, $scb_holding_location_c,$shelf_location));
+		$locations = implode(",", $locations);
 	}
-	$locations = array_unique (array_merge ($scb_item_location_c, $scb_holding_location_c,$shelf_location));
-	$locations = implode(",", $locations);
-}
 
 	$author = array_unique($author);
 	$author = implode(",", $author);
@@ -158,9 +161,9 @@ foreach ($xml_description->result->doc->arr as $arr) {
 	$title=str_replace("\"","",$title);
 	$author=str_replace("\"","",$author);
 
-        // Added by sb174 on 2017-12-14 (call no. F0181929)
-        $title=rtrim($title,"/");
-        $title=rtrim($title,":");
+    // Added by sb174 on 2017-12-14 (call no. F0181929)
+    $title=rtrim($title,"/");
+    $title=rtrim($title,":");
 	
 	$tooltip_title = '';
 	if (!empty($title)) {
@@ -177,11 +180,9 @@ foreach ($xml_description->result->doc->arr as $arr) {
 	#	$tooltip_title = $tooltip_title . $locations . '</br>';
 	#}
 
-	
 	//$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $title . '</br>'.$author[0]. '</br>' .$publishDate.'</br>'.$locations.'"><img src="/CarouselCover/Show?id='. $id_news .'&size=large" alt="" border="0"></span></div></div></a>');
 	$item = htmlentities('<a href="/Record/' . $id_news . '" target="_blank"><div class="item"><div class="book_cover"><span data-toggle="tooltip" data-placement="bottom" data-html="true"  title="' . $tooltip_title .'"><img src="/CarouselCover/Show?id='. $id_news .'&title='.rawurlencode($title).'&size=large&type1=uu&type2=uu" alt="" border="0"></span></div></div></a>');
 	$new_items[] = $item;
-
 }
 
 //print_r($new_items);

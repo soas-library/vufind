@@ -220,7 +220,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 				<?$unavailable = false;?>
 				<? $check = (isset($row['check']) && $row['check']); ?>
 				<? $checkStorageRetrievalRequest = (isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest']); ?>
-
+				
 				<? if (array_key_exists("barcode",$row)): ?>
 					<!-- SCB Change -->
 					<?$count_holdings=$count_holdings+1;?>

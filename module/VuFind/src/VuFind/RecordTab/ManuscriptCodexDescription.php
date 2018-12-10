@@ -1,6 +1,6 @@
 <?php
 /**
- * Codex Description tab
+ * Manuscript Codex Description tab
  *
  * PHP version 5
  *
@@ -36,7 +36,7 @@ namespace VuFind\RecordTab;
  * @license  http://opensource.org/licenses/gpl-2.0.php GNU General Public License
  * @link     http://vufind.org/wiki/vufind2:record_tabs Wiki
  */
-class CodexDescription extends AbstractBase
+class ManuscriptCodexDescription extends AbstractBase
 {
     /**
      * Get the on-screen description for this tab.

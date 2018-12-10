@@ -868,18 +868,11 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
 				// CUSTOM CODE FOR SOAS LIBRARY
 				//@author Simon Barron <sb174@soas.ac.uk>
                 $item['type'] = $row['item_type'];
-                if (stripos($item['status'], 'AVAILABLE') > -1) {
+                if ($item['status'] === 'AVAILABLE') {
                         $item['status'] = "Available";
-                }
-                elseif (stripos($item['status'], 'LIB-USE-ONLY') > -1) {
-                        $item['status'] = "Reference only";
-                        $item['availability'] = 1;
                 }
                 elseif (stripos($item['status'], 'LOSTANDPAID') > -1) {
                         $item['status'] = "Lost and paid";
-                }
-		elseif (stripos($item['status'], 'REPRTD-MISSING') > -1) {
-                        $item['status'] = "Missing";
                 }
                 elseif (stripos($item['status'], 'LOANED') > -1) {
                         $item['status'] = "On loan";
@@ -890,14 +883,17 @@ class OLE extends AbstractBase implements \VuFindHttp\HttpServiceAwareInterface
                 elseif (stripos($item['status'], 'LOST') > -1) {
                         $item['status'] = "Lost";
                 }
-		//Changed by HTC
- 		elseif (stripos($item['status'], 'ONHOLD') > -1) {
-                   //$item['status'] = "On holdshelf";
-		   if(stripos($item['ptrn_q_pos'], '1') > -1){
-		      $item['status'] = "On holdshelf";
-		   }else{
-		      $item['status'] = "On loan";
-		   }
+				elseif ($item['status'] === 'UNAVAILABLE') {
+                        $item['status'] = "Unavailable";
+                }
+				//Changed by HTC
+				elseif (stripos($item['status'], 'ONHOLD') > -1) {
+					//$item['status'] = "On holdshelf";
+					if(stripos($item['ptrn_q_pos'], '1') > -1){
+						$item['status'] = "On holdshelf";
+					}else{
+					$item['status'] = "On loan";
+					}
                 }
 		// END
                 $item['location'] = (!empty($itemLocation) ? $itemLocation : $holdingLocation);

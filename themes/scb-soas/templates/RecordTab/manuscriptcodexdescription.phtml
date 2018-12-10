@@ -17,56 +17,70 @@
 			</td>
 		</tr>
 	<? endif; ?>
-  
+	
 	<? $extent = $this->driver->getExtent(); if (!empty($extent)): ?>
 		<tr>
 			<th class="labelTbl"><?=$this->transEsc('Dimensions')?>:</th>
 			<td></td>
 		</tr>
-	<? endif; ?>
+		
+		<? $pagination = $this->driver->getPagination(); if (!empty($pagination)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Pagination')?>:</th>
+				<td>
+					<? $i = 1; ?>
+					<? foreach ($pagination as $field): ?>
+						Item <?= $this->escapeHtml($i)?>: <?= $this->escapeHtml($field)?><br/>
+						<? $i++; ?>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
   
-	<? $leaf_height = $this->driver->getLeafHeight(); if (!empty($leaf_height)): ?>
-		<tr>
-			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf height')?>:</th>
-			<td>
-				<? foreach ($leaf_height as $field): ?>
-					<?= $this->escapeHtml($field)?><br/>
-				<? endforeach; ?>
-			</td>
-		</tr>
-	<? endif; ?>
+		<? $leaf_height = $this->driver->getLeafHeight(); if (!empty($leaf_height)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf height')?>:</th>
+				<td>
+					<? foreach ($leaf_height as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
+		
+		<? $leaf_width = $this->driver->getLeafWidth(); if (!empty($leaf_width)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf width')?>:</th>
+				<td>
+					<? foreach ($leaf_width as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
 	
-	<? $leaf_width = $this->driver->getLeafWidth(); if (!empty($leaf_width)): ?>
-		<tr>
-			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Leaf width')?>:</th>
-			<td>
-				<? foreach ($leaf_width as $field): ?>
-					<?= $this->escapeHtml($field)?><br/>
-				<? endforeach; ?>
-			</td>
-		</tr>
-	<? endif; ?>
+		<? $written_height = $this->driver->getWrittenHeight(); if (!empty($written_height)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written height')?>:</th>
+				<td>
+					<? foreach ($written_height as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
 	
-	<? $written_height = $this->driver->getWrittenHeight(); if (!empty($written_height)): ?>
-		<tr>
-			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written height')?>:</th>
-			<td>
-				<? foreach ($written_height as $field): ?>
-					<?= $this->escapeHtml($field)?><br/>
-				<? endforeach; ?>
-			</td>
-		</tr>
-	<? endif; ?>
+		<? $written_width = $this->driver->getWrittenWidth(); if (!empty($written_width)): ?>
+			<tr>
+				<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written width')?>:</th>
+				<td>
+					<? foreach ($written_width as $field): ?>
+						<?= $this->escapeHtml($field)?><br/>
+					<? endforeach; ?>
+				</td>
+			</tr>
+		<? endif; ?>
 	
-	<? $written_width = $this->driver->getWrittenWidth(); if (!empty($written_width)): ?>
-		<tr>
-			<th class="labelTbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$this->transEsc('Written width')?>:</th>
-			<td>
-				<? foreach ($written_width as $field): ?>
-					<?= $this->escapeHtml($field)?><br/>
-				<? endforeach; ?>
-			</td>
-		</tr>
 	<? endif; ?>
 	
 	<? $hand_desc = $this->driver->getHandDesc(); if (!empty($hand_desc)): ?>
@@ -145,6 +159,30 @@
 		</tr>
 	<? endif; ?>
 	
+	<? $subjects = $this->driver->getAllSubjectHeadings(); if (!empty($subjects)): ?>
+      <tr>
+        <th><?=$this->transEsc('Subjects')?>: </th>
+        <td>  
+          <? foreach ($subjects as $field): ?>
+          <div class="subjectLine" property="keywords">
+            <? $subject = ''; ?>
+            <? if(count($field) == 1) $field = explode('--', $field[0]); ?>
+            <? $i = 0; foreach ($field as $subfield): ?>
+              <?=($i++ == 0) ? '' : ' &gt; '?>
+              <? $subject = trim($subject . ' ' . $subfield); ?>
+              <a class="backlink" title="<?=$this->escapeHtmlAttr($subject)?>" href="<?=$this->record($this->driver)->getLink('subject', $subject)?>"><?=trim($this->escapeHtml($subfield))?></a>
+            <? endforeach; ?>
+          </div>
+          <? endforeach; ?>
+		  <? $linkedtopic = $this->driver->getLinkedTopic(); if (!empty($linkedtopic)): ?>
+            <br />
+			<? foreach ($linkedtopic as $linktopic): ?><a href="http://albert.lis.soas.ac.uk/Search/Results?lookfor=<?= $this->escapeHtml($linktopic)?>&type=Subject"><?= $this->escapeHtml($linktopic)?></a>
+            <br />
+			<? endforeach; ?>
+          <? endif; ?>
+        </td>
+      </tr>
+    <? endif; ?>
 	
   <? if (!isset($contentDisplayed) || !$contentDisplayed): // Avoid errors if there were no rows above ?>
     <tr><td><?=$this->transEsc('no_description')?></td></tr>
