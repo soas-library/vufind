@@ -297,13 +297,13 @@
 					<!-- AUTHOR -->
 					<xsl:if test="tei:author/tei:persName">
 						<field name="author">
-							<xsl:value-of select="tei:author/tei:persName"/>
+							<xsl:value-of select="tei:author/tei:persName[1]"/>
 						</field>
 					</xsl:if>
 				
-					<xsl:if test="tei:author/tei:persName[@xml:lang='ar']">
+					<xsl:if test="tei:author/tei:persName[position() > 1]">
 						<field name="linked_author">
-							<xsl:value-of select="tei:author/tei:persName[@xml:lang='ar']"/>
+							<xsl:value-of select="tei:author/tei:persName[position() > 1]"/>
 						</field>
 					</xsl:if>
 				
