@@ -274,22 +274,26 @@
 							<xsl:value-of select="php:function('VuFind::stripArticles', string(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:title[1]))"/>
 						</field>
 					
-						<xsl:if test="tei:title[@type='alt']">
+						<xsl:for-each select="tei:title[@type='alt']">
 							<field name="title_alt">
-								<xsl:value-of select="tei:title[@type='alt']"/>
+								<xsl:value-of select="."/>
 							</field>
-						</xsl:if>
+						</xsl:for-each>
 					
 						<xsl:if test="tei:title[position() > 1]">
-							<field name="linked_title">
-								<xsl:value-of select="tei:title[position() > 1]"/>
-							</field>
+							<xsl:for-each select="tei:title[position() > 1]">
+								<field name="linked_title">
+									<xsl:value-of select="."/>
+								</field>
+							</xsl:for-each>
 						</xsl:if>
 					
 						<xsl:if test="tei:title[@type='alt'][position() > 1]">
-							<field name="linked_title_alt">
-								<xsl:value-of select="tei:title[@type='alt'][position() > 1]"/>
-							</field>
+							<xsl:for-each select="tei:title[@type='alt'][position() > 1]">
+								<field name="linked_title_alt">
+									<xsl:value-of select="."/>
+								</field>
+							</xsl:for-each>
 						</xsl:if>
 					
 					</xsl:if>
@@ -302,9 +306,11 @@
 					</xsl:if>
 				
 					<xsl:if test="tei:author/tei:persName[position() > 1]">
-						<field name="linked_author">
-							<xsl:value-of select="tei:author/tei:persName[position() > 1]"/>
-						</field>
+						<xsl:for-each select="tei:author/tei:persName[position() > 1]">
+							<field name="linked_author">
+								<xsl:value-of select="."/>
+							</field>
+						</xsl:for-each>
 					</xsl:if>
 				
 					<!-- URL -->
