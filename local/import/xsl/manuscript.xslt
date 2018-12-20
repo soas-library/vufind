@@ -259,19 +259,19 @@
 					<!-- TITLE -->
 					<xsl:if test="tei:title">
 						<field name="title">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_full">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_short">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_sort">
-							<xsl:value-of select="php:function('VuFind::stripArticles', string(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:title))"/>
+							<xsl:value-of select="php:function('VuFind::stripArticles', string(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:title[1]))"/>
 						</field>
 					
 						<xsl:if test="tei:title[@type='alt']">
@@ -280,15 +280,15 @@
 							</field>
 						</xsl:if>
 					
-						<xsl:if test="tei:title[@xml:lang='ar']">
+						<xsl:if test="tei:title[position() > 1]">
 							<field name="linked_title">
-								<xsl:value-of select="tei:title[@xml:lang='ar']"/>
+								<xsl:value-of select="tei:title[position() > 1]"/>
 							</field>
 						</xsl:if>
 					
-						<xsl:if test="tei:title[@xml:lang='ar' and @type='alt']">
+						<xsl:if test="tei:title[@type='alt'][position() > 1]">
 							<field name="linked_title_alt">
-								<xsl:value-of select="tei:title[@xml:lang='ar' and @type='alt']"/>
+								<xsl:value-of select="tei:title[@type='alt'][position() > 1]"/>
 							</field>
 						</xsl:if>
 					
