@@ -38,6 +38,9 @@
                     <xsl:value-of select="$collection" />
                 </field>
 				
+				<!-- LEVEL -->
+				<field name="scb_level">Codex</field>
+				
 				<!-- LEVEL FOR SORTING -->
 				<field name="level_sort">0/Codex</field>
 				
@@ -242,6 +245,9 @@
 					<field name="collection">
 						<xsl:value-of select="$collection" />
 					</field>
+					
+					<!-- LEVEL -->
+					<field name="scb_level">Item</field>
 				
 					<!-- LEVEL FOR SORTING -->
 					<field name="level_sort">1/Item</field>
