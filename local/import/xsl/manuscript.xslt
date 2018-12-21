@@ -4,6 +4,7 @@
     xmlns:php="http://php.net/xsl"
 	xmlns:tei="http://www.tei-c.org/ns/1.0">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
+	
     <xsl:param name="institution">SOAS, University of London</xsl:param>
     <xsl:param name="collection">SOAS Manuscripts</xsl:param>
     <xsl:template match="tei:teiHeader">
@@ -190,6 +191,17 @@
 					<field name="topic_browse">
                         <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
+					
+					<field name="scb-callnumber-first">
+						<xsl:choose>
+							<xsl:when test="contains(tei:term,'--')">
+								<xsl:value-of select="substring-before(tei:term,'--')"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="tei:term"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</field>
                 </xsl:for-each>
 				
 				<!-- HIERARCHY -->
@@ -473,6 +485,17 @@
 					
 						<field name="topic_browse">
 							<xsl:value-of select="normalize-space(tei:term)"/>
+						</field>
+						
+						<field name="scb-callnumber-first">
+							<xsl:choose>
+								<xsl:when test="contains(tei:term,'--')">
+									<xsl:value-of select="substring-before(tei:term,'--')"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="tei:term"/>
+								</xsl:otherwise>
+							</xsl:choose>
 						</field>
 					</xsl:for-each>
 					
