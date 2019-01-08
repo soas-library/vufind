@@ -259,10 +259,10 @@
 					</field>
 					
 					<!-- LEVEL -->
-					<field name="scb_level">Item</field>
+					<field name="scb_level">Work</field>
 				
 					<!-- LEVEL FOR SORTING -->
-					<field name="level_sort">1/Item</field>
+					<field name="level_sort">1/Work</field>
 				
 					<!-- ITEM NO. -->
 					<field name="item_number">
@@ -382,7 +382,7 @@
 				
 					<!-- PHYSICAL DESCRIPTION -->
 					<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc">
-						<field name="form">item</field>
+						<field name="form">work</field>
 					
 						<field name="material">
 							<xsl:value-of select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"/>

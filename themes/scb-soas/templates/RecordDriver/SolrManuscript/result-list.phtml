@@ -77,14 +77,14 @@
 		<? $form = $this->driver->getForm();if (!empty($form)): ?>
 			<strong><?=$this->transEsc("Level")?>: </strong><? echo(ucfirst($form)) ?>
 			<br/>
-			<? if ($form === "item"): ?>
+			<? if ($form === "work"): ?>
 				<? $codex = $this->driver->getClassmark(); ?>
 				<? if ($codex): ?>
 					<p><strong>In codex:</strong> <?=$this->escapeHtml($codex)?></p>
 				<? endif; ?>
 			<? else: ?>
 				<? if($this->driver->getNumberItems()): ?>
-					<strong><?=$this->transEsc("Contains")?>: </strong><?=$this->driver->getNumberItems() ?> items
+					<strong><?=$this->transEsc("Contains")?>: </strong><?=$this->driver->getNumberItems() ?> works
 				<? endif; ?>
 			<? endif; ?>
 		<?else:?>
@@ -182,7 +182,7 @@
               <input type="hidden" value="<?=$this->escapeHtmlAttr($hierarchyID)?>" class="hiddenHierarchyId" />
               <i class="fa fa-fw fa-sitemap color_link" aria-hidden="true"></i>
               <a class="hierarchyTreeLinkText" data-lightbox href="<?=$this->recordLink()->getTabUrl($this->driver, 'HierarchyTree')?>?hierarchy=<?=urlencode($hierarchyID)?>#tabnav" title="<?=$this->transEsc('hierarchy_tree')?>" data-lightbox-href="<?=$this->recordLink()->getTabUrl($this->driver, 'AjaxTab')?>?hierarchy=<?=urlencode($hierarchyID)?>" data-lightbox-post="tab=hierarchytree">
-                <?=$this->transEsc('manuscript_view_context').' ('.$this->driver->getNumberItems().' '.$this->transEsc('items').')'?><? if (count($trees) > 1): ?>: <?=$this->escapeHtml($hierarchyTitle)?><? endif; ?>
+                <?=$this->transEsc('manuscript_view_context').' ('.$this->driver->getNumberItems().' '.$this->transEsc('works').')'?><? if (count($trees) > 1): ?>: <?=$this->escapeHtml($hierarchyTitle)?><? endif; ?>
               </a>
             </div>
           <? endforeach; ?>
