@@ -345,6 +345,9 @@
    <field name="author_corporate_facet" type="textProper" indexed="true" stored="true" multiValued="true"/>
    <field name="level_sort" type="string" indexed="true" stored="true"/>
    <!-- END oct-2018-->
+   <!--ADDED BY sb174 2019-01-08 FOR jan-2019 RELEASE-->
+   <field name="item_acquisition_date" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- END jan-2019-->
          
    <!-- CALM -->
    <field name="scb_loan_type" type="string" indexed="true" stored="true"/>
