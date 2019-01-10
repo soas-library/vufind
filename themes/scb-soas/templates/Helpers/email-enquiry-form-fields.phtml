@@ -53,12 +53,6 @@ if (isset($this->subject)) {
   </div>
 <? endif; ?>
 <div class="form-group">
-<label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('')?></label>
-<div class="col-sm-9">
-<span><?=$this->transEsc('Please add your email address, if you want to receive a reply from library staff.')?></span>
-</div>
-</div>
-<div class="form-group">
   <label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('Message')?>:</label>
   <div class="col-sm-9">
     <textarea id="email_message" class="form-control" name="message" rows="4"><?=isset($this->message) ? $this->message : ''?></textarea>
