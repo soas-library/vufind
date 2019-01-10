@@ -396,7 +396,15 @@
 		                    <xsl:value-of select="normalize-space()"/>
 		                </field>
 	                </xsl:if>
-                </xsl:for-each>         
+                </xsl:for-each>
+
+               <xsl:for-each select="//Term">
+	                <xsl:if test="string-length(.) > 0">
+		                <field name="topic_facet">
+		                    <xsl:value-of select="normalize-space()"/>
+		                </field>
+	                </xsl:if>
+                </xsl:for-each>   				
                                 
                 <!-- COLLECTION / HIERARCHY -->                
 	               <field name="hierarchytype">Default</field>	                
