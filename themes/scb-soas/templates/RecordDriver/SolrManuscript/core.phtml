@@ -278,11 +278,11 @@
         </tr>
       <? endif; ?>
 
-	  <? $language = $this->driver->getTextLang(); if (!empty($language)): ?>
+	  <? $language = $this->driver->getLanguages(); if (!empty($language)): ?>
       <tr>
         <th><?=$this->transEsc('Language')?>: </th>
         <td>
-            <?=$this->escapeHtml($language)?><br/>
+            <? foreach ($language as $lang): ?><?= $this->escapeHtml($lang)?><br/><? endforeach; ?>
         </td>
       </tr>
       <? endif; ?>

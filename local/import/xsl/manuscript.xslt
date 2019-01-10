@@ -39,6 +39,13 @@
                     <xsl:value-of select="$collection" />
                 </field>
 				
+				<!-- ARCHIVE COLLECTION -->
+				<xsl:if test="tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue']">
+					<field name="archive_collection">
+						<xsl:value-of select="normalize-space(tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue'])"/>
+					</field>
+				</xsl:if>
+				
 				<!-- LEVEL -->
 				<field name="scb_level">Codex</field>
 				
@@ -258,6 +265,13 @@
 						<xsl:value-of select="$collection" />
 					</field>
 					
+					<!-- ARCHIVE COLLECTION -->
+					<xsl:if test="//tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue']">
+						<field name="archive_collection">
+							<xsl:value-of select="normalize-space(//tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue'])"/>
+						</field>
+					</xsl:if>
+					
 					<!-- LEVEL -->
 					<field name="scb_level">Work</field>
 				
@@ -373,9 +387,9 @@
 						</field>
 					</xsl:if>
 				
-					<!-- LANGUAGE -->
+					<!-- LANGUAGE -->			
 					<xsl:if test="tei:textLang">
-						<field name="textLang">
+						<field name="language">
 							<xsl:value-of select="tei:textLang"/>
 						</field>
 					</xsl:if>

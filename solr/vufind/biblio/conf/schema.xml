@@ -412,6 +412,8 @@
    <field name="textLang" type="string" indexed="true" stored="true" />
    <field name="filiation" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="pagination" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- MANUSCRIPT FIELDS FOR jan-2019 RELEASE -->
+   <field name="archive_collection" type="string" indexed="true" stored="true" />
    <!-- END MANUSCRIPT -->
 
    <!-- Dynamic fields for customization without schema modification -->
