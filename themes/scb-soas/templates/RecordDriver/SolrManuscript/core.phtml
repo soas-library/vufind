@@ -109,7 +109,7 @@
 	
 	<? if (!empty($availability_status)): ?>
 		<? foreach ($availability_status as $field): ?>
-			<?if($this->escapeHtml($field) == "Open"):?>
+			<?if($this->escapeHtml($field) == "free"):?>
 				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
 			<?else:?>
 				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
