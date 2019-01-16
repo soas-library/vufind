@@ -183,6 +183,12 @@ class SolrManuscript extends SolrDefault
 		$this->fields['pagination'] : '';
 	}
 	
+	public function getArchiveCollection()
+	{
+		return isset($this->fields['archive_collection']) ?
+		$this->fields['archive_collection'] : '';
+	}
+	
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO
 	public function getClassmark()
