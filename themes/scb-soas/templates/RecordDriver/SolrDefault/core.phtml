@@ -876,7 +876,6 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		$urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
 	  ?>
 	  <? if (!empty($urls) || $openUrlActive): ?>
-	  <?print_r($urls);?>
 	  <tr>
 		<th><?=$this->transEsc('Online Access')?>: </th>
 		<td>
