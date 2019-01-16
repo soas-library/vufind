@@ -305,7 +305,6 @@
    <!--SCB NEW FIELDS-->
    <field name="scb_item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_item_acquisition_message" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="scb_item_acquisition_date" type="string" indexed="true" stored="true" multiValued="false"/>
    <field name="scb_display_item_location" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_item_location_c" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_testing_item_location" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -319,7 +318,6 @@
    <field name="scb_holding_location_c" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_holding_shelflist" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_shelf_testing_location" type="string" indexed="true" stored="true" multiValued="true"/>
-
    <field name="scb_item_onorder" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="scb_format" type="string" indexed="true" stored="true" multiValued="false"/>
    <field name="scb-callnumber-first" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -347,6 +345,7 @@
    <!-- END oct-2018-->
    <!--ADDED BY sb174 2019-01-08 FOR jan-2019 RELEASE-->
    <field name="item_acquisition_date" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="item_acquisition_date_sort" type="string" indexed="true" stored="true" multiValued="false"/>
    <!-- END jan-2019-->
          
    <!-- CALM -->

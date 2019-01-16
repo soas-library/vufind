@@ -668,7 +668,8 @@ class SolrMarc extends SolrDefault
         // Which fields/subfields should we check for URLs?
         $fieldsToCheck = [
             '856' => ['y', 'z', '3'],   // Standard URL
-            '555' => ['a']         // Cumulative index/finding aids
+            '555' => ['a'],         // Cumulative index/finding aids
+			'945' => ['z']         // ADDED BY sb174 FOR jan-2019 RELEASE
         ];
 
         foreach ($fieldsToCheck as $field => $subfields) {
