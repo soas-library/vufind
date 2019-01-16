@@ -667,8 +667,6 @@ class SolrMarc extends SolrDefault
 
         // Which fields/subfields should we check for URLs?
         $fieldsToCheck = [
-            '856' => ['y', 'z', '3'],   // Standard URL
-            '555' => ['a'],         // Cumulative index/finding aids
 			'945' => ['z']         // ADDED BY sb174 FOR jan-2019 RELEASE
         ];
 
@@ -699,7 +697,40 @@ class SolrMarc extends SolrDefault
                 }
             }
         }
+		if (empty($retVal)){
+			$fieldsToCheck = [
+				'856' => ['y', 'z', '3'],   // Standard URL
+				'555' => ['a']         // Cumulative index/finding aids
+			];
+	
+			foreach ($fieldsToCheck as $field => $subfields) {
+				$urls = $this->getMarcRecord()->getFields($field);
+				if ($urls) {
+					foreach ($urls as $url) {
+						// Is there an address in the current field?
+						$address = $url->getSubfield('u');
+						if ($address) {
+							$address = $address->getData();
 
+							// Is there a description?  If not, just use the URL itself.
+							foreach ($subfields as $current) {
+								$desc = $url->getSubfield($current);
+								if ($desc) {
+									break;
+								}
+							}
+							if ($desc) {
+								$desc = $desc->getData();
+							} else {
+								$desc = $address;
+							}
+
+							$retVal[] = ['url' => $address, 'desc' => $desc];
+						}
+					}
+				}
+			}
+		}
         return $retVal;
     }
 
