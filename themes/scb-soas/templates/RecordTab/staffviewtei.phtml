@@ -4,13 +4,26 @@
 ?>
 <table class="citation table table-striped">
 	<? $top_id = $this->driver->getTopId(); if (!empty($top_id)): ?>
-		<? foreach ($top_id as $field): ?>
-			<? $github_link = "https://github.com/fihristorg/fihrist-mss/blob/master/collections/school%20of%20oriental%20and%20african%20studies/" . $field . ".xml"; ?>
-			<tr>
-				<td>
-					<span><a href="<?=$this->escapeHtml($github_link)?>"><?=$this->transEsc("View full record on Fihrist's GitHub repository")?></a></span></br>
-				</td>
-			</tr>
-		<? endforeach; ?>
+		<? $archive_collection = $this->driver->getArchiveCollection(); if (!empty($archive_collection)): ?>
+			<? if ($archive_collection === 'Fihrist'):?>
+				<? foreach ($top_id as $field): ?>
+					<? $github_link = "https://github.com/fihristorg/fihrist-mss/blob/master/collections/school%20of%20oriental%20and%20african%20studies/" . $field . ".xml"; ?>
+					<tr>
+						<td>
+							<span><a href="<?=$this->escapeHtml($github_link)?>"><?=$this->transEsc("View full record on Fihrist's Github repository")?></a></span></br>
+						</td>
+					</tr>
+				<? endforeach; ?>
+			<? elseif ($archive_collection === 'Senmai'):?>
+				<? foreach ($top_id as $field): ?>
+					<? $github_link = "https://github.com/bodleian/senmai-mss/blob/master/collections/school_of_oriental_and_african_studies/" . $field . ".xml"; ?>
+					<tr>
+						<td>
+							<span><a href="<?=$this->escapeHtml($github_link)?>"><?=$this->transEsc("View full record on the Bodleian Libraries' Github repository")?></a></span></br>
+						</td>
+					</tr>
+				<? endforeach; ?>
+			<? endif; ?>
+		<? endif; ?>
 	<? endif; ?>
 </table>

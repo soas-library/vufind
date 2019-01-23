@@ -109,10 +109,10 @@
 	
 	<? if (!empty($availability_status)): ?>
 		<? foreach ($availability_status as $field): ?>
-			<?if($this->escapeHtml($field) == "Open"):?>
-				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
-			<?else:?>
+			<?if($this->escapeHtml($field) == "restricted"):?>
 				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?else:?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
 			<?endif;?>
 		<? endforeach; ?>
     <? endif; ?>
@@ -249,7 +249,13 @@
         <tr>
           <th><?=$this->transEsc(count($authors['main']) > 1 ? 'Main Authors' : 'Main Author')?>: </th>
           <td>
-            <? $i = 0; foreach ($authors['main'] as $author => $roles): ?><?=($i++ == 0)?'':', '?><span property="author"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span><? endforeach; ?>
+            <? $i = 0; foreach ($authors['main'] as $author => $roles): ?><?=($i++ == 0)?'':', '?><span property="author"><a href="<?=$this->record($this->driver)->getLink('author', $author)?>"><?=$this->escapeHtml($author)?></a><?=$formatRoles($roles)?></span><? endforeach; ?><br/>
+			<? $linkedauthor = $this->driver->getLinkedAuthor(); if (!empty($linkedauthor)): ?>
+				<? foreach($linkedauthor as $field): ?>
+					<a href="<?=$this->record($this->driver)->getLink('author', $field)?>"><?=$this->escapeHtml($field)?></a>
+					<br />
+				<? endforeach; ?>
+			<? endif; ?>
           </td>
         </tr>
       <? endif; ?>
@@ -272,11 +278,11 @@
         </tr>
       <? endif; ?>
 
-	  <? $language = $this->driver->getTextLang(); if (!empty($language)): ?>
+	  <? $language = $this->driver->getLanguages(); if (!empty($language)): ?>
       <tr>
         <th><?=$this->transEsc('Language')?>: </th>
         <td>
-            <?=$this->escapeHtml($language)?><br/>
+            <? foreach ($language as $lang): ?><?= $this->escapeHtml($lang)?><br/><? endforeach; ?>
         </td>
       </tr>
       <? endif; ?>

@@ -4,6 +4,7 @@
     xmlns:php="http://php.net/xsl"
 	xmlns:tei="http://www.tei-c.org/ns/1.0">
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
+	
     <xsl:param name="institution">SOAS, University of London</xsl:param>
     <xsl:param name="collection">SOAS Manuscripts</xsl:param>
     <xsl:template match="tei:teiHeader">
@@ -37,6 +38,16 @@
                 <field name="collection">
                     <xsl:value-of select="$collection" />
                 </field>
+				
+				<!-- ARCHIVE COLLECTION -->
+				<xsl:if test="tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue']">
+					<field name="archive_collection">
+						<xsl:value-of select="normalize-space(tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue'])"/>
+					</field>
+				</xsl:if>
+				
+				<!-- LEVEL -->
+				<field name="scb_level">Codex</field>
 				
 				<!-- LEVEL FOR SORTING -->
 				<field name="level_sort">0/Codex</field>
@@ -187,6 +198,17 @@
 					<field name="topic_browse">
                         <xsl:value-of select="normalize-space(tei:term)"/>
                     </field>
+					
+					<field name="scb-callnumber-first">
+						<xsl:choose>
+							<xsl:when test="contains(tei:term,'--')">
+								<xsl:value-of select="substring-before(tei:term,'--')"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="tei:term"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</field>
                 </xsl:for-each>
 				
 				<!-- HIERARCHY -->
@@ -242,9 +264,19 @@
 					<field name="collection">
 						<xsl:value-of select="$collection" />
 					</field>
+					
+					<!-- ARCHIVE COLLECTION -->
+					<xsl:if test="//tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue']">
+						<field name="archive_collection">
+							<xsl:value-of select="normalize-space(//tei:fileDesc/tei:publicationStmt/tei:idno[@type='catalogue'])"/>
+						</field>
+					</xsl:if>
+					
+					<!-- LEVEL -->
+					<field name="scb_level">Work</field>
 				
 					<!-- LEVEL FOR SORTING -->
-					<field name="level_sort">1/Item</field>
+					<field name="level_sort">1/Work</field>
 				
 					<!-- ITEM NO. -->
 					<field name="item_number">
@@ -259,37 +291,41 @@
 					<!-- TITLE -->
 					<xsl:if test="tei:title">
 						<field name="title">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_full">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_short">
-							<xsl:value-of select="tei:title"/>
+							<xsl:value-of select="tei:title[1]"/>
 						</field>
 					
 						<field name="title_sort">
-							<xsl:value-of select="php:function('VuFind::stripArticles', string(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:title))"/>
+							<xsl:value-of select="php:function('VuFind::stripArticles', string(tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:title[1]))"/>
 						</field>
 					
-						<xsl:if test="tei:title[@type='alt']">
+						<xsl:for-each select="tei:title[@type='alt']">
 							<field name="title_alt">
-								<xsl:value-of select="tei:title[@type='alt']"/>
+								<xsl:value-of select="."/>
 							</field>
+						</xsl:for-each>
+					
+						<xsl:if test="tei:title[position() > 1]">
+							<xsl:for-each select="tei:title[position() > 1]">
+								<field name="linked_title">
+									<xsl:value-of select="."/>
+								</field>
+							</xsl:for-each>
 						</xsl:if>
 					
-						<xsl:if test="tei:title[@xml:lang='ar']">
-							<field name="linked_title">
-								<xsl:value-of select="tei:title[@xml:lang='ar']"/>
-							</field>
-						</xsl:if>
-					
-						<xsl:if test="tei:title[@xml:lang='ar' and @type='alt']">
-							<field name="linked_title_alt">
-								<xsl:value-of select="tei:title[@xml:lang='ar' and @type='alt']"/>
-							</field>
+						<xsl:if test="tei:title[@type='alt'][position() > 1]">
+							<xsl:for-each select="tei:title[@type='alt'][position() > 1]">
+								<field name="linked_title_alt">
+									<xsl:value-of select="."/>
+								</field>
+							</xsl:for-each>
 						</xsl:if>
 					
 					</xsl:if>
@@ -297,14 +333,16 @@
 					<!-- AUTHOR -->
 					<xsl:if test="tei:author/tei:persName">
 						<field name="author">
-							<xsl:value-of select="tei:author/tei:persName"/>
+							<xsl:value-of select="tei:author/tei:persName[1]"/>
 						</field>
 					</xsl:if>
 				
-					<xsl:if test="tei:author/tei:persName[@xml:lang='ar']">
-						<field name="linked_author">
-							<xsl:value-of select="tei:author/tei:persName[@xml:lang='ar']"/>
-						</field>
+					<xsl:if test="tei:author/tei:persName[position() > 1]">
+						<xsl:for-each select="tei:author/tei:persName[position() > 1]">
+							<field name="linked_author">
+								<xsl:value-of select="."/>
+							</field>
+						</xsl:for-each>
 					</xsl:if>
 				
 					<!-- URL -->
@@ -349,16 +387,16 @@
 						</field>
 					</xsl:if>
 				
-					<!-- LANGUAGE -->
+					<!-- LANGUAGE -->			
 					<xsl:if test="tei:textLang">
-						<field name="textLang">
+						<field name="language">
 							<xsl:value-of select="tei:textLang"/>
 						</field>
 					</xsl:if>
 				
 					<!-- PHYSICAL DESCRIPTION -->
 					<xsl:if test="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc">
-						<field name="form">item</field>
+						<field name="form">work</field>
 					
 						<field name="material">
 							<xsl:value-of select="//tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"/>
@@ -446,21 +484,32 @@
 					</xsl:if>
 
 					<!-- SUBJECTS -->
-					<xsl:for-each select="//tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
+					<xsl:for-each select="//tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item/tei:term">
 						<field name="topic">
-							<xsl:value-of select="normalize-space(tei:term)"/>
+							<xsl:value-of select="normalize-space(.)"/>
 						</field>
 					
 						<field name="topic_unstemmed">
-							<xsl:value-of select="normalize-space(tei:term)"/>
+							<xsl:value-of select="normalize-space(.)"/>
 						</field>
 					
 						<field name="topic_facet">
-							<xsl:value-of select="normalize-space(tei:term)"/>
+							<xsl:value-of select="normalize-space(.)"/>
 						</field>
 					
 						<field name="topic_browse">
-							<xsl:value-of select="normalize-space(tei:term)"/>
+							<xsl:value-of select="normalize-space(.)"/>
+						</field>
+						
+						<field name="scb-callnumber-first">
+							<xsl:choose>
+								<xsl:when test="contains(.,'--')">
+									<xsl:value-of select="normalize-space(substring-before(.,'--'))"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="normalize-space(.)"/>
+								</xsl:otherwise>
+							</xsl:choose>
 						</field>
 					</xsl:for-each>
 					

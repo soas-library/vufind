@@ -183,6 +183,12 @@ class SolrManuscript extends SolrDefault
 		$this->fields['pagination'] : '';
 	}
 	
+	public function getArchiveCollection()
+	{
+		return isset($this->fields['archive_collection']) ?
+		$this->fields['archive_collection'] : '';
+	}
+	
     // EXTANT FIELDS COPIED FROM SOLRARCHIVE.PHP - 2018-07-09
 	//REFNO
 	public function getClassmark()
@@ -308,7 +314,7 @@ class SolrManuscript extends SolrDefault
 			//$protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
 			//$url = $protocol.'://localhost:8080/solr/biblio/select?q=collection%3A%22SOAS+Archive%22+AND+hierarchy_top_id%3A%22'.$topID.'%22&wt=xml&indent=true';
 			$protocol = "http";
-			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22+AND+form%3A%22item%22&wt=xml&indent=true';
+			$url = $protocol.'://'.$_SERVER['SERVER_NAME'].':8080/solr/biblio/select?q=collection%3A%22SOAS+Manuscripts%22+AND+hierarchy_top_id%3A%22'.$topID.'%22+AND+form%3A%22work%22&wt=xml&indent=true';
 			$xml = simplexml_load_string(file_get_contents($url));
 			$itemNumber = $xml->result["numFound"];
 		}

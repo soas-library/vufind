@@ -53,12 +53,6 @@ if (isset($this->subject)) {
   </div>
 <? endif; ?>
 <div class="form-group">
-<label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('')?></label>
-<div class="col-sm-9">
-<span"><?=$this->transEsc('Please add your email address, if you want to receive a reply from library staff.')?></span>
-</div>
-</div>
-<div class="form-group">
   <label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('Message')?>:</label>
   <div class="col-sm-9">
     <textarea id="email_message" class="form-control" name="message" rows="4"><?=isset($this->message) ? $this->message : ''?></textarea>
@@ -75,6 +69,12 @@ if (isset($this->subject)) {
     </div>
   </div>
 <? endif ?>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="email_message"><?=$this->transEsc('')?></label>
+	<div class="col-sm-9">
+		<span><?=$this->transEsc('We will use this information to review our services and respond to any queries. Your personal details will be deleted after 12 months.')?> For further details see <a href="https://www.soas.ac.uk/infocomp/dpa/student/">https://www.soas.ac.uk/infocomp/dpa/student/</a></span>
+	</div>
+</div>
 <?=$this->recaptcha()->html($this->useRecaptcha) ?>
 <div class="form-group">
   <div class="col-sm-9 col-sm-offset-3">
