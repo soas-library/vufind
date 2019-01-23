@@ -182,34 +182,34 @@
                 </xsl:if>
 				
 				<!-- SUBJECTS -->
-				<xsl:for-each select="tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item">
-                    <field name="topic">
-                        <xsl:value-of select="normalize-space(tei:term)"/>
-                    </field>
-					
+				<xsl:for-each select="//tei:profileDesc/tei:textClass/tei:keywords/tei:list/tei:item/tei:term">
+					<field name="topic">
+						<xsl:value-of select="normalize-space(.)"/>
+					</field>
+				
 					<field name="topic_unstemmed">
-                        <xsl:value-of select="normalize-space(tei:term)"/>
-                    </field>
-					
+						<xsl:value-of select="normalize-space(.)"/>
+					</field>
+				
 					<field name="topic_facet">
-                        <xsl:value-of select="normalize-space(tei:term)"/>
-                    </field>
-					
+						<xsl:value-of select="normalize-space(.)"/>
+					</field>
+				
 					<field name="topic_browse">
-                        <xsl:value-of select="normalize-space(tei:term)"/>
-                    </field>
+						<xsl:value-of select="normalize-space(.)"/>
+					</field>
 					
 					<field name="scb-callnumber-first">
 						<xsl:choose>
-							<xsl:when test="contains(tei:term,'--')">
-								<xsl:value-of select="substring-before(tei:term,'--')"/>
+							<xsl:when test="contains(.,'--')">
+								<xsl:value-of select="normalize-space(substring-before(.,'--'))"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="tei:term"/>
+								<xsl:value-of select="normalize-space(.)"/>
 							</xsl:otherwise>
 						</xsl:choose>
 					</field>
-                </xsl:for-each>
+				</xsl:for-each>
 				
 				<!-- HIERARCHY -->
 				<field name="hierarchytype">Default</field>		
