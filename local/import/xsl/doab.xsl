@@ -23,13 +23,6 @@
                 <!-- RECORDTYPE -->
                 <field name="recordtype">doab</field>
 
-                <!-- FULLRECORD -->
-                <!-- disabled for now; records are so large that they cause memory problems!
-                <field name="fullrecord">
-                    <xsl:copy-of select="php:function('VuFind::xmlAsText', //oai_dc:dc)"/>
-                </field>
-                  -->
-
                 <!-- ALLFIELDS -->
                 <field name="allfields">
                     <xsl:value-of select="normalize-space(string(//oai_dc:dc))"/>
@@ -56,13 +49,6 @@
                     </xsl:for-each>
                 </xsl:if>
 
-                <!-- FORMAT -->
-                <!-- populating the format field with dc.type instead, see TYPE below.
-                     if you like, you can uncomment this to add a hard-coded format
-                     in addition to the dynamic ones extracted from the record.
-                <field name="format">Online</field>
-                -->
-
                 <!-- SUBJECT -->
                 <xsl:if test="//dc:subject">
                     <xsl:for-each select="//dc:subject">
@@ -88,13 +74,7 @@
                     </field>
                 </xsl:if>
                 
-                <!-- TYPE -->
-                <!--<xsl:if test="//dc:type">
-                    <field name="format">
-                        <xsl:value-of select="concat(translate(substring(//dc:type,1,1), $vLower, $vUpper),substring(//dc:type, 2),substring(' ', 1 div not(position()=last())))" />
-                    </field>
-                </xsl:if>-->
-				
+                <!-- TYPE -->			
 				<xsl:if test="//dc:type">
 					<xsl:choose>
 						<xsl:when test="contains(.,'book')">
