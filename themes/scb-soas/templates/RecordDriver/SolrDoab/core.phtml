@@ -102,7 +102,7 @@
 			<? foreach ($urls as $current): ?>
 				<? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
 					<tr>
-						<td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a>
+						<td><a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a>
 						</td>
 					</tr>
 				<? else: ?>
