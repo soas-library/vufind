@@ -345,7 +345,7 @@
           <? if ((!empty($urls)&& count($urls)>0 ) || $openUrl ):?>
           <? foreach ($urls as $current): ?>
             <? if(strcmp(trim($this->proxyUrl($current['url'])), trim("Not available")) !== 0 || !$sobek): ?>
-            <a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtmlAttr($this->proxyUrl($current['url'])) /*=$this->escapeHtml($current['desc'])*/?></a><br/>
+            <a target="_blank" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
             <? else: ?>
               <span><?=$this->transEsc("Not available")?></span></br>
             <? endif; ?>
@@ -355,7 +355,7 @@
           <? endif; ?><? endif; ?>
           <? if ($item_sobek_txt != ""): ?>
           	<? if($this->driver->getRegExpr($item_sobek_txt, $sobek)): ?>
-            <a target="_blank" href="<?=$item_sobek_txt?>"><?=$item_sobek_txt /*=$this->escapeHtml($current['desc'])*/?></a><br/>
+            <a target="_blank" href="<?=$item_sobek_txt?>"><?=$this->transEsc('Get full text')?></a><br/>
           	<? else: ?>
                       <span><?=$this->transEsc("Not available")?></span></br>
           	<?endif;?>
