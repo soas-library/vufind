@@ -52,10 +52,10 @@
 	
 	<? if (!empty($availability_status)): ?>
 		<? foreach ($availability_status as $field): ?>
-			<?if($this->escapeHtml($field) == "Open"):?>
-				<td id="boxAccess" class="text-success col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
-			<?else:?>
+			<?if($this->escapeHtml($field) == "restricted"):?>
 				<td id="boxAccess" class="text-danger col-sm-3"><?=$this->escapeHtml(ucfirst($field))?></td>
+			<?else:?>
+				<td id="boxAccess" class="text-success col-sm-3"><?=$this->transEsc("Available")?></td>
 			<?endif;?>
 		<? endforeach; ?>
     <? endif; ?>
