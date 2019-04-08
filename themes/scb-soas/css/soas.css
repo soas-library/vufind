@@ -2705,3 +2705,8 @@ table.fines{
   font-weight:700;
   text-align:center;
 }
+
+/***ADDED BY SB174 ON 2019-03-04 FOR mar-2019 RELEASE***/
+#manuscript_note {
+  padding:10px;
+}
