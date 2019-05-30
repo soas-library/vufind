@@ -347,6 +347,9 @@
    <field name="item_acquisition_date" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="item_acquisition_date_sort" type="string" indexed="true" stored="true" multiValued="false"/>
    <!-- END jan-2019-->
+   <!--ADDED BY sb174 2019-05-30 FOR jun-2019 RELEASE-->
+   <field name="language_search" type="text" indexed="true" stored="true" multiValued="true"/>
+   <!-- END jun-2019-->
          
    <!-- CALM -->
    <field name="scb_loan_type" type="string" indexed="true" stored="true"/>
@@ -482,6 +485,9 @@
  <!--END-->
  <!--ADDED BY sb174 2018-09-18 FOR VERSION sept-2018-->
  <copyField source="subject" dest="subject_unstemmed"/>
+ <!--END-->
+ <!--ADDED BY sb174 2019-05-30 FOR VERSION jun-2019-->
+ <copyField source="language" dest="language_search"/>
  <!--END-->
  
  <!-- CopyFields for call numbers -->
