@@ -350,6 +350,9 @@
    <!--ADDED BY sb174 2019-05-30 FOR jun-2019 RELEASE-->
    <field name="language_search" type="text" indexed="true" stored="true" multiValued="true"/>
    <!-- END jun-2019-->
+   <!--ADDED BY sb174 2019-08-02 FOR aug-2019 RELEASE-->
+   <field name="action_note" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- END aug-2019-->
          
    <!-- CALM -->
    <field name="scb_loan_type" type="string" indexed="true" stored="true"/>
