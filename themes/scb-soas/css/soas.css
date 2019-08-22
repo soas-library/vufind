@@ -2710,3 +2710,18 @@ table.fines{
 #manuscript_note {
   padding:10px;
 }
+
+/***ADDED BY SB174 ON 2019-08-02 FOR aug-2019 RELEASE***/
+#crowdsource-box-left {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#crowdsource-box-left-top {
+	font-size: 30px;
+}
+
+#crowdsource-box-right {
+	font-size: 65px;
+	font-weight: bold;
+}
