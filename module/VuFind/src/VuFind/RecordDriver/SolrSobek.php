@@ -42,7 +42,6 @@ use VuFind\Exception\ILS as ILSException,
 class SolrSobek extends SolrMarc
 {    
    
-     
     public function getTag992a()
     {
         $results = $this->getFieldArray('992', array('a'));
