@@ -177,7 +177,7 @@ class SolrSobek extends SolrMarc
 	    		}
 	    	}
     	}
-    	return False;
+    	return false;
     }
 
     public function getRegExpr($url, $active)
@@ -195,7 +195,7 @@ class SolrSobek extends SolrMarc
 	    	}
     	}
     	
-    	return True;
+    	return true;
     }
     
     
