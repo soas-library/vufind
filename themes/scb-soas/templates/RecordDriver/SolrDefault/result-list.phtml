@@ -257,7 +257,7 @@
 						
 						<!-- BIB LOCATION LINK -->
 						
-						<? if ($row['holdings']): ?>
+						<? if (array_key_exists('holdings', $row)): ?>
 						<td class="hidden-xs3">
 							<?=$this->escapeHtml($row['holdings'])?>
 						</td>
