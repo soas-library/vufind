@@ -1,8 +1,10 @@
 <? 
-if($this->driver->getCollectionType()[0] == "SOAS Library")
-	$collectionType = $this->driver->userPermissions('OLE');
-else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
-	$collectionType = $this->driver->userPermissions('ePrints');
+	if ($this->driver->getCollectionType()[0] == "SOAS Library"){
+		$collectionType = $this->driver->userPermissions('OLE');
+	}
+	elseif ($this->driver->getCollectionType()[0] == "SOAS Research Online"){
+		$collectionType = $this->driver->userPermissions('ePrints');
+	}
 ?>
 <?
   $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLink()->getUrl($this->driver));
@@ -597,8 +599,9 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 <!-- UNCLEAR, SHOW ON ORDER STATUS? -->
 <?if (($hasItems<1 && $hasHoldings<1) || !$showOnOrder /*&& $hasCallnumber<1*/) :?>
 	<? $onOrderItem = $this->driver->getItemOnOrder();?>
+	<? $callnumber = $this->driver->getClassmark();?>
 	<? if(count($onOrderItem)>0) :?>
-		<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($callnumber)?>">
+		<table class="table table-responsive" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->escapeHtml($callnumber)?>">
 			<tr vocab="http://schema.org/" typeof="Offer">
 				<td>
 					<?$showOnOrderAux =false;

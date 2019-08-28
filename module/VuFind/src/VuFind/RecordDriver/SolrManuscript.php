@@ -238,21 +238,28 @@ class SolrManuscript extends SolrDefault
     	$userType = "OPAC";
     	//$browser_ip = $_SERVER['REMOTE_ADDR'];
 
-	$browser_ip = '';
-	    if ($_SERVER['HTTP_CLIENT_IP'])
-        $browser_ip = $_SERVER['HTTP_CLIENT_IP'];
-    	    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_X_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED'];
-	    else if($_SERVER['HTTP_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED'];
-	    else if($_SERVER['REMOTE_ADDR'])
-        $browser_ip = $_SERVER['REMOTE_ADDR'];
-	    else
-        $browser_ip = 'UNKNOWN';    	
+		$browser_ip = '';
+	    if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_CLIENT_IP'];
+		}
+    	elseif (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+	    elseif (array_key_exists('HTTP_X_FORWARDED', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_X_FORWARDED'];
+		}
+	    elseif (array_key_exists('HTTP_FORWARDED_FOR', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_FORWARDED_FOR'];
+		}
+	    elseif (array_key_exists('HTTP_FORWARDED', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_FORWARDED'];
+		}
+	    elseif (array_key_exists('REMOTE_ADDR', $_SERVER)){
+			$browser_ip = $_SERVER['REMOTE_ADDR'];
+		}
+	    else {
+			$browser_ip = 'UNKNOWN';
+		}	
 
         $userType = $this->determineUserType($browser_ip);
     	
