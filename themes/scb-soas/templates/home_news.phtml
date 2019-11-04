@@ -1,7 +1,9 @@
 <? $account = $this->auth()->getManager(); ?>
 <? $times_access = $account->userPermissions('Header: Opening Times Banner');?>
 <? if(empty($this->layout()->breadcrumbs)): ?>
-		<div class="alert_news pull-right-xs pull-right">
+		<div class="col-sm-4 alert_news pull-right-xs pull-right">
+		<div class="logo-transp hidden-xs">
+		</div>
 		<strong class="home_text_short" style="float:left;">
 		<!--<h3 class="fronth3 font18">Library term time opening hours:</h3>
 		<p class="font12">Monday to Friday: 08:00 to 23:30<br/>
@@ -40,7 +42,6 @@ Full details of opening hours over the Christmas period are available at <a href
 CLOSED between 24 - 26 Dec. and 1 Jan.<br/>
 Service desks will close earlier. For specific times see <a href="https://www.soas.ac.uk/library/using/openingtimes/">https://www.soas.ac.uk/library/using/openingtimes/</a>.</p>-->
       </strong>
-      <div class="logo-transp hidden-xs">
-      </div>
+ 
       </div>
 <? endif; ?>
