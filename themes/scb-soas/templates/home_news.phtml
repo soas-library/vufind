@@ -3,7 +3,7 @@
 <? if(empty($this->layout()->breadcrumbs)): ?>
 		<div class="alert_news pull-right-xs pull-right">
 		<strong class="home_text_short" style="float:left;">
-		<h3 class="fronth3 font18">Library term time opening hours:</h3>
+		<!--<h3 class="fronth3 font18">Library term time opening hours:</h3>
 		<p class="font12">Monday to Friday: 08:00 to 23:30<br/>
 Saturday to Sunday: 10:30 to 23:30<br/><br/>
 		<? if (!$times_access) :?>
@@ -11,6 +11,22 @@ Saturday to Sunday: 10:30 to 23:30<br/><br/>
 			<a href="https://www.soas.ac.uk/library/using/openingtimes/">https://www.soas.ac.uk/library/using/openingtimes/</a>
 		<? else: ?>
 			For further information, see https://www.soas.ac.uk/library/using/openingtimes/
+		<?endif;?>
+		</p>-->
+		<h3 class="fronth3 font18">Library opening hours:</h3>
+		<p class="font12">
+		<? if (!$times_access) :?>
+			<a href="https://www.soas.ac.uk/library/using/openingtimes/">https://www.soas.ac.uk/library/using/openingtimes/</a>
+		<? else: ?>
+			https://www.soas.ac.uk/library/using/openingtimes/
+		<?endif;?>
+		</p>
+		<h3 class="fronth3 font18">Library training & events:</h3>
+		<p class="font12">
+		<? if (!$times_access) :?>
+			<a href="https://www.soas.ac.uk/library/events/">https://www.soas.ac.uk/library/events/</a>
+		<? else: ?>
+			https://www.soas.ac.uk/library/events/
 		<?endif;?>
 		</p>
 		<!--<h3 class="fronth3 font18">SOAS Library update:</h3>
