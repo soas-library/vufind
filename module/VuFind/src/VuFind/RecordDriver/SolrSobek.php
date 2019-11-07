@@ -42,7 +42,6 @@ use VuFind\Exception\ILS as ILSException,
 class SolrSobek extends SolrMarc
 {    
    
-     
     public function getTag992a()
     {
         $results = $this->getFieldArray('992', array('a'));
@@ -122,21 +121,28 @@ class SolrSobek extends SolrMarc
     	$userType = "OPAC";
     	//$browser_ip = $_SERVER['REMOTE_ADDR'];
 
-	$browser_ip = '';
-	    if ($_SERVER['HTTP_CLIENT_IP'])
-        $browser_ip = $_SERVER['HTTP_CLIENT_IP'];
-    	    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_X_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_X_FORWARDED'];
-	    else if($_SERVER['HTTP_FORWARDED_FOR'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED_FOR'];
-	    else if($_SERVER['HTTP_FORWARDED'])
-        $browser_ip = $_SERVER['HTTP_FORWARDED'];
-	    else if($_SERVER['REMOTE_ADDR'])
-        $browser_ip = $_SERVER['REMOTE_ADDR'];
-	    else
-        $browser_ip = 'UNKNOWN';    	
+		$browser_ip = '';
+	    if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_CLIENT_IP'];
+		}
+    	elseif (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+	    elseif (array_key_exists('HTTP_X_FORWARDED', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_X_FORWARDED'];
+		}
+	    elseif (array_key_exists('HTTP_FORWARDED_FOR', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_FORWARDED_FOR'];
+		}
+	    elseif (array_key_exists('HTTP_FORWARDED', $_SERVER)){
+			$browser_ip = $_SERVER['HTTP_FORWARDED'];
+		}
+	    elseif (array_key_exists('REMOTE_ADDR', $_SERVER)){
+			$browser_ip = $_SERVER['REMOTE_ADDR'];
+		}
+	    else {
+			$browser_ip = 'UNKNOWN';
+		}	
 
         $userType = $this->determineUserType($browser_ip);
     	
@@ -171,7 +177,7 @@ class SolrSobek extends SolrMarc
 	    		}
 	    	}
     	}
-    	return False;
+    	return false;
     }
 
     public function getRegExpr($url, $active)
@@ -189,7 +195,7 @@ class SolrSobek extends SolrMarc
 	    	}
     	}
     	
-    	return True;
+    	return true;
     }
     
     

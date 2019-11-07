@@ -95,18 +95,6 @@ border: medium none;
 box-shadow: none;
 }
 
-@media (max-width:768px){.pull-right-xs {float: initial !important;}}
-@media (min-width:767px){.homecovertop {top:240px; !important;}}
-@media (min-width:768px){.alert_news {min-height: 130px; min-width: 500px; margin-top: 0 ; margin-left: 3%; margin-right: 0 !important; }}
-@media (max-width:768px){.alert_news {margin-left: 0;}}
-@media (max-width:767px) {.logo-transp {display:none} .navbar-toggle {margin-top: 0px;} #logonew h2 {margin: 0 50px 14px 15px;} .searchHomeContent {background-color: #ffffff;}}
-@media (min-width:768px) {#logosoas{display:none;}}
-@media (min-width:768px) {input.searchForm_lookfor {width: 50% !important;}}
-@media (max-width:768px) {#homesearchbox div{margin-top:2% }}
-
-@media (max-width:768px) {.searchForm_type{width: 60%; float: left;}}
-@media (max-width:768px) {#btnFind{width: 39%; float: right;}}
-
 .fronth3 {
     margin-top: 5px;
 }

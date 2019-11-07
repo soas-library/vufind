@@ -60,7 +60,7 @@ $(document).ready(function() {
 				<li><?=$this->transEsc('renewal_rule_2')?></li>
 				<li><?=$this->transEsc('renewal_rule_3')?></li>
 			</ul>
-			Please note that if a recalled item becomes overdue, renewal of all items will be blocked. In this case, contact <a href="mailto:customerservices@soas.ac.uk">customerservices@soas.ac.uk</a>.<br/>
+			Please note that if a recalled item becomes overdue, renewal of all items will be blocked. In this case, contact <? $supportEmail = $this->escapeHtmlAttr($this->systemEmail()); ?><a href="mailto:<?=$supportEmail?>"><?=$supportEmail?></a>.<br/>
 			<!-- END -->
             <strong><?=$this->transEsc('After renewing, please refresh the page to see new due dates.')?></strong>
             <a class="btn btn-default" id="refresh" href="<?=$this->url('myresearch-checkedout')?>"><?=$this->transEsc("Refresh page")?></a>
