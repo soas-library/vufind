@@ -2,8 +2,8 @@
 <? $times_access = $account->userPermissions('Header: Opening Times Banner');?>
 <? if(empty($this->layout()->breadcrumbs)): ?>
 		<div class="col-sm-4 alert_news pull-right-xs pull-right">
-		<div class="logo-transp hidden-xs">
-		</div>
+			<div class="logo-transp hidden-xs">
+			</div>
 		<strong class="home_text_short" style="float:left;">
 		<!--<h3 class="fronth3 font18">Library term time opening hours:</h3>
 		<p class="font12">Monday to Friday: 08:00 to 23:30<br/>
@@ -15,22 +15,22 @@ Saturday to Sunday: 10:30 to 23:30<br/><br/>
 			For further information, see https://www.soas.ac.uk/library/using/openingtimes/
 		<?endif;?>
 		</p>-->
-		<h3 class="fronth3 font18">Library opening hours:</h3>
-		<p class="font12">
-		<? if (!$times_access) :?>
-			<a href="https://www.soas.ac.uk/library/using/openingtimes/">https://www.soas.ac.uk/library/using/openingtimes/</a>
-		<? else: ?>
-			https://www.soas.ac.uk/library/using/openingtimes/
-		<?endif;?>
-		</p>
-		<h3 class="fronth3 font18">Library training & events:</h3>
-		<p class="font12">
-		<? if (!$times_access) :?>
-			<a href="https://www.soas.ac.uk/library/events/">https://www.soas.ac.uk/library/events/</a>
-		<? else: ?>
-			https://www.soas.ac.uk/library/events/
-		<?endif;?>
-		</p>
+                <h3 class="fronth3 font18">Library opening hours:</h3>
+                <p class="font12">
+                <? if (!$times_access) :?>
+                        <a href="https://www.soas.ac.uk/library/using/openingtimes/">soas.ac.uk/library/using/openingtimes</a>
+                <? else: ?>
+                        https://www.soas.ac.uk/library/using/openingtimes/
+                <?endif;?>
+                </p>
+                <h3 class="fronth3 font18">Library training & events:</h3>
+                <p class="font12">
+                <? if (!$times_access) :?>
+                        <a href="https://www.soas.ac.uk/library/events/">soas.ac.uk/library/events</a>
+                <? else: ?>
+                        https://www.soas.ac.uk/library/events/
+                <?endif;?>
+                </p>
 		<!--<h3 class="fronth3 font18">SOAS Library update:</h3>
       <p class="font12">The library catalogue will be unavailable between 11:00 and 12:00 on Tuesday 28th December 2017. Please complete your transactions before this time to avoid disappointment.<br/>
       <h3 class="fronth3 font18">SOAS Library Christmas opening hours:</h3>
