@@ -60,7 +60,8 @@
     <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
   </div>
 <? if(empty($this->layout()->breadcrumbs)): ?>
-<?=$this->render('home_news.phtml')?>
+<div class="col-sm-5" style="padding: 0;">
+    <?=$this->render('home_news.phtml')?>
 </div>
 <? endif; ?>
 
