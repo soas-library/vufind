@@ -160,6 +160,9 @@ public Set getDates(Record record) {
             char ind2 = df.getIndicator2();
             switch (ind2)
             {
+                case '0':
+                    pubDates.add(currentDateStr);
+                    break;
                 case '1':
                     pubDates.add(currentDateStr);
                     break;

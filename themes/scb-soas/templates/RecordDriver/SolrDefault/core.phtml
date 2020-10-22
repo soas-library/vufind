@@ -123,7 +123,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 				<? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>										  
 					<tr>
 						<td>
-							<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a>
+							<a href="<?=$this->escapeHtmlAttr($this->proxyUrl(str_replace("https://ezproxy.soas.ac.uk","https://example.oclc.ac.uk",$current['url'])))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a>
 						</td>
 					</tr>
 				<? else: ?>
@@ -882,7 +882,7 @@ else if($this->driver->getCollectionType()[0] == "SOAS Research Online")
 		<td>
 		  <? foreach ($urls as $current): ?>
 			<? if($this->driver->getRegExpr($this->escapeHtml($current['desc']), $collectionType,$this->driver->getCollectionType()[0])): ?>																																			
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
+			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl(str_replace("https://ezproxy.soas.ac.uk","https://example.oclc.ac.uk",$current['url'])))?>"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></a><br/>
 			<? else: ?>
 			  <span><?=$this->transEsc("Not available")?></span></br>
 			<?endif;?>
